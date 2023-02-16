@@ -1,20 +1,19 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouterTypes } from '~/basic'
-// import Layout from '@/layout/index.vue'
+import Layout from '@/layout/index.vue'
 
 export const constantRoutes: RouterTypes = [
-  // {
-  //   path: '/redirect',
-  //   component: Layout,
-  //   hidden: true,
-  //   children: [
-  //     {
-  //       path: '/redirect/:path(.*)',
-  //       component: () => import('@/views/redirect')
-  //     }
-  //   ]
-  // },
-
+  {
+    path: '/',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/workben/:path(.*)',
+        component: () => import('@/views/workben/index.vue')
+      }
+    ]
+  },
   {
     path: '/login',
     component: () => import('@/views/login/index.vue'),
@@ -115,6 +114,7 @@ export const asyncRoutes: RouterTypes = [
   // 404 page must be placed at the end !!!
   { path: '/:catchAll(.*)', name: 'CatchAll', redirect: '/404', hidden: true }
 ]
+
 
 const router = createRouter({
   history: createWebHashHistory(),

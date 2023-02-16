@@ -30,17 +30,27 @@ export const useBasicStore = defineStore('basic', {
     paths: ['token']
   },
   actions: {
+    /**
+     * 保存token
+     * @param data 
+     */
     setToken(data) {
       this.token = data
     },
+     /**
+     * 保存路由
+     * @param routes 
+     */
     setFilterAsyncRoutes(routes) {
       this.$patch((state) => {
         state.filterAsyncRoutes = routes
         state.allRoutes = constantRoutes.concat(routes)
       })
     },
+    //保存用户信息
     setUserInfo({ userInfo, roles, codes }) {
       const { username, avatar } = userInfo
+      // $patch方法用来在当前state上执行Provide函数，从而更新store中存放的数据
       this.$patch((state) => {
         state.roles = roles
         state.codes = codes

@@ -1,4 +1,13 @@
 /*
+ * @Author: Nie Chengyong
+ * @Date: 2023-02-15 14:54:54
+ * @LastEditors: Nie Chengyong
+ * @LastEditTime: 2023-02-16 14:58:43
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/typings/basic.d.ts
+ * @Description: 
+ * 
+ */
+/*
  * 声明.d.ts文件规范
  * 导出的类型以大写开头
  * 对象：config
@@ -39,27 +48,15 @@ export type RouterTypes = Array<rawProp>
 /*settings*/
 export interface SettingsConfig {
   title: string
-  sidebarLogo: boolean
-  showLeftMenu: boolean
-  ShowDropDown: boolean
-  showHamburger: boolean
-  isNeedLogin: boolean
-  isNeedNprogress: boolean
-  showTagsView: boolean
-  tagsViewNum: number
-  openProdMock: boolean
-  errorLog: string | Array<string>
-  permissionMode: string
-  delWindowHeight: string
-  tmpToken: string
-  showNavbarTitle: boolean
-  showTopNavbar: boolean
-  mainNeedAnimation: boolean
-  viteBasePath: string
   defaultLanguage: string
-  defaultSize: string
-  defaultTheme: string
-  plateFormId: number
+  defaultTheme:string|null
+  collapsed: boolean
+  isNeedLogin: boolean
+  viteBasePath: string
+  headHight: number
+  tagsView: boolean
+  tagsHeight: number
+  permissionMode:string
 }
 
 export {}
