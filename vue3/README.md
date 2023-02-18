@@ -1,18 +1,51 @@
-# Vue 3 + TypeScript + Vite
+<!--
+ * @Author: Nie Chengyong
+ * @Date: 2023-02-13 19:56:31
+ * @LastEditors: Nie Chengyong
+ * @LastEditTime: 2023-02-16 17:21:02
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/README.md
+ * @Description: 
+ * 
+-->
+## 使用 iconify 图标
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+首先去图标库地址：[icones](https://icones.js.org/) 找合适的图标
 
-## Recommended IDE Setup
+### 1. 结合 unocss 使用
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+```html
+<i i-carbon-sun />
+<i class="i-carbon-sun" />
+```
 
-## Type Support For `.vue` Imports in TS
+### 2. 结合插件 unplugin-icons 自定义标签使用
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+`<icon-[iconify图标名称]`
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+```html
+<icon-ant-design:fullscreen-exit-outlined  />
+<icon-ant-design:fullscreen-outlined />
+```
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+这种方式还支持自定义 svg 图标，本项目自定义 svg 图标固定放在 src/assets/svg 下
+
+`<icon-custom-[svg图标文件名]`
+
+```
+<icon-custom-logo />
+```
+
+具体配置参看 build/plugin/unplugin.js
+
+### 3. 结合 Naive UI 的 NIcon 组件封装使用
+
+```html
+<!-- iconify图标 -->
+<TheIcon icon="material-symbols:delete-outline" />
+<!-- 自定义svg图标 -->
+<TheIcon icon="logo" type="custom" />
+```
+
+封装组件参看 src/components/icon
+### 4 使用UnoCss
+[保熟的UnoCSS使用指北，优雅使用antfu大佬的原子化CSS](https://juejin.cn/post/7142466784971456548)

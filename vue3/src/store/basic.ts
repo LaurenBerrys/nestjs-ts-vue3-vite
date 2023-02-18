@@ -59,6 +59,7 @@ export const useBasicStore = defineStore('basic', {
         state.userInfo.avatar = avatar
       })
     },
+    //重置
     resetState() {
       this.$patch((state) => {
         state.token = '' //reset token

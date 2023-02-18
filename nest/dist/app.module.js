@@ -13,7 +13,11 @@ const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const orm_config_1 = require("./config/orm.config");
-const events_module_1 = require("./events/events.module");
+const user_module_1 = require("./models/user/user.module");
+const role_module_1 = require("./models/role/role.module");
+const menu_list_module_1 = require("./models/menu-list/menu-list.module");
+const auth_module_1 = require("./core/auth/auth.module");
+const user_controller_1 = require("./models/user/user.controller");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -27,9 +31,12 @@ AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRootAsync({
                 useFactory: orm_config_1.default,
             }),
-            events_module_1.EventsModule,
+            user_module_1.UserModule,
+            auth_module_1.AuthModule,
+            role_module_1.RoleModule,
+            menu_list_module_1.MenuListModule,
         ],
-        controllers: [app_controller_1.AppController],
+        controllers: [app_controller_1.AppController, user_controller_1.UserController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);
