@@ -35,8 +35,6 @@
 <icon-custom-logo />
 ```
 
-具体配置参看 build/plugin/unplugin.js
-
 ### 3. 结合 Naive UI 的 NIcon 组件封装使用
 
 ```html
