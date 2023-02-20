@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-18 15:40:37
+ * @LastEditTime: 2023-02-20 10:49:56
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user-service.ts
  * @Description: 
  * 
@@ -51,7 +51,6 @@ export class UserService {
     async create(input:CreateUserDto): Promise<ResponseData> {
         const { repassed, password, name } = input
         console.log(input);
-        this.logger.debug(input);
         const Data = new ResponseData();
         if (repassed !== password) {
             Data.code = 400;
@@ -64,7 +63,6 @@ export class UserService {
             Data.msg = '用户名已存在';
             return Data;
         }
-        this.logger.debug(user);
         const salt = makeSalt(); // 制作密码盐
         const hashPassword = encryptPassword(password, salt); // 加密密码
         this.logger.debug(hashPassword);

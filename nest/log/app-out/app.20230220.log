@@ -1,0 +1,542 @@
+{"date":"2023-02-20T10:00:57.655","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"75191","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:01:09.261","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"75191","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:01:34.516","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"75191","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:01:50.358","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"75191","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:03:19.993","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"75793","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:04:20.310","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"75793","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:04:36.463","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"75793","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"CJPeter","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:05:01.999","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"75793","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: DELETE
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:05:17.643","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"75793","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/admin
+    Method: DELETE
+    IP: ::1
+    Status code: 200
+    Parmas: {"id":"admin"}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:16:52.352","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"77254","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"CJPeter","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:16:52.481","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"77254","data":'transform.interceptor.ts(line: 29, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    User: undefined
+    Response data:
+ {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNKUGV0ZXIiLCJzdWIiOiI2M2YwOGZlZDA3MWYyYzE5NmI4OTQ3ZmIiLCJyZWFsTmFtZSI6IkNKUGV0ZXIiLCJpYXQiOjE2NzY4NTk0MTIsImV4cCI6MTY3Njk0NTgxMn0.8r-yWcN5xJqDoQQyQ8BYXiv-yzNobhBR8vDTSGsUn_U"}
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'}
+{"date":"2023-02-20T10:16:59.948","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"77254","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:17:01.347","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"77254","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:18:37.919","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"77254","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:19:14.362","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"77254","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:19:14.573","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"77254","data":'transform.interceptor.ts(line: 29, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    User: {"userId":"63f08fed071f2c196b8947fb","realName":"CJPeter"}
+    Response data:
+ [{"id":"63f08fed071f2c196b8947fb","realName":"CJPeter","name":"CJPeter","password":"opyksckAb+w4qFLJFeDZrA==","when":"2023-02-18T08:44:29.104Z","salt":"eA9v"}]
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'}
+{"date":"2023-02-20T10:47:18.359","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"79829","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:47:18.366","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"79829","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Bad Request Exception 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T10:48:11.967","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80038","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:48:11.972","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80038","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Bad Request Exception 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T10:48:30.644","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80038","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:48:30.767","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80038","data":'transform.interceptor.ts(line: 29, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    User: {"userId":"63f08fed071f2c196b8947fb","realName":"CJPeter"}
+    Response data:
+ [{"id":"63f08fed071f2c196b8947fb","realName":"CJPeter","name":"CJPeter","password":"opyksckAb+w4qFLJFeDZrA==","when":"2023-02-18T08:44:29.104Z","salt":"eA9v"}]
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'}
+{"date":"2023-02-20T10:48:41.315","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80038","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:48:41.316","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80038","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Bad Request Exception 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T10:49:20.019","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80038","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:49:20.021","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80038","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Bad Request Exception 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T10:50:48.275","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80038","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:50:48.276","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80038","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Bad Request Exception 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T10:51:00.072","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80242","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:51:00.082","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80242","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Bad Request Exception 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T10:51:25.811","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80242","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T10:51:25.942","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"80242","data":'transform.interceptor.ts(line: 29, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    User: {"userId":"63f08fed071f2c196b8947fb","realName":"CJPeter"}
+    Response data:
+ [{"id":"63f08fed071f2c196b8947fb","realName":"CJPeter","name":"CJPeter","password":"opyksckAb+w4qFLJFeDZrA==","when":"2023-02-18T08:44:29.104Z","salt":"eA9v"}]
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'}
+{"date":"2023-02-20T11:48:51.176","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91272","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T11:48:51.508","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91272","data":'transform.interceptor.ts(line: 29, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    User: undefined
+    Response data:
+ {"name":"admin","password":"YXk9q5bSw7/8xnVgL3o8TA==","roles":0,"salt":"TB88","when":"2023-02-20T03:48:51.333Z","id":"63f2eda3c9e0616489e16090"}
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'}
+{"date":"2023-02-20T11:49:53.727","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91565","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T11:49:53.758","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91565","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Bad Request Exception 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T14:04:41.274","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91856","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T14:04:41.307","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"91856","data":'validation.pipe.ts(line: 29, column: 14): 
+ Validation failed: 昵称不能为空'}
+{"date":"2023-02-20T14:04:41.312","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91856","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Validation failed: 昵称不能为空 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T14:04:57.287","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91856","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","password":"123456","repassed":"test","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T14:04:57.289","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"91856","data":'validation.pipe.ts(line: 29, column: 14): 
+ Validation failed: 昵称不能为空'}
+{"date":"2023-02-20T14:04:57.291","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91856","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Validation failed: 昵称不能为空 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T14:05:28.677","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91856","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","password":"123456","realName":"test","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T14:05:28.681","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"91856","data":'validation.pipe.ts(line: 29, column: 14): 
+ Validation failed: 确认密码不能为空'}
+{"date":"2023-02-20T14:05:28.681","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91856","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Validation failed: 确认密码不能为空 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T14:05:46.987","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91856","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","realName":"test","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T14:05:46.988","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"91856","data":'validation.pipe.ts(line: 29, column: 14): 
+ Validation failed: when must be a valid ISO 8601 date string'}
+{"date":"2023-02-20T14:05:46.990","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91856","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Validation failed: when must be a valid ISO 8601 date string 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T14:05:58.791","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91856","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T14:06:00.879","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"91856","data":'transform.interceptor.ts(line: 29, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    User: {"userId":"63f08fed071f2c196b8947fb","realName":"CJPeter"}
+    Response data:
+ [{"id":"63f08fed071f2c196b8947fb","realName":"CJPeter","name":"CJPeter","password":"opyksckAb+w4qFLJFeDZrA==","when":"2023-02-18T08:44:29.104Z","salt":"eA9v"},{"id":"63f2eda3c9e0616489e16090","name":"admin","password":"YXk9q5bSw7/8xnVgL3o8TA==","when":"2023-02-20T03:48:51.333Z","roles":0,"salt":"TB88"}]
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'}
+{"date":"2023-02-20T14:06:44.234","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"94448","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","realName":"test","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T14:06:44.247","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"94448","data":'validation.pipe.ts(line: 29, column: 14): 
+ Validation failed: salt must be longer than or equal to 0 characters'}
+{"date":"2023-02-20T14:06:44.251","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"94448","data":'http-exception.filter.ts(line: 34, column: 12): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 400
+    Response: BadRequestException: Validation failed: salt must be longer than or equal to 0 characters 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    '}
+{"date":"2023-02-20T14:08:19.385","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"94901","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","realName":"test","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T14:08:19.774","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"94901","data":'transform.interceptor.ts(line: 29, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    User: undefined
+    Response data:
+ {"name":"test","realName":"test","password":"+P3t+iD/LBL8caztdosldA==","roles":0,"salt":"zYKq","when":"2023-02-20T06:08:19.625Z","id":"63f30e5315d23572b640a352"}
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'}
+{"date":"2023-02-20T14:08:29.879","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"94901","data":'logger.middleware.ts(line: 53, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  '}
+{"date":"2023-02-20T14:08:30.103","level":"INFO","category":"default","host":"niechenongdeMBP","pid":"94901","data":'transform.interceptor.ts(line: 29, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    User: {"userId":"63f08fed071f2c196b8947fb","realName":"CJPeter"}
+    Response data:
+ [{"id":"63f08fed071f2c196b8947fb","realName":"CJPeter","name":"CJPeter","password":"opyksckAb+w4qFLJFeDZrA==","when":"2023-02-18T08:44:29.104Z","salt":"eA9v"},{"id":"63f2eda3c9e0616489e16090","name":"admin","password":"YXk9q5bSw7/8xnVgL3o8TA==","when":"2023-02-20T03:48:51.333Z","roles":0,"salt":"TB88"},{"id":"63f30e5315d23572b640a352","realName":"test","name":"test","password":"+P3t+iD/LBL8caztdosldA==","when":"2023-02-20T06:08:19.625Z","roles":0,"salt":"zYKq"}]
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'}

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:26:24
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-18 16:43:51
+ * @LastEditTime: 2023-02-20 11:50:33
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user.controller.ts
  * @Description:
  *
@@ -16,27 +16,39 @@ import {
     Param,
     Patch,
     Post,
+    UseGuards,
+    UseInterceptors,
+    UsePipes,
   } from '@nestjs/common';
   import { ResponseData } from '../../interface/code';
   import { CreateUserDto } from './user-create.dto';
   import { UpdateUserDto } from './user-update';
   import { UserService } from './user-service';
 import { AuthService } from '../../core/auth/auth.service';
+import {AuthGuard} from '@nestjs/passport';
+import { RbacInterceptor } from 'src/interceptor/rbac/rbac.interceptor';
+import { ValidationPipe} from '../../pipe/validation/validation.pipe'
   @Controller('/user')
   export class UserController {
     constructor(private readonly authService: AuthService, private readonly usersService: UserService) {}
+    @UseGuards(AuthGuard('jwt'))
     @Get()
     async findAll() {
       return  await this.usersService.findAll();;
     }
+    @UseGuards(AuthGuard('jwt'))
     @Get(':name')
     async findOne(@Param('name') name): Promise<ResponseData> {
       return await this.usersService.findOne(name);
     }
+
+    @UsePipes(new ValidationPipe()) // 使用管道验证,验证传入的参数是否符合要求
     @Post()
     async create(@Body() input: CreateUserDto): Promise<ResponseData> {
       return this.usersService.create(input);
     }
+    @UseInterceptors(new RbacInterceptor(0))
+    @UseGuards(AuthGuard('jwt'))
     @Patch(':name')
     async update(
       @Param('name') name,
@@ -44,6 +56,7 @@ import { AuthService } from '../../core/auth/auth.service';
     ): Promise<ResponseData> {
      return  await this.usersService.update(name, input);
     }
+    @UseGuards(AuthGuard('jwt'))
     @Delete(':id')
     async delete(@Param('id') id): Promise<ResponseData> {
       return await this.usersService.delete(id);

@@ -1,0 +1,424 @@
+[2023-02-20T10:00:57.654] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:01:09.260] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:01:34.516] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:01:50.358] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:03:19.993] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:04:20.310] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:04:36.463] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"CJPeter","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:05:01.999] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: DELETE
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:05:17.643] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/admin
+    Method: DELETE
+    IP: ::1
+    Status code: 200
+    Parmas: {"id":"admin"}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:16:52.351] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"CJPeter","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:16:52.482] [INFO] http - transform.interceptor.ts(line: 30, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user/login
+    Method: POST
+    IP: ::1
+    User: undefined
+    Response data:
+ {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNKUGV0ZXIiLCJzdWIiOiI2M2YwOGZlZDA3MWYyYzE5NmI4OTQ3ZmIiLCJyZWFsTmFtZSI6IkNKUGV0ZXIiLCJpYXQiOjE2NzY4NTk0MTIsImV4cCI6MTY3Njk0NTgxMn0.8r-yWcN5xJqDoQQyQ8BYXiv-yzNobhBR8vDTSGsUn_U"}
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[2023-02-20T10:16:59.948] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:17:01.347] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:18:37.919] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456"} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:19:14.362] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:19:14.573] [INFO] http - transform.interceptor.ts(line: 30, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    User: {"userId":"63f08fed071f2c196b8947fb","realName":"CJPeter"}
+    Response data:
+ [{"id":"63f08fed071f2c196b8947fb","realName":"CJPeter","name":"CJPeter","password":"opyksckAb+w4qFLJFeDZrA==","when":"2023-02-18T08:44:29.104Z","salt":"eA9v"}]
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[2023-02-20T10:47:18.359] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:48:11.966] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:48:30.643] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:48:30.768] [INFO] http - transform.interceptor.ts(line: 30, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    User: {"userId":"63f08fed071f2c196b8947fb","realName":"CJPeter"}
+    Response data:
+ [{"id":"63f08fed071f2c196b8947fb","realName":"CJPeter","name":"CJPeter","password":"opyksckAb+w4qFLJFeDZrA==","when":"2023-02-18T08:44:29.104Z","salt":"eA9v"}]
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[2023-02-20T10:48:41.315] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:49:20.019] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:50:48.275] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:51:00.071] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:51:25.811] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T10:51:25.943] [INFO] http - transform.interceptor.ts(line: 30, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    User: {"userId":"63f08fed071f2c196b8947fb","realName":"CJPeter"}
+    Response data:
+ [{"id":"63f08fed071f2c196b8947fb","realName":"CJPeter","name":"CJPeter","password":"opyksckAb+w4qFLJFeDZrA==","when":"2023-02-18T08:44:29.104Z","salt":"eA9v"}]
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[2023-02-20T11:48:51.175] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"admin","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T11:48:51.508] [INFO] http - transform.interceptor.ts(line: 30, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    User: undefined
+    Response data:
+ {"name":"admin","password":"YXk9q5bSw7/8xnVgL3o8TA==","roles":0,"salt":"TB88","when":"2023-02-20T03:48:51.333Z","id":"63f2eda3c9e0616489e16090"}
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[2023-02-20T11:49:53.724] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T14:04:41.273] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T14:04:57.286] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","password":"123456","repassed":"test","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T14:05:28.677] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","password":"123456","realName":"test","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T14:05:46.986] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","realName":"test","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T14:05:58.790] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T14:06:00.882] [INFO] http - transform.interceptor.ts(line: 30, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    User: {"userId":"63f08fed071f2c196b8947fb","realName":"CJPeter"}
+    Response data:
+ [{"id":"63f08fed071f2c196b8947fb","realName":"CJPeter","name":"CJPeter","password":"opyksckAb+w4qFLJFeDZrA==","when":"2023-02-18T08:44:29.104Z","salt":"eA9v"},{"id":"63f2eda3c9e0616489e16090","name":"admin","password":"YXk9q5bSw7/8xnVgL3o8TA==","when":"2023-02-20T03:48:51.333Z","roles":0,"salt":"TB88"}]
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[2023-02-20T14:06:44.233] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","realName":"test","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T14:08:19.384] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {"name":"test","realName":"test","password":"123456","repassed":"123456","roles":0} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T14:08:19.775] [INFO] http - transform.interceptor.ts(line: 30, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: POST
+    IP: ::1
+    User: undefined
+    Response data:
+ {"name":"test","realName":"test","password":"+P3t+iD/LBL8caztdosldA==","roles":0,"salt":"zYKq","when":"2023-02-20T06:08:19.625Z","id":"63f30e5315d23572b640a352"}
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[2023-02-20T14:08:29.879] [INFO] http - logger.middleware.ts(line: 52, column: 12): 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    Status code: 200
+    Parmas: {}
+    Query: {}
+    Body: {} 
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+[2023-02-20T14:08:30.103] [INFO] http - transform.interceptor.ts(line: 30, column: 16): 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request original url: /nest-api/user
+    Method: GET
+    IP: ::1
+    User: {"userId":"63f08fed071f2c196b8947fb","realName":"CJPeter"}
+    Response data:
+ [{"id":"63f08fed071f2c196b8947fb","realName":"CJPeter","name":"CJPeter","password":"opyksckAb+w4qFLJFeDZrA==","when":"2023-02-18T08:44:29.104Z","salt":"eA9v"},{"id":"63f2eda3c9e0616489e16090","name":"admin","password":"YXk9q5bSw7/8xnVgL3o8TA==","when":"2023-02-20T03:48:51.333Z","roles":0,"salt":"TB88"},{"id":"63f30e5315d23572b640a352","realName":"test","name":"test","password":"+P3t+iD/LBL8caztdosldA==","when":"2023-02-20T06:08:19.625Z","roles":0,"salt":"zYKq"}]
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
