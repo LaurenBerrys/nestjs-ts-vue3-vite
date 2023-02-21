@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 14:18:02
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 14:18:09
+ * @LastEditTime: 2023-02-21 14:29:34
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/layout/components/header/components/UserAvatar.vue
  * @Description: 
  * 
@@ -10,17 +10,16 @@
 <template>
     <n-dropdown :options="options" @select="handleSelect">
       <div flex items-center cursor-pointer>
-        <img :src="userStore.avatar" mr10 w-35 h-35 rounded-full />
-        <span>{{ userStore.name }}</span>
+        <!-- <img :src="appStore.avatar" mr10 w-35 h-35 rounded-full /> -->
+        <span>{{ appStore.name }}</span>
       </div>
     </n-dropdown>
   </template>
   
   <script setup>
-  import { useUserStore } from '@/store/user'
   import { renderIcon } from '@/utils/icon'
   
-  const userStore = useUserStore()
+  const appStore = useAppStore()
   
   const options = [
     {
@@ -37,7 +36,7 @@
         type: 'info',
         content: '确认退出？',
         confirm() {
-          userStore.logout()
+          appStore.resetStateAndToLogin()
           $message.success('已退出登录')
         },
       })

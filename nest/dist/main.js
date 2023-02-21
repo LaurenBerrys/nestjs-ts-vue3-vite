@@ -26,6 +26,7 @@ async function bootstrap() {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(logger_middleware_1.logger);
+    app.enableCors();
     app.setGlobalPrefix('nest-api');
     await app.listen(3000);
 }

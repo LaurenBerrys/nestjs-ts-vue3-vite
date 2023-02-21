@@ -17,7 +17,7 @@
     </transition>
   </template>
   
-  <script setup>
+  <script setup lang="ts" name="AppPage">
   defineProps({
     showFooter: {
       type: Boolean,

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 15:51:57
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 15:52:04
+ * @LastEditTime: 2023-02-21 16:48:08
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/layout/components/AppMain.vue
  * @Description: 
  * 
@@ -15,11 +15,12 @@
     </router-view>
   </template>
   
-  <script setup>
-  const appStore = useConfigStore()
+  <script setup lang="ts">
+  import {useAppStore} from '@/store/app'
+  const appStore = useAppStore()
   const router = useRouter()
   const allRoutes = router.getRoutes()
-  const keepAliveRouteNames = computed(() => {
+  const keepAliveRouteNames:any = computed(() => {
     return allRoutes.filter((route) => route.meta?.keepAlive).map((route) => route.name)
   })
   </script>

@@ -36,7 +36,7 @@
   const emit = defineEmits(['update:show'])
   
   const tagsStore = useTagsStore()
-  const appStore = useConfigStore()
+  const appStore = useAppStore()
   
   const options = computed(() => [
     {

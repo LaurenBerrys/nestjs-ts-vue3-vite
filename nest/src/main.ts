@@ -39,7 +39,9 @@ async function bootstrap() {
   app.use(express.json()); // For parsing application/json
   app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
   app.use(logger);
-
+  //配置跨域
+  app.enableCors();
+  //配置全局前缀
   app.setGlobalPrefix('nest-api')
   await app.listen(3000);
 }

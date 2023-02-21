@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 11:18:40
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 11:37:40
+ * @LastEditTime: 2023-02-21 17:55:50
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/layout/index.vue
  * @Description: 
  * 
@@ -15,7 +15,7 @@
         :collapsed-width="64"
         :width="220"
         :native-scrollbar="false"
-        :collapsed="settings.collapsed"
+        :collapsed="Config.collapsed"
       >
         <SideBar />
       </n-layout-sider>
@@ -43,5 +43,6 @@
   import AppMain from './components/AppMain.vue'
   import AppTags from './components/tags/index.vue'
   import settings from '@/settings'
+  const Config = useConfigStore()
   </script>
   

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 16:55:37
+ * @LastEditTime: 2023-02-20 15:23:33
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -47,12 +47,13 @@ export default ({ mode }: ConfigEnv): UserConfig =>{
   }
  
  const server= {
+    //配置跨域
     port: 3001,  
+    open: true,
     proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
+      '/nest-api': {
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        target: 'http://localhost:3000/'
       }
     }
   }

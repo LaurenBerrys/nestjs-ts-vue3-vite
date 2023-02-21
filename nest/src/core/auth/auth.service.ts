@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 15:48:15
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-18 17:29:03
+ * @LastEditTime: 2023-02-20 16:39:44
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/core/auth/auth.service.ts
  * @Description: 
  * 
@@ -60,14 +60,14 @@ export class AuthService {
    * @example ‘JWT验证 - Step 3: 处理 jwt 签证’
    */
   async certificate(user): Promise<ResponseData> {
-    const payload = { username: user.name, sub: user.id, realName: user.realName };
+    const payload = { name: user.name, sub: user.id, realName: user.realName };
     const Date = new ResponseData();
     try {
       const token = this.jwtService.sign(payload);
       // 实例化 redis
       const redis = await RedisInstance.initRedis('auth.certificate', 0);
       // 将用户信息和 token 存入 redis，并设置失效时间24h，语法：[key, seconds, value]
-      await redis.setex(`${user.id}-${user.username}`, 86400, `${token}`);
+      await redis.setex(`${user.id}-${user.name}`, 86400, `${token}`);
       Date.code = 200;
       Date.msg = '登录成功'
       Date.data = { token };

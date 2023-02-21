@@ -17,10 +17,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly authService: AuthService) {
     super();
   }
-  async validate(username: string, password: string): Promise<any> {
+  async validate(name: string, password: string): Promise<any> {
     // 本地local的策略于jwt关系不大，
     console.log('你要调用我哈------------');
-    const user = await this.authService.validateUser(username, password);
+    const user = await this.authService.validateUser(name, password);
     if (!user) {
       throw new UnauthorizedException();
     }

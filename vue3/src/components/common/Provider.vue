@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 10:10:55
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 17:01:00
+ * @LastEditTime: 2023-02-21 19:46:36
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/common/Provider.vue
  * @Description: 
  * 
@@ -17,6 +17,7 @@ import {
   useMessage,
   useNotification,
 } from "naive-ui";
+import {defineComponent} from 'vue'
 import type { NLocale, NDateLocale, GlobalTheme } from "naive-ui";
 import { naiveThemeOverrides } from "./setting/theme.json";
 import { setupMessage, setupDialog } from "@/utils/naivetools";
@@ -24,7 +25,6 @@ import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import { useCssVar } from "@vueuse/core";
 import { kebabCase } from "lodash-es";
-// import { useBasicStore } from '@/store/basic'
 import { useConfigStore } from "@/store/config";
 const { language, theme } = storeToRefs(useConfigStore());
 const { setTheme, setLanguage } = useConfigStore();
@@ -96,9 +96,3 @@ const NaiveProviderContent = defineComponent({
     </n-loading-bar-provider>
   </n-config-provider>
 </template>
-<style scoped>
-/* button {
-  color: #8fcdd4;
-
-} */
-</style>

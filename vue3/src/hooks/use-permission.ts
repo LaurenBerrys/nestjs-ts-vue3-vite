@@ -11,7 +11,6 @@ import Layout from '@/layout/index.vue'
  * 路由操作
  * */
 import router, { asyncRoutes, constantRoutes, roleCodeRoutes } from '@/router'
-import { useBasicStore } from '@/store/basic'
 
 const buttonCodes: Array<Number> = [] //按钮权限
 interface menuRow {
@@ -131,10 +130,10 @@ function hasCodePermission(codes, routeItem) {
   }
 }
 //过滤异步路由
-export function filterAsyncRouter({ menuList, roles, codes }) {
-  const basicStore = useBasicStore()
+export function filterAsyncRouter({ menuList=[], roles, codes }) {
+  const appStore = useAppStore()
   let accessRoutes: RouterTypes = []
-  const permissionMode = basicStore.settings?.permissionMode
+  const permissionMode = appStore.settings?.permissionMode
   if (permissionMode === 'rbac') {
     accessRoutes = filterAsyncRoutesByMenuList(menuList) //by menuList
   } else if (permissionMode === 'roles') {
@@ -143,8 +142,9 @@ export function filterAsyncRouter({ menuList, roles, codes }) {
     accessRoutes = filterAsyncRouterByCodes(roleCodeRoutes, codes) //by codes
   }
   accessRoutes.forEach((route) => router.addRoute(route))
+  console.log('accessRoutes', accessRoutes)
   asyncRoutes.forEach((item) => router.addRoute(item))
-  basicStore.setFilterAsyncRoutes(accessRoutes)
+  appStore.setFilterAsyncRoutes(accessRoutes)
 }
 //重置路由
 export function resetRouter() {
@@ -160,7 +160,7 @@ export function resetRouter() {
 //重置登录状态
 export function resetState() {
   resetRouter()
-  useBasicStore().resetState()
+  useAppStore().resetState()
 }
 
 //刷新路由

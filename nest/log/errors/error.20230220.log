@@ -8,3 +8,13 @@
  Validation failed: when must be a valid ISO 8601 date string'}
 {"date":"2023-02-20T14:06:44.247","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"94448","data":'validation.pipe.ts(line: 29, column: 14): 
  Validation failed: salt must be longer than or equal to 0 characters'}
+{"date":"2023-02-20T15:54:46.793","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"2697","data":'validation.pipe.ts(line: 29, column: 14): 
+ Validation failed: 用户名不能为空'}
+{"date":"2023-02-20T15:54:50.887","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"2697","data":'validation.pipe.ts(line: 29, column: 14): 
+ Validation failed: 用户名不能为空'}
+{"date":"2023-02-20T15:55:07.038","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"2697","data":'validation.pipe.ts(line: 29, column: 14): 
+ Validation failed: 用户名不能为空'}
+{"date":"2023-02-20T15:55:09.793","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"2697","data":'validation.pipe.ts(line: 29, column: 14): 
+ Validation failed: 用户名不能为空'}
+{"date":"2023-02-20T15:55:13.108","level":"ERROR","category":"default","host":"niechenongdeMBP","pid":"2697","data":'validation.pipe.ts(line: 29, column: 14): 
+ Validation failed: 用户名不能为空'}

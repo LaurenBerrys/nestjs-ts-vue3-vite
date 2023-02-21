@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-18 17:02:37
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-18 17:03:53
+ * @LastEditTime: 2023-02-20 16:09:36
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/core/permission/index.ts
  * @Description: 
  * 
@@ -20,7 +20,7 @@ export class RbacGuard implements CanActivate {
     const user = request.user;
 
     // 获取请求头里的 token
-    const authorization = request['headers'].authorization || void 0;
+    const authorization = request['headers'].access_token || void 0;
     const token = authorization.split(' ')[1]; // authorization: Bearer xxx
 
     // 获取 redis 里缓存的 token

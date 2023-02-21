@@ -2,21 +2,19 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:37:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-15 15:25:58
+ * @LastEditTime: 2023-02-20 21:31:53
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/axios.ts
  * @Description: 
  * 
  */
 import axios from 'axios'
 import { useMessage } from 'naive-ui'
-import { useBasicStore } from '@/store/basic'
 //使用axios.create()创建一个axios请求实例
 const service = axios.create()
-
 //请求前拦截
 service.interceptors.request.use(
   (req) => {
-    const { token, axiosPromiseArr } = useBasicStore()
+    const { token, axiosPromiseArr } = useAppStore()
     //axiosPromiseArr收集请求地址,用于取消请求
     req.cancelToken = new axios.CancelToken((cancel) => {
       axiosPromiseArr.push({
@@ -24,13 +22,14 @@ service.interceptors.request.use(
         cancel
       })
     })
-    //设置token到header
-    req.headers['AUTHORIZE_TOKEN'] = token
+    //设置token到header 并把token转成Bearer token类型 
+    req.headers.Authorization = `Bearer ${token}`
     //如果req.method给get 请求参数设置为 ?name=xxx
     if ('get'.includes(req.method?.toLowerCase() as string)) req.params = req.data
     return req
   },
   (err) => {
+    useAppStore().resetState()
     //发送请求失败
     Promise.reject(err)
   }
@@ -46,7 +45,7 @@ service.interceptors.response.use(
     } else {
       if (noAuthCode.includes(code) && !location.href.includes('/login')) {
           useMessage().warning('请重新登录')
-          useBasicStore().resetStateAndToLogin()
+          useAppStore().resetStateAndToLogin()
       }
       return Promise.reject(res.data)
     }

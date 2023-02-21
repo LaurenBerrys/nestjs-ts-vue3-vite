@@ -1,69 +1,58 @@
+/*
+ * @Author: Nie Chengyong
+ * @Date: 2023-02-15 14:54:00
+ * @LastEditors: Nie Chengyong
+ * @LastEditTime: 2023-02-21 19:55:14
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/src/router/index.ts
+ * @Description: 
+ * 
+ */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouterTypes } from '~/basic'
 import Layout from '@/layout/index.vue'
 
 export const constantRoutes: RouterTypes = [
   {
+    name: '工作台',
     path: '/',
     component: Layout,
-    hidden: true,
+    // redirect:'/workmen',
+    meta: {
+      title: '工作台',
+      icon: 'mdi:home',
+      order: 0,
+    },
     children: [
       {
-        path: '/workben/:path(.*)',
-        component: () => import('@/views/workben/index.vue')
-      }
-    ]
+        name: 'workmen',
+        path: '/workmen',
+        component: () => import('../views/workmen/index.vue'),
+        meta: {
+          title: '工作台',
+          icon: 'mdi:home',
+          order: 0,
+        },
+      },
+      {
+        name: 'workmens',
+        path: '/Workmens',
+    // redirect: '/workmen',
+        component: () => import('../views/workmen/index.vue'),
+        meta: {
+          title: '工作台2',
+          icon: 'mdi:home',
+          order: 0,
+        },
+      },
+    ],
   },
   {
     path: '/login',
+    isHidden: true,
     component: () => import('@/views/login/index.vue'),
-    hidden: true
   },
-  // {
-  //   path: '/404',
-  //   component: () => import('@/views/error-page/404.vue'),
-  //   hidden: true
-  // },
-  // {
-  //   path: '/401',
-  //   component: () => import('@/views/error-page/401.vue'),
-  //   hidden: true
-  // },
-  // {
-  //   path: '/',
-  //   component: Layout,
-  //   redirect: '/dashboard',
-  //   children: [
-  //     {
-  //       path: 'dashboard',
-  //       name: 'Dashboard',
-  //       component: () => import('@/views/dashboard/index.vue'),
-  //       //using el svg icon, the elSvgIcon first when at the same time using elSvgIcon and icon
-  //       meta: { title: 'Dashboard', elSvgIcon: 'Fold', affix: true }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/error-log',
-  //   component: Layout,
-  //   meta: { title: 'Error Log', icon: 'eye' },
-  //   alwaysShow: true,
-  //   children: [
-  //     {
-  //       path: 'error-log',
-  //       component: () => import('@/views/error-log/index.vue'),
-  //       name: 'ErrorLog',
-  //       meta: { title: 'Error Index' }
-  //     },
-  //     {
-  //       path: 'error-generator',
-  //       component: () => import('@/views/error-log/error-generator.vue'),
-  //       name: 'ErrorGenerator',
-  //       meta: { title: 'Error Generator' }
-  //     }
-  //   ]
-  // },
 ]
+
 
 //角色和code数组动态路由
 export const roleCodeRoutes: RouterTypes = [

@@ -86,14 +86,8 @@
       loading.value = true
       $message.loading('正在验证...')
       const res = await loginReq({ name, password: password.toString() })
-      $message.success('登录成功')
-      setToken(res.data.token)
-    //   if (isRemember.value) {
-    //     lStorage.set('loginInfo', { name, password })
-    //   } else {
-    //     lStorage.remove('loginInfo')
-    //   }
-    //   await addDynamicRoutes()
+      $message.success('登录成功',res.data.token)
+      useAppStore().setToken(res.data.token,name)
       if (query.redirect) {
         const path = query.redirect
         Reflect.deleteProperty(query, 'redirect')

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2022-12-09 11:58:43
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 15:41:25
+ * @LastEditTime: 2023-02-21 16:31:31
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/config.ts
  * @Description: 
  * 
@@ -16,30 +16,19 @@ const isDark = useDark()
 export const useConfigStore = defineStore('config', {
   state: () => {
     return {
-      /** keepAlive路由的key，重新赋值可重置keepAlive */
-      aliveKeys: {},
-      reloadFlag:true,
       dateLocale:'dateZhCN',
       language: settings.defaultLanguage as any,
       theme: settings.defaultTheme as any,
       collapsed:settings.collapsed,
-      isDark
+      isDark,
+      settings:settings
     }
   },
   persist: {
     storage: localStorage,
-    paths: ['language', 'theme','dateLocale','collapsed']
+    paths: ['language', 'theme','dateLocale','collapsed','settings']
   },
   actions: {
-    async reloadPage() {
-      window.$loadingBar.start()
-      this.reloadFlag = false
-      await nextTick()
-      setTimeout(() => {
-        document.documentElement.scrollTo({ left: 0, top: 0 })
-        window.$loadingBar.finish()
-      }, 100)
-    },
     setTheme(data:any) {
       this.theme = data
     },
@@ -58,9 +47,7 @@ export const useConfigStore = defineStore('config', {
     },    switchCollapsed() {
       this.collapsed = !this.collapsed
     },
-    setAliveKeys(key, val) {
-      this.aliveKeys[key] = val
-    },
+
     /** 设置暗黑模式 */
     setDark(isDark) {
       this.isDark = isDark

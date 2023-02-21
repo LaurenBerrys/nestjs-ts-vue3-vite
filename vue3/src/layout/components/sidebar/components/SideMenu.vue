@@ -17,13 +17,15 @@
   import {isExternal} from '@/utils/is'
   const router = useRouter()
   const curRoute = useRoute()
-  const permissionStore = usePermissionStore()
-  const appStore = useConfigStore()
+  const appStore=useAppStore()
+  const configStore = useConfigStore()
   
+  //当前激活的菜单
   const activeKey = computed(() => curRoute.meta?.activeMenu || curRoute.name)
   
+  //返回菜单
   const menuOptions = computed(() => {
-    return permissionStore.menus().map((item) => getMenuItem(item)).sort((a, b) => a.order - b.order)
+    return appStore.menus().map((item) => getMenuItem(item)).sort((a, b) => a.order - b.order)
   })
   
   const menu:any = ref(null)
@@ -66,14 +68,15 @@
         path: resolvePath(menuItem.path, singleRoute.path),
         icon: getIcon(singleRoute.meta),
       }
+      // 如果单个子路由还有子路由，那么就把子路由的子路由作为当前菜单的子路由
       const visibleItems = singleRoute.children ? singleRoute.children.filter((item) => item.name && !item.isHidden) : []
-  
       if (visibleItems.length === 1) {
         menuItem = getMenuItem(visibleItems[0], menuItem.path)
       } else if (visibleItems.length > 1) {
         menuItem.children = visibleItems.map((item) => getMenuItem(item, menuItem.path)).sort((a, b) => a.order - b.order)
       }
     } else {
+      // 多个子路由处理
       menuItem.children = visibleChildren
         .map((item) => getMenuItem(item, menuItem.path))
         .sort((a, b) => a.order - b.order)
@@ -94,7 +97,12 @@
       if (item.path === curRoute.path) {
         appStore.reloadPage()
       } else {
+        //路由跳转 
+        try {
         router.push(item.path)
+        } catch (error) {
+            console.log(error);
+        }
       }
     }
   }

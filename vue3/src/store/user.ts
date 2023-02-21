@@ -45,10 +45,7 @@ export const useUserStore = defineStore('user', {
     },
     //登出
     async logout() {
-      const { resetTags } = useTagsStore()
-      const { resetPermission } = usePermissionStore()
-      resetTags()
-      resetPermission()
+    
       this.$reset()
       resetState()
     },
