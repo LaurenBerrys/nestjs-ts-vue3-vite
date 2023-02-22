@@ -89,12 +89,16 @@ let  plugins= [
         }
       ],
        dirs: ['src/hooks/**', 'src/utils/**', 'src/store/**', 'src/api/**', 'src/directives/**'],
-      dts: './typings/auto-imports.d.ts'
+      dts: './typings/auto-imports.d.ts',
+      eslintrc: {
+        enabled: true
+      },
     }),
     Components({
       resolvers: [NaiveUiResolver(),
         IconsResolver({ customCollections: ['custom'], componentPrefix: 'icon' })
-      ]
+      ],
+      dts:'./typings/components.d.ts'
     }),
     Icons({
       compiler: 'vue3',

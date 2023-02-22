@@ -8,6 +8,7 @@
       :collapsed-width="64"
       :options="menuOptions"
       :value="activeKey"
+      :collapsed="configStore.collapsed"
       @update:value="handleMenuSelect"
     />
   </template>
@@ -18,10 +19,10 @@
   const router = useRouter()
   const curRoute = useRoute()
   const appStore=useAppStore()
-  const configStore = useConfigStore()
+  const configStore=useConfigStore()
   
   //当前激活的菜单
-  const activeKey = computed(() => curRoute.meta?.activeMenu || curRoute.name)
+  const activeKey:any = computed(() => curRoute.meta?.activeMenu || curRoute.name)
   
   //返回菜单
   const menuOptions = computed(() => {

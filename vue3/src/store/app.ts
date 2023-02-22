@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-20 20:53:54
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-21 16:32:47
+ * @LastEditTime: 2023-02-22 15:27:09
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/app.ts
  * @Description: 
  * 
@@ -37,6 +37,7 @@ export const useAppStore = defineStore('app', {
             setTimeout(() => {
                 document.documentElement.scrollTo({ left: 0, top: 0 })
                 window.$loadingBar.finish()
+                this.reloadFlag = true
             }, 100)
         },
         /**

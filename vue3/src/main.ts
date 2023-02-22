@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 16:33:31
+ * @LastEditTime: 2023-02-22 15:38:04
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/main.ts
  * @Description: 
  * 
@@ -11,7 +11,7 @@ import '@/assets/style/reset.css'
 import '@/assets/style/global.scss'
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './router/index'
 import { setupI18n } from '@/lang/index'
 import { createPinia } from 'pinia'
 import 'uno.css'
