@@ -9,7 +9,6 @@
       :options="menuOptions"
       :value="activeKey"
       @update:value="handleMenuSelect"
-      :collapsed="configStore.collapsed"
     />
   </template>
   
@@ -20,13 +19,14 @@
   const curRoute = useRoute()
   const appStore=useAppStore()
   const configStore = useConfigStore()
+  
   //当前激活的菜单
-  const activeKey:any = computed(() => curRoute.meta?.activeMenu || curRoute.name)
+  const activeKey = computed(() => curRoute.meta?.activeMenu || curRoute.name)
+  
   //返回菜单
   const menuOptions = computed(() => {
     return appStore.menus().map((item) => getMenuItem(item)).sort((a, b) => a.order - b.order)
   })
-  
   
   const menu:any = ref(null)
   watch(curRoute, async () => {
@@ -53,8 +53,11 @@
       icon: getIcon(route.meta),
       order: route.meta?.order || 0,
     }
+  
     const visibleChildren = route.children ? route.children.filter((item) => item.name && !item.isHidden) : []
+  
     if (!visibleChildren.length) return menuItem
+  
     if (visibleChildren.length === 1) {
       // 单个子路由处理
       const singleRoute = visibleChildren[0]
@@ -94,7 +97,12 @@
       if (item.path === curRoute.path) {
         appStore.reloadPage()
       } else {
+        //路由跳转 
+        try {
         router.push(item.path)
+        } catch (error) {
+            console.log(error);
+        }
       }
     }
   }

@@ -10,8 +10,9 @@
     />
   </template>
   
-  <script setup lang="ts">
+  <script setup>
   import { renderIcon } from '@/utils/icon'
+  import { useLocalStorage } from '@vueuse/core'
   
   const props = defineProps({
     show: {
@@ -42,31 +43,31 @@
       label: '重新加载',
       key: 'reload',
       disabled: props.currentPath !== tagsStore.activeTag,
-      icon: renderIcon('mdi:refresh', { size: 14 }),
+      icon: renderIcon('mdi:refresh', { size: '14px' }),
     },
     {
       label: '关闭',
       key: 'close',
       disabled: tagsStore.tags.length <= 1,
-      icon: renderIcon('mdi:close', { size: 14 }),
+      icon: renderIcon('mdi:close', { size: '14px' }),
     },
     {
       label: '关闭其他',
       key: 'close-other',
       disabled: tagsStore.tags.length <= 1,
-      icon: renderIcon('mdi:arrow-expand-horizontal', { size: 14}),
+      icon: renderIcon('mdi:arrow-expand-horizontal', { size: '14px' }),
     },
     {
       label: '关闭左侧',
       key: 'close-left',
       disabled: tagsStore.tags.length <= 1 || props.currentPath === tagsStore.tags[0].path,
-      icon: renderIcon('mdi:arrow-expand-left', { size: 14 }),
+      icon: renderIcon('mdi:arrow-expand-left', { size: '14px' }),
     },
     {
       label: '关闭右侧',
       key: 'close-right',
       disabled: tagsStore.tags.length <= 1 || props.currentPath === tagsStore.tags[tagsStore.tags.length - 1].path,
-      icon: renderIcon('mdi:arrow-expand-right', { size: 14 }),
+      icon: renderIcon('mdi:arrow-expand-right', { size: '14px' }),
     },
   ])
   
@@ -77,7 +78,7 @@
       () => {
         if (route.meta?.keepAlive) {
           // 重置keepAlive
-          appStore.setAliveKeys(route.name,new Date())
+          appStore.setAliveKeys(route.name, +new Date())
         }
         appStore.reloadPage()
       },
