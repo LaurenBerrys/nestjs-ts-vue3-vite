@@ -7,9 +7,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AppPage: typeof import('./src/components/page/AppPage.vue')['default']
-    CustomIcon: typeof import('./src/components/icon/CustomIcon.vue')['default']
-    Footer: typeof import('./src/components/common/Footer.vue')['default']
+    AppPage: typeof import('./../src/components/page/AppPage.vue')['default']
+    ComponenPage: typeof import('./../src/components/page/ComponenPage.vue')['default']
+    CustomIcon: typeof import('./../src/components/icon/CustomIcon.vue')['default']
+    Footer: typeof import('./../src/components/common/Footer.vue')['default']
     'IconAntDesign:fullscreenExitOutlined': typeof import('~icons/ant-design/fullscreen-exit-outlined')['default']
     'IconAntDesign:fullscreenOutlined': typeof import('~icons/ant-design/fullscreen-outlined')['default']
     IconCustomLogo: typeof import('~icons/custom/logo')['default']
@@ -39,11 +40,11 @@ declare module '@vue/runtime-core' {
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     NStatistic: typeof import('naive-ui')['NStatistic']
     NTag: typeof import('naive-ui')['NTag']
-    Provider: typeof import('./src/components/common/Provider.vue')['default']
+    Provider: typeof import('./../src/components/common/Provider.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    ScrollX: typeof import('./src/components/common/ScrollX.vue')['default']
-    SvgIcon: typeof import('./src/components/icon/SvgIcon.vue')['default']
-    TheIcon: typeof import('./src/components/icon/TheIcon.vue')['default']
+    ScrollX: typeof import('./../src/components/common/ScrollX.vue')['default']
+    SvgIcon: typeof import('./../src/components/icon/SvgIcon.vue')['default']
+    TheIcon: typeof import('./../src/components/icon/TheIcon.vue')['default']
   }
 }

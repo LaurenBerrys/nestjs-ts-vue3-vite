@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-20 15:23:33
+ * @LastEditTime: 2023-02-21 20:09:07
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -88,13 +88,17 @@ let  plugins= [
           ]
         }
       ],
-       dirs: ['src/hooks/**', 'src/utils/**', 'src/store/**', 'src/api/**', 'src/directives/**'],
-      dts: './typings/auto-imports.d.ts'
+      dirs: ['src/hooks/**', 'src/utils/**', 'src/store/**', 'src/api/**', 'src/directives/**'],
+      dts: './typings/auto-imports.d.ts',
+      eslintrc: {
+        enabled: true
+      },
     }),
     Components({
       resolvers: [NaiveUiResolver(),
         IconsResolver({ customCollections: ['custom'], componentPrefix: 'icon' })
-      ]
+      ],
+      dts:'./typings/components.d.ts'
     }),
     Icons({
       compiler: 'vue3',

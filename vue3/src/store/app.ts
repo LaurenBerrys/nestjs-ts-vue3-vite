@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-20 20:53:54
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-21 16:32:47
+ * @LastEditTime: 2023-02-22 09:54:08
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/app.ts
  * @Description: 
  * 
@@ -18,9 +18,9 @@ export const useAppStore = defineStore('app', {
             token: '',
             name: '',
             /** keepAlive路由的key，重新赋值可重置keepAlive */
-            aliveKeys: [] as any,
+            aliveKeys: {} as any,
+            userInfo: {} as any,
             allRoutes: [] as any,
-            userInfo: null,
             axiosPromiseArr: [] as any,//axiosPromiseArr收集请求地址,用于取消请求
             settings: defaultSettings
         }
@@ -37,6 +37,7 @@ export const useAppStore = defineStore('app', {
             setTimeout(() => {
                 document.documentElement.scrollTo({ left: 0, top: 0 })
                 window.$loadingBar.finish()
+                this.reloadFlag = true
             }, 100)
         },
         /**
@@ -46,6 +47,7 @@ export const useAppStore = defineStore('app', {
          * 
          **/
         setAliveKeys(key, val) {
+            //将key添加到this.aliveKeys对象上值水val
             this.aliveKeys[key] = val
         },
         /**
@@ -62,13 +64,13 @@ export const useAppStore = defineStore('app', {
         */
         setFilterAsyncRoutes(routes) {
             this.allRoutes = constantRoutes.concat(routes)
+            console.log('this.allRoutes', this.allRoutes);
         },
         //保存用户信息
-        setUserInfo(data) {
-            // $patch方法用来在当前state上执行Provide函数，从而更新store中存放的数据
-            this.$patch((state) => {
-                state.userInfo = data
-            })
+                setUserInfo(data) {
+                    this.$patch((state) => {
+                        state.userInfo=data
+                    })
         },
         //返回显示的路由
         menus() {

@@ -142,7 +142,6 @@ export function filterAsyncRouter({ menuList=[], roles, codes }) {
     accessRoutes = filterAsyncRouterByCodes(roleCodeRoutes, codes) //by codes
   }
   accessRoutes.forEach((route) => router.addRoute(route))
-  console.log('accessRoutes', accessRoutes)
   asyncRoutes.forEach((item) => router.addRoute(item))
   appStore.setFilterAsyncRoutes(accessRoutes)
 }

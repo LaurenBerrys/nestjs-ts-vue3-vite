@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:54:00
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-21 19:55:14
+ * @LastEditTime: 2023-02-22 11:45:41
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/router/index.ts
  * @Description: 
  * 
@@ -13,39 +13,48 @@ import Layout from '@/layout/index.vue'
 
 export const constantRoutes: RouterTypes = [
   {
-    name: '工作台',
+    name: '系统',
     path: '/',
+    redirect: '/user',
     component: Layout,
-    // redirect:'/workmen',
     meta: {
-      title: '工作台',
+      title: '系统控制',
       icon: 'mdi:home',
       order: 0,
     },
     children: [
       {
-        name: 'workmen',
-        path: '/workmen',
-        component: () => import('../views/workmen/index.vue'),
+        name: 'user',
+        path: '/user',
+        component: () => import('@/views/system/user.vue'),
         meta: {
-          title: '工作台',
-          icon: 'mdi:home',
-          order: 0,
+          title: '用户管理',
+          icon: 'mdi:account-child-circle',
+          order: 1,
         },
       },
       {
-        name: 'workmens',
-        path: '/Workmens',
-    // redirect: '/workmen',
-        component: () => import('../views/workmen/index.vue'),
+        name: 'roles',
+        path: '/roles',
+        component: () => import('@/views/system/roles.vue'),
         meta: {
-          title: '工作台2',
-          icon: 'mdi:home',
-          order: 0,
+          title: '角色管理',
+          icon: 'mdi:account-child-circle',
+          order: 2,
         },
       },
-    ],
-  },
+      {
+        name: 'menu',
+        path: '/menu',
+        component: () => import('@/views/system/menu.vue'),
+        meta: {
+          title: '菜单管理',
+          icon: 'mdi:account-child-circle',
+          order: 3,
+        },
+      },
+    ]
+    },
   {
     path: '/login',
     isHidden: true,

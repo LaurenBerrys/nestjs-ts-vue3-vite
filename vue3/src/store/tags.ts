@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 14:22:38
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-21 15:23:35
+ * @LastEditTime: 2023-02-22 14:48:20
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/tags.ts
  * @Description: 
  * 
@@ -31,14 +31,15 @@ export const useTagsStore = defineStore('tag', {
     },
     setTags(tags) {
       this.tags = tags
+      console.log(this.tags);
+      
     },
     addTag(tag: any = {}) {
       this.setActiveTag(tag.path)
-      if (WITHOUT_TAG_PATHS.includes(tag.path) 
-      || this.tags.some((item: any) => item.path === tag.path))
-        {
-          return this.setTags([...this.tags, tag])
-        }
+      console.log(this.tags);
+      if (!this.tags.some((item: any) => item.path === tag.path)){
+        return this.setTags([...this.tags, tag])
+      }
     },
     removeTag(path) {
       if (path === this.activeTag) {

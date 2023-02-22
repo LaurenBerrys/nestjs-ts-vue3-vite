@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 15:23:03
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-20 21:42:40
+ * @LastEditTime: 2023-02-22 09:52:33
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/permission.ts
  * @Description: 
  * 
@@ -20,7 +20,6 @@ router.beforeEach(async (to) => {
     //1.判断token
     if (appStore.token) {
         if (to.path === '/login') {
-            console.log(1111);
             return '/'
         } else {
             //2.判断是否获取用户信息

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 15:37:21
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-21 15:23:29
+ * @LastEditTime: 2023-02-22 14:40:12
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/layout/components/tags/index.vue
  * @Description: 
  * 
@@ -34,7 +34,6 @@
   
   <script setup lang="ts">
   import ContextMenu from './ContextMenu.vue'
-  import ScrollX from '@/components/common/ScrollX.vue'
   const route = useRoute()
   const router = useRouter()
   const tagsStore = useTagsStore()
@@ -53,6 +52,7 @@
     () => {
       const { name, fullPath: path } = route
       const title = route.meta?.title
+      console.log(name, path, title);
       tagsStore.addTag({ name, path, title })
     },
     { immediate: true }

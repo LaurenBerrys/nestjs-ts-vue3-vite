@@ -2,8 +2,8 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 14:19:34
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 15:22:37
- * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/users.ts
+ * @LastEditTime: 2023-02-22 09:43:07
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/user.ts
  * @Description: 
  * 
  */
@@ -45,7 +45,6 @@ export const useUserStore = defineStore('user', {
     },
     //登出
     async logout() {
-    
       this.$reset()
       resetState()
     },
