@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-20 15:23:33
+ * @LastEditTime: 2023-02-23 16:51:06
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -32,7 +32,6 @@ import Icons from 'unplugin-icons/vite'
 
 const customIconPath = fileURLToPath(new URL("./src/assets/svg", import.meta.url))
 const nodeResolve = (dir) => path.resolve(__dirname, dir)
-// https://vitejs.dev/config/
 export default ({ mode }: ConfigEnv): UserConfig =>{
   const IS_PROD = ['prod', 'production'].includes(mode)
   process.env = {

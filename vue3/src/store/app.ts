@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-20 20:53:54
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-22 15:27:09
+ * @LastEditTime: 2023-02-22 16:31:45
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/app.ts
  * @Description: 
  * 
@@ -20,14 +20,14 @@ export const useAppStore = defineStore('app', {
             /** keepAlive路由的key，重新赋值可重置keepAlive */
             aliveKeys: [] as any,
             allRoutes: [] as any,
-            userInfo: null,
+            userInfo: {}as any,
             axiosPromiseArr: [] as any,//axiosPromiseArr收集请求地址,用于取消请求
             settings: defaultSettings
         }
     },
     persist: {
         storage: localStorage,
-        paths: ['token', 'name', 'allRoutes']
+        paths: ['token', 'name', 'allRoutes','userInfo']
     },
     actions: {
         async reloadPage() {
@@ -66,10 +66,7 @@ export const useAppStore = defineStore('app', {
         },
         //保存用户信息
         setUserInfo(data) {
-            // $patch方法用来在当前state上执行Provide函数，从而更新store中存放的数据
-            this.$patch((state) => {
-                state.userInfo = data
-            })
+            this.userInfo = data
         },
         //返回显示的路由
         menus() {
@@ -77,6 +74,7 @@ export const useAppStore = defineStore('app', {
         },
         //重置
         resetState() {
+            // $patch方法用来在当前state上执行Provide函数，从而更新store中存放的数据
             this.$patch((state) => {
                 state.token = '' //reset token
                 state.allRoutes = []

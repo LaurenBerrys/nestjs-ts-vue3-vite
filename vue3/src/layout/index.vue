@@ -8,7 +8,7 @@
  * 
 -->
 <template>
-    <n-layout has-sider wh-full>
+    <n-layout has-sider  wh-full >
       <n-layout-sider
         bordered
         collapse-mode="width"

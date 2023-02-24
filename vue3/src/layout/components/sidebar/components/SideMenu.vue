@@ -29,6 +29,10 @@
     return appStore.menus().map((item) => getMenuItem(item)).sort((a, b) => a.order - b.order)
   })
   
+  // const inverted =ref(false)
+  // watch(configStore, (val) => {
+  //   // inverted.value =val.isDark
+  // })
   const menu:any = ref(null)
   watch(curRoute, async () => {
     await nextTick()

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 10:10:55
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-21 19:46:36
+ * @LastEditTime: 2023-02-24 14:37:37
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/common/Provider.vue
  * @Description: 
  * 
@@ -17,8 +17,13 @@ import {
   useMessage,
   useNotification,
 } from "naive-ui";
-import {defineComponent} from 'vue'
-import type { NLocale, NDateLocale, GlobalTheme } from "naive-ui";
+import { defineComponent } from "vue";
+import type {
+  NLocale,
+  NDateLocale,
+  GlobalTheme,
+  GlobalThemeOverrides,
+} from "naive-ui";
 import { naiveThemeOverrides } from "./setting/theme.json";
 import { setupMessage, setupDialog } from "@/utils/naivetools";
 import { storeToRefs } from "pinia";
@@ -26,7 +31,7 @@ import { useRoute } from "vue-router";
 import { useCssVar } from "@vueuse/core";
 import { kebabCase } from "lodash-es";
 import { useConfigStore } from "@/store/config";
-const { language, theme } = storeToRefs(useConfigStore());
+const { language, isDark } = storeToRefs(useConfigStore());
 const { setTheme, setLanguage } = useConfigStore();
 const locale = ref<NLocale | null>(null);
 const dateLocale = ref<NDateLocale | null>(null);
@@ -49,7 +54,7 @@ const setupNaiveTools = () => {
   window.$dialog = setupDialog(useDialog());
 };
 
-const changLangue = (lang: string | null, themes: string | null) => {
+const changLangue = (lang: string | null,) => {
   if (lang == "zhCN") {
     locale.value = zhCN;
     dateLocale.value = dateZhCN;
@@ -57,19 +62,14 @@ const changLangue = (lang: string | null, themes: string | null) => {
     locale.value = null;
     dateLocale.value = null;
   }
-  if (themes == "darkTheme") {
-    themeColor.value = darkTheme;
-  } else {
-    themeColor.value = null;
-  }
 };
-changLangue(language.value, theme.value);
-setTheme(themeColor.value);
-setLanguage(language.value, route.meta?.title);
 const NaiveProviderContent = defineComponent({
   setup() {
     setupCssVar();
     setupNaiveTools();
+    changLangue(language.value);
+    setTheme(themeColor.value);
+    setLanguage(language.value, route.meta?.title);
   },
   render() {
     return h("div");
@@ -77,22 +77,22 @@ const NaiveProviderContent = defineComponent({
 });
 </script>
 <template>
-  <n-config-provider
+  <NConfigProvider
     wh-full
     :locale="zhCN"
     :date-locale="dateLocale"
-    :theme="themeColor"
+    :theme=" isDark? darkTheme : null"
     :theme-overrides="naiveThemeOverrides"
   >
     <n-loading-bar-provider>
       <n-dialog-provider>
         <n-notification-provider>
           <n-message-provider>
-            <slot></slot>
             <NaiveProviderContent />
+            <slot></slot>
           </n-message-provider>
         </n-notification-provider>
       </n-dialog-provider>
     </n-loading-bar-provider>
-  </n-config-provider>
+  </NConfigProvider>
 </template>
