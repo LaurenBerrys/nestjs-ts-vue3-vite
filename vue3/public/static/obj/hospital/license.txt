@@ -1,0 +1,11 @@
+Model Information:
+* title:	hospital
+* source:	https://sketchfab.com/3d-models/hospital-72e26a3f5a5548e09485496af1e3f9ae
+* author:	linus1178 (https://sketchfab.com/linus1178)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "hospital" (https://sketchfab.com/3d-models/hospital-72e26a3f5a5548e09485496af1e3f9ae) by linus1178 (https://sketchfab.com/linus1178) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

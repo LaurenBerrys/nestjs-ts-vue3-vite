@@ -1,5 +1,6 @@
 import type { RouteRawConfig, RouterTypes, rawConfig } from '~/basic'
 import type { RouteRecordName } from 'vue-router'
+const modules = import.meta.glob('../views/**/*.{vue,tsx}')
 /**
  * 根据请求，过滤异步路由
  * @param:menuList 异步路由数组
@@ -38,25 +39,24 @@ export const filterAsyncRoutesByMenuList = (menuList) => {
 }
 const getRouteItemFromReqRouter = (route): RouteRawConfig => {
   const tmp: rawConfig = { meta: { title: '' } }
-  const routeKeyArr = ['path', 'component', 'redirect', 'alwaysShow', 'name', 'hidden']
-  const metaKeyArr = ['title', 'activeMenu', 'elSvgIcon', 'icon']
+  const routeKeyArr = ['path', 'component', 'name', 'hidden']
+  const metaKeyArr = ['title', 'icon','order']
   // @ts-ignore
-  const modules = import.meta.glob('../views/**/**.vue')
   //generator routeKey
   routeKeyArr.forEach((fItem) => {
     if (fItem === 'component') {
       if (route[fItem] === 'Layout') {
         tmp[fItem] = Layout
       } else {
-        //has error , i will fix it through plugins
-        //tmp[fItem] = () => import(`@/views/permission-center/test/TestTableQuery.vue`)
-        tmp[fItem] = modules[`../views/${route[fItem]}`]
+        tmp[fItem] = dynamicImport(modules,route[fItem]) 
       }
-    } else if (fItem === 'path' && route.parentId === 0) {
-      tmp[fItem] = `/${route[fItem]}`
-    } else if (['hidden', 'alwaysShow'].includes(fItem)) {
-      tmp[fItem] = !!route[fItem]
-    } else if (['name'].includes(fItem)) {
+    } else if (fItem === 'path') {
+      tmp[fItem] = `${route[fItem]}`
+    } 
+    // else if (['hidden', 'alwaysShow'].includes(fItem)) {
+    //   tmp[fItem] = !!route[fItem]
+    // } 
+    else if (['name'].includes(fItem)) {
       tmp[fItem] = route['code']
     } else if (route[fItem]) {
       tmp[fItem] = route[fItem]
@@ -134,14 +134,16 @@ export function filterAsyncRouter({ menuList=[], roles, codes }) {
   const appStore = useAppStore()
   let accessRoutes: RouterTypes = []
   const permissionMode = appStore.settings?.permissionMode
-  if (permissionMode === 'rbac') {
+  if (permissionMode === 'roles') {
     accessRoutes = filterAsyncRoutesByMenuList(menuList) //by menuList
-  } else if (permissionMode === 'roles') {
+  } else if (permissionMode === 'rbac') {
     accessRoutes = filterAsyncRoutesByRoles(roleCodeRoutes, roles) //by roles
   } else {
     accessRoutes = filterAsyncRouterByCodes(roleCodeRoutes, codes) //by codes
   }
-  accessRoutes.forEach((route) => router.addRoute(route))
+  accessRoutes.forEach((route) =>{ 
+    console.log(route,3333);
+    router.addRoute(route)})
   console.log('accessRoutes', accessRoutes)
   asyncRoutes.forEach((item) => router.addRoute(item))
   appStore.setFilterAsyncRoutes(accessRoutes)
@@ -169,4 +171,27 @@ export function freshRouter(data) {
   filterAsyncRouter(data)
   // location.reload()
 }
+
+export const dynamicImport = (
+  viewsModules: any,
+  component: string
+) => {
+  const keys = Object.keys(viewsModules);
+  const matchKeys = keys.filter((key) => {
+    let k = key.replace('../views', '');
+    const lastIndex = k.lastIndexOf('.');
+    k = k.substring(0, lastIndex);
+    return k === component;
+  });
+  if (matchKeys?.length === 1) {
+    const matchKey = matchKeys[0];
+    return viewsModules[matchKey];
+  }
+  if (matchKeys?.length > 1) {
+    console.warn(
+      'Please do not create `.vue` and `.TSX` files with the same file name in the same hierarchical directory under the views folder. This will cause dynamic introduction failure'
+    );
+    return;
+  }
+};
 

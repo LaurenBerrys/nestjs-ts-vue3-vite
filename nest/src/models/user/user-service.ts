@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-20 10:49:56
+ * @LastEditTime: 2023-02-27 17:20:32
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user-service.ts
  * @Description: 
  * 
@@ -10,6 +10,7 @@
 // src/logical/user/user.service.ts
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { MenuList } from 'src/entities/menu.entity';
 import { User } from 'src/entities/user.entity';
 import { ResponseData } from 'src/interface/code';
 import { encryptPassword, makeSalt } from 'src/utils/cryptogram';
@@ -24,6 +25,8 @@ export class UserService {
         //Repository用于操作数据库
         @InjectRepository(User)
         private readonly user: Repository<User>,
+        @InjectRepository(MenuList)
+        private readonly menulist: Repository<MenuList>,
     ) { }
     async findAll(): Promise<ResponseData> {
         const Data = new ResponseData();
@@ -34,14 +37,16 @@ export class UserService {
         return Data;
     }
     async findOne(name:string): Promise<ResponseData> {
-        const event = await this.user.findOneBy({
-            name
-        });
+        const event:any = await this.user.findOneBy({name});
         const Data = new ResponseData();
         if (!event) {
             Data.code = 404;
             Data.msg = 'not found';
             return Data;
+        }
+        if(event.roles===0){
+            const menu = await this.menulist.find();
+            event.menuList=menu;
         }
         Data.code = 200;
         Data.msg = 'success';

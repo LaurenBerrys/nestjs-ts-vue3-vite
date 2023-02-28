@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 11:13:56
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-23 21:38:24
+ * @LastEditTime: 2023-02-27 19:15:07
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/common.ts
  * @Description: 
  * 
@@ -61,4 +61,21 @@ export function debounce(method:any, wait:any, immediate?:any) {
       }, wait)
     }
   }
+}
+
+/**
+ *  找到对应的节点
+ * */
+let result = null;
+export function getTreeItem(data: any[], key?: string | number): any {
+  data.map((item) => {
+    if (item.id === key) {
+      result = item;
+    } else {
+      if (item.children && item.children.length) {
+        getTreeItem(item.children, key);
+      }
+    }
+  });
+  return result;
 }

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 11:43:17
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 11:54:37
+ * @LastEditTime: 2023-02-27 15:23:34
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/layout/components/header/components/BreadCrumb.vue
  * @Description: 面包屑组件
  * 
@@ -20,7 +20,7 @@
     </n-breadcrumb>
   </template>
   
-  <script setup lang="ts" >
+  <script setup lang="ts"  >
   import { renderCustomIcon, renderIcon } from '@/utils/icon'
   const router = useRouter()
   const route = useRoute()
@@ -29,7 +29,6 @@
     if (path === route.path) return
     router.push(path)
   }
-  
   function getIcon(meta) {
     if (meta?.customIcon) return renderCustomIcon(meta.customIcon, { size: 18 })
     if (meta?.icon) return renderIcon(meta.icon, { size: 18 })

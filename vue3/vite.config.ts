@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-23 16:51:06
+ * @LastEditTime: 2023-02-28 11:49:05
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -34,6 +34,7 @@ const customIconPath = fileURLToPath(new URL("./src/assets/svg", import.meta.url
 const nodeResolve = (dir) => path.resolve(__dirname, dir)
 export default ({ mode }: ConfigEnv): UserConfig =>{
   const IS_PROD = ['prod', 'production'].includes(mode)
+  console.log(IS_PROD);
   process.env = {
     ...process.env,
     ...loadEnv(mode, process.cwd()),
@@ -87,7 +88,7 @@ let  plugins= [
           ]
         }
       ],
-       dirs: ['src/hooks/**', 'src/utils/**', 'src/store/**', 'src/api/**', 'src/directives/**'],
+      dirs: ['src/hooks/**', 'src/utils/**', 'src/store/**', 'src/api/**', 'src/directives/**'],
       dts: './typings/auto-imports.d.ts',
       eslintrc: {
         enabled: true

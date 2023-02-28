@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-20 20:53:54
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-22 16:31:45
+ * @LastEditTime: 2023-02-27 16:51:55
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/app.ts
  * @Description: 
  * 
@@ -63,6 +63,8 @@ export const useAppStore = defineStore('app', {
         */
         setFilterAsyncRoutes(routes) {
             this.allRoutes = constantRoutes.concat(routes)
+            console.log(this.allRoutes,'this.allRoutes');
+            
         },
         //保存用户信息
         setUserInfo(data) {

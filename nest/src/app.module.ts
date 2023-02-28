@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:07:23
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-18 14:23:23
+ * @LastEditTime: 2023-02-27 16:27:24
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/app.module.ts
  * @Description:
  *
@@ -17,9 +17,9 @@ import ormConfigProd from './config/orm.config.prod';
 import { UserModule } from './models/user/user.module';
 import { RoleModule } from './models/role/role.module';
 import { MenuListModule } from './models/menu-list/menu-list.module';
-import { AuthService } from './core/auth/auth.service';
 import { AuthModule } from './core/auth/auth.module';
 import { UserController } from './models/user/user.controller';
+import { MenuListController } from './models/menu-list/menu-list-controller';
 @Module({
   imports: [
     //配置文件-环境变量

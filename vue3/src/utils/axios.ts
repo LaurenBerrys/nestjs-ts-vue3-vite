@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:37:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-20 21:31:53
+ * @LastEditTime: 2023-02-28 11:44:10
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/axios.ts
  * @Description: 
  * 
@@ -39,20 +39,21 @@ service.interceptors.response.use(
   (res) => {
     const { code } = res.data
     const successCode = '0,200,20000'
-    const noAuthCode = '401,403'
     if (successCode.includes(code)) {
       return res.data
     } else {
-      if (noAuthCode.includes(code) && !location.href.includes('/login')) {
-          useMessage().warning('请重新登录')
-          useAppStore().resetStateAndToLogin()
-      }
       return Promise.reject(res.data)
     }
   },
   //响应报错
   (err) => {
-    useMessage().error(err,{ duration: 2 * 1000})
+    const noAuthCode = '401,403'
+    if (noAuthCode.includes(err.response.data.code)) {
+      window.$message.warning('请重新登录')
+      useAppStore().resetStateAndToLogin();
+    }else{
+      useMessage().error(err,{ duration: 2 * 1000})
+    }
     return Promise.reject(err)
   }
 )

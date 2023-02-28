@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cinema
+* source:	https://sketchfab.com/3d-models/cinema-f4f40eeacabf4173a1b369cb089c89f4
+* author:	vanessalani (https://sketchfab.com/vanessalani)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cinema" (https://sketchfab.com/3d-models/cinema-f4f40eeacabf4173a1b369cb089c89f4) by vanessalani (https://sketchfab.com/vanessalani) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

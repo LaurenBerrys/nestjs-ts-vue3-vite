@@ -6,11 +6,11 @@
       "module": "esnext",
       //启用所有严格类型检查选项。
       //启用 --strict相当于启用 --noImplicitAny, --noImplicitThis, --alwaysStrict， --strictNullChecks和 --strictFunctionTypes和--strictPropertyInitialization。
-      "strict": true,
+      "strict": false,
       // 允许编译器编译JS，JSX文件
-      "allowJs": false,
+      "allowJs": true,
       // 允许在JS文件中报错，通常与allowJS一起使用
-      "checkJs": false,
+      "checkJs": true,
       // 允许使用jsx
       "jsx": "preserve",
       "declaration": true,
@@ -43,9 +43,13 @@
       //忽略所有的声明文件（ *.d.ts）的类型检查。
       "skipLibCheck": true,
       "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"],
+        "~/*": ["typings/*"]
+      },
       //指定默认读取的目录
-      //"typeRoots": ["./node_modules/@types/", "./types"],
-      "lib": ["ES2018", "DOM"]
+      "typeRoots": ["./node_modules/@types/", "./types"],
+      "lib": ["dom", "esnext"]
     }
   }
   

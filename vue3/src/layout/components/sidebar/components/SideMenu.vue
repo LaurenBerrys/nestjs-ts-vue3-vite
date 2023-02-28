@@ -104,6 +104,7 @@
       } else {
         //路由跳转 
         try {
+          console.log(item.path);
         router.push(item.path)
         } catch (error) {
             console.log(error);

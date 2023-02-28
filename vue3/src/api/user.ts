@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 16:38:40
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-22 17:05:14
+ * @LastEditTime: 2023-02-27 20:51:55
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/api/user.ts
  * @Description: 
  * 
@@ -16,6 +16,32 @@ export const userInfoReq = (): Promise<any> => {
       method: 'get'
     }
     axiosReq(reqConfig).then(({ data }) => {
+      function toTree(arr) {
+        if(data.menuList.length>=2){
+          let res:any = []
+          let map = arr.reduce((res, v) => (res[v.id] = v, res), {})
+          for (let item of arr) {
+              if (item.parentId in map) {
+                  const parent = map[item.parentId]
+                  parent.children = parent.children || []
+                  parent.children.push(item)
+                  res.push(parent)
+                  //res根据id去重
+                  let obj = {}
+                  res = res.reduce((cur, next) => {
+                      obj[next.id] ? '' : obj[next.id] = true && cur.push(next)
+                      return cur
+                  }
+                      , [])
+              } 
+          }
+          return res
+        }else{
+          return arr
+        }
+     
+    } 
+    data.menuList= toTree(data.menuList)
       resolve(data)
     })
   })
@@ -35,3 +61,4 @@ export const loginOutReq = () => {
     method: 'post'
   })
 }
+

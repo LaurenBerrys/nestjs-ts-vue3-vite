@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 10:10:55
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-24 14:37:37
+ * @LastEditTime: 2023-02-24 15:44:34
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/common/Provider.vue
  * @Description: 
  * 
@@ -22,7 +22,6 @@ import type {
   NLocale,
   NDateLocale,
   GlobalTheme,
-  GlobalThemeOverrides,
 } from "naive-ui";
 import { naiveThemeOverrides } from "./setting/theme.json";
 import { setupMessage, setupDialog } from "@/utils/naivetools";

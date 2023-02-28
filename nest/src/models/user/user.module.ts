@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-10 17:36:21
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-18 14:24:52
+ * @LastEditTime: 2023-02-27 17:24:22
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user.module.ts
  * @Description:
  *
@@ -12,10 +12,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserController } from './user.controller';
 import { User } from '../../entities/user.entity';
 import { UserService } from './user-service';
+import { MenuList } from 'src/entities/menu.entity';
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([User]),TypeOrmModule.forFeature([MenuList])],
   // controllers: [UserController],
-  providers: [UserService],
+  providers: [UserService,MenuList],
   exports: [UserService],
 })
 export class UserModule {

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:54:00
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-22 15:50:52
+ * @LastEditTime: 2023-02-24 15:30:52
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/router/index.ts
  * @Description: 
  * 
@@ -13,13 +13,13 @@ import Layout from '@/layout/index.vue'
 
 export const constantRoutes: RouterTypes = [
   {
-    name: '系统控制',
+    name: '系统设置',
     path: '/',
     redirect:'/user',
     component: Layout,
     meta: {
-      title: '系统控制',
-      icon: 'mdi:home',
+      title: '系统设置',
+      icon: 'system-uicons:airplay',
       order: 0,
     },
     children: [
@@ -29,7 +29,7 @@ export const constantRoutes: RouterTypes = [
         component: () => import('@/views/system/user.vue'),
         meta: {
           title: '用户管理',
-          icon: 'mdi:home',
+          icon: 'system-uicons:contacts',
           order: 0,
         },
       },
@@ -39,7 +39,7 @@ export const constantRoutes: RouterTypes = [
         component: () => import('@/views/system/roles.vue'),
         meta: {
           title: '角色管理',
-          icon: 'mdi:home',
+          icon: 'ep:avatar',
           order: 0,
         },
       },

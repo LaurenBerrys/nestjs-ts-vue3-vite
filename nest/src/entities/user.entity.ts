@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-10 11:12:52
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-18 16:34:17
+ * @LastEditTime: 2023-02-27 20:21:01
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/entities/user.entity.ts
  * @Description:
  *
@@ -13,12 +13,7 @@ import { Role } from './role.entity';
 @Entity('User')
 export class User {
   //主键
-  @ObjectIdColumn({
-    type: 'int',
-    unsigned: true,
-    primary: true,
-    generated: true,
-  })
+  @ObjectIdColumn()
   id: number;
   @Column({ length: 100, comment: '真实姓名' })
   realName: string;

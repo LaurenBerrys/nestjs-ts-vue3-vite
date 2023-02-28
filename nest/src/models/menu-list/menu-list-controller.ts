@@ -2,8 +2,8 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:26:24
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-17 11:58:47
- * @FilePath: /nestjs-ts-vue3-vite/nest/src/menu-list/menu-list-controller.ts
+ * @LastEditTime: 2023-02-28 11:35:39
+ * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/menu-list/menu-list-controller.ts
  * @Description:
  *
  */
@@ -17,82 +17,41 @@ import {
     Param,
     Patch,
     Post,
+    UseGuards,
   } from '@nestjs/common';
   import { ResponseData } from '../../interface/code';
+  import { AuthGuard } from '@nestjs/passport';
   import { CreateMenuListDto } from './menu-list-create.dto';
+  import { MenuListService } from './menu-list-service';
   import { UpdateMenuLisDto } from './menu-list-update';
-  import { MenuList } from '../../entities/menu-entity';
-  import { InjectRepository } from '@nestjs/typeorm';
-  import { Repository } from 'typeorm';
-  @Controller('/role')
+  @Controller('/menu-list')
   export class MenuListController {
-    //记录日志
-    private readonly logger = new Logger(MenuListController.name);
     constructor(
-      //InjectRepository用于注入Repository
-      //Repository用于操作数据库
-      @InjectRepository(MenuList)
-      private readonly menuList: Repository<MenuList>,
+      private readonly MenuListService: MenuListService
     ) {}
     @Get()
     async findAll(): Promise<ResponseData> {
-      this.logger.log('查询所有数据');
-      const Data = new ResponseData();
-      Data.code = 200;
-      Data.msg = 'success';
-      Data.data = await this.menuList.find();
-      this.logger.debug('查询所有数据', Data.data.length);
-      return Data;
+      return await this.MenuListService.findAll()
     }
-    @Get(':id')
-    async findOne(@Param('id') id): Promise<ResponseData> {
-      const event = await this.menuList.findOne(id);
-      const Data = new ResponseData();
-      if (!event) {
-        Data.code = 404;
-        Data.msg = 'not found';
-        return Data;
-      }
-      Data.code = 200;
-      Data.msg = 'success';
-      Data.data = event;
-      return Data;
-    }
+    // @Get(':id')
+    // async findOne(@Param('id') id): Promise<ResponseData> {
+    // }
     //create方法用于创建数据
+    @UseGuards(AuthGuard('jwt'))
     @Post()
     async create(@Body() input: CreateMenuListDto): Promise<ResponseData> {
-      const event = await this.menuList.save({
-        ...input
-      });
-      const Data = new ResponseData();
-      Data.code = 200;
-      Data.msg = 'success';
-      Data.data = event;
-      return Data;
+      return await this.MenuListService.create(input);
     }
-    @Patch(':id')
+    @Patch(':name')
     async update(
-      @Param('id') id,
+      @Param('name') name,
       @Body() input: UpdateMenuLisDto,
     ): Promise<ResponseData> {
-      const data = await this.menuList.findOne(id);
-      await this.menuList.save({
-        ...data,
-        ...input
-      });
-      const Data = new ResponseData();
-      Data.code = 200;
-      Data.msg = 'success';
-      return Data;
+      return await this.MenuListService.update(name, input);
     }
-    @Delete(':id')
-    async delete(@Param('id') id): Promise<ResponseData> {
-      const Data = new ResponseData();
-      Data.code = 200;
-      Data.msg = 'success';
-      const date = await this.menuList.findOne(id);
-      await this.menuList.remove(date);
-      return Data;
+    @Delete(':name')
+    async delete(@Param('name') name): Promise<ResponseData> {
+      return await this.MenuListService.delete(name);
     }
   }
   

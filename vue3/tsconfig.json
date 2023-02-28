@@ -1,12 +1,9 @@
 
 {
   "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["src/*"],
-      "~/*": ["typings/*"]
-    }
-  },
-  "include": ["src", "typings"],
-  "exclude": ["node_modules", "**/dist"]
+  "include": [ "src/**/*.ts",
+  "src/**/*.d.ts",
+  "src/**/*.tsx",
+  "src/**/*.vue", "vite.config.ts", "typings"],
+  "exclude": ["node_modules", "**/dist","**/*.js"]
 }

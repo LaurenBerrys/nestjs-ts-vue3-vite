@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-10 11:12:52
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-18 16:55:37
+ * @LastEditTime: 2023-02-27 20:20:50
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/entities/role.entity.ts
  * @Description:
  *
@@ -19,15 +19,9 @@ export class Role {
   //   primary: true,
   //   generated: true,
   // })
-  @ObjectIdColumn(
-    {
-      type: 'int',
-      unsigned: true,
-      primary: true,
-      generated: true,
-    }
-  )
+  @ObjectIdColumn()
   id: number;
+ 
   @Column({ length: 100, comment: '角色名' })
   name: string;
   @Column({ comment: '角色权限' })
