@@ -23,7 +23,7 @@ import type {
   NDateLocale,
   GlobalTheme,
 } from "naive-ui";
-import { naiveThemeOverrides } from "./setting/theme.json";
+import { naiveThemeOverrides } from "../settings/theme.json";
 import { setupMessage, setupDialog } from "@/utils/naivetools";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";

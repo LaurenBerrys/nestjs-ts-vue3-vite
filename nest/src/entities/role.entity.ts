@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-10 11:12:52
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-27 20:20:50
+ * @LastEditTime: 2023-03-01 15:33:50
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/entities/role.entity.ts
  * @Description:
  *
@@ -13,21 +13,14 @@ import { Entity, Column, ObjectIdColumn, OneToMany } from 'typeorm';
 @Entity('role')
 export class Role {
   //主键
-  // @Column({
-  //   type: 'int',
-  //   unsigned: true,
-  //   primary: true,
-  //   generated: true,
-  // })
   @ObjectIdColumn()
   id: number;
- 
   @Column({ length: 100, comment: '角色名' })
   name: string;
-  @Column({ comment: '角色权限' })
-  code:number;
-  @Column({ comment: '按钮权限' })
-  codes: Array<number>;
   @Column({ comment: '菜单权限' })
-  menuList:Array<any>;
+  code:Array<string>;
+  @Column({ comment: '按钮权限' })
+  buttonCodes: Array<string>;
+  @Column({ comment: '用户' })
+  users: Array<string>;
 }

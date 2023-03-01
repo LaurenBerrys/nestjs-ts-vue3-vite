@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 15:23:03
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-27 19:52:53
+ * @LastEditTime: 2023-02-28 16:06:28
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/permission.ts
  * @Description: 
  * 
@@ -27,8 +27,7 @@ router.beforeEach(async (to) => {
             if (!appStore.userInfo) {
                 try {
                     const userData = await userInfoReq()
-                    userData.menuList
-                    console.log(userData,222222);
+                    // userData.menuList
                     //3.动态路由权限筛选
                     filterAsyncRouter(userData)
                     //4.保存用户信息到store
@@ -41,6 +40,11 @@ router.beforeEach(async (to) => {
                     return `/login?redirect=${to.path}`
                 }
             } else {
+                if (router.getRoutes().length === 5) {
+                    const asyncRouter = filterAsyncRoutesByMenuList(appStore.userInfo.menuList)
+                    asyncRouter.forEach((route) => { router.addRoute(route) })
+                    return { ...to, replace: true }
+                }
                 return true
             }
         }
@@ -64,27 +68,6 @@ function hasPermission(route, role) {
 
     // * 登录用户没有角色或者路由没有设置角色判定为没有权限
     if (!role.length || !routeRole.length) return false
-
     // * 路由指定的角色包含任一登录用户角色则判定有权限
     return role.some((item) => routeRole.includes(item))
 }
-
-function filterAsyncRoutes(routes: any = [], role) {
-    const ret: any = []
-    routes.forEach((route) => {
-        if (hasPermission(route, role)) {
-            const curRoute = {
-                ...route,
-                children: [],
-            }
-            if (route.children && route.children.length) {
-                curRoute.children = filterAsyncRoutes(route.children, role)
-            } else {
-                Reflect.deleteProperty(curRoute, 'children')
-            }
-            ret.push(curRoute)
-        }
-    })
-    return ret
-}
-

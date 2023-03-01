@@ -40,7 +40,7 @@ export const filterAsyncRoutesByMenuList = (menuList) => {
 const getRouteItemFromReqRouter = (route): RouteRawConfig => {
   const tmp: rawConfig = { meta: { title: '' } }
   const routeKeyArr = ['path', 'component', 'name', 'hidden']
-  const metaKeyArr = ['title', 'icon','order']
+  const metaKeyArr = ['title', 'icon','order','keepAlive']
   // @ts-ignore
   //generator routeKey
   routeKeyArr.forEach((fItem) => {
@@ -141,10 +141,7 @@ export function filterAsyncRouter({ menuList=[], roles, codes }) {
   } else {
     accessRoutes = filterAsyncRouterByCodes(roleCodeRoutes, codes) //by codes
   }
-  accessRoutes.forEach((route) =>{ 
-    console.log(route,3333);
-    router.addRoute(route)})
-  console.log('accessRoutes', accessRoutes)
+  accessRoutes.forEach((route) =>{ router.addRoute(route)})
   asyncRoutes.forEach((item) => router.addRoute(item))
   appStore.setFilterAsyncRoutes(accessRoutes)
 }

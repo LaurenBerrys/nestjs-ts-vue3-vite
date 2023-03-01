@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-27 17:20:32
+ * @LastEditTime: 2023-03-01 17:01:48
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user-service.ts
  * @Description: 
  * 
@@ -28,12 +28,22 @@ export class UserService {
         @InjectRepository(MenuList)
         private readonly menulist: Repository<MenuList>,
     ) { }
-    async findAll(): Promise<ResponseData> {
+    async findAll(query): Promise<ResponseData> {
         const Data = new ResponseData();
         Data.code = 200;
         Data.msg = 'success';
         Data.data = await this.user.find();
-        this.logger.debug('查询所有数据', Data.data.length);
+        let { page,pageSize} = query;
+        let pageCount = await this.user.count();
+        let list = await this.user.find({
+          skip: (page-1)  * pageSize,
+          take: pageSize,
+        });
+        Data.data = {
+          pageSize,
+          pageCount,
+          list
+        }
         return Data;
     }
     async findOne(name:string): Promise<ResponseData> {
@@ -84,28 +94,25 @@ export class UserService {
         Data.data = event;
         return Data;
     }
-    async update(name, input): Promise<ResponseData> {
-        const data = await this.user.findOneBy({
-            name
-        });
-        console.log(data,input,{...data,...input});
+    async update(id, input): Promise<ResponseData> {
+        const data = await this.user.findOne(id);
+        console.log(input,1111);
+        const a={...data,...input}
+        console.log(a,2222);
         await this.user.save({
             ...data,
-            ...input,
-            when: input.when ? new Date(input.when) : data.when,
+            ...input
         });
         const Data = new ResponseData();
         Data.code = 200;
         Data.msg = 'success';
         return Data;
     }
-    async delete(name): Promise<ResponseData> {
+    async delete(id): Promise<ResponseData> {
         const Data = new ResponseData();
         Data.code = 200;
         Data.msg = 'success';
-        const date = await this.user.findOneBy({
-            name
-        });
+        const date = await this.user.findOne(id);
         await this.user.remove(date);
         return Data
     }

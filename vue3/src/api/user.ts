@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 16:38:40
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-27 20:51:55
+ * @LastEditTime: 2023-03-01 17:02:46
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/api/user.ts
  * @Description: 
  * 
@@ -33,7 +33,9 @@ export const userInfoReq = (): Promise<any> => {
                       return cur
                   }
                       , [])
-              } 
+              } else{
+                  res.push(item)
+              }
           }
           return res
         }else{
@@ -61,4 +63,25 @@ export const loginOutReq = () => {
     method: 'post'
   })
 }
+export const getUser = (params) => {
+  return axiosReq({
+    url: '/nest-api/user',
+    method: 'get',
+    params
+  })
+}
+export const updateUser = (url,data) => {
+  return axiosReq({
+    url: '/nest-api/user/'+url,
+    method: 'patch',
+    data
+  })
+}
+export const deleteUser = (url) => {
+  return axiosReq({
+    url: '/nest-api/user/'+url,
+    method: 'delete'
+  })
+}
+
 

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-28 11:49:05
+ * @LastEditTime: 2023-03-01 21:25:49
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -81,6 +81,7 @@ let  plugins= [
         },
         {
           'naive-ui': [
+            'NInput',
             'useDialog',
             'useMessage',
             'useNotification',

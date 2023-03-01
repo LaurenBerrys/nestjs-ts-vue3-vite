@@ -2,11 +2,12 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:37:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-28 11:44:10
+ * @LastEditTime: 2023-03-01 14:59:59
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/axios.ts
  * @Description: 
  * 
  */
+import { hasOwn } from '@vue/shared'
 import axios from 'axios'
 import { useMessage } from 'naive-ui'
 //使用axios.create()创建一个axios请求实例
@@ -48,10 +49,14 @@ service.interceptors.response.use(
   //响应报错
   (err) => {
     const noAuthCode = '401,403'
-    if (noAuthCode.includes(err.response.data.code)) {
-      window.$message.warning('请重新登录')
-      useAppStore().resetStateAndToLogin();
-    }else{
+    const { response } = err
+    if(hasOwn(response,'data')){
+      if (noAuthCode.includes(response.data.code)) {
+        window.$message.warning('请重新登录')
+        useAppStore().resetStateAndToLogin();
+      }
+    }
+    else{
       useMessage().error(err,{ duration: 2 * 1000})
     }
     return Promise.reject(err)

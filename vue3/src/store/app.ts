@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-20 20:53:54
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-27 16:51:55
+ * @LastEditTime: 2023-02-28 20:03:22
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/app.ts
  * @Description: 
  * 
@@ -22,7 +22,8 @@ export const useAppStore = defineStore('app', {
             allRoutes: [] as any,
             userInfo: {}as any,
             axiosPromiseArr: [] as any,//axiosPromiseArr收集请求地址,用于取消请求
-            settings: defaultSettings
+            settings: defaultSettings,
+            permissions:[]
         }
     },
     persist: {
@@ -63,8 +64,6 @@ export const useAppStore = defineStore('app', {
         */
         setFilterAsyncRoutes(routes) {
             this.allRoutes = constantRoutes.concat(routes)
-            console.log(this.allRoutes,'this.allRoutes');
-            
         },
         //保存用户信息
         setUserInfo(data) {

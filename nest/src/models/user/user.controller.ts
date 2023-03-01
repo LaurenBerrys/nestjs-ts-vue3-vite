@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:26:24
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-20 11:50:33
+ * @LastEditTime: 2023-03-01 16:40:55
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user.controller.ts
  * @Description:
  *
@@ -16,6 +16,7 @@ import {
     Param,
     Patch,
     Post,
+    Query,
     UseGuards,
     UseInterceptors,
     UsePipes,
@@ -33,8 +34,8 @@ import { ValidationPipe} from '../../pipe/validation/validation.pipe'
     constructor(private readonly authService: AuthService, private readonly usersService: UserService) {}
     @UseGuards(AuthGuard('jwt'))
     @Get()
-    async findAll() {
-      return  await this.usersService.findAll();;
+    async findAll(@Query() query) {
+      return  await this.usersService.findAll(query);;
     }
     @UseGuards(AuthGuard('jwt'))
     @Get(':name')
@@ -49,12 +50,12 @@ import { ValidationPipe} from '../../pipe/validation/validation.pipe'
     }
     @UseInterceptors(new RbacInterceptor(0))
     @UseGuards(AuthGuard('jwt'))
-    @Patch(':name')
+    @Patch(':id')
     async update(
-      @Param('name') name,
+      @Param('id') id,
       @Body() input: UpdateUserDto,
     ): Promise<ResponseData> {
-     return  await this.usersService.update(name, input);
+     return  await this.usersService.update(id, input);
     }
     @UseGuards(AuthGuard('jwt'))
     @Delete(':id')

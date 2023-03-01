@@ -26,5 +26,5 @@ export class CreateUserDto {
   realName: string;
   salt?: string;
   when?: string;
-  roles?: number;
+  roles?: Array<string>;
 }

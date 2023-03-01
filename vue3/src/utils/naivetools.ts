@@ -2,12 +2,12 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 10:13:40
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 10:17:05
+ * @LastEditTime: 2023-03-01 17:35:47
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/naivetools.ts
  * @Description: 
  * 
  */
-import { isNullOrUndef} from '@/utils/is'
+import { isNullOrUnDef} from '@/utils/is'
 export function setupMessage(NMessage) {
     let loadingMessage:any = null
     class Message {
@@ -71,7 +71,7 @@ export function setupMessage(NMessage) {
   
   export function setupDialog(NDialog:any) {
     NDialog.confirm = function (option :any = {}) {
-      const showIcon = !isNullOrUndef(option.title)
+      const showIcon = !isNullOrUnDef(option.title)
       return NDialog[option.type || 'warning']({
         showIcon,
         positiveText: '确定',

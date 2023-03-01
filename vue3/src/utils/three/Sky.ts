@@ -26,7 +26,6 @@ import {
       isSky: boolean | undefined;
     constructor() {
       const shader = Sky.SkyShader;
-  
       const material = new ShaderMaterial({
         name: "SkyShader",
         fragmentShader: shader.fragmentShader,

@@ -85,6 +85,16 @@
               >
             </n-space>
           </template>
+            <template #header-extra>
+              <n-button 
+              @click="handleDelete"
+              type="info" ghost icon-placement="right">
+                  删除菜单
+                  <template #icon>
+                   <icon-system-uicons:mail-delete/>
+                  </template>
+                </n-button>
+            </template>
           <n-alert type="info" closable>
             从菜单列表选择一项后，进行编辑</n-alert
           >
@@ -194,7 +204,6 @@ const isEditMenu = ref(false);
 const subLoading = ref(false);
 onMounted(() => {
   const { userInfo } = storeToRefs<any>(useAppStore());
-
   treeData.value = userInfo.value.menuList||[];
   loading.value = false;
 });
@@ -224,6 +233,12 @@ function formSubmit() {
   delete formParams.id;
  updateMenu(formParams.name,formParams).then((res)=>{
   console.log(res);
+  if(res.code==200){
+    window.$message.success('修改成功')
+  }
+  else{
+    window.$message.error('修改失败')
+  }
  })
   
   }
@@ -255,10 +270,8 @@ function packHandle() {
 const pattern = ref("");
 function selectedTree(keys) {
   if (keys.length) {
-    console.log(keys);
     id.value=keys[0]
     const treeItem = getTreeItem(unref(treeData), keys[0]);
-    console.log(treeItem);
     treeItemKey.value = keys;
     treeItemTitle.value = treeItem.title;
     Object.assign(formParams, treeItem);
@@ -301,6 +314,27 @@ function onExpandedKeys(keys) {
       }
 
     };
+    //删除菜单
+    const handleDelete=()=>{
+      window.$dialog.info({
+        title: '提示',
+        content: `您确定想删除此菜单吗?`,
+        positiveText: '确定',
+        negativeText: '取消',
+        onPositiveClick: () => {
+          console.log(treeItemTitle.value);
+          
+          deleteMenu(treeItemTitle.value).then((res)=>{
+            console.log(res);
+            window.$message.success('删除成功');
+          })
+        },
+        onNegativeClick: () => {
+          window.$message.error('已取消');
+        },
+      });
+
+    }
 </script>
 
 <style lang="scss">

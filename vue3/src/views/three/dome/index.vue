@@ -1,30 +1,30 @@
 <!--
  * @Author: Nie Chengyong
- * @Date: 2023-02-24 16:31:48
+ * @Date: 2023-02-28 14:11:45
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-24 17:11:23
- * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/three/dome1/index.vue
+ * @LastEditTime: 2023-02-28 17:33:55
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/three/dome/index.vue
  * @Description: 
+
  * 
 -->
 <template>
-    <ComponentPage>
-    <div id="container"  class="container_box"></div>
+    <ComponentPage class="page">
+        <div id="container"  class="container_box"></div>
     </ComponentPage>
-</template>
-<script setup lang="ts">
+  </template>
+  
+<script lang="ts" setup>
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import {
-  CSS2DObject,
   CSS2DRenderer,
 } from "three/examples/jsm/renderers/CSS2DRenderer";
 import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";
 import { TWEEN } from "three/examples/jsm/libs/tween.module.min";
-import Stats from "../../../../public/static/js/stats";
 import { clickPick } from "@/utils/three/clickPick";
 import { Sky } from "@/utils/three/Sky";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
@@ -44,13 +44,15 @@ import {
   initCJ
 } from "@/utils/three/modelList";
 import { initRenderer, initControls } from "@/utils/three/baseElement";
-const proxy =getCurrentInstance()
-let container:any = reactive({})
+const {proxy} =getCurrentInstance()
+let container
 //初始化场景
-let scene:any= reactive({})
-const initSceneMed=()=>{scene= new THREE.Scene();}
+let scene:any=reactive({})
+const initSceneMed=()=>{
+    scene= new THREE.Scene();
+}
 //初始化相机
-let camera:any =reactive({})
+let camera
 const initCamera=()=>{
   camera = new THREE.PerspectiveCamera(
         45,
@@ -91,9 +93,7 @@ const initControlsMed=()=>{
     initControls(controls);
 }
 //初始化背景
-let sky:any =reactive({})
-let Controller:any =reactive({})
-let sun:any =reactive({})
+let sky,Controller,sun
 const initSkyBox=()=>{
       sky = new Sky();
       sky.scale.setScalar(450000);
@@ -144,7 +144,6 @@ lockcontrols = new PointerLockControls(camera, document.body);
         switch (event.keyCode) {
           case 38: // up
           case 87: // w
-            
             moveForward = false;
             break;
           case 37: // left
@@ -206,7 +205,7 @@ const initComposerMed=()=>{
       effectFXAA.renderToScreen = true;
       
       effectComposer.addPass(effectFXAA);
-      clickPick(proxy.proxy);
+      clickPick(proxy);
 }
 // 初始化模型
 let objList:any=reactive({})
@@ -377,60 +376,10 @@ const truckMove=(curve, truck)=> {
       // }
     }
 //初始化控制面板
-let gui:any=reactive({})
-let effectController=reactive({
-  A:''
-})
+let effectController={A:''}
 let axes:any=reactive({})
-let helper:any=reactive({})
-const initGui=(status)=>{
-    if (Number(status) === 1) {
-        gui = new GUI();
-        gui.domElement.classList.add();
-        gui.domElement.style.cssText =
-          "position:absolute;top:0;right:0px;";
-        const options = {
-          Helper: false,
-          Fog: false,
-          Verctor: false,
-        };
-        gui.add(effectController, "A").name("Selected:").listen();
-        gui.add(options, "Helper").onChange((val) => {
-          if (val) {
-            axes = new THREE.AxesHelper(5000);
-            scene.add(axes);
-            helper = new THREE.GridHelper(10000, 2, 0xffffff, 0xffffff);
-            scene.add(helper);
-          } else {
-            scene.remove(axes);
-            scene.remove(helper);
-          }
-        });
-        const dropdown = { Background: "Sky" };
-        const states = ["Sky", "Star", "Park"];
-        gui
-          .add(dropdown, "Background")
-          .options(states)
-          .onChange((val) => {
-            scene.remove(sky);
-            if (val == "Sky") {
-              scene.add(sky);
-            } else {
-              // changeSKyBox(val);
-            }
-          });
-        gui.add(options, "Fog").onChange((val) => {
-          if (val) {
-            scene.fog = new THREE.Fog("#FFF0F5", 100, 10000);
-          } else {
-            scene.fog = "";
-          }
-        });
-        gui.add(options, "Verctor").onChange(() => {
-          // addSpriteCanvas();
-        });
-      }
-}
+let helper:any =reactive({})
+
    // 加载其他模型
 const initOtherModel=()=> {
       // 加载银行
@@ -456,9 +405,6 @@ let click=ref<boolean>(false)
 const render=()=>{
     animationID.value = requestAnimationFrame(render);
       renderer.render(scene, camera);
-      if (lockcontrols.isLocked) {
-        // firstPersonMove();
-      }
       // 刷新动画
       TWEEN.update();
       const delta = clock.getDelta();
@@ -495,7 +441,6 @@ const AsyncInitModel=async()=>{
       // 初始化行驶路线
       initCurve(obj);
       initTruckCurve(obj);
-      initGui(status.value);
       initOtherModel();
       render();
       groupIndex.value = scene.children.findIndex(
@@ -529,6 +474,7 @@ const  onWindowResize=()=>{
     }
 // 初始化方法
 const init=()=> {
+    window.$loadingBar.start()
       // 初始化场景
      initSceneMed();
       // 初始化摄像机
@@ -547,14 +493,16 @@ const init=()=> {
      initPointLockControl();
      initComposerMed();
      AsyncInitModel();
-    window.addEventListener("resize",onWindowResize(), false);
+     window.addEventListener("resize",onWindowResize(), false);
+     window.$loadingBar.finish()
     }
 onMounted(()=>{
-container =document.querySelector("#container")
+  container =document.querySelector("#container")
   init()
 })
 </script>
 <style lang="scss" scoped>
+
 #container{
   width: 100%;
   height: 100%;

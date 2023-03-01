@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 15:14:17
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-24 14:25:27
+ * @LastEditTime: 2023-02-28 20:17:14
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/settings.ts
  * @Description: 
  * 
@@ -26,7 +26,7 @@ export const settings: SettingsConfig = {
     * base-theme/lighting-theme/dark-theme
     * 主题设置 默认主题
     * */
-   defaultTheme: undefined,
+   defaultTheme: null,
   /**
    * @type {boolean} true | false
    * @description 边拦是否折叠

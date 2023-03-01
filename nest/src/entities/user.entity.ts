@@ -24,7 +24,7 @@ export class User {
   @Column({ comment: '时间' })
   when: Date;
   @Column({ comment: '角色' })
-  roles:number;
+  roles:Array<string>;
   @Column({ comment: '盐' })
   salt: string;
 }

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 11:13:56
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-27 19:15:07
+ * @LastEditTime: 2023-03-01 11:12:51
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/common.ts
  * @Description: 
  * 
@@ -78,4 +78,19 @@ export function getTreeItem(data: any[], key?: string | number): any {
     }
   });
   return result;
+}
+export function getDynamicProps<T extends {}, U>(props: T): Partial<U> {
+  const ret: Recordable = {};
+  Object.keys(props).map((key) => {
+    ret[key] = unref((props as Recordable)[key]);
+  });
+  return ret as Partial<U>;
+}
+
+export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
+  let key: string;
+  for (key in target) {
+    src[key] = isObject(src[key]) ? deepMerge(src[key], target[key]) : (src[key] = target[key]);
+  }
+  return src;
 }

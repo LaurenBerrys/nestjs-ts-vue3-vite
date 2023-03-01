@@ -2,8 +2,8 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:26:24
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 17:51:20
- * @FilePath: /nestjs-ts-vue3-vite/nest/src/role/role.controller.ts
+ * @LastEditTime: 2023-03-01 17:01:08
+ * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/role/role.controller.ts
  * @Description:
  *
  */
@@ -17,13 +17,15 @@ import {
     Param,
     Patch,
     Post,
+    Query,
   } from '@nestjs/common';
   import { ResponseData } from '../../interface/code';
   import { CreateRoleDto } from './role-create.dto';
   import { UpdateRoleDto } from './role-update';
   import { Role } from '../../entities/role.entity';
   import { InjectRepository } from '@nestjs/typeorm';
-  import { Repository } from 'typeorm';
+  import { Like, Repository } from 'typeorm';
+import { query } from 'express';
   @Controller('/role')
   export class RoleController {
     //记录日志
@@ -35,13 +37,22 @@ import {
       private readonly role: Repository<Role>,
     ) {}
     @Get()
-    async findAll(): Promise<ResponseData> {
-      this.logger.log('查询所有数据');
+    async findAll(@Query() query): Promise<ResponseData> {
       const Data = new ResponseData();
       Data.code = 200;
       Data.msg = 'success';
       Data.data = await this.role.find();
-      this.logger.debug('查询所有数据', Data.data.length);
+      let { page,pageSize} = query;
+      let pageCount = await this.role.count();
+      let list = await this.role.find({
+        skip: (page-1)  * pageSize,
+        take: pageSize,
+      });
+      Data.data = {
+        pageSize,
+        pageCount,
+        list
+      }
       return Data;
     }
     @Get(':id')
@@ -63,7 +74,6 @@ import {
     async create(@Body() input: CreateRoleDto): Promise<ResponseData> {
       const event = await this.role.save({
         ...input,
-        when: new Date(),
       });
       const Data = new ResponseData();
       Data.code = 200;
