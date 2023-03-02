@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 11:15:59
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-28 16:17:37
+ * @LastEditTime: 2023-03-02 19:27:43
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/api/menu.ts
  * @Description: 
  * 
@@ -33,4 +33,10 @@ export const deleteMenu = (url) => {
     method: 'delete'
   })
 }
-  
+//获取菜单列表
+export const getMenu = () => {
+  return axiosReq({
+    url: '/nest-api/menu-list',
+    method: 'get'
+  })
+}

@@ -66,10 +66,8 @@
             v-model:value="formModel[schema.field]"
             :class="{ isFull: schema.isFull != false && getProps.isFull }"
             >
-
           </CellComponent>
             <!-- <component
-           
           /> -->
           <!--组件后面的内容-->
           <template v-if="schema.suffix">
@@ -146,16 +144,13 @@ import { useFormValues } from "./hooks/useFormValues";
 import { CellComponent } from "./CellComponent";
 import { basicProps } from "./props";
 import { DownOutlined, UpOutlined, QuestionCircleOutlined } from "@vicons/antd";
-
 import type { Ref } from "vue";
 import type { GridProps } from "naive-ui/lib/grid";
 import type { FormSchema, FormProps, FormActionType } from "./types/form";
-
 import { isArray } from "@/utils/is";
 import { deepMerge } from "@/utils/common";
-import { ComponentType } from "./types/index";
 export default defineComponent({
-  name: "BasicUpload",
+  name: "BasicForm",
   components: { DownOutlined, UpOutlined, QuestionCircleOutlined,CellComponent },
   props: {
     ...basicProps,
@@ -238,13 +233,10 @@ export default defineComponent({
         unref(schemaRef) || (unref(getProps).schemas as any);
       for (const schema of schemas) {
         const { defaultValue } = schema;
-        // handle date type
-        // dateItemType.includes(component as string)
         if (defaultValue) {
           schema.defaultValue = defaultValue;
         }
       }
-      console.log(schemas,222)
       return schemas as FormSchema[];
     });
 
@@ -261,6 +253,7 @@ export default defineComponent({
       getFieldsValue,
       clearValidate,
       setFieldsValue,
+      setSchemas
     } = useFormEvents({
       emit,
       getProps,
@@ -288,6 +281,7 @@ export default defineComponent({
       clearValidate,
       setProps,
       submit: handleSubmit,
+      setSchemas
     };
 
     watch(

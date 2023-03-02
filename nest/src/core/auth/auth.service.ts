@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 15:48:15
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-20 16:39:44
+ * @LastEditTime: 2023-03-02 16:09:31
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/core/auth/auth.service.ts
  * @Description: 
  * 
@@ -15,10 +15,14 @@ import { encryptPassword } from '../../utils/cryptogram';
 import { ResponseData } from 'src/interface/code';
 import { User } from 'src/entities/user.entity';
 import { RedisInstance } from '../redis';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
+    @InjectRepository(User)
+    private readonly user: Repository<User>,
     private readonly usersService: UserService,
     private readonly jwtService: JwtService) { }
 
@@ -31,11 +35,12 @@ export class AuthService {
    */
   async validateUser(username: string, password: string): Promise<ResponseData> {
     const Data = new ResponseData();
-    const user = await this.usersService.findOne(username);
-    Data.data = user.data
-    if (user.data) {
-      const hashedPassword = user.data.password;
-      const salt = user.data.salt;
+    const user = await this.user.findOneBy({ name: username});
+    console.log(user);
+    Data.data = user
+    if (user) {
+      const hashedPassword = user.password;
+      const salt = user.salt;
       // 通过密码盐，加密传参，再与数据库里的比较，判断是否相等
       const hashPassword = encryptPassword(password, salt);
       if (hashedPassword === hashPassword) {

@@ -42,6 +42,7 @@
     "getCurrentScope": true,
     "getDynamicProps": true,
     "getLangInstance": true,
+    "getMenu": true,
     "getQueryParam": true,
     "getRoles": true,
     "getTreeItem": true,

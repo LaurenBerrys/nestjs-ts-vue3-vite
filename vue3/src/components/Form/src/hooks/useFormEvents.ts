@@ -27,7 +27,7 @@ export function useFormEvents({
 }: UseFormActionContext) {
   // 验证
   async function validate() {
-    return unref(formElRef)?.validate();
+    return   unref(formElRef)?.validate();
   }
 
   // 提交
@@ -94,7 +94,20 @@ export function useFormEvents({
       }
     });
   }
-
+  //设置表单Schemas
+  async function setSchemas(names:string, values:any) {
+    getSchema.value.filter((item: any) => {
+      if(item.field === names){
+        //遍历item对象的key，而不是values的key
+        Object.keys(item).forEach((key: any) => {
+          //如果key是values的key，就把values的值赋值给item
+          if(values[key]){
+            item[key] = values[key]
+          }
+        })
+      }
+    })
+  }
   return {
     handleSubmit,
     validate,
@@ -102,5 +115,6 @@ export function useFormEvents({
     getFieldsValue,
     clearValidate,
     setFieldsValue,
+    setSchemas
   };
 }

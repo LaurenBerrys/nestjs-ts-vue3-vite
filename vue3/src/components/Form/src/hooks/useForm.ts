@@ -24,7 +24,6 @@ export function useForm(props?: Props): UseFormReturnType {
         loadedRef.value = null;
       });
     if (unref(loadedRef)  && instance === unref(formRef)) return;
-
     formRef.value = instance;
     loadedRef.value = true;
 
@@ -41,6 +40,10 @@ export function useForm(props?: Props): UseFormReturnType {
   }
 
   const methods: FormActionType = {
+    setSchemas:async(name,value)=>{
+      const form = await getForm();
+      await form.setSchemas(name,value);
+    },
     setProps: async (formProps: Partial<FormProps>) => {
       const form = await getForm();
       await form.setProps(formProps);

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 09:16:58
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 11:16:13
+ * @LastEditTime: 2023-03-02 20:21:29
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Form/src/types/form.ts
  * @Description: 
  * 
@@ -54,6 +54,7 @@ export interface FormProps {
 }
 
 export interface FormActionType {
+  setSchemas:(name:string, value:any) => Promise<void>;
   submit: () => Promise<any>;
   setProps: (formProps: Partial<FormProps>) => Promise<void>;
   setFieldsValue: (values: Recordable) => Promise<void>;

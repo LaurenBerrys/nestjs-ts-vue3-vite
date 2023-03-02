@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 17:01:48
+ * @LastEditTime: 2023-03-02 16:43:52
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user-service.ts
  * @Description: 
  * 
@@ -11,6 +11,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MenuList } from 'src/entities/menu.entity';
+import { Role } from 'src/entities/role.entity';
 import { User } from 'src/entities/user.entity';
 import { ResponseData } from 'src/interface/code';
 import { encryptPassword, makeSalt } from 'src/utils/cryptogram';
@@ -27,6 +28,8 @@ export class UserService {
         private readonly user: Repository<User>,
         @InjectRepository(MenuList)
         private readonly menulist: Repository<MenuList>,
+        @InjectRepository(Role)
+        private readonly role: Repository<Role>,
     ) { }
     async findAll(query): Promise<ResponseData> {
         const Data = new ResponseData();
@@ -54,9 +57,28 @@ export class UserService {
             Data.msg = 'not found';
             return Data;
         }
-        if(event.roles===0){
-            const menu = await this.menulist.find();
-            event.menuList=menu;
+        //event.roles是一个数组，数组中存放的是角色id，现在要根据角色id找到队友的code
+        let roleCode = [];
+        for (let i = 0; i < event.roles.length; i++) {
+            const role = await this.role.findOne(event.roles[i]);
+            roleCode.push(...role.code);
+        }
+        event.menuList=[]
+        roleCode = [...new Set(roleCode)];
+        console.log(roleCode,'roleCode');
+        //根据角色code找到对应的菜单
+        for (let index = 0; index < roleCode.length; index++) {
+            //根据角色code找到对应的菜单
+            const menu = await this.menulist.findOne({
+                select:{
+                    code:true
+                },
+                where:{
+                    code:roleCode[index]
+                }
+                });
+                console.log(menu,'menu');
+             event.menuList.push(menu);
         }
         Data.code = 200;
         Data.msg = 'success';

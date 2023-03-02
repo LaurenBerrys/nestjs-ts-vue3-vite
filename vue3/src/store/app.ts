@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-20 20:53:54
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-28 20:03:22
+ * @LastEditTime: 2023-03-02 16:37:19
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/app.ts
  * @Description: 
  * 
@@ -20,7 +20,7 @@ export const useAppStore = defineStore('app', {
             /** keepAlive路由的key，重新赋值可重置keepAlive */
             aliveKeys: [] as any,
             allRoutes: [] as any,
-            userInfo: {}as any,
+            userInfo: null as any,
             axiosPromiseArr: [] as any,//axiosPromiseArr收集请求地址,用于取消请求
             settings: defaultSettings,
             permissions:[]

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:26:24
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 16:40:55
+ * @LastEditTime: 2023-03-02 16:07:02
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user.controller.ts
  * @Description:
  *
@@ -66,6 +66,7 @@ import { ValidationPipe} from '../../pipe/validation/validation.pipe'
    async login(@Body() loginParma: any) {
     // console.log('JWT验证 - Step 1: 用户请求登录');
     const authResult = await this.authService.validateUser(loginParma.name, loginParma.password);
+    console.log(authResult,'authResult');
     if (authResult.code==200) {
         return this.authService.certificate(authResult.data);
     }

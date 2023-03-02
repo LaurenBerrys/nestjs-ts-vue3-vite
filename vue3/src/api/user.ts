@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 16:38:40
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 17:02:46
+ * @LastEditTime: 2023-03-02 16:52:47
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/api/user.ts
  * @Description: 
  * 
@@ -12,38 +12,37 @@ import axiosReq from '@/utils/axios'
 export const userInfoReq = (): Promise<any> => {
   return new Promise((resolve) => {
     const reqConfig = {
-      url: '/nest-api/user/'+useAppStore().name,
+      url: '/nest-api/user/' + useAppStore().name,
       method: 'get'
     }
+    //这里是将拿到的菜单数据转换成树形结构，方便后面使用
     axiosReq(reqConfig).then(({ data }) => {
       function toTree(arr) {
-        if(data.menuList.length>=2){
-          let res:any = []
+        if (data.menuList.length >= 2) {
+          let res: any = []
           let map = arr.reduce((res, v) => (res[v.id] = v, res), {})
           for (let item of arr) {
-              if (item.parentId in map) {
-                  const parent = map[item.parentId]
-                  parent.children = parent.children || []
-                  parent.children.push(item)
-                  res.push(parent)
-                  //res根据id去重
-                  let obj = {}
-                  res = res.reduce((cur, next) => {
-                      obj[next.id] ? '' : obj[next.id] = true && cur.push(next)
-                      return cur
-                  }
-                      , [])
-              } else{
-                  res.push(item)
-              }
+            if (item.parentId in map) {
+              const parent = map[item.parentId]
+              parent.children = parent.children || []
+              parent.children.push(item)
+              res.push(parent)
+            } else {
+              res.push(item)
+            }
           }
+          //将res去重
+          let obj = {}
+          res = res.reduce((cur, next) => {
+            obj[next.id] ? '' : obj[next.id] = true && cur.push(next)
+            return cur
+          }, [])
           return res
-        }else{
+        } else {
           return arr
         }
-     
-    } 
-    data.menuList= toTree(data.menuList)
+      }
+      data.menuList = toTree(data.menuList)
       resolve(data)
     })
   })
@@ -70,16 +69,16 @@ export const getUser = (params) => {
     params
   })
 }
-export const updateUser = (url,data) => {
+export const updateUser = (url, data) => {
   return axiosReq({
-    url: '/nest-api/user/'+url,
+    url: '/nest-api/user/' + url,
     method: 'patch',
     data
   })
 }
 export const deleteUser = (url) => {
   return axiosReq({
-    url: '/nest-api/user/'+url,
+    url: '/nest-api/user/' + url,
     method: 'delete'
   })
 }

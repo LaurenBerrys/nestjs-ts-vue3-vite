@@ -39,6 +39,7 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getDynamicProps: typeof import('../src/utils/common')['getDynamicProps']
   const getLangInstance: typeof import('../src/hooks/use-common')['getLangInstance']
+  const getMenu: typeof import('../src/api/menu')['getMenu']
   const getQueryParam: typeof import('../src/hooks/use-self-router')['getQueryParam']
   const getRoles: typeof import('../src/api/roles')['getRoles']
   const getTreeItem: typeof import('../src/utils/common')['getTreeItem']
