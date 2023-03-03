@@ -32,7 +32,6 @@
   </div>
 </template>
 <script lang="ts">
-  import type { PropType } from 'vue';
   import type { BasicColumn } from '../../types/table';
   import type { EditRecordRow } from './index';
   import { FormOutlined, CloseOutlined, CheckOutlined } from '@vicons/antd';

@@ -92,9 +92,7 @@
 </template>
 
 <script lang="ts">
-  import { ref, defineComponent, reactive, unref, toRaw, computed, toRefs, watchEffect } from 'vue';
   import { useTableContext } from '../../hooks/useTableContext';
-  import { cloneDeep } from 'lodash-es';
   import {
     SettingOutlined,
     DragOutlined,

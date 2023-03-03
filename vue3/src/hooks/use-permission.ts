@@ -1,13 +1,13 @@
 import type { RouteRawConfig, RouterTypes, rawConfig } from '~/basic'
 import type { RouteRecordName } from 'vue-router'
 const modules = import.meta.glob('../views/**/*.{vue,tsx}')
+const Layout = () => import('@/layout/index.vue')
 /**
  * 根据请求，过滤异步路由
  * @param:menuList 异步路由数组
  * return 过滤后的异步路由
  */
 // @ts-ignore
-import Layout from '@/layout/index.vue'
 /*
  * 路由操作
  * */

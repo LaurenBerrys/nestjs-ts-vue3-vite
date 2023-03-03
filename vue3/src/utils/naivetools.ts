@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 10:13:40
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 17:35:47
+ * @LastEditTime: 2023-03-04 01:48:23
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/naivetools.ts
  * @Description: 
  * 
@@ -16,7 +16,6 @@ export function setupMessage(NMessage) {
        * * loading message只显示一个，新的message会替换正在显示的loading message
        * * loading message不会自动清除，除非被替换成非loading message，非loading message默认2秒后自动清除
        */
-  
       removeMessage(message:any = loadingMessage, duration = 2000) {
         setTimeout(() => {
           if (message) {

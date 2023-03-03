@@ -129,15 +129,6 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  reactive,
-  ref,
-  computed,
-  unref,
-  onMounted,
-  watch,
-} from "vue";
 import { createPlaceholderMessage } from "./helper";
 import { useFormEvents } from "./hooks/useFormEvents";
 import { useFormValues } from "./hooks/useFormValues";

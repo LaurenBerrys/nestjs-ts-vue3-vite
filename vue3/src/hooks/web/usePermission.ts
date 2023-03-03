@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 20:01:36
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-03 21:19:29
+ * @LastEditTime: 2023-03-04 01:53:50
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/hooks/web/usePermission.ts
  * @Description: 
  * 
@@ -28,35 +28,7 @@ export function usePermission() {
    * */
   function hasPermission(accesses: string[]): boolean {
     if (!accesses || !accesses.length) return true;
-    console.log( _somePermissions(accesses));
-    
     return _somePermissions(accesses);
   }
-
-  /**
-   * 是否包含指定的所有权限
-   * @param accesses
-   */
-  function hasEveryPermission(accesses: string[]): boolean {
-    const permissionsList = userStore.permissions;
-    if (Array.isArray(accesses)) {
-      return permissionsList.every((access: any) => accesses.includes(access.value));
-    }
-    throw new Error(`[hasEveryPermission]: ${accesses} should be a array !`);
-  }
-
-  /**
-   * 是否包含其中某个权限
-   * @param accesses
-   * @param accessMap
-   */
-  function hasSomePermission(accesses: string[]): boolean {
-    const permissionsList = userStore.permissions;
-    if (Array.isArray(accesses)) {
-      return permissionsList.some((access: any) => accesses.includes(access.value));
-    }
-    throw new Error(`[hasSomePermission]: ${accesses} should be a array !`);
-  }
-
-  return { hasPermission, hasEveryPermission, hasSomePermission };
+  return { hasPermission };
 }

@@ -33,7 +33,6 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, PropType, computed, toRaw } from 'vue';
   import { ActionItem } from '@/components/Table';
   import { usePermission } from '@/hooks/web/usePermission';
   import { isBoolean, isFunction } from '@/utils/is';
