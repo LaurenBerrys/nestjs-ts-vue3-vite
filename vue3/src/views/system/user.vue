@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-22 15:24:47
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-02 21:20:16
+ * @LastEditTime: 2023-03-03 09:48:37
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/user.vue
  * @Description: 
  * 
@@ -26,7 +26,6 @@
     </Table>
     <BasicModal
       @register="modalRegister"
-      ref="modalRef"
       class="basicModal"
       @on-ok="okModal"
     >
@@ -34,13 +33,24 @@
         <n-select v-model:value="roles" multiple :options="options" />
       </template>
     </BasicModal>
+    <BasicModal
+      @register="addUserRegister"
+      class="basicModal"
+      @on-ok="addUser"
+    >
+    <BasicForm
+    @register="register"
+    />
+
+    </BasicModal>
   </ComponentPage>
 </template>
 
 <script lang="ts" setup>
-import { columns, action } from "./userColumns";
+import { columns, action,schemas } from "./userColumns";
 import { useModal } from "@/components/Modal";
 import { hasOwn } from "@vueuse/core";
+import { useForm } from "@/components/Form/src/hooks/useForm";
 const params = reactive({
   pageSize: 10,
   name: null,
@@ -54,11 +64,22 @@ const loadDataTable = async (res) => {
   console.log(data);
   return data;
 };
-const roles = ref([]);
+const roles: any = ref([]);
 const options = ref([]);
 const [modalRegister, { openModal, closeModal, setSubLoading }] = useModal({
   title: "分配角色",
 });
+const [
+  addUserRegister,
+  {
+    openModal: uOpenModal,
+    closeModal: uCloseModal,
+    setSubLoading: uSetSubLoading,
+  },
+] = useModal({
+  title: "新增用户",
+});
+
 const okModal = async () => {
   const data = await updateUser(user.value.id, { roles: roles.value });
   if (data.code == 200) {
@@ -69,13 +90,13 @@ const okModal = async () => {
     setSubLoading(false);
   }
 };
-const user = ref(null);
+const user: any = ref(null);
 //配置用户角色
 const handleMenuAuth = async (record) => {
   user.value = record;
   //roles去重
   if (hasOwn(record, "roles")) {
-    options.value.filter((item) => {
+    options.value.filter((item: any) => {
       if (record.roles.includes(item.value)) {
         roles.value.push(item.value);
       }
@@ -120,7 +141,30 @@ const handleDelete = (record) => {
 };
 //勾选行
 const onCheckedRow = () => {};
-const handleAdd = () => {};
+const [register, { submit, validate, getFieldsValue, setSchemas }] = useForm({
+  gridProps: { cols: 1 },
+  collapsedRows: 3,
+  labelWidth: 120,
+  layout: "horizontal",
+  showActionButtonGroup: false,
+  schemas,
+});
+
+//打开新增用户的弹窗
+const handleAdd = () => {
+  uOpenModal();
+};
+
+//新增用户确认按
+const addUser=async()=>{
+  const param=  getFieldsValue()
+  const{code,msg}= await createUser(param)
+  if(code==200){
+    window.$message.success("新增成功");
+    uCloseModal()
+  }
+    
+}
 </script>
 
 <style></style>

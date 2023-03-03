@@ -14,5 +14,5 @@ export class CreateRoleDto {
   name: string;
   @IsNotEmpty({ message: '菜单权限不能为空'})
   code?:Array<string>;
-  buttonCodes?: Array<string>;
+  permissions?: Array<string>;
 }

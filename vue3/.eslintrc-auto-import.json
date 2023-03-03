@@ -20,6 +20,7 @@
     "createApp": true,
     "createMenu": true,
     "createRoles": true,
+    "createUser": true,
     "customRef": true,
     "deBounce": true,
     "debounce": true,

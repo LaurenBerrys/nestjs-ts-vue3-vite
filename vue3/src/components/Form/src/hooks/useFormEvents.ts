@@ -57,7 +57,6 @@ export function useFormEvents({
     // @ts-ignore
     await unref(formElRef)?.restoreValidation();
   }
-
   //重置
   async function resetFields(): Promise<void> {
     const { resetFunc, submitOnReset } = unref(getProps);

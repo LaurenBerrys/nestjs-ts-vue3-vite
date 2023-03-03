@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 19:37:37
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 17:23:47
+ * @LastEditTime: 2023-03-02 22:15:30
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/rolesColumns.ts
  * @Description: 
  * 
@@ -51,3 +51,4 @@ export  const action =(handeone,hand)=>{
   });
  return  actionColumn
 }
+

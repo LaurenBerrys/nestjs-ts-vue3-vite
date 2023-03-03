@@ -17,6 +17,7 @@ declare global {
   const createApp: typeof import('vue')['createApp']
   const createMenu: typeof import('../src/api/menu')['createMenu']
   const createRoles: typeof import('../src/api/roles')['createRoles']
+  const createUser: typeof import('../src/api/user')['createUser']
   const customRef: typeof import('vue')['customRef']
   const deBounce: typeof import('../src/utils/common')['deBounce']
   const debounce: typeof import('../src/utils/common')['debounce']

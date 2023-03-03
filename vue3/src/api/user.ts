@@ -82,5 +82,11 @@ export const deleteUser = (url) => {
     method: 'delete'
   })
 }
-
+export const createUser=(data)=>{
+  return axiosReq({
+    url: '/nest-api/user' ,
+    method: 'post',
+    data
+  })
+}
 

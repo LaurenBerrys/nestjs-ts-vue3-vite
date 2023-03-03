@@ -20,7 +20,7 @@ export class Role {
   @Column({ comment: '菜单权限' })
   code:Array<string>;
   @Column({ comment: '按钮权限' })
-  buttonCodes: Array<string>;
+  permissions: Array<string>;
   @Column({ comment: '用户' })
   users: Array<string>;
 }
