@@ -1,3 +1,12 @@
+/*
+ * @Author: Nie Chengyong
+ * @Date: 2023-02-09 09:16:58
+ * @LastEditors: Nie Chengyong
+ * @LastEditTime: 2023-03-03 15:22:56
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Modal/src/hooks/useModal.ts
+ * @Description: 
+ * 
+ */
 import { ref, unref, getCurrentInstance, watch } from 'vue';
 import { ModalMethods, UseModalReturnType } from '../type';
 import { getDynamicProps } from '@/utils/common';

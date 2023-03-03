@@ -22,8 +22,14 @@
         </n-form-item>
         <n-form-item label="菜单权限" path="code">
           <n-input
-            placeholder="请输入权限，多个权限用，分割"
+            placeholder="请输入权限"
             v-model:value="formParams.code"
+          />
+        </n-form-item>
+        <n-form-item label="按钮权限名称" path="permissions">
+          <n-input
+            placeholder="请输入按钮权限名称，多个权限用，分割"
+            v-model:value="formParams.permissions"
           />
         </n-form-item>
         <n-form-item label="图标" path="icon">
@@ -107,7 +113,8 @@ export default defineComponent({
       code: "",
       icon: "",
       order: 0,
-      redirect:""
+      redirect:"",
+      permissions: "" as any,
     });
     const getIcon = (name) => {
       return renderIcon("system-uicons:" + name, { size: 20 });
@@ -140,6 +147,7 @@ export default defineComponent({
           }else{
             state.formParams.parentId=parentId.value
           }
+          state.formParams.permissions=state.formParams.permissions.split(',')
           createMenu(state.formParams).then((res) => {
             console.log(res);
           handleReset();

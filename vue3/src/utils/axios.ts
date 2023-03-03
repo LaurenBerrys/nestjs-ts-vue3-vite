@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:37:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 14:59:59
+ * @LastEditTime: 2023-03-04 00:55:15
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/axios.ts
  * @Description: 
  * 
@@ -25,6 +25,7 @@ service.interceptors.request.use(
     })
     //设置token到header 并把token转成Bearer token类型 
     req.headers.Authorization = `Bearer ${token}`
+    // req.headers['Accept-Encoding']= 'gzip,deflate'//添加gzip压缩
     //如果req.method给get 请求参数设置为 ?name=xxx
     if ('get'.includes(req.method?.toLowerCase() as string)) req.params = req.data
     return req

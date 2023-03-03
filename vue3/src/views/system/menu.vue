@@ -145,10 +145,17 @@
         </n-form-item>
             <n-form-item label="菜单权限" path="code">
               <n-input
-                placeholder="请输入权限，多个权限用，分割"
+                placeholder="请输入权限"
                 v-model:value="formParams.code"
               />
             </n-form-item>
+            <n-form-item label="按钮权限名称" path="permissions">
+              <n-input
+                placeholder="请输入按钮权限名称，多个权限用，分割"
+                v-model:value="formParams.permissions"
+              />
+            </n-form-item>
+            
           <n-form-item label="排序" path="order">
           <n-input-number v-model:value="formParams.order" />
         </n-form-item>
@@ -196,7 +203,8 @@ const formParams = reactive({
       icon: "",
       order: 0,
       name:"",
-      redirect:null
+      redirect:null,
+      permissions: "" as any,
 });
 //修改菜单状态
 const isEditMenu = ref(false);
@@ -231,6 +239,7 @@ const formRef: any = ref(null);
 function formSubmit() {
   delete formParams.children;
   delete formParams.id;
+  formParams.permissions=formParams.permissions.split(',')
  updateMenu(formParams.name,formParams).then((res)=>{
   console.log(res);
   if(res.code==200){
@@ -274,6 +283,12 @@ function selectedTree(keys) {
     const treeItem = getTreeItem(unref(treeData), keys[0]);
     treeItemKey.value = keys;
     treeItemTitle.value = treeItem.title;
+    if(treeItem.permissions){
+      if(isArray(treeItem.permissions)){    
+        //将数组转换为字符串
+        treeItem.permissions=treeItem.permissions.join(',')
+      }
+    }
     Object.assign(formParams, treeItem);
     isEditMenu.value = true;
   } else {

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 19:37:37
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-02 22:15:30
+ * @LastEditTime: 2023-03-03 21:21:36
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/rolesColumns.ts
  * @Description: 
  * 
@@ -30,7 +30,7 @@ export  const action =(handeone,hand)=>{
         style: "button",
         actions: [
           {
-            label: "菜单权限",
+            label: "权限分配",
             onClick: handeone.bind(null, record),
             ifShow: () => {
               return true;
@@ -43,7 +43,7 @@ export  const action =(handeone,hand)=>{
             ifShow: () => {
               return true;
             },
-            // auth: ["basic_list"],
+            // auth: ["table-delete"],
           },
         ],
       });
@@ -51,4 +51,32 @@ export  const action =(handeone,hand)=>{
   });
  return  actionColumn
 }
+export const schemas: FormSchema[] = [
+  {
+    field: "name",
+    component: "NInput",
+    label: "姓名",
+    labelMessage: "请输入名字",
+    giProps: {
+      span: 1,
+    },
+    componentProps: {
+      placeholder: "请输入姓名",
+      onInput: (e: any) => {},
+    },
+    rules: [{ required: true, message: "请输入姓名", trigger: ["blur"] }],
+  },
+  {
+    field: "code",
+    component: "NTreeSelect",
+    label: "菜单",
+    labelMessage: "请选择菜单",
+    giProps: {
+      span: 1,
+    },
+    componentProps: {
+      placeholder: "请选择菜单",
+    },
+  },
+];
 

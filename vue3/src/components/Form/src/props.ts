@@ -1,3 +1,12 @@
+/*
+ * @Author: Nie Chengyong
+ * @Date: 2023-02-09 09:16:58
+ * @LastEditors: Nie Chengyong
+ * @LastEditTime: 2023-03-03 22:31:37
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Form/src/props.ts
+ * @Description: 
+ * 
+ */
 import type { CSSProperties, PropType } from 'vue';
 import { FormSchema } from './types/form';
 import type { GridProps, GridItemProps } from 'naive-ui/lib/grid';
@@ -40,17 +49,17 @@ export const basicProps = {
     default: true,
   },
   //是否显示操作按钮（查询/重置）
-  showActionButtonGroup: propTypes.bool.def(true),
+  showActionButtonGroup: propTypes.bool,
   // 显示重置按钮
-  showResetButton: propTypes.bool.def(true),
+  showResetButton: propTypes.bool,
   //重置按钮配置
   resetButtonOptions: Object as PropType<Partial<ButtonProps>>,
   // 显示确认按钮
-  showSubmitButton: propTypes.bool.def(true),
+  showSubmitButton: propTypes.bool,
   // 确认按钮配置
   submitButtonOptions: Object as PropType<Partial<ButtonProps>>,
   //展开收起按钮
-  showAdvancedButton: propTypes.bool.def(true),
+  showAdvancedButton: propTypes.bool,
   // 确认按钮文字
   submitButtonText: {
     type: String,

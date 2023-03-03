@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-02 16:43:52
+ * @LastEditTime: 2023-03-03 20:55:35
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user-service.ts
  * @Description: 
  * 
@@ -59,13 +59,15 @@ export class UserService {
         }
         //event.roles是一个数组，数组中存放的是角色id，现在要根据角色id找到队友的code
         let roleCode = [];
+        const permissions=[]
         for (let i = 0; i < event.roles.length; i++) {
             const role = await this.role.findOne(event.roles[i]);
             roleCode.push(...role.code);
+            permissions.push(...role.permissions)
         }
+        event.permissions=permissions
         event.menuList=[]
         roleCode = [...new Set(roleCode)];
-        console.log(roleCode,'roleCode');
         //根据角色code找到对应的菜单
         for (let index = 0; index < roleCode.length; index++) {
             //根据角色code找到对应的菜单
@@ -77,7 +79,6 @@ export class UserService {
                     code:roleCode[index]
                 }
                 });
-                console.log(menu,'menu');
              event.menuList.push(menu);
         }
         Data.code = 200;

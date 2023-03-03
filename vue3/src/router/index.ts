@@ -2,21 +2,21 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:54:00
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-28 15:32:10
+ * @LastEditTime: 2023-03-04 00:18:56
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/router/index.ts
  * @Description: 
  * 
  */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouterTypes } from '~/basic'
-import Layout from '@/layout/index.vue'
+const layout = () => import('@/layout/index.vue');
 
 export const constantRoutes: RouterTypes = [
   {
     name: '系统设置',
     path: '/',
     redirect:'/user',
-    component: Layout,
+    component: layout,
     meta: {
       title: '系统设置',
       icon: 'system-uicons:airplay',

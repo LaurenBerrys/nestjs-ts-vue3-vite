@@ -48,7 +48,7 @@
     </AppPage>
   </template>
   
-  <script setup>
+  <script setup lang="ts">
   import AppPage from '@/components/page/AppPage.vue'
   import { useStorage } from '@vueuse/core'
   import bgImg from '@/assets/images/login_bg.jpg'
@@ -80,17 +80,17 @@
   async function handleLogin() {
     const { name, password } = loginInfo.value
     if (!name || !password) {
-      $message.warning('请输入用户名和密码')
+      window.$message.warning('请输入用户名和密码')
       return
     }
     try {
       loading.value = true
-      $message.loading('正在验证...')
+      window.$message.loading('正在验证...')
       const res = await loginReq({ name, password: password.toString() })
-      $message.success('登录成功',res.data.token)
+      window.$message.success('登录成功',res.data.token)
       useAppStore().setToken(res.data.token,name)
       if (query.redirect) {
-        const path = query.redirect
+        const path:any = query.redirect
         Reflect.deleteProperty(query, 'redirect')
         router.push({ path, query })
       } else {
@@ -98,7 +98,7 @@
       }
     } catch (error) {
       console.error(error)
-      $message.removeMessage()
+      window.$message.removeMessage()
     }
     loading.value = false
   }

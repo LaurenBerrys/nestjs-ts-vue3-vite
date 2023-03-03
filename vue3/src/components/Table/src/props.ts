@@ -2,8 +2,8 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 09:16:58
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 09:42:35
- * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/table/src/props.ts
+ * @LastEditTime: 2023-03-03 21:58:28
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Table/src/props.ts
  * @Description: 
  * 
  */
@@ -63,6 +63,6 @@ export const basicProps = {
     type: Object as PropType<BasicColumn>,
     default: null,
   },
-  canResize: propTypes.bool.def(true),
-  resizeHeightOffset: propTypes.number.def(0),
+  canResize: propTypes.bool,
+  resizeHeightOffset: propTypes.number,
 };

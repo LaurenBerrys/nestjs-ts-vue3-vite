@@ -1,3 +1,12 @@
+/*
+ * @Author: Nie Chengyong
+ * @Date: 2023-02-09 09:16:58
+ * @LastEditors: Nie Chengyong
+ * @LastEditTime: 2023-03-03 22:38:32
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Form/src/hooks/useForm.ts
+ * @Description: 
+ * 
+ */
 import type { FormProps, FormActionType, UseFormReturnType } from '../types/form';
 import { getDynamicProps } from '@/utils/common';
 
@@ -66,6 +75,7 @@ export function useForm(props?: Props): UseFormReturnType {
 
     setFieldsValue: async <T>(values: T) => {
       const form = await getForm();
+      //@ts-expect-error
       await form.setFieldsValue<T>(values);
     },
 

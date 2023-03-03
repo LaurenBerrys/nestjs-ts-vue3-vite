@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 11:13:56
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 11:12:51
+ * @LastEditTime: 2023-03-03 22:35:50
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/common.ts
  * @Description: 
  * 
@@ -39,9 +39,9 @@ export const deBounce=(value:any, delay = 200)=>{
  * @param {boolean} immediate
  * @return {*}
  */
-export function debounce(method:any, wait:any, immediate?:any) {
-  let timeout
-  return function (...args) {
+export function debounce<T extends unknown>(method: (...args: any[]) => void, wait: number, immediate?: boolean): (this: T, ...args: any[]) => void {
+  let timeout: ReturnType<typeof setTimeout>|null
+  return function(...args) {
     let context = this
     if (timeout) {
       clearTimeout(timeout)
@@ -62,6 +62,7 @@ export function debounce(method:any, wait:any, immediate?:any) {
     }
   }
 }
+
 
 /**
  *  找到对应的节点

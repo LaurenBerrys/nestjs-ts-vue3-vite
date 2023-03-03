@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-28 15:18:53
+ * @LastEditTime: 2023-03-03 21:27:21
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/main.ts
  * @Description: 
  * 
@@ -21,7 +21,9 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 const store = createPinia()
 store.use(piniaPluginPersistedstate)
 import './permission'
+import {myDirective} from   './utils/directive'
 const app = createApp(App)
+app.directive('permission', myDirective)
 //store
 app.use(store)
 //router

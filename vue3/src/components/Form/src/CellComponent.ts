@@ -25,7 +25,7 @@ export const CellComponent: FunctionalComponent = (
   { attrs }
 ) => {
   const Comp = componentMap.get(is) as typeof defineComponent;
-
+  //@ts-expect-error
   const DefaultComp = h(Comp, attrs);
   return DefaultComp
 };

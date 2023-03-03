@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-10 11:12:52
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-27 20:20:29
+ * @LastEditTime: 2023-03-03 14:19:35
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/entities/menu.entity.ts
  * @Description:
  *
@@ -35,7 +35,9 @@ export class MenuList {
   order?: number;
   @Column({ comment: '重定向' })
   redirect?: string;
-  @Column({ comment: '权限名' })
+  @Column({ comment: '菜单权限名' })
   code: string;
+  @Column({ comment: '按钮权限名' })
+  permissions:Array<string>
   children?: Array<MenuList>;
 }

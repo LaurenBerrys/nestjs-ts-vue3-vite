@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 20:01:36
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-28 20:03:08
+ * @LastEditTime: 2023-03-03 21:19:29
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/hooks/web/usePermission.ts
  * @Description: 
  * 
@@ -17,9 +17,8 @@ export function usePermission() {
    * @param accesses
    */
   function _somePermissions(accesses: string[]) {
-    return userStore.permissions.some((item) => {
-      const { value }: any = item;
-      return accesses.includes(value);
+    return userStore.userInfo.permissions.some((item) => {
+      return accesses.includes(item);
     });
   }
 
@@ -29,6 +28,8 @@ export function usePermission() {
    * */
   function hasPermission(accesses: string[]): boolean {
     if (!accesses || !accesses.length) return true;
+    console.log( _somePermissions(accesses));
+    
     return _somePermissions(accesses);
   }
 

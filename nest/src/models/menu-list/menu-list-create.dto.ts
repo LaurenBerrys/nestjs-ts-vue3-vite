@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 17:26:42
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-27 20:06:15
+ * @LastEditTime: 2023-03-03 14:20:28
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/menu-list/menu-list-create.dto.ts
  * @Description: 
  * 
@@ -31,6 +31,7 @@ export class CreateMenuListDto {
     order?: number;
     @Length(3, 255)
     code: string;
+    permissions?: Array<string>;
     alwaysShow?: boolean;
     children?: Array<MenuList>;
 }
