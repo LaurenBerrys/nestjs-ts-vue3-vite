@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:54:00
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 18:26:53
+ * @LastEditTime: 2023-03-06 10:37:00
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/router/index.ts
  * @Description: 
  * 
@@ -26,7 +26,7 @@ export const constantRoutes: RouterTypes = [
       {
         name: 'user',
         path: '/user',
-        component: () => import('@/views/system/user.vue'),
+        component: () => import('@/views/system/user/index.vue'),
         meta: {
           title: '用户管理',
           icon: 'system-uicons:contacts',
@@ -46,7 +46,7 @@ export const constantRoutes: RouterTypes = [
       {
         name: 'menu',
         path: '/menu',
-        component: () => import('@/views/system/menu.vue'),
+        component: () => import('@/views/system/menu/index.vue'),
         meta: {
           title: '菜单管理',
           icon: 'mdi:home',

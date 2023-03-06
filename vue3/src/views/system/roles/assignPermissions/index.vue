@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-03-04 17:06:54
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 18:56:54
+ * @LastEditTime: 2023-03-06 10:21:41
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/assignpermissions/index.vue
  * @Description: 
  * 
@@ -74,7 +74,6 @@
 <script setup lang="ts" name="AssignPermissions">
 import { useModal } from "@/components/Modal/src/hooks/useModal";
 import { TreeOption } from "naive-ui";
-import { watch } from "vue";
 //定义接受父传子的函数getRole
 let role
 const Tree = ref([]);
