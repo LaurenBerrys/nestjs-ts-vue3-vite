@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 01:28:27
+ * @LastEditTime: 2023-03-04 15:02:08
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -110,7 +110,8 @@ export default ({ mode }: ConfigEnv): UserConfig => {
             'useNotification',
             'useLoadingBar'
           ]
-        }
+        },
+     
       ],
       dirs: ['src/hooks/**', 'src/utils/**', 'src/store/**', 'src/api/**', 'src/directives/**'],
       dts: './typings/auto-imports.d.ts',
@@ -142,7 +143,9 @@ export default ({ mode }: ConfigEnv): UserConfig => {
   if (IS_PROD) {
     plugins = [...plugins, visualizer()]
   }
-
+// const optimizeDeps= {
+//   include:['@arcgis/core'],
+// }
   const build = {
     cssCodeSplit: true,
     cssTarget: 'chrome80',
@@ -160,10 +163,10 @@ export default ({ mode }: ConfigEnv): UserConfig => {
           'vue-router': ['vue-router'],
           axios: ['axios'],
           'vue-i18n': ['vue-i18n'],
-          'BasicForm':['./src/components/Form/src/BasicForm.vue'],
-          'Table':['./src/components/Table/src/Table.vue'],
-          'BasicModal':['./src/components/Modal/src/basicModal.vue'],
-          'layout':['./src/layout/index.vue'],
+          'BasicForm': ['./src/components/Form/src/BasicForm.vue'],
+          'Table': ['./src/components/Table/src/Table.vue'],
+          'BasicModal': ['./src/components/Modal/src/basicModal.vue'],
+          'layout': ['./src/layout/index.vue'],
         },
         entryFileNames: 'js/[name].[hash].js',//入口文件名
         chunkFileNames: 'js/[name].[hash].js',//非入口文件名
@@ -173,6 +176,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     //optimizeDeps 是用来优化模块依赖的构建选项，其会静态地分析源代码，
     //识别并序列化模块（包括 .js 、.css、json、wasm 等文件）之间的依赖关系。
     optimizeDeps: {
+      include:['@arcgis/core'],
       //include：如果只需要优化部分依赖，可以使用 include 来指定需要优化的依赖。
       //include默认优化package.json中的依赖,尽量不要修改
       exclude: ['@types/node'],
@@ -182,6 +186,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
   }
 
   return {
+    // optimizeDeps,
     build,
     // base,
     plugins,

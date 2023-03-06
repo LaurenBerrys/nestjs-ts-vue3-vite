@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 09:16:58
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-03 22:38:32
+ * @LastEditTime: 2023-03-04 21:52:13
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Form/src/hooks/useForm.ts
  * @Description: 
  * 
@@ -26,7 +26,6 @@ export function useForm(props?: Props): UseFormReturnType {
     await nextTick();
     return form as FormActionType;
   }
-
   function register(instance: FormActionType) {
       onUnmounted(() => {
         formRef.value = null;
@@ -50,6 +49,7 @@ export function useForm(props?: Props): UseFormReturnType {
 
   const methods: FormActionType = {
     setSchemas:async(name,value)=>{
+      console.log(name,value);
       const form = await getForm();
       await form.setSchemas(name,value);
     },

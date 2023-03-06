@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:54:00
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 00:18:56
+ * @LastEditTime: 2023-03-04 18:26:53
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/router/index.ts
  * @Description: 
  * 
@@ -36,7 +36,7 @@ export const constantRoutes: RouterTypes = [
       {
         name: 'roles',
         path: '/roles',
-        component: () => import('@/views/system/roles.vue'),
+        component: () => import('@/views/system/roles/index.vue'),
         meta: {
           title: '角色管理',
           icon: 'ep:avatar',

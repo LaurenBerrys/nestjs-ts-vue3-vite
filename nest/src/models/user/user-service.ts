@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-03 20:55:35
+ * @LastEditTime: 2023-03-04 11:26:28
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user-service.ts
  * @Description: 
  * 
@@ -57,6 +57,7 @@ export class UserService {
             Data.msg = 'not found';
             return Data;
         }
+        if(event.name!=='admin'){
         //event.roles是一个数组，数组中存放的是角色id，现在要根据角色id找到队友的code
         let roleCode = [];
         const permissions=[]
@@ -80,6 +81,17 @@ export class UserService {
                 }
                 });
              event.menuList.push(menu);
+         }
+        }else{
+            event.menuList=await this.menulist.find();
+            event.permissions= await this.role.find();
+            //event.permissions是一个数组，数组中code也是一个数组，现在要将code数组中的code提取出来等于一个数组
+            let roleCode = [];
+            for (let i = 0; i < event.permissions.length; i++) {
+                roleCode.push(...event.permissions[i].code);
+            }
+            roleCode = [...new Set(roleCode)];
+            event.permissions=roleCode
         }
         Data.code = 200;
         Data.msg = 'success';
