@@ -2,13 +2,15 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 10:10:55
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-24 15:44:34
+ * @LastEditTime: 2023-03-07 16:36:11
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/common/Provider.vue
  * @Description: 
  * 
 -->
 <script setup lang="ts" name="Provider">
 import {
+  enUS,
+  dateEnUS,
   zhCN,
   dateZhCN,
   darkTheme,

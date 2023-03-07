@@ -2,8 +2,8 @@
  * @Author: Nie Chengyong
  * @Date: 2023-03-01 16:13:25
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-02 22:15:35
- * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/userColumns.ts
+ * @LastEditTime: 2023-03-07 15:16:34
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/user/userColumns.ts
  * @Description:
  * 
  */
@@ -67,7 +67,7 @@ export const schemas:FormSchema[] = [
           },
           componentProps: {
             placeholder: "请输入账户名",
-            onInput: ()=>{},
+            onInput:()=>{}
           },
           rules: [{ required: true, message: "请输入账户名", trigger: ["blur"] }],
         },
@@ -95,7 +95,7 @@ export const schemas:FormSchema[] = [
           },
           componentProps: {
             placeholder: "请输入密码",
-            onInput: ()=>{},
+            onInput:()=>{},
           },
           rules: [{ required: true, message: "密码不能为空", trigger: ["blur"] }],
         },

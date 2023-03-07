@@ -2,14 +2,13 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-22 15:24:47
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-06 10:35:17
+ * @LastEditTime: 2023-03-06 10:59:02
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/user/index.vue
  * @Description: 
  * 
 -->
 <template>
     <ComponentPage>
-      <template #action> </template>
       <Table
         :columns="columns"
         :request="loadDataTable"
@@ -26,15 +25,6 @@
       </Table>
       <addUser ref="addUse"/>
       <assignRoles  ref="assignRole"  />
-      <!-- <BasicModal
-        @register="modalRegister"
-        class="basicModal"
-        @on-ok="okModal"
-      >
-        <template #default>
-          <n-select v-model:value="roles" multiple :options="options" />
-        </template>
-      </BasicModal> -->
     </ComponentPage>
   </template>
   
@@ -62,7 +52,7 @@
   };
   
   //配置用户角色
-  const handleMenuAuth = async (record) => {
+const handleMenuAuth = async (record) => {
     let roles:any=[]
     //roles去重
     if (hasOwn(record, "roles")) {

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 11:39:50
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 11:39:53
+ * @LastEditTime: 2023-03-07 16:47:33
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/layout/components/header/index.vue
  * @Description: 
  * 
@@ -13,6 +13,8 @@
     <BreadCrumb ml-15 hidden sm:block />
   </div>
   <div ml-auto flex items-center>
+    <Lang/>
+    <LockScreen/>
     <ThemeMode />
     <GithubSite />
     <FullScreen />
@@ -21,6 +23,8 @@
 </template>
 
 <script setup>
+import LockScreen from "./components/LockScreen.vue";
+import Lang from "./components/Lang.vue";
 import BreadCrumb from "./components/BreadCrumb.vue";
 import MenuCollapse from "./components/MenuCollapse.vue";
 import FullScreen from "./components/FullScreen.vue";

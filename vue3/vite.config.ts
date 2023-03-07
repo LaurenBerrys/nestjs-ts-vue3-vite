@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 15:02:08
+ * @LastEditTime: 2023-03-07 14:42:42
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -146,6 +146,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
 // const optimizeDeps= {
 //   include:['@arcgis/core'],
 // }
+
   const build = {
     cssCodeSplit: true,
     cssTarget: 'chrome80',
@@ -184,7 +185,6 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     reportCompressedSize: false,
     chunkSizeWarningLimit: 2000,
   }
-
   return {
     // optimizeDeps,
     build,

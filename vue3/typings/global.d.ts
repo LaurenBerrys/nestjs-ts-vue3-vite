@@ -17,8 +17,9 @@ declare global {
     $notification: any;
     $message: any;
     $dialog:any;
+    $webgis:any;
 }
-  const GLOBAL_VAR: String
+  const GLOBAL_VAR: string
   const defineOptions: typeof _defineOptions
   const $ref: any
 }

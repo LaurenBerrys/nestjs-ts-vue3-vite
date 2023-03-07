@@ -42,12 +42,12 @@ export const deBounce=(value:any, delay = 200)=>{
 export function debounce<T extends unknown>(method: (...args: any[]) => void, wait: number, immediate?: boolean): (this: T, ...args: any[]) => void {
   let timeout: ReturnType<typeof setTimeout>|null
   return function(...args) {
-    let context = this
+    const context = this
     if (timeout) {
       clearTimeout(timeout)
     }
     if (immediate) {
-      let callNow = !timeout
+      const callNow = !timeout
       timeout = setTimeout(() => {
         timeout = null
       }, wait)

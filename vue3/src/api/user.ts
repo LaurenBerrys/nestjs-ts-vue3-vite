@@ -20,8 +20,8 @@ export const userInfoReq = (): Promise<any> => {
       function toTree(arr) {
         if (data.menuList.length >= 2) {
           let res: any = []
-          let map = arr.reduce((res, v) => (res[v.id] = v, res), {})
-          for (let item of arr) {
+          const map = arr.reduce((res, v) => (res[v.id] = v, res), {})
+          for (const item of arr) {
             if (item.parentId in map) {
               const parent = map[item.parentId]
               parent.children = parent.children || []
@@ -32,7 +32,7 @@ export const userInfoReq = (): Promise<any> => {
             }
           }
           //将res去重
-          let obj = {}
+          const obj = {}
           res = res.reduce((cur, next) => {
             obj[next.id] ? '' : obj[next.id] = true && cur.push(next)
             return cur

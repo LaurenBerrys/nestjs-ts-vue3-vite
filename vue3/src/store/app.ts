@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-20 20:53:54
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-02 16:37:19
+ * @LastEditTime: 2023-03-07 17:50:28
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/app.ts
  * @Description: 
  * 
@@ -98,5 +98,15 @@ export const useAppStore = defineStore('app', {
                 router.push({ path: '/login' })
             })
         },
+        //登陆
+       async login(userInfo) {
+        try {
+             const res=  await loginReq(userInfo)
+             this.setToken(res.data.token,userInfo.name)
+             return Promise.resolve(res);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+        }
     }
 })

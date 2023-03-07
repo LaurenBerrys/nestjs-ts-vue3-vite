@@ -23,14 +23,23 @@
 </template>
 <script setup lang="ts">
 import { debounce } from "@/utils/common";
-
+const config =useConfigStore()
 defineProps({
   showArrow: {
     type: Boolean,
     default: true,
   },
 });
-
+const colores= ref('#fff') 
+watch(()=>config.isDark,(val)=>{
+  console.log(val,2222);
+  if(!val){
+    colores.value='#fff'
+  }else{
+    colores.value='rgb(24,24,28)'
+  }
+}, { immediate: true }
+)
 const translateX = ref<Number>(0);
 const content: any = ref(null);
 const wrapper: any = ref(null);
@@ -118,8 +127,7 @@ defineExpose({
 <style lang="scss" scoped>
 .wrapper {
   display: flex;
-  background-color: #fff;
-
+  background-color: v-bind(colores);
   z-index: 9;
   overflow: hidden;
   position: relative;
@@ -136,12 +144,11 @@ defineExpose({
   }
   .left,
   .right {
-    background-color: #fff;
+    background-color:v-bind(colores);
     position: absolute;
     top: 0;
     bottom: 0;
     margin: auto;
-
     width: 20px;
     height: 35px;
     display: flex;

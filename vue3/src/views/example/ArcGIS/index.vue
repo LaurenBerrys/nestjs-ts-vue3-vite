@@ -20,7 +20,6 @@ onMounted(() => {
   initMap();
 });
 const initMap = () => {
-    //q:我的key应该在那儿调用
     esriConfig.apiKey = "AAPK54b0c0d11341479eb79685174bd2e4410labXiwiHQUITb3IwalzUkkg1-Mj85koUCYFS419S1hHVg5RDRFl4qDWb6l_YrCc";
   const map = new Map({
     basemap: "arcgis-topographic",

@@ -86,9 +86,9 @@
     try {
       loading.value = true
       window.$message.loading('正在验证...')
-      const res = await loginReq({ name, password: password.toString() })
-      window.$message.success('登录成功',res.data.token)
-      useAppStore().setToken(res.data.token,name)
+      const {data,code,msg} = await loginReq({ name, password: password.toString() })
+      window.$message.success('登录成功')
+      useAppStore().setToken(data.token,name)
       if (query.redirect) {
         const path:any = query.redirect
         Reflect.deleteProperty(query, 'redirect')

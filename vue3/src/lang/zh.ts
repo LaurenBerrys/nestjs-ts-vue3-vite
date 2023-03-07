@@ -1,7 +1,6 @@
 export default {
     router: {
       Dashboard: '首页',
-      LowCodePlatFrom: '低代码平台',
       RBAC: '用户权限角色',
       Guide: '指引',
       'Setting Switch': '配置文件',
@@ -9,17 +8,8 @@ export default {
       'Error Index': '错误日志列表',
       'Error Generator': '错误日志生成',
       Nested: '路由嵌套',
-      Menu1: '菜单1',
-      'Menu1-1': '菜单 1-1',
-      'Menu1-2': '菜单 1-2',
-      'Menu1-2-1': '菜单 1-2-1',
-      'Menu1-2-2': '菜单 1-2-2',
-      'Menu1-3': '菜单 1-3',
       menu2: '菜单 2',
-  
       'External Link': '外链',
-  
-      'Basic Demo': '基础例子',
       Hook: 'hook',
       Pinia: 'pinia',
       Mock: 'mock',
@@ -36,7 +26,6 @@ export default {
       'Role Index': '角色权限',
       'Code Index': 'Code权限',
       'Button Permission': '按钮权限',
-  
       Charts: '图表',
       Directive: '指令',
       Excel: 'Excel',

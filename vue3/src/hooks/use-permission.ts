@@ -13,7 +13,7 @@ const Layout = () => import('@/layout/index.vue')
  * */
 import router, { asyncRoutes, constantRoutes, roleCodeRoutes } from '@/router'
 
-const buttonCodes: Array<Number> = [] //按钮权限
+const buttonCodes: Array<number> = [] //按钮权限
 interface menuRow {
   category: number
   code: number

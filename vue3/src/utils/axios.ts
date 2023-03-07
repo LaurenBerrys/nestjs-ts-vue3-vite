@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:37:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 00:55:15
+ * @LastEditTime: 2023-03-07 19:38:33
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/axios.ts
  * @Description: 
  * 
@@ -51,23 +51,32 @@ service.interceptors.response.use(
   (err) => {
     const noAuthCode = '401,403'
     const { response } = err
-    if(hasOwn(response,'data')){
-      if (noAuthCode.includes(response.data.code)) {
-        window.$message.warning('请重新登录')
-        useAppStore().resetStateAndToLogin();
+    if(response){
+      if(hasOwn(response,'data')){
+        if (noAuthCode.includes(response.data.code)) {
+          window.$message.warning('请重新登录')
+          useAppStore().resetStateAndToLogin();
+        }
+      }
+      else{
+        useMessage().error(err,{ duration: 2 * 1000})
       }
     }
-    else{
-      useMessage().error(err,{ duration: 2 * 1000})
-    }
+    
     return Promise.reject(err)
   }
 )
-//导出service实例给页面调用 , config->页面的配置
-export default function axiosReq(config:any) {
+interface ApiResponse {
+  code: number;
+  msg: string;
+  data: any;
+}
+export default function axiosReq(config:any):Promise<ApiResponse>{
   return service({
     baseURL: import.meta.env.VITE_APP_BASE_URL,
     timeout: 8000,
     ...config
   })
 }
+
+

@@ -2,11 +2,12 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 20:15:58
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-28 20:16:04
+ * @LastEditTime: 2023-03-07 16:38:44
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/settings/componentSetting.ts
  * @Description: 
  * 
  */
+//表格组件配置
 export default {
     table: {
       apiSetting: {

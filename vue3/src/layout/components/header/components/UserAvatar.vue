@@ -25,13 +25,13 @@
     {
       label: '退出登录',
       key: 'logout',
-      icon: renderIcon('mdi:exit-to-app', { size: '14px' }),
+      icon: renderIcon('mdi:exit-to-app', { size: 14 }),
     },
   ]
   
   function handleSelect(key) {
     if (key === 'logout') {
-      $dialog.confirm({
+      window.$dialog.confirm({
         title: '提示',
         type: 'info',
         content: '确认退出？',
