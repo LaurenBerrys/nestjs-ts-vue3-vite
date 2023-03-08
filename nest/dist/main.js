@@ -8,10 +8,13 @@ const logger_middleware_1 = require("./logger/logger.middleware");
 const transform_interceptor_1 = require("./interceptor/transform/transform.interceptor");
 const http_exception_filter_1 = require("./filter/http-exception/http-exception.filter");
 const any_exception_filter_1 = require("./filter/any-exception/any-exception.filter");
+const path_1 = require("path");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, {
         logger: ['error', 'warn', 'debug', 'log'],
     });
+    const rootDir = (0, path_1.join)(__dirname, '..');
+    app.use('/public', express.static((0, path_1.join)(rootDir, 'public')));
     const options = new swagger_1.DocumentBuilder()
         .setTitle('Nest zero to one')
         .setDescription('The nest-zero-to-one API description')

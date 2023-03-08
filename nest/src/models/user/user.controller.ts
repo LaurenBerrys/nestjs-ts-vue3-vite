@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:26:24
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-02 16:07:02
+ * @LastEditTime: 2023-03-08 16:41:02
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user.controller.ts
  * @Description:
  *
@@ -48,7 +48,7 @@ import { ValidationPipe} from '../../pipe/validation/validation.pipe'
     async create(@Body() input: CreateUserDto): Promise<ResponseData> {
       return this.usersService.create(input);
     }
-    @UseInterceptors(new RbacInterceptor(0))
+    @UseInterceptors(new RbacInterceptor('admin'))
     @UseGuards(AuthGuard('jwt'))
     @Patch(':id')
     async update(

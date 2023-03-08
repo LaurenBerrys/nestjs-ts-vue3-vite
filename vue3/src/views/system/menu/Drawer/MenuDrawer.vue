@@ -91,6 +91,11 @@ const rules = {
     message: "请输入路径",
     trigger: "blur",
   },
+  code:{
+    required: true,
+    message: "请输入权限",
+    trigger: "blur",
+  },
 };
 export default defineComponent({
   name: "CreateDrawer",

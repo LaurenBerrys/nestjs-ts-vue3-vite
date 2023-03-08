@@ -20,6 +20,7 @@ import { MenuListModule } from './models/menu-list/menu-list.module';
 import { AuthModule } from './core/auth/auth.module';
 import { UserController } from './models/user/user.controller';
 import { MenuListController } from './models/menu-list/menu-list-controller';
+import { FileModule } from './models/file/file.module';
 @Module({
   imports: [
     //配置文件-环境变量
@@ -40,6 +41,7 @@ import { MenuListController } from './models/menu-list/menu-list-controller';
     AuthModule,
     RoleModule,
     MenuListModule,
+    FileModule,
   ],
   controllers: [AppController,UserController],
   providers: [AppService],

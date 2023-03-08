@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:07:23
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-03 17:28:59
+ * @LastEditTime: 2023-03-08 16:46:50
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/main.ts
  * @Description: 
  * 
@@ -15,11 +15,13 @@ import { logger } from './logger/logger.middleware';
 import { TransformInterceptor } from './interceptor/transform/transform.interceptor'
 import { HttpExceptionFilter } from './filter/http-exception/http-exception.filter';
 import { AllExceptionsFilter } from './filter/any-exception/any-exception.filter';
-
+import { join } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: ['error', 'warn', 'debug', 'log'],
   });
+  const rootDir = join(__dirname, '..');
+  app.use('/public', express.static(join(rootDir, 'public')));
   //配置swagger
   const options = new DocumentBuilder()
     .setTitle('Nest zero to one')

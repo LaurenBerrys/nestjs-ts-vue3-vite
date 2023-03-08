@@ -1,8 +1,4 @@
 /**
- * @module .eslintrc
- * @author: huoyou
- * @description: eslint配置
- *
  * 所需插件
  * prettier // 规则见 https://prettier.io/docs/en/options.html
  * eslint // 规则见 https://cn.eslint.org/docs/rules/
