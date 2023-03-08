@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-20 20:53:54
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 17:50:28
+ * @LastEditTime: 2023-03-08 15:07:23
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/app.ts
  * @Description: 
  * 
@@ -71,7 +71,7 @@ export const useAppStore = defineStore('app', {
         },
         //返回显示的路由
         menus() {
-            return this.allRoutes.filter((route) => route.name && !route.isHidden)
+            return this.allRoutes.filter((route) => route.name && !route.hidden)
         },
         //重置
         resetState() {

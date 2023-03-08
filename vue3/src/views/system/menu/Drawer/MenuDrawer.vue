@@ -42,6 +42,13 @@
         <n-form-item label="排序" path="order">
           <n-input-number v-model:value="formParams.order" />
         </n-form-item>
+        <n-form-item label="是否隐藏" path="hidden">
+          <n-switch :round="false" v-model:value="formParams.hidden" size="large" />
+        </n-form-item>
+        <n-form-item label="是否缓存" path="keepAlive">
+          <n-switch :round="false" v-model:value="formParams.keepAlive" size="large" />
+        </n-form-item>
+        
         <n-card
           title="图标"
           size="small"
@@ -115,6 +122,8 @@ export default defineComponent({
       order: 0,
       redirect:"",
       permissions: "" as any,
+      hidden:false,
+      keepAlive:false
     });
     const getIcon = (name) => {
       return renderIcon("system-uicons:" + name, { size: 20 });

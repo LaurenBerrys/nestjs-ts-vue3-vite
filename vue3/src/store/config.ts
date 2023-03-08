@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2022-12-09 11:58:43
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 19:41:06
+ * @LastEditTime: 2023-03-08 11:49:51
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/config.ts
  * @Description: 
  * 
@@ -13,7 +13,7 @@ import settings from '@/settings'
 import { i18n } from '@/lang'
 import { useDark } from '@vueuse/core'
 const isDark = useDark()
-const isLock=localStorage.getItem('config').lock
+const isLock=localStorage.getItem('config')?JSON.parse(localStorage.getItem('config')!).lock:false
 console.log('isLock',isLock);
 
 // 长时间不操作默认锁屏时间

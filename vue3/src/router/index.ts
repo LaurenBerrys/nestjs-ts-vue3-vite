@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:54:00
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-06 10:37:00
+ * @LastEditTime: 2023-03-08 15:30:24
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/router/index.ts
  * @Description: 
  * 
@@ -57,7 +57,7 @@ export const constantRoutes: RouterTypes = [
   },
   {
     path: '/login',
-    isHidden: true,
+    hidden: true,
     component: () => import('@/views/login/index.vue'),
   },
 ]

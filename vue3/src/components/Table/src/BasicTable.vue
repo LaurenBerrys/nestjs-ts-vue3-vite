@@ -129,6 +129,7 @@ const densityOptions = [
 ];
 
 export default defineComponent({
+  name:"BasicTable",
   components: {
     ReloadOutlined,
     ColumnHeightOutlined,
@@ -231,7 +232,7 @@ export default defineComponent({
     });
 
     //获取分页信息
-    const pagination = computed(() => toRaw(unref(getPaginationInfo)));
+    const pagination:any = computed(() => toRaw(unref(getPaginationInfo)));
 
     function setProps(props: Partial<BasicTableProps>) {
       innerPropsRef.value = { ...unref(innerPropsRef), ...props };

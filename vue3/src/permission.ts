@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 15:23:03
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-02 16:35:51
+ * @LastEditTime: 2023-03-08 15:25:53
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/permission.ts
  * @Description: 
  * 
@@ -23,7 +23,6 @@ router.beforeEach(async (to) => {
             console.log(1111);
             return '/'
         } else {
-            console.log(appStore.userInfo);
             //2.判断是否获取用户信息
             if (!appStore.userInfo) {
                 try {

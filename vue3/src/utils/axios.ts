@@ -2,14 +2,13 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:37:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 19:38:33
+ * @LastEditTime: 2023-03-07 20:10:49
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/axios.ts
  * @Description: 
  * 
  */
 import { hasOwn } from '@vue/shared'
 import axios from 'axios'
-import { useMessage } from 'naive-ui'
 //使用axios.create()创建一个axios请求实例
 const service = axios.create()
 //请求前拦截
@@ -59,18 +58,14 @@ service.interceptors.response.use(
         }
       }
       else{
-        useMessage().error(err,{ duration: 2 * 1000})
+        window.$message.error(err,{ duration: 2 * 1000})
       }
+    }else{
+      window.$message.error(err,{ duration: 2 * 1000})
     }
-    
     return Promise.reject(err)
   }
 )
-interface ApiResponse {
-  code: number;
-  msg: string;
-  data: any;
-}
 export default function axiosReq(config:any):Promise<ApiResponse>{
   return service({
     baseURL: import.meta.env.VITE_APP_BASE_URL,

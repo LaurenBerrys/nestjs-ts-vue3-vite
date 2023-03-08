@@ -59,7 +59,7 @@
       order: route.meta?.order || 0,
     }
   
-    const visibleChildren = route.children ? route.children.filter((item) => item.name && !item.isHidden) : []
+    const visibleChildren = route.children ? route.children.filter((item) => item.name && !item.hidden) : []
   
     if (!visibleChildren.length) return menuItem
   
@@ -74,7 +74,7 @@
         icon: getIcon(singleRoute.meta),
       }
       // 如果单个子路由还有子路由，那么就把子路由的子路由作为当前菜单的子路由
-      const visibleItems = singleRoute.children ? singleRoute.children.filter((item) => item.name && !item.isHidden) : []
+      const visibleItems = singleRoute.children ? singleRoute.children.filter((item) => item.name && !item.hidden) : []
       if (visibleItems.length === 1) {
         menuItem = getMenuItem(visibleItems[0], menuItem.path)
       } else if (visibleItems.length > 1) {

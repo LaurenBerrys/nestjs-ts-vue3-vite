@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:54:54
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 14:58:43
+ * @LastEditTime: 2023-03-07 20:19:39
  * @FilePath: /nestjs-ts-vue3-vite/vue3/typings/basic.d.ts
  * @Description: 
  * 

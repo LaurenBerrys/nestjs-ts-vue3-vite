@@ -2,14 +2,14 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-22 15:24:47
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-06 10:59:02
+ * @LastEditTime: 2023-03-07 20:17:18
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/user/index.vue
  * @Description: 
  * 
 -->
 <template>
     <ComponentPage>
-      <Table
+      <BasicTable
         :columns="columns"
         :request="loadDataTable"
         :row-key="(row) => row.id"
@@ -22,7 +22,7 @@
             >添加用户</n-button
           >
         </template>
-      </Table>
+      </BasicTable>
       <addUser ref="addUse"/>
       <assignRoles  ref="assignRole"  />
     </ComponentPage>

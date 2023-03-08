@@ -2,8 +2,8 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 19:37:37
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-03 21:21:36
- * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/rolesColumns.ts
+ * @LastEditTime: 2023-03-08 14:09:02
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/rolesColumns.ts
  * @Description: 
  * 
  */
@@ -62,7 +62,7 @@ export const schemas: FormSchema[] = [
     },
     componentProps: {
       placeholder: "请输入姓名",
-      onInput: (e: any) => {},
+      onInput: () => {},
     },
     rules: [{ required: true, message: "请输入姓名", trigger: ["blur"] }],
   },

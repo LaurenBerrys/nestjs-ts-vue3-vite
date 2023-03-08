@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 14:42:42
+ * @LastEditTime: 2023-03-08 14:14:14
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -53,13 +53,14 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     },
   }
   const server = {
+    host:'0.0.0.0',
     //配置跨域
     port: 3001,
     open: true,
     proxy: {
       '/nest-api': {
         changeOrigin: true,
-        target: 'http://localhost:3000/'
+        target:  'http://192.168.31.152:3000/'
       }
     }
   }
@@ -148,7 +149,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
 // }
 
   const build = {
-    cssCodeSplit: true,
+    cssCodeSplit: true,//css代码分割
     cssTarget: 'chrome80',
     minify: IS_PROD,
     sourcemap: !IS_PROD,
@@ -165,7 +166,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
           axios: ['axios'],
           'vue-i18n': ['vue-i18n'],
           'BasicForm': ['./src/components/Form/src/BasicForm.vue'],
-          'Table': ['./src/components/Table/src/Table.vue'],
+          'BasicTable': ['./src/components/Table/src/BasicTable.vue'],
           'BasicModal': ['./src/components/Modal/src/basicModal.vue'],
           'layout': ['./src/layout/index.vue'],
         },
@@ -177,7 +178,8 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     //optimizeDeps 是用来优化模块依赖的构建选项，其会静态地分析源代码，
     //识别并序列化模块（包括 .js 、.css、json、wasm 等文件）之间的依赖关系。
     optimizeDeps: {
-      include:['@arcgis/core'],
+      //默认情况下，不在 node_modules 中的，链接的包不会被预构建。使用此选项可强制预构建链接的包。
+      // include:['@arcgis/core'],
       //include：如果只需要优化部分依赖，可以使用 include 来指定需要优化的依赖。
       //include默认优化package.json中的依赖,尽量不要修改
       exclude: ['@types/node'],

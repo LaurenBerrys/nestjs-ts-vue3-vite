@@ -155,7 +155,13 @@
                   v-model:value="formParams.permissions"
                 />
               </n-form-item>
-              
+          <n-form-item label="是否隐藏" path="hidden">
+          <n-switch :round="false" v-model:value="formParams.hidden" size="large" />
+        </n-form-item>
+        <n-form-item label="是否缓存" path="keepAlive">
+          <n-switch :round="false" v-model:value="formParams.keepAlive" size="large" />
+          <n-tag ml-10  type="success">想要被缓存，在组件的setup里必须声明 name="xxxx" </n-tag>
+        </n-form-item>
             <n-form-item label="排序" path="order">
             <n-input-number v-model:value="formParams.order" />
           </n-form-item>
@@ -194,7 +200,7 @@
         trigger: 'blur',
       },
     };
-  const formParams = reactive({
+  const formParams:any = reactive({
         parentId: 0,
         title: "",
         path: "",
@@ -205,6 +211,8 @@
         name:"",
         redirect:null,
         permissions: "" as any,
+        hidden:false,
+        keepAlive:false
   });
   //修改菜单状态
   const isEditMenu = ref(false);

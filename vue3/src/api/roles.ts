@@ -2,14 +2,15 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 20:30:48
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-02 18:00:20
+ * @LastEditTime: 2023-03-07 19:51:48
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/api/roles.ts
  * @Description: 
  * 
  */
+
 //创建角色
 import axiosReq from '@/utils/axios'
-export const createRoles = (data) => {
+export const createRoles = (data)=> {
     return axiosReq({
       url: '/nest-api/role',
       method: 'post',

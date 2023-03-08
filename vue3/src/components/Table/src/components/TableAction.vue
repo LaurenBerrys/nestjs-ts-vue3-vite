@@ -56,7 +56,7 @@
         default: 'button',
       },
       select: {
-        type: Function as PropType<Function>,
+        type: Function as PropType<Function> | any,
         default: () => {},
       },
     },
@@ -68,7 +68,7 @@
       const actionText =
         props.style === 'button' ? undefined : props.style === 'text' ? true : undefined;
 
-      const getMoreProps = computed(() => {
+      const getMoreProps:any = computed(() => {
         return {
           text: actionText,
           type: actionType,
@@ -76,7 +76,7 @@
         };
       });
 
-      const getDropdownList = computed(() => {
+      const getDropdownList:any = computed(() => {
         return (toRaw(props.dropDownActions) || [])
           .filter((action) => {
             return hasPermission(action.auth as string[]) && isIfShow(action);
@@ -97,7 +97,6 @@
 
       function isIfShow(action: ActionItem): boolean {
         const ifShow:any = action.ifShow;
-
         let isIfShow = true;
 
         if (isBoolean(ifShow)) {
@@ -109,7 +108,7 @@
         return isIfShow;
       }
 
-      const getActions = computed(() => {
+      const getActions:any = computed(() => {
         return (toRaw(props.actions) || [])
           .filter((action) => {
             return hasPermission(action.auth as string[]) && isIfShow(action);

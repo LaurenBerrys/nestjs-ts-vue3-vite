@@ -2,14 +2,14 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-22 15:25:08
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 19:12:59
+ * @LastEditTime: 2023-03-07 20:17:13
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/index.vue
  * @Description: 
  * 
 -->
 <template>
   <ComponentPage>
-    <Table
+    <BasicTable
       :columns="columns"
       :request="loadDataTable"
       :row-key="(row) => row.id"
@@ -22,7 +22,7 @@
           >添加角色</n-button
         >
       </template>
-    </Table>
+    </BasicTable>
 
     <AssignPermissions ref="Assign" />
    <addRolesModel ref="modalRef"/>
