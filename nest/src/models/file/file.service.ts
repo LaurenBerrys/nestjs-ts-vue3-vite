@@ -1,207 +1,138 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import * as path from 'path';
-import * as fs from 'fs-extra';
-import * as formidable from 'formidable';
-import * as concat from 'concat-files';
-const uploadDir='./public/uploads/'
+import * as fs from 'fs-extra';//文件操作模块
+import * as formidable from 'formidable'; //读取流数据
+import * as concat from 'concat-files'; //合并
+import { ResponseData } from '../../interface/code';
+import * as mimeTypes from 'mime-types';//获取文件扩展名
+import * as rimraf from 'rimraf'; //删除真个目录
+const uploadDir = './public/uploads/'
 @Injectable()
 export class FileService {
-    
-    checkFile(req: any, res: any) {
-        const query = req.query;
-        const fileName = query.fileName;
-        const fileMd5Value = query.fileMd5Value;
-        // 获取文件Chunk列表
-        getChunkList(
-            path.join(uploadDir, fileName),
-            path.join(uploadDir, fileMd5Value),
-            (data) => {
-                res.send(data);
-            },
-        );
+  private readonly logger = new Logger(FileService.name);
+  //directory是用来判断是目录上传还是文件上传false是文件上传
+  //查询文件是否上传
+  async checkChunk(req: any): Promise<ResponseData> {
+    console.log(req);
+    const { fileHash, suffix,directory,name } = req;
+    const Data = new ResponseData();
+    let fileExtension
+    if(!directory){
+      fileExtension = '.' + mimeTypes.extension(suffix)
+    }else{
+      fileExtension =suffix!==null?'.' +mimeTypes.extension(suffix):name
     }
-
-    checkChunk(req: any, res: any) {
-        const query = req.query;
-        const chunkIndex = query.index;
-        const md5 = query.md5;
-        fs.stat(path.join(uploadDir, md5, chunkIndex), (err, stats) => {
-            if (stats) {
-                res.send({
-                    stat: 1,
-                    exit: true,
-                    desc: 'Exit 1',
-                });
-            } else {
-                res.send({
-                    stat: 1,
-                    exit: false,
-                    desc: 'Exit 0',
-                });
-            }
-        });
+    if (fs.existsSync(path.join(uploadDir, fileHash) + fileExtension)) {
+      Data.code = 200
+      Data.data = {
+        shouldUpload: false,
+      }
+      Data.msg = '此文件已上传'
+      return Data
     }
-
-    // 上传切片
-    async uploadChunk(req: any, res: any) {
-        const form = new formidable.IncomingForm();
-        form.parse(req, function (err, fields, file) {
-            const index = fields.index;
-            const total = fields.total;
-            const fileMd5Value = fields.fileMd5Value;
-            const folder = path.resolve(uploadDir, fileMd5Value);
-            folderIsExit(folder).then((val) => {
-                const destFile = path.resolve(folder, fields.index);
-                copyFile(file.data.filepath, destFile).then(
-                    (successLog) => {
-                        res.send({
-                            stat: 1,
-                            desc: index,
-                            message: successLog,
-                        });
-                    },
-                    (errorLog) => {
-                        res.send({
-                            stat: 0,
-                            desc: 'Error',
-                            message: errorLog,
-                        });
-                    },
-                );
-            });
-        });
-        // 文件夹是否存在, 不存在则创建文件
-        function folderIsExit(folder) {
-            return new Promise(async (resolve, reject) => {
-                await fs.ensureDirSync(path.join(folder));
-                resolve(true);
-            });
+    const list = await getUploadedChunkList(fileHash)
+    if (list.length > 0) {
+      Data.code = 200
+      Data.data = {
+        shouldUpload: true,
+        uploadedChunkList: list
+      }
+      Data.msg = '分片数据'
+      return Data
+    }
+    Data.code = 200
+    Data.data = {
+      shouldUpload: true,
+      uploadedChunkList: []
+    }
+    Data.msg = '没上传过'
+    return Data
+  }
+  // 上传切片
+  async uploadChunk(req: any) {
+    const Data = new ResponseData()
+    try {
+      const form = new formidable.IncomingForm();
+      form.parse(req, async (err, fields, files) => {
+        if (err) return;
+        const chunk = files.chunk.filepath; //目标源路径
+        const hash = fields.hash;
+        const suffix = fields.suffix;
+        // 注意这里的hash包含文件的hash和块的索引，所以需要使用split切分
+        const chunksDir = path.resolve(uploadDir, hash.split("-")[0]);
+        if (!fs.existsSync(chunksDir)) {
+          await fs.mkdirs(chunksDir);
         }
-        // 把文件从一个目录拷贝到别一个目录
-        function copyFile(src, dest) {
-            const promise = new Promise((resolve, reject) => {
-                fs.rename(src, dest, (err) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve('拷贝文件:' + dest + ' 成功!');
-                    }
-                });
-            });
-            return promise;
-        }
+        await fs.move(chunk, chunksDir + "/" + hash);
+      })
+      Data.code = 200
+      Data.msg = '收到文件块'
+      return Data
+    } catch (error) {
+      Data.code = 400
+      Data.msg = 'error'
+      return Data
     }
 
-    // 合并切片
-    async merageChuank(req: any, res: any) {
-        const query = req.query;
-        const md5 = query.md5;
-        const size = query.size;
-        const fileName = query.fileName;
-        const tmpDir = path.join(uploadDir, md5);
-        mergeFiles(tmpDir, uploadDir, fileName, size);
-        res.send({
-            stat: 1,
-        });
+  }
+
+  // 合并切片
+  async merageChuank(req: any) {
+    try {
+      const { fileHash, suffix ,directory,name} = req
+      let fileExtension
+      if(!directory){
+         fileExtension = '.' + mimeTypes.extension(suffix)
+      }else{
+         fileExtension = suffix?'.' +mimeTypes.extension(suffix):name
+      }
+      this.logger.log(fileExtension,'fileExtension')
+      const filePath = path.join(uploadDir, fileHash) + fileExtension;
+      await mergeFileChunk(filePath, fileHash);
+      const Data = new ResponseData()
+      Data.code = 200
+      Data.msg = "上传成功"
+      return Data
+    } catch (error) {
+      console.log(error);
+      
     }
+  
+  }
 }
-
-// 获取文件Chunk列表
-async function getChunkList(filePath, folderPath, callback) {
-    const isFileExit = await isExist(filePath);
-    let result = {};
-    // 如果文件(文件名, 如:node-v7.7.4.pkg)已在存在, 不用再继续上传, 直接秒传
-    if (isFileExit) {
-        result = {
-            stat: 1,
-            file: {
-                isExist: true,
-                name: filePath,
-            },
-            desc: '文件已经存在',
-        };
-    } else {
-        const isFolderExist = await isExist(folderPath);
-        // 如果文件夹(md5值后的文件)存在, 就获取已经上传的块
-        let fileList: any = [];
-        if (isFolderExist) {
-            fileList = await listDir(folderPath);
-        }
-        result = {
-            stat: 1,
-            chunkList: fileList,
-            desc: 'folder list',
-        };
-    }
-    callback(result);
-}
-
-// 文件或文件夹是否存在
-function isExist(filePath) {
-    return new Promise((resolve, reject) => {
-        fs.stat(filePath, (err, stats) => {
-            // 文件不存在
-            if (err && err.code === 'ENOENT') {
-                resolve(false);
-            } else {
-                resolve(true);
-            }
-        });
+/**
+ * 
+ * @param filePath 指定位置创建可写流
+ * @param fileHash hash名字
+ */
+async function mergeFileChunk(filePath, fileHash) {
+  const chunksDir = path.resolve(uploadDir, fileHash);
+  const chunkPaths = await fs.readdir(chunksDir);
+  chunkPaths.sort((a, b) => a.split("-")[1] - b.split("-")[1]);
+  const concatArr = chunkPaths.map(element => {
+    return path.resolve(chunksDir, element)
+  });
+  try {
+    await new Promise<void>((resolve, reject) => {
+      concat(concatArr, filePath, (err) => {
+        if (err) reject(err);
+        // 合并后删除保存切片的目录
+        resolve();
+      });
+    }).then(()=>{
+      rimraf(chunksDir)
     });
-}
+  } catch (error) {
+    console.log(error, 222);
+  }
 
-// 列出文件夹下所有文件
-function listDir(path): any {
-    return new Promise((resolve, reject) => {
-        fs.readdir(path, (err: any, data: any) => {
-            if (err) {
-                reject(err);
-                return;
-            }
-            // 把mac系统下的临时文件去掉
-            if (data && data.length > 0 && data[0] === '.DS_Store') {
-                data.splice(0, 1);
-            }
-            resolve(data);
-        });
-    });
 }
-// 合并文件
-async function mergeFiles(srcDir, targetDir, newFileName, size) {
-    // eslint-disable-next-line prefer-rest-params
-    console.log(...arguments);
-    fs.createWriteStream(path.join(targetDir, newFileName));
-    const fileArr = await listDir(srcDir);
-    fileArr.sort((x, y) => {
-        return x - y;
-    });
-    // 把文件名加上文件夹的前缀
-    for (let i = 0; i < fileArr.length; i++) {
-        // 拼接路径
-        fileArr[i] = srcDir + '/' + fileArr[i];
-    }
-    concat(fileArr, path.join(targetDir, newFileName), () => {
-        console.log('文件合并完成!');
-        // 当合并完切片后，删除hash文件夹
-        deleteFolder(srcDir);
-    });
+// 获取已上传的文件列表
+const getUploadedChunkList = async (fileHash) => {
+  const isExist = fs.existsSync(path.resolve(uploadDir, fileHash))
+  if (isExist) {
+    return await fs.readdir(path.resolve(uploadDir, fileHash))
+  }
+  return []
 }
-
-//删除本地文件夹 并递归删除所有文件和文件夹
-const deleteFolder = (path: any) => {
-    if (fs.existsSync(path)) {
-        fs.readdirSync(path).forEach((file) => {
-            const curPath = path + '/' + file;
-            if (fs.statSync(curPath).isDirectory()) {
-                // recurse
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                deleteFolder(curPath);
-            } else {
-                // delete file
-                fs.unlinkSync(curPath);
-            }
-        });
-        fs.rmdirSync(path);
-    }
-};

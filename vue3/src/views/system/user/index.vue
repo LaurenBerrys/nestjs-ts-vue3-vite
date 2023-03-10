@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-22 15:24:47
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 20:17:18
+ * @LastEditTime: 2023-03-11 06:18:30
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/user/index.vue
  * @Description: 
  * 
@@ -33,20 +33,20 @@
   import addUser from "./addUser/index.vue";
   import { columns, action } from "./userColumns";
   import { hasOwn } from "@vueuse/core";
-  const params = reactive({
+  const param = reactive({
     pageSize: 10,
-    name: null,
   });
   const addUse=ref();
   const assignRole=ref()
   const options = ref([]);
 //请求数据
  const loadDataTable = async (res) => {
-    let param = {
-      ...unref(params),
+    let params = {
+      ...unref(param),
       ...res,
     };
-    const { data } = await getUser(param);
+    console.log(params,2222);
+    const { data } = await getUser(params);
     console.log(data);
     return data;
   };
@@ -62,13 +62,13 @@ const handleMenuAuth = async (record) => {
         }
       });
     }
-  
     roles = [...new Set(roles)];
     assignRole.value.open(record,roles,options.value)
   };
   onMounted(async () => {
     let param = {
-      pageSize: 200,
+      page:1,
+      pageSize: 10,
     };
     const { data } = await getRoles(param);
     options.value = data.list.map((item) => {

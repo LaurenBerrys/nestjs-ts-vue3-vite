@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-03-07 17:42:26
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 17:44:07
+ * @LastEditTime: 2023-03-09 02:36:51
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/hooks/use-Online.ts
  * @Description: 
  * 
@@ -90,6 +90,7 @@ export function useTime() {
   
     return { month, day, hour, minute, second, week };
   }
+  import { useBattery } from '@vueuse/core'
   
 
 interface Battery {
@@ -101,7 +102,7 @@ interface Battery {
   }
   
   // 电池状态
-export const useBattery = () => {
+export const useBatterer = () => {
     const state = reactive({
       battery: {
         charging: false,
@@ -146,7 +147,7 @@ export const useBattery = () => {
     });
   
     onMounted(async () => {
-      const BatteryManager: Battery = await (window.navigator as any).getBattery();
+      const BatteryManager:any =  useBattery()
       updateBattery(BatteryManager);
   
       // 电池充电状态更新时被调用

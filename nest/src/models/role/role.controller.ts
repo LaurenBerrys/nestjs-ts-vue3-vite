@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:26:24
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 17:01:08
+ * @LastEditTime: 2023-03-11 06:21:09
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/role/role.controller.ts
  * @Description:
  *
@@ -25,7 +25,6 @@ import {
   import { Role } from '../../entities/role.entity';
   import { InjectRepository } from '@nestjs/typeorm';
   import { Like, Repository } from 'typeorm';
-import { query } from 'express';
   @Controller('/role')
   export class RoleController {
     //记录日志
@@ -37,13 +36,18 @@ import { query } from 'express';
       private readonly role: Repository<Role>,
     ) {}
     @Get()
-    async findAll(@Query() query): Promise<ResponseData> {
+    async findAll(@Query('pageSize') pageSize,@Query('page') page ): Promise<ResponseData> {
       const Data = new ResponseData();
       Data.code = 200;
       Data.msg = 'success';
       Data.data = await this.role.find();
-      let { page,pageSize} = query;
+      //总数量
       let pageCount = await this.role.count();
+      pageCount= Math.ceil(pageCount / pageSize);
+      //将pageSize转成正整数
+      pageSize=parseInt(pageSize)
+      page=parseInt(page)
+      //pageSize是分页大小,
       let list = await this.role.find({
         skip: (page-1)  * pageSize,
         take: pageSize,

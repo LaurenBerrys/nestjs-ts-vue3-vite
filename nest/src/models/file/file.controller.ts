@@ -1,35 +1,39 @@
-import { Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
+/*
+ * @Author: Nie Chengyong
+ * @Date: 2023-03-08 16:34:24
+ * @LastEditors: Nie Chengyong
+ * @LastEditTime: 2023-03-11 03:02:28
+ * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/file/file.controller.ts
+ * @Description: 
+ * 
+ */
+import { Body, Controller, Get, Post, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { FileService } from './file.service';
 import {AuthGuard} from '@nestjs/passport';
+import { ResponseData } from 'src/interface/code';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('文件上传')
 @Controller('chunk')
 export class FileController {
     constructor(private readonly uploadService: FileService) {}
-
-    @Get('checkChunk')
+    @ApiTags('检查文件是否上传')
+    @Post('checkChunk')
     @UseGuards(AuthGuard('jwt'))
-    checkChunk(@Req() req, @Res() res) {
-        return this.uploadService.checkChunk(req, res);
+   async  checkChunk(@Body() req):Promise<ResponseData> {
+        return  await this.uploadService.checkChunk(req);
     }
-
-    @Get('checkFile')
-    @UseGuards(AuthGuard('jwt'))
-    checkFile(@Req() req, @Res() res) {
-        return this.uploadService.checkFile(req, res);
-    }
-
+    @ApiTags('上传分片')
     @Post('upload')
     @UseGuards(AuthGuard('jwt'))
-    uploadChunk(@Req() req, @Res() res) {
-      console.log(req,res)
-        return this.uploadService.uploadChunk(req, res);
+     async uploadChunk(@Req() body:any) {
+        return await this.uploadService.uploadChunk(body);
     }
-
-    @Get('merge')
+    @ApiTags('合并分片')
+    @Post('merge')
     @UseGuards(AuthGuard('jwt'))
-    merageChuank(@Req() req, @Res() res) {
-        return this.uploadService.merageChuank(req, res);
+   async merageChuank(@Body() body:any) {
+        return await this.uploadService.merageChuank(body);
     }
 }

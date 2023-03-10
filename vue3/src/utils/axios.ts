@@ -2,13 +2,14 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:37:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 20:10:49
+ * @LastEditTime: 2023-03-11 06:03:33
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/axios.ts
  * @Description: 
  * 
  */
 import { hasOwn } from '@vue/shared'
 import axios from 'axios'
+import qs from 'qs'
 //使用axios.create()创建一个axios请求实例
 const service = axios.create()
 //请求前拦截
@@ -22,6 +23,13 @@ service.interceptors.request.use(
         cancel
       })
     })
+    //处理params参数
+    if (req.params) {
+      req.params = qs.stringify(req.params)
+      req.url=req.url+'?'+req.params
+    }
+
+    
     //设置token到header 并把token转成Bearer token类型 
     req.headers.Authorization = `Bearer ${token}`
     // req.headers['Accept-Encoding']= 'gzip,deflate'//添加gzip压缩

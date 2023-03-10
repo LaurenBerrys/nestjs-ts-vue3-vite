@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:26:24
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-08 16:41:02
+ * @LastEditTime: 2023-03-11 05:44:57
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user.controller.ts
  * @Description:
  *
@@ -34,8 +34,8 @@ import { ValidationPipe} from '../../pipe/validation/validation.pipe'
     constructor(private readonly authService: AuthService, private readonly usersService: UserService) {}
     @UseGuards(AuthGuard('jwt'))
     @Get()
-    async findAll(@Query() query) {
-      return  await this.usersService.findAll(query);;
+    async findAll(@Query('page') page,@Query('pageSize') pageSize) {
+      return  await this.usersService.findAll(page,pageSize);;
     }
     @UseGuards(AuthGuard('jwt'))
     @Get(':name')

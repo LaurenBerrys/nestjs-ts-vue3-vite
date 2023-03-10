@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-08 20:32:59
+ * @LastEditTime: 2023-03-11 05:17:47
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -45,7 +45,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     ...process.env,
     ...loadEnv(mode, process.cwd()),
   }
-  // const base = './'
+  const base = './'
   const resolve = {
     alias: {
       '@': fileURLToPath(new URL("./src", import.meta.url)),
@@ -190,7 +190,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
   return {
     // optimizeDeps,
     build,
-    // base,
+    base,
     plugins,
     resolve,
     css,

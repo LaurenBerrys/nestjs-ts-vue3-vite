@@ -53,6 +53,6 @@
   "include": [ "src/**/*.ts",
   "src/**/*.d.ts",
   "src/**/*.tsx",
-  "src/**/*.vue", "vite.config.ts", "typings"],
+  "src/**/*.vue", "vite.config.ts", "typings", "src/views/example/upload/hash-worker.ts", "src/views/example/upload/hash-worker.ts", "src/views/example/upload/worker-build.js", "src/views/example/upload/worker-build.js"],
   "exclude":["node_modules", "**/dist","**/*.js"]
 }

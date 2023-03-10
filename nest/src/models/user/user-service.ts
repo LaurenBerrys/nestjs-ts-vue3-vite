@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 11:26:28
+ * @LastEditTime: 2023-03-11 06:21:47
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user-service.ts
  * @Description: 
  * 
@@ -31,13 +31,17 @@ export class UserService {
         @InjectRepository(Role)
         private readonly role: Repository<Role>,
     ) { }
-    async findAll(query): Promise<ResponseData> {
+    async findAll(page,pageSize): Promise<ResponseData> {
+        pageSize=parseInt(pageSize)
+        page=parseInt(page)
         const Data = new ResponseData();
         Data.code = 200;
         Data.msg = 'success';
         Data.data = await this.user.find();
-        let { page,pageSize} = query;
         let pageCount = await this.user.count();
+        pageCount= Math.ceil(pageCount / pageSize);
+        console.log(pageCount,pageSize,page);
+        
         let list = await this.user.find({
           skip: (page-1)  * pageSize,
           take: pageSize,

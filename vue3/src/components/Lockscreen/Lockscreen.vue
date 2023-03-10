@@ -85,9 +85,7 @@
       ArrowRightOutlined,
       WifiOutlined,
     } from '@vicons/antd';
-  
-    import { useRouter, useRoute } from 'vue-router';
-    import { useOnline,useTime,useBattery } from '@/hooks/use-online';
+    import { useOnline,useTime,useBatterer } from '@/hooks/use-online';
   
     export default defineComponent({
       name: 'Lockscreen',
@@ -108,7 +106,7 @@
         const { month, day, hour, minute, second, week } = useTime();
         const { online } = useOnline();
   
-        const { battery, batteryStatus, calcDischargingTime, calcChargingTime } = useBattery();
+        const { battery, batteryStatus, calcDischargingTime, calcChargingTime } = useBatterer();
         const userInfo: object = userStore.userInfo || {};
         const username = userInfo['name'] || '';
         const state = reactive({
@@ -157,7 +155,7 @@
         const goLogin = () => {
           onLockLogin(false);
           useLockscreen.setLock(false);
-          userStore.resetStateAndToLogin()
+          userStore.resetStateAndToLogin();
         };
   
         return {

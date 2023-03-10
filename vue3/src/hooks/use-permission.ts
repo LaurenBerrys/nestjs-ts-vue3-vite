@@ -38,8 +38,6 @@ export const filterAsyncRoutesByMenuList = (menuList) => {
   return filterRouter
 }
 const getRouteItemFromReqRouter = (route): RouteRawConfig => {
-  console.log(route,'route');
-  
   const tmp: rawConfig = { meta: { title: '' } }
   const routeKeyArr = ['path', 'component', 'name', 'hidden']
   const metaKeyArr = ['title', 'icon','order','keepAlive']

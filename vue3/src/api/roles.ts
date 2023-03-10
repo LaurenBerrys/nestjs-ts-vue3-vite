@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 20:30:48
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 19:51:48
+ * @LastEditTime: 2023-03-08 21:59:18
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/api/roles.ts
  * @Description: 
  * 
@@ -17,7 +17,7 @@ export const createRoles = (data)=> {
       data
     })
   }
-  export const getRoles = (params) => {
+  export const getRoles = (params?) => {
     return axiosReq({
       url: '/nest-api/role',
       method: 'get',
