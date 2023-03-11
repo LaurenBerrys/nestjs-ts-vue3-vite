@@ -2,13 +2,15 @@
  * @Author: Nie Chengyong
  * @Date: 2023-03-09 15:48:57
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-11 10:00:38
+ * @LastEditTime: 2023-03-11 11:52:42
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/upload/src/hash-worker.ts
  * @Description: 
  * 
  */
 import SparkMD5 from 'spark-md5'
 const ctx: Worker = self as any;
+//非vite模式下引入，需要把spark-md5.min放入到静态资源里面
+// self.importScripts("http://localhost:3000/spark-md5.min.js")
     ctx.onmessage = (e) => {
       const  {chunkList,fileName} = e.data;
       const spark = new SparkMD5.ArrayBuffer();
