@@ -1,11 +1,11 @@
 import { ref, ComputedRef, unref, computed, onMounted, watchEffect, watch } from 'vue';
-import type { BasicTableProps } from '../types/table';
+import type { NvapTableProps } from '../types/table';
 import type { PaginationProps } from '../types/pagination';
 import { isBoolean, isFunction, isArray } from '@/utils/is';
 import { APISETTING } from '../const';
 
 export function useDataSource(
-  propsRef: ComputedRef<BasicTableProps>,
+  propsRef: ComputedRef<NvapTableProps>,
   { getPaginationInfo, setPagination, setLoading, tableData },
   emit
 ) {

@@ -8,24 +8,24 @@
  * 
 -->
 <template>
-    <BasicModal
+    <NvapModal
       @register="modalRegister"
-      class="basicModal"
+      class="NvapModal"
       @on-ok="addRoles"
     >
       <template #default>
-        <BasicForm
+        <NvapForm
             ref="formRef"
           @register="register"
           @reset="handleReset"
-          class="basicForm"
+          class="NvapForm"
         >
           <template #statusSlot="{ model, field }">
             <n-input v-model:value="model[field]" />
           </template>
-        </BasicForm>
+        </NvapForm>
       </template>
-    </BasicModal>
+    </NvapModal>
 </template>
 
 <script setup lang="ts" name="addRolesModel">

@@ -8,8 +8,8 @@
  * 
 -->
 <template>
-  <basicModal 
-  @register="modalRegister" class="basicModal" @on-ok="okModal">
+  <NvapModal 
+  @register="modalRegister" class="NvapModal" @on-ok="okModal">
     <template #default>
       <div flex>
         <n-tree
@@ -69,7 +69,7 @@
         </div>
       </div>
     </template>
-  </basicModal>
+  </NvapModal>
 </template>
 <script setup lang="ts" name="AssignPermissions">
 import { useModal } from "@/components/Modal/src/hooks/useModal";

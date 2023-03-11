@@ -1,6 +1,6 @@
 import { NModal } from 'naive-ui';
 
-export const basicProps = {
+export const nvapProps = {
   ...NModal.props,
   // 确认按钮文字
   subBtuText: {

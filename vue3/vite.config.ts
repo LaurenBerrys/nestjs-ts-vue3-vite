@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-11 05:17:47
+ * @LastEditTime: 2023-03-11 10:59:11
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -53,14 +53,14 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     },
   }
   const server = {
-    host:true,
+    // host:true,
     //配置跨域
     port: 3001,
     open: true,
     proxy: {
       '/nest-api': {
         changeOrigin: true,
-        target:  'http://172.20.10.14:3000/'
+        target:  ' http://192.168.31.151:3000/'
       }
     }
   }
@@ -165,9 +165,9 @@ export default ({ mode }: ConfigEnv): UserConfig => {
           'vue-router': ['vue-router'],
           axios: ['axios'],
           'vue-i18n': ['vue-i18n'],
-          'BasicForm': ['./src/components/Form/src/BasicForm.vue'],
-          'BasicTable': ['./src/components/Table/src/BasicTable.vue'],
-          'BasicModal': ['./src/components/Modal/src/basicModal.vue'],
+          'NvapForm': ['./src/components/Form/src/NvapForm.vue'],
+          'NvapTable': ['./src/components/Table/src/NvapTable.vue'],
+          'NvapModal': ['./src/components/Modal/src/NvapModal.vue'],
           'layout': ['./src/layout/index.vue'],
         },
         entryFileNames: 'js/[name].[hash].js',//入口文件名

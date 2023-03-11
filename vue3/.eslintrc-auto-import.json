@@ -6,6 +6,7 @@
     "EffectScope": true,
     "InjectionKey": true,
     "NInput": true,
+    "PostUpload": true,
     "PropType": true,
     "Ref": true,
     "VNode": true,

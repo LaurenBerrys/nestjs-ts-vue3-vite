@@ -1,5 +1,5 @@
 import type { Ref } from 'vue';
-import type { BasicTableProps, TableActionType } from '../types/table';
+import type { NvapTableProps, TableActionType } from '../types/table';
 import { provide, inject, ComputedRef } from 'vue';
 
 const key = Symbol('s-table');
@@ -10,7 +10,7 @@ type Instance = TableActionType & {
 };
 
 type RetInstance = Omit<Instance, 'getBindValues'> & {
-  getBindValues: ComputedRef<BasicTableProps>;
+  getBindValues: ComputedRef<NvapTableProps>;
 };
 
 export function createTableContext(instance: Instance) {

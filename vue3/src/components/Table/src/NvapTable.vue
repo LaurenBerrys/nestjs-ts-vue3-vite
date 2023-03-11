@@ -102,9 +102,9 @@ import { useColumns } from "./hooks/useColumns";
 import { useDataSource } from "./hooks/useDataSource";
 import { usePagination } from "./hooks/usePagination";
 
-import { basicProps } from "./props";
+import { nvapProps } from "./props";
 
-import { BasicTableProps } from "./types/table";
+import { NvapTableProps } from "./types/table";
 
 import { getViewportOffset } from "@/utils/domUtils";
 import { useWindowSizeFn } from "@/hooks/event/useWindowSizeFn";
@@ -129,7 +129,7 @@ const densityOptions = [
 ];
 
 export default defineComponent({
-  name:"BasicTable",
+  name:"NvapTable",
   components: {
     ReloadOutlined,
     ColumnHeightOutlined,
@@ -137,7 +137,7 @@ export default defineComponent({
     QuestionCircleOutlined,
   },
   props: {
-    ...basicProps,
+    ...nvapProps,
   },
   emits: [
     "fetch-success",
@@ -155,10 +155,10 @@ export default defineComponent({
     let paginationEl: HTMLElement | null;
     const isStriped = ref(false);
     const tableData = ref<Recordable[]>([]);
-    const innerPropsRef = ref<Partial<BasicTableProps>>();
+    const innerPropsRef = ref<Partial<NvapTableProps>>();
 
     const getProps = computed(() => {
-      return { ...props, ...unref(innerPropsRef) } as BasicTableProps;
+      return { ...props, ...unref(innerPropsRef) } as NvapTableProps;
     });
 
     const { getLoading, setLoading } = useLoading(getProps);
@@ -234,7 +234,7 @@ export default defineComponent({
     //获取分页信息
     const pagination:any = computed(() => toRaw(unref(getPaginationInfo)));
 
-    function setProps(props: Partial<BasicTableProps>) {
+    function setProps(props: Partial<NvapTableProps>) {
       innerPropsRef.value = { ...unref(innerPropsRef), ...props };
     }
 

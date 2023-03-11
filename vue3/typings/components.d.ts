@@ -8,9 +8,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppPage: typeof import('./../src/components/page/AppPage.vue')['default']
-    BasicForm: typeof import('./../src/components/Form/src/BasicForm.vue')['default']
-    BasicModal: typeof import('./../src/components/Modal/src/basicModal.vue')['default']
-    BasicTable: typeof import('./../src/components/Table/src/BasicTable.vue')['default']
     ColumnSetting: typeof import('./../src/components/Table/src/components/settings/ColumnSetting.vue')['default']
     ComponentPage: typeof import('./../src/components/page/ComponentPage.vue')['default']
     CustomIcon: typeof import('./../src/components/icon/CustomIcon.vue')['default']
@@ -38,6 +35,7 @@ declare module '@vue/runtime-core' {
     'IconSystemUicons:tags': typeof import('~icons/system-uicons/tags')['default']
     'IconSystemUicons:target': typeof import('~icons/system-uicons/target')['default']
     'IconSystemUicons:translate': typeof import('~icons/system-uicons/translate')['default']
+    'IconSystemUicons:uploadAlt': typeof import('~icons/system-uicons/upload-alt')['default']
     Lockscreen: typeof import('./../src/components/Lockscreen/Lockscreen.vue')['default']
     NAlert: typeof import('naive-ui')['NAlert']
     NAvatar: typeof import('naive-ui')['NAvatar']
@@ -71,6 +69,7 @@ declare module '@vue/runtime-core' {
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     NModal: typeof import('naive-ui')['NModal']
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
+    NP: typeof import('naive-ui')['NP']
     NPopover: typeof import('naive-ui')['NPopover']
     NProgress: typeof import('naive-ui')['NProgress']
     NRadio: typeof import('naive-ui')['NRadio']
@@ -84,6 +83,11 @@ declare module '@vue/runtime-core' {
     NTooltip: typeof import('naive-ui')['NTooltip']
     NTree: typeof import('naive-ui')['NTree']
     NUpload: typeof import('naive-ui')['NUpload']
+    NUploadDragger: typeof import('naive-ui')['NUploadDragger']
+    NvapForm: typeof import('./../src/components/Form/src/NvapForm.vue')['default']
+    NvapModal: typeof import('./../src/components/Modal/src/NvapModal.vue')['default']
+    NvapTable: typeof import('./../src/components/Table/src/NvapTable.vue')['default']
+    NvapUpload: typeof import('./../src/components/upload/src/NvapUpload.vue')['default']
     Provider: typeof import('./../src/components/common/Provider.vue')['default']
     Recharge: typeof import('./../src/components/Lockscreen/Recharge.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -92,6 +96,7 @@ declare module '@vue/runtime-core' {
     SvgIcon: typeof import('./../src/components/icon/SvgIcon.vue')['default']
     TableAction: typeof import('./../src/components/Table/src/components/TableAction.vue')['default']
     TheIcon: typeof import('./../src/components/icon/TheIcon.vue')['default']
+    Upload: typeof import('../src/components/upload/src/NvapUpload.vue')['default']
     Webgis: typeof import('./../src/components/webgis/src/webgis.vue')['default']
   }
 }

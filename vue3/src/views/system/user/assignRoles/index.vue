@@ -8,15 +8,15 @@
  * 
 -->
 <template>
-    <BasicModal
+    <NvapModal
         @register="modalRegister"
-        class="basicModal"
+        class="NvapModal"
         @on-ok="okModal"
       >
         <template #default>
           <n-select v-model:value="roles" multiple :options="options" />
         </template>
-      </BasicModal>
+      </NvapModal>
 </template>
 
 <script setup lang="ts"  name="assignRoles">

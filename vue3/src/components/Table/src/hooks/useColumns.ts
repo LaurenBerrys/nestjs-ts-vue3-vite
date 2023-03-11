@@ -1,5 +1,5 @@
 import { ref, Ref, ComputedRef, unref, computed, watch, toRaw, h } from 'vue';
-import type { BasicColumn, BasicTableProps } from '../types/table';
+import type { BasicColumn, NvapTableProps } from '../types/table';
 import { isEqual, cloneDeep } from 'lodash-es';
 import { isArray, isString, isBoolean, isFunction } from '@/utils/is';
 import { usePermission } from '@/hooks/web/usePermission';
@@ -8,7 +8,7 @@ import { renderEditCell } from '../components/editable';
 import { NTooltip, NIcon } from 'naive-ui';
 import { FormOutlined } from '@vicons/antd';
 
-export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
+export function useColumns(propsRef: ComputedRef<NvapTableProps>) {
   const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<BasicColumn[]>;
   let cacheColumns = unref(propsRef).columns;
 
@@ -89,7 +89,7 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
     }
   );
 
-  function handleActionColumn(propsRef: ComputedRef<BasicTableProps>, columns: BasicColumn[]) {
+  function handleActionColumn(propsRef: ComputedRef<NvapTableProps>, columns: BasicColumn[]) {
     const { actionColumn } = unref(propsRef);
     if (!actionColumn) return;
     !columns.find((col) => col.key === 'action') &&

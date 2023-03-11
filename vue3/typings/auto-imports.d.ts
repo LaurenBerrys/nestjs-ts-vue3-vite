@@ -6,6 +6,7 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const NInput: typeof import('naive-ui')['NInput']
+  const PostUpload: typeof import('../src/api/upload')['PostUpload']
   const WITHOUT_TAG_PATHS: typeof import('../src/store/tags')['WITHOUT_TAG_PATHS']
   const addClass: typeof import('../src/utils/domUtils')['addClass']
   const asyncWrapper: typeof import('../src/hooks/use-common')['asyncWrapper']

@@ -27,15 +27,15 @@
   </n-modal>
 </template>
 
-<script lang="ts" setup>
-import { basicProps } from "./props";
+<script lang="ts" setup name="NvapModal">
+import { nvapProps } from "./props";
 import startDrag from "@/utils/Drag";
 import { deepMerge } from "@/utils/common";
 import { FormProps } from "@/components/Form";
 import { ModalProps, ModalMethods } from "./type";
 
 const attrs = useAttrs();
-const props = defineProps({ ...basicProps });
+const props = defineProps({ ...nvapProps });
 
 const emit = defineEmits(["on-close", "on-ok", "register"]);
 

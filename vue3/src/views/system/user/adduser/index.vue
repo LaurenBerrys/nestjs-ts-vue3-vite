@@ -1,13 +1,13 @@
 <template>
-    <BasicModal
+    <NvapModal
         @register="addUserRegister"
-        class="basicModal"
+        class="NvapModal"
         @on-ok="addUser"
       >
-      <BasicForm
+      <NvapForm
       @register="register"
       />
-      </BasicModal>
+      </NvapModal>
 </template>
 
 <script setup lang="ts" name="addUser">

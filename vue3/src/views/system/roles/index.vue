@@ -9,7 +9,7 @@
 -->
 <template>
   <ComponentPage>
-    <BasicTable
+    <NvapTable
       :columns="columns"
       :request="loadDataTable"
       :row-key="(row) => row.id"
@@ -22,7 +22,7 @@
           >添加角色</n-button
         >
       </template>
-    </BasicTable>
+    </NvapTable>
 
     <AssignPermissions ref="Assign" />
    <addRolesModel ref="modalRef"/>

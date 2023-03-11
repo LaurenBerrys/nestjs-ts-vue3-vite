@@ -9,7 +9,7 @@
 -->
 <template>
     <ComponentPage>
-      <BasicTable
+      <NvapTable
         :columns="columns"
         :request="loadDataTable"
         :row-key="(row) => row.id"
@@ -22,7 +22,7 @@
             >添加用户</n-button
           >
         </template>
-      </BasicTable>
+      </NvapTable>
       <addUser ref="addUse"/>
       <assignRoles  ref="assignRole"  />
     </ComponentPage>

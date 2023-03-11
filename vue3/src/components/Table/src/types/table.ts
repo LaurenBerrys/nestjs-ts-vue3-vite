@@ -25,7 +25,7 @@ export interface TableActionType {
   setColumns: (columns: BasicColumn[] | string[]) => void;
 }
 
-export interface BasicTableProps {
+export interface NvapTableProps {
   title?: string;
   dataSource: Function;
   columns: any[];

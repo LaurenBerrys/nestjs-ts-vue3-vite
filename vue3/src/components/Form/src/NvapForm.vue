@@ -133,7 +133,7 @@ import { createPlaceholderMessage } from "./helper";
 import { useFormEvents } from "./hooks/useFormEvents";
 import { useFormValues } from "./hooks/useFormValues";
 import { CellComponent } from "./CellComponent";
-import { basicProps } from "./props";
+import { nvapProps } from "./props";
 import { DownOutlined, UpOutlined, QuestionCircleOutlined } from "@vicons/antd";
 import type { Ref } from "vue";
 import type { GridProps } from "naive-ui/lib/grid";
@@ -141,10 +141,10 @@ import type { FormSchema, FormProps, FormActionType } from "./types/form";
 import { isArray } from "@/utils/is";
 import { deepMerge } from "@/utils/common";
 export default defineComponent({
-  name: "BasicForm",
+  name: "NvapForm",
   components: { DownOutlined, UpOutlined, QuestionCircleOutlined,CellComponent },
   props: {
-    ...basicProps,
+    ...nvapProps,
   },
   emits: ["reset", "submit", "register"],
   setup(props, { emit, attrs }) {

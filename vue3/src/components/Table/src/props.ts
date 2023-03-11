@@ -11,7 +11,7 @@ import type { PropType } from 'vue';
 import  {propTypes}  from '@/utils/propTypes';
 import { BasicColumn } from './types/table';
 import { NDataTable } from 'naive-ui';
-export const basicProps = {
+export const nvapProps = {
   ...NDataTable.props, // 这里继承原 UI 组件的 props
   title: {
     type: String,
