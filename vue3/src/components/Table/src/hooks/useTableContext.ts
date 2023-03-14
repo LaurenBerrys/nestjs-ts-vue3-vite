@@ -1,15 +1,15 @@
-import type { Ref } from 'vue';
-import type { NvapTableProps, TableActionType } from '../types/table';
-import { provide, inject, ComputedRef } from 'vue';
+import type { Ref } from "vue";
+import type { NvapTableProps, TableActionType } from "../types/table";
+import { provide, inject, ComputedRef } from "vue";
 
-const key = Symbol('s-table');
+const key = Symbol("s-table");
 
 type Instance = TableActionType & {
   wrapRef: Ref<Nullable<HTMLElement>>;
   getBindValues: ComputedRef<Recordable>;
 };
 
-type RetInstance = Omit<Instance, 'getBindValues'> & {
+type RetInstance = Omit<Instance, "getBindValues"> & {
   getBindValues: ComputedRef<NvapTableProps>;
 };
 

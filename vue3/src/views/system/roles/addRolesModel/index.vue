@@ -2,36 +2,32 @@
  * @Author: Nie Chengyong
  * @Date: 2023-03-04 18:58:09
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-13 18:27:38
+ * @LastEditTime: 2023-03-14 16:42:02
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/addRolesModel/index.vue
  * @Description: 
  * 
 -->
 <template>
-    <NvapModal
-      @register="modalRegister"
-      class="NvapModal"
-      @on-ok="addRoles"
-    >
-      <template #default>
-        <NvapForm
-          ref="formRef"
-          @register="register"
-          @reset="handleReset"
-          class="NvapForm"
-        >
-          <template #statusSlot="{ model, field }">
-            <n-input v-model:value="model[field]" />
-          </template>
-        </NvapForm>
-      </template>
-    </NvapModal>
+  <NvapModal @register="modalRegister" class="NvapModal" @on-ok="addRoles">
+    <template #default>
+      <NvapForm
+        ref="formRef"
+        @register="register"
+        @reset="handleReset"
+        class="NvapForm"
+      >
+        <template #statusSlot="{ model, field }">
+          <n-input v-model:value="model[field]" />
+        </template>
+      </NvapForm>
+    </template>
+  </NvapModal>
 </template>
 
 <script setup lang="ts" name="addRolesModel">
-import {useModal}  from "@/components/Modal";
-import {useForm} from "@/components/Form/index";
-import {schemas} from "../rolesColumns";
+import { useModal } from "@/components/Modal";
+import { useForm } from "@/components/Form/index";
+import { schemas } from "../rolesColumns";
 const [
   modalRegister,
   {
@@ -42,7 +38,7 @@ const [
 ] = useModal({
   title: "添加角色",
 });
-const [register, { submit, validate, getFieldsValue, setSchemas }] = useForm({
+const [register, { validate, getFieldsValue, setSchemas }] = useForm({
   gridProps: { cols: 1 },
   collapsedRows: 3,
   labelWidth: 120,
@@ -50,12 +46,12 @@ const [register, { submit, validate, getFieldsValue, setSchemas }] = useForm({
   showActionButtonGroup: false,
   schemas,
 });
-const addRoles=async()=>{
-    try {
+const addRoles = async () => {
+  try {
     const formRes = await validate();
     if (!formRes) {
       const param = getFieldsValue();
-      const data = await createRoles(param);
+      await createRoles(param);
       closeModal();
       window.$message.success("提交成功");
     }
@@ -63,9 +59,9 @@ const addRoles=async()=>{
     window.$message.error("验证失败，请填写完整信息");
     setSubLoading(false);
   }
-}
-const open=async(data)=>{
-await setSchemas("code", {
+};
+const open = async (data) => {
+  await setSchemas("code", {
     componentProps: {
       placeholder: "请选择菜单",
       options: unref(data),
@@ -78,14 +74,11 @@ await setSchemas("code", {
       },
     },
   });
-openModal();
-}
-defineExpose({open})
+  openModal();
+};
+defineExpose({ open });
 //重置按钮
-const handleReset=()=>{
-}
+const handleReset = () => {};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

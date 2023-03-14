@@ -4,33 +4,35 @@
  * @LastEditors: Please set LastEditors
  * @LastEditTime: 2023-03-13 17:33:42
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/rolesColumns.ts
- * @Description: 
- * 
+ * @Description:
+ *
  */
 import { FormSchema } from "@/components/Form";
-import {TableAction } from "@/components/Table";
+import { TableAction } from "@/components/Table";
 import { NTag } from "naive-ui";
 export const columns = [
   {
-    title: 'id',
-    key: 'id',
+    title: "id",
+    key: "id",
   },
   {
-    title: '角色名称',
-    key: 'name',
-    render:(row)=>{
-      return h(NTag,{
-        type:'success'
-      },
-      {
-        default: () => (row.name),
-      }
-      )
-    }
+    title: "角色名称",
+    key: "name",
+    render: (row) => {
+      return h(
+        NTag,
+        {
+          type: "success",
+        },
+        {
+          default: () => row.name,
+        }
+      );
+    },
   },
 ];
-export  const action =(handeone,hand)=>{
-  const  actionColumn=reactive({
+export const action = (handeone, hand) => {
+  const actionColumn = reactive({
     width: 250,
     title: "操作",
     key: "action",
@@ -59,8 +61,8 @@ export  const action =(handeone,hand)=>{
       });
     },
   });
- return  actionColumn
-}
+  return actionColumn;
+};
 export const schemas: FormSchema[] = [
   {
     field: "name",
@@ -89,4 +91,3 @@ export const schemas: FormSchema[] = [
     },
   },
 ];
-

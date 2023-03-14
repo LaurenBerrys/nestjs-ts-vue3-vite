@@ -4,10 +4,9 @@
  * @LastEditors: Nie Chengyong
  * @LastEditTime: 2023-03-04 01:53:50
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/hooks/web/usePermission.ts
- * @Description: 
- * 
+ * @Description:
+ *
  */
-
 
 export function usePermission() {
   const userStore = useAppStore();

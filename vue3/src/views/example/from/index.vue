@@ -8,13 +8,7 @@
  * 
 -->
 <template>
-  <ComponentPage>
-  
-  </ComponentPage>
- </template>
- <script lang="ts" setup name="from"> 
-
- </script>
- <style>
- </style>
- 
+  <ComponentPage />
+</template>
+<script lang="ts" setup name="from"></script>
+<style></style>

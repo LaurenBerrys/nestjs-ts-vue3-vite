@@ -13,13 +13,13 @@
     <BreadCrumb ml-15 hidden sm:block />
   </div>
   <div ml-auto flex items-center>
-    <Lang/>
-    <LockScreen/>
+    <Lang />
+    <LockScreen />
     <ThemeMode />
     <GithubSite />
     <FullScreen />
     <UserAvatar />
-   </div>
+  </div>
 </template>
 
 <script setup>

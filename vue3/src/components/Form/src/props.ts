@@ -4,14 +4,14 @@
  * @LastEditors: Nie Chengyong
  * @LastEditTime: 2023-03-03 22:31:37
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Form/src/props.ts
- * @Description: 
- * 
+ * @Description:
+ *
  */
-import type { CSSProperties, PropType } from 'vue';
-import { FormSchema } from './types/form';
-import type { GridProps, GridItemProps } from 'naive-ui/lib/grid';
-import type { ButtonProps } from 'naive-ui/lib/button';
-import { propTypes } from '@/utils/propTypes';
+import type { CSSProperties, PropType } from "vue";
+import { FormSchema } from "./types/form";
+import type { GridProps, GridItemProps } from "naive-ui/lib/grid";
+import type { ButtonProps } from "naive-ui/lib/button";
+import { propTypes } from "@/utils/propTypes";
 export const nvapProps = {
   // 标签宽度  固定宽度
   labelWidth: {
@@ -26,7 +26,7 @@ export const nvapProps = {
   //布局方式
   layout: {
     type: String,
-    default: 'inline',
+    default: "inline",
   },
   //是否展示为行内表单
   inline: {
@@ -36,12 +36,12 @@ export const nvapProps = {
   //大小
   size: {
     type: String,
-    default: 'medium',
+    default: "medium",
   },
   //标签位置
   labelPlacement: {
     type: String,
-    default: 'left',
+    default: "left",
   },
   //组件是否width 100%
   isFull: {
@@ -63,12 +63,12 @@ export const nvapProps = {
   // 确认按钮文字
   submitButtonText: {
     type: String,
-    default: '查询',
+    default: "查询",
   },
   //重置按钮文字
   resetButtonText: {
     type: String,
-    default: '重置',
+    default: "重置",
   },
   //grid 配置
   gridProps: Object as PropType<GridProps>,

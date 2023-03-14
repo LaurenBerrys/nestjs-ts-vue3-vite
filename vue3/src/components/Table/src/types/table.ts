@@ -1,5 +1,5 @@
-import type { TableBaseColumn } from 'naive-ui/lib/data-table/src/interface';
-import { ComponentType } from './componentType';
+import type { TableBaseColumn } from "naive-ui/lib/data-table/src/interface";
+import { ComponentType } from "./componentType";
 export interface BasicColumn extends TableBaseColumn {
   //编辑表格
   edit?: boolean;

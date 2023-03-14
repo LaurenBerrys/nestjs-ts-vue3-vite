@@ -1,0 +1,13 @@
+*.sh
+node_modules
+*.md
+*.woff
+*.ttf
+.vscode
+.idea
+dist
+/public
+.local
+/bin
+Dockerfile
+/src/typings/components.d.ts

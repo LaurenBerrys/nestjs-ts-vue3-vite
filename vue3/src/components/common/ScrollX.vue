@@ -17,28 +17,31 @@
         transform: `translateX(${translateX}px)`,
       }"
     >
-      <slot />
+      <slot></slot>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { debounce } from "@/utils/common";
-const config =useConfigStore()
+const config = useConfigStore();
 defineProps({
   showArrow: {
     type: Boolean,
     default: true,
   },
 });
-const colores= ref('#fff') 
-watch(()=>config.isDark,(val)=>{
-  if(!val){
-    colores.value='#fff'
-  }else{
-    colores.value='rgb(24,24,28)'
-  }
-}, { immediate: true }
-)
+const colores = ref("#fff");
+watch(
+  () => config.isDark,
+  (val) => {
+    if (!val) {
+      colores.value = "#fff";
+    } else {
+      colores.value = "rgb(24,24,28)";
+    }
+  },
+  { immediate: true }
+);
 const translateX = ref<Number>(0);
 const content: any = ref(null);
 const wrapper: any = ref(null);
@@ -77,7 +80,7 @@ function handleMouseWheel(e) {
   resetTranslateX(wrapperWidth, contentWidth);
 }
 
-const resetTranslateX: any = debounce((wrapperWidth, contentWidth)=> {
+const resetTranslateX: any = debounce((wrapperWidth, contentWidth) => {
   if (!isOverflow.value) {
     translateX.value = 0;
   } else if (-translateX.value > contentWidth - wrapperWidth) {
@@ -143,7 +146,7 @@ defineExpose({
   }
   .left,
   .right {
-    background-color:v-bind(colores);
+    background-color: v-bind(colores);
     position: absolute;
     top: 0;
     bottom: 0;

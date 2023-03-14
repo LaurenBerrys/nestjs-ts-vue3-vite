@@ -25,17 +25,17 @@
     </NvapTable>
 
     <AssignPermissions ref="Assign" />
-   <addRolesModel ref="modalRef"/>
+    <addRolesModel ref="modalRef" />
   </ComponentPage>
 </template>
 
 <script lang="ts" setup>
 import { columns, action } from "./rolesColumns";
 import AssignPermissions from "./assignPermissions/index.vue";
-import addRolesModel from './addRolesModel/index.vue'
+import addRolesModel from "./addRolesModel/index.vue";
 const { userInfo } = useAppStore();
-const modalRef=ref()
-const Assign=ref()//分配权限组件
+const modalRef = ref();
+const Assign = ref(); //分配权限组件
 const params = reactive({
   // name: '',
 });
@@ -52,11 +52,11 @@ const loadDataTable = async (res) => {
   const { data } = await getRoles(param);
   return data;
 };
-const handleMenuAuth =async (record: Recordable) => {
-const  Data = cloneDeep(userInfo.menuList) || [];
+const handleMenuAuth = async (record: Recordable) => {
+  const Data = cloneDeep(userInfo.menuList) || [];
   if (!record.permissions) record.permissions = [];
   //将record.permissions与treeData.value.permissions进行比较，删除掉reeData.value.permissions中没有的
-  const totree =async (data) => {
+  const totree = async (data) => {
     data.forEach((res) => {
       if (res.permissions) {
         const arr = isArray(res.permissions)
@@ -71,18 +71,18 @@ const  Data = cloneDeep(userInfo.menuList) || [];
       }
     });
   };
-  await  totree(Data);
-  Assign.value.open(Data,record)
+  await totree(Data);
+  Assign.value.open(Data, record);
 };
 const handleDelete = (record: Recordable) => {
   console.log(record, "删除");
 };
-const treeData=computed(()=>{
-  return cloneDeep(userInfo.menuList) || []
-})
+const treeData = computed(() => {
+  return cloneDeep(userInfo.menuList) || [];
+});
 //新增角色
 const handleAdd = async () => {
- await  modalRef.value.open(treeData)
+  await modalRef.value.open(treeData);
 };
 </script>
 

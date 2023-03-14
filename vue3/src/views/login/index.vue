@@ -1,106 +1,121 @@
 <template>
-    <AppPage 
-    :show-footer="true" bg-cover :style="{ backgroundImage: `url(${bgImg})` }">
-      <div
-        style="transform: translateY(25px)"
-        class="m-auto p-15 f-c-c min-w-345 max-w-700 rounded-10 card-shadow bg-white "
-        dark:bg-dark
-      >
-        <div w-380 hidden md:block px-20 py-35>
-          <img src="@/assets/images/login_banner.jpg" w-full alt="login_banner" />
+  <AppPage
+    :show-footer="true"
+    bg-cover
+    :style="{ backgroundImage: `url(${bgImg})` }"
+  >
+    <div
+      style="transform: translateY(25px)"
+      class="m-auto p-15 f-c-c min-w-345 max-w-700 rounded-10 card-shadow bg-white"
+      dark:bg-dark
+    >
+      <div w-380 hidden md:block px-20 py-35>
+        <img src="@/assets/images/login_banner.jpg" w-full alt="login_banner" />
+      </div>
+
+      <div w-320 flex-col px-20 py-35>
+        <h5 f-c-c text-24 font-normal color="#6a6a6a">
+          <icon-custom-logo mr-10 text-50 color-primary />{{ title }}
+        </h5>
+        <div mt-30>
+          <n-input
+            v-model:value="loginInfo.name"
+            autofocus
+            class="text-16 items-center h-50 pl-10"
+            placeholder="admin"
+            :maxlength="20"
+          />
         </div>
-  
-        <div w-320 flex-col px-20 py-35>
-          <h5 f-c-c text-24 font-normal color="#6a6a6a">
-            <icon-custom-logo mr-10 text-50 color-primary />{{ title }}</h5>
-          <div mt-30>
-            <n-input
-              v-model:value="loginInfo.name"
-              autofocus
-              class="text-16 items-center h-50 pl-10"
-              placeholder="admin"
-              :maxlength="20"
-            />
-          </div>
-          <div mt-30>
-            <n-input
-              v-model:value="loginInfo.password"
-              class="text-16 items-center h-50 pl-10"
-              type="password"
-              show-password-on="mousedown"
-              placeholder="123456"
-              :maxlength="20"
-              @keydown.enter="handleLogin"
-            />
-          </div>
-  
-          <div mt-20>
-            <n-checkbox :checked="isRemember" label="记住我" :on-update:checked="(val) => (isRemember = val)" />
-          </div>
-  
-          <div mt-20>
-            <n-button w-full h-50 rounded-5 text-16 type="primary" :loading="loading" @click="handleLogin">
-              登录
-            </n-button>
-          </div>
+        <div mt-30>
+          <n-input
+            v-model:value="loginInfo.password"
+            class="text-16 items-center h-50 pl-10"
+            type="password"
+            show-password-on="mousedown"
+            placeholder="123456"
+            :maxlength="20"
+            @keydown.enter="handleLogin"
+          />
+        </div>
+
+        <div mt-20>
+          <n-checkbox
+            :checked="isRemember"
+            label="记住我"
+            :on-update:checked="(val) => (isRemember = val)"
+          />
+        </div>
+
+        <div mt-20>
+          <n-button
+            w-full
+            h-50
+            rounded-5
+            text-16
+            type="primary"
+            :loading="loading"
+            @click="handleLogin"
+          >
+            登录
+          </n-button>
         </div>
       </div>
-    </AppPage>
-  </template>
-  
-  <script setup lang="ts">
-  import AppPage from '@/components/page/AppPage.vue'
-  import { useStorage } from '@vueuse/core'
-  import bgImg from '@/assets/images/login_bg.jpg'
-  import {loginReq} from '@/api/user'
-  import settings from '@/settings'
+    </div>
+  </AppPage>
+</template>
+
+<script setup lang="ts">
+import AppPage from "@/components/page/AppPage.vue";
+import { useStorage } from "@vueuse/core";
+import bgImg from "@/assets/images/login_bg.jpg";
+import { loginReq } from "@/api/user";
+import settings from "@/settings";
 //   import { addDynamicRoutes } from '@/router'
-  
-  const title = settings.title
-  
-  const router = useRouter()
-  const { query } = useRoute()
-  
-  const loginInfo = ref({
-    name: '',
-    password: '',
-  })
-  
-  initLoginInfo()
-  function initLoginInfo() {
-    // const localLoginInfo = lStorage.get('loginInfo')
-    // if (localLoginInfo) {
-    //   loginInfo.value.name = localLoginInfo.name || ''
-    //   loginInfo.value.password = localLoginInfo.password || ''
-    // }
+
+const title = settings.title;
+
+const router = useRouter();
+const { query } = useRoute();
+
+const loginInfo = ref({
+  name: "",
+  password: "",
+});
+
+initLoginInfo();
+function initLoginInfo() {
+  // const localLoginInfo = lStorage.get('loginInfo')
+  // if (localLoginInfo) {
+  //   loginInfo.value.name = localLoginInfo.name || ''
+  //   loginInfo.value.password = localLoginInfo.password || ''
+  // }
+}
+
+const isRemember = useStorage("isRemember", false);
+const loading = ref(false);
+async function handleLogin() {
+  const { name, password } = loginInfo.value;
+  if (!name || !password) {
+    window.$message.warning("请输入用户名和密码");
+    return;
   }
-  
-  const isRemember = useStorage('isRemember', false)
-  const loading = ref(false)
-  async function handleLogin() {
-    const { name, password } = loginInfo.value
-    if (!name || !password) {
-      window.$message.warning('请输入用户名和密码')
-      return
+  try {
+    loading.value = true;
+    window.$message.loading("正在验证...");
+    const { data } = await loginReq({ name, password: password.toString() });
+    window.$message.success("登录成功");
+    useAppStore().setToken(data.token, name);
+    if (query.redirect) {
+      const path: any = query.redirect;
+      Reflect.deleteProperty(query, "redirect");
+      router.push({ path, query });
+    } else {
+      router.push("/");
     }
-    try {
-      loading.value = true
-      window.$message.loading('正在验证...')
-      const {data,code,msg} = await loginReq({ name, password: password.toString() })
-      window.$message.success('登录成功')
-      useAppStore().setToken(data.token,name)
-      if (query.redirect) {
-        const path:any = query.redirect
-        Reflect.deleteProperty(query, 'redirect')
-        router.push({ path, query })
-      } else {
-        router.push('/')
-      }
-    } catch (error) {
-      console.error(error)
-      window.$message.removeMessage()
-    }
-    loading.value = false
+  } catch (error) {
+    console.error(error);
+    window.$message.removeMessage();
   }
-  </script>
-  
+  loading.value = false;
+}
+</script>

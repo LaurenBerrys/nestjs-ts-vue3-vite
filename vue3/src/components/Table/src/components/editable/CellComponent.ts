@@ -4,13 +4,13 @@
  * @LastEditors: Nie Chengyong
  * @LastEditTime: 2023-03-03 22:37:20
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Table/src/components/editable/CellComponent.ts
- * @Description: 
- * 
+ * @Description:
+ *
  */
-import type { FunctionalComponent, defineComponent } from 'vue';
-import type { ComponentType } from '../../types/componentType';
-import { componentMap } from '@/components/Table/src/componentMap';
-import { NPopover } from 'naive-ui';
+import type { FunctionalComponent, defineComponent } from "vue";
+import type { ComponentType } from "../../types/componentType";
+import { componentMap } from "@/components/Table/src/componentMap";
+import { NPopover } from "naive-ui";
 
 export interface ComponentProps {
   component: ComponentType & string;
@@ -20,28 +20,33 @@ export interface ComponentProps {
 }
 
 export const CellComponent: FunctionalComponent = (
-  { component = 'NInput', rule = true, ruleMessage, popoverVisible }: ComponentProps,
+  {
+    component = "NInput",
+    rule = true,
+    ruleMessage,
+    popoverVisible,
+  }: ComponentProps,
   { attrs }
 ) => {
   const Comp = componentMap.get(component) as typeof defineComponent;
-    //@ts-ignore
+  //@ts-ignore
   const DefaultComp = h(Comp, attrs);
   if (!rule) {
     return DefaultComp;
   }
   return h(
     NPopover,
-    { 'display-directive': 'show', show: !!popoverVisible, manual: 'manual' },
+    { "display-directive": "show", show: !!popoverVisible, manual: "manual" },
     {
       trigger: () => DefaultComp,
       default: () =>
         h(
-          'span',
+          "span",
           {
             style: {
-              color: 'red',
-              width: '90px',
-              display: 'inline-block',
+              color: "red",
+              width: "90px",
+              display: "inline-block",
             },
           },
           {

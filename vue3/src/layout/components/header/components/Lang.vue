@@ -8,39 +8,35 @@
  * 
 -->
 <template>
-        <!-- 语言切换 -->
-        <n-dropdown 
-        :options="options"
-        @select="changeLang">
-        <n-icon mr-20 size="18" style="cursor: pointer" >
-            <icon-system-uicons:translate   />
+  <!-- 语言切换 -->
+  <n-dropdown :options="options" @select="changeLang">
+    <n-icon mr-20 size="18" style="cursor: pointer">
+      <icon-system-uicons:translate />
     </n-icon>
-    </n-dropdown>
+  </n-dropdown>
 </template>
 <script setup lang="ts">
-import { LANG_VALUE } from '@/enums/enum';
-import { zhCN ,enUS} from 'naive-ui';
+import { LANG_VALUE } from "@/enums/enum";
+import { zhCN, enUS } from "naive-ui";
 const options = [
-    {
-        label: '中文',
-        key: LANG_VALUE.Zh
-    },
-    {
-        label: 'English',
-        key: LANG_VALUE.En
-    }
-]
-const Store = useConfigStore()
-const changeLang = (lang:any) => {
-    console.log(lang);
-    if(lang == 'zhCN'){
-        Store.setLanguage(zhCN)
-    }else{
-        Store.setLanguage(enUS)
-    }
-}
+  {
+    label: "中文",
+    key: LANG_VALUE.Zh,
+  },
+  {
+    label: "English",
+    key: LANG_VALUE.En,
+  },
+];
+const Store = useConfigStore();
+const changeLang = (lang: any) => {
+  console.log(lang);
+  if (lang == "zhCN") {
+    Store.setLanguage(zhCN);
+  } else {
+    Store.setLanguage(enUS);
+  }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

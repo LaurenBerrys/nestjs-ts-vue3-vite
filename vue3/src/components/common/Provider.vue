@@ -1,16 +1,14 @@
 <!--
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 10:10:55
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 16:36:11
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-14 16:35:42
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/common/Provider.vue
  * @Description: 
  * 
 -->
 <script setup lang="ts" name="Provider">
 import {
-  enUS,
-  dateEnUS,
   zhCN,
   dateZhCN,
   darkTheme,
@@ -20,11 +18,7 @@ import {
   useNotification,
 } from "naive-ui";
 import { defineComponent } from "vue";
-import type {
-  NLocale,
-  NDateLocale,
-  GlobalTheme,
-} from "naive-ui";
+import type { NLocale, NDateLocale, GlobalTheme } from "naive-ui";
 import { naiveThemeOverrides } from "../settings/theme.json";
 import { setupMessage, setupDialog } from "@/utils/naivetools";
 import { storeToRefs } from "pinia";
@@ -55,7 +49,7 @@ const setupNaiveTools = () => {
   window.$dialog = setupDialog(useDialog());
 };
 
-const changLangue = (lang: string | null,) => {
+const changLangue = (lang: string | null) => {
   if (lang == "zhCN") {
     locale.value = zhCN;
     dateLocale.value = dateZhCN;
@@ -82,7 +76,7 @@ const NaiveProviderContent = defineComponent({
     wh-full
     :locale="zhCN"
     :date-locale="dateLocale"
-    :theme=" isDark? darkTheme : null"
+    :theme="isDark ? darkTheme : null"
     :theme-overrides="naiveThemeOverrides"
   >
     <n-loading-bar-provider>

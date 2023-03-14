@@ -8,7 +8,7 @@
  * 
 -->
 <script setup>
-import { renderIcon, renderCustomIcon } from '@/utils/icon'
+import { renderIcon, renderCustomIcon } from "@/utils/icon";
 
 const props = defineProps({
   icon: {
@@ -26,15 +26,15 @@ const props = defineProps({
   /** iconify | custom */
   type: {
     type: String,
-    default: 'iconify',
+    default: "iconify",
   },
-})
+});
 
 const iconCom = computed(() =>
-  props.type === 'iconify'
+  props.type === "iconify"
     ? renderIcon(props.icon, { size: props.size, color: props.color })
     : renderCustomIcon(props.icon, { size: props.size, color: props.color })
-)
+);
 </script>
 
 <template>

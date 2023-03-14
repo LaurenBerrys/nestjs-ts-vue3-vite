@@ -1,8 +1,8 @@
 <!--
  * @Author: Nie Chengyong
  * @Date: 2023-03-08 17:55:59
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-13 11:09:25
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-14 16:40:30
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/upload/src/NvapUpload.vue
  * @Description: 
  * 
@@ -14,41 +14,51 @@
     :directory="directory"
     class="upload"
   >
-  <template #default>
-    <!-- <n-button @click="directory = false">上传文件</n-button>
-    <n-button @click="directory = true" :disabled="true">上传目录</n-button> -->
-    <n-upload-dragger>
-      <div style="margin-bottom: 12px">
-        <n-icon size="48" :depth="3">
-          <icon-system-uicons:upload-alt />
-        </n-icon>
-      </div>
-      <n-text style="font-size: 16px"> 点击或者拖动文件到该区域来上传 </n-text>
-      <n-p depth="3" style="margin: 8px 0 0 0">
-        请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码
-      </n-p>
-    </n-upload-dragger>
-  </template>
+    <template #default>
+      <n-button v-show="views === 'button'" @click="directory = false"
+        >上传文件</n-button
+      >
+      <!-- <n-button @click="directory = true" :disabled="true">上传目录</n-button> -->
+      <n-upload-dragger v-show="views === 'dragger'">
+        <div style="margin-bottom: 12px">
+          <n-icon size="48" :depth="3">
+            <icon-system-uicons:upload-alt />
+          </n-icon>
+        </div>
+        <n-text style="font-size: 16px">
+          点击或者拖动文件到该区域来上传
+        </n-text>
+        <n-p depth="3" style="margin: 8px 0 0 0">
+          请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码
+        </n-p>
+      </n-upload-dragger>
+    </template>
   </n-upload>
   <n-progress
-        v-show="progress"
-       type="line"
-       :percentage="Percentage"
-       :indicator-placement="'inside'"
-       processing
-     />
+    v-show="progress"
+    type="line"
+    :percentage="Percentage"
+    :indicator-placement="'inside'"
+    processing
+  />
 </template>
 
 <script setup lang="ts">
 import { useAsyncQueue } from "@vueuse/core";
 import { calculateHash, splitFile } from "./hooks/common";
+defineProps({
+  views: {
+    type: String,
+    default: Upload_Enum.dragger,
+  },
+});
 const CHUNK_SIZE = 1 * 1024 * 1024;
-const progress=ref(false)
+const progress = ref(false);
 const directory = ref(false);
 const Percentages = ref(0); //解析文件进度
 const fileName = ref(""); //文件名
 const fileType = ref(); //文件名
-const chunkList:any = ref([]); //分片集合
+const chunkList: any = ref([]); //分片集合
 const hash: any = ref(); //hash
 // 上传分片
 const uploadChunks = async (chunksData, hash) => {
@@ -60,7 +70,7 @@ const uploadChunks = async (chunksData, hash) => {
     return { formData };
   });
   //将要上传的分片组装起来
-  const requestList = formDataList.map(({ formData }, index) => {
+  const requestList = formDataList.map(({ formData }) => {
     return async () => {
       await PostUpload(formData).then(() => {
         Percentages.value = Percentages.value + 1;
@@ -95,8 +105,8 @@ const Percentage = computed(() => {
  * @param param0
  */
 const beforUpload = async ({ file }) => {
-  progress.value=true
-   //进度条重置
+  progress.value = true;
+  //进度条重置
   Percentages.value = 0;
   fileName.value = file.name;
   fileType.value = file.type;
@@ -107,7 +117,7 @@ const beforUpload = async ({ file }) => {
   hash.value = await calculateHash(List, file.fullPath);
   const chunkData = await fileIsExist();
   // 开始上传分片
-  if(chunkData){
+  if (chunkData) {
     await uploadChunks(chunkData, hash);
   }
 };
@@ -152,7 +162,7 @@ const fileIsExist = async () => {
 </script>
 
 <style scoped lang="scss">
-.upload{
+.upload {
   width: 100%;
   height: 100%;
 }

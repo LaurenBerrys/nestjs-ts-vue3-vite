@@ -15,15 +15,15 @@ const props = defineProps({
   },
   prefix: {
     type: String,
-    default: 'icon-custom',
+    default: "icon-custom",
   },
   color: {
     type: String,
-    default: 'currentColor',
+    default: "currentColor",
   },
-})
+});
 
-const symbolId = computed(() => `#${props.prefix}-${props.icon}`)
+const symbolId = computed(() => `#${props.prefix}-${props.icon}`);
 </script>
 
 <template>

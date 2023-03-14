@@ -1,6 +1,6 @@
-import type { ComputedRef, Ref } from 'vue';
-import type { FormProps, FormSchema, FormActionType } from '../types/form';
-import { isFunction } from '@/utils/is';
+import type { ComputedRef, Ref } from "vue";
+import type { FormProps, FormSchema, FormActionType } from "../types/form";
+import { isFunction } from "@/utils/is";
 
 declare type EmitType = (event: string, ...args: any[]) => void;
 
@@ -27,7 +27,7 @@ export function useFormEvents({
 }: UseFormActionContext) {
   // 验证
   async function validate() {
-    return   unref(formElRef)?.validate();
+    return unref(formElRef)?.validate();
   }
 
   // 提交
@@ -43,8 +43,7 @@ export function useFormEvents({
     if (!formEl) return;
     try {
       await validate();
-      loadingSub.value = false;
-      emit('submit', formModel);
+      emit("submit", formModel, loadingSub);
       return;
     } catch (error) {
       loadingSub.value = false;
@@ -69,7 +68,7 @@ export function useFormEvents({
     });
     await clearValidate();
     const fromValues = handleFormValues(toRaw(unref(formModel)));
-    emit('reset', fromValues);
+    emit("reset", fromValues);
     submitOnReset && (await handleSubmit());
   }
 
@@ -94,18 +93,18 @@ export function useFormEvents({
     });
   }
   //设置表单Schemas
-  async function setSchemas(names:string, values:any) {
+  async function setSchemas(names: string, values: any) {
     getSchema.value.filter((item: any) => {
-      if(item.field === names){
+      if (item.field === names) {
         //遍历item对象的key，而不是values的key
         Object.keys(item).forEach((key: any) => {
           //如果key是values的key，就把values的值赋值给item
-          if(values[key]){
-            item[key] = values[key]
+          if (values[key]) {
+            item[key] = values[key];
           }
-        })
+        });
       }
-    })
+    });
   }
   return {
     handleSubmit,
@@ -114,6 +113,6 @@ export function useFormEvents({
     getFieldsValue,
     clearValidate,
     setFieldsValue,
-    setSchemas
+    setSchemas,
   };
 }

@@ -7,9 +7,7 @@
     "height": 50
   },
   "naiveThemeOverrides": {
-    
-    "Button": {
-    },
+    "Button": {},
     "common": {
       "primaryColor": "#2cb67d",
       "primaryColorHover": "#2cb67d",

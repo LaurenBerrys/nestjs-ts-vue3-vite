@@ -8,13 +8,12 @@
  * 
 -->
 <template>
-    <n-icon size="20" cursor-pointer @click="Store.setCollapsed()">
-      <icon-mdi:format-indent-increase v-if="Store.collapsed" />
-      <icon-mdi:format-indent-decrease v-else />
-    </n-icon>
-  </template>
-  
-  <script setup>
-  const Store = useConfigStore()
-  </script>
-  
+  <n-icon size="20" cursor-pointer @click="Store.setCollapsed()">
+    <icon-mdi:format-indent-increase v-if="Store.collapsed" />
+    <icon-mdi:format-indent-decrease v-else />
+  </n-icon>
+</template>
+
+<script setup>
+const Store = useConfigStore();
+</script>

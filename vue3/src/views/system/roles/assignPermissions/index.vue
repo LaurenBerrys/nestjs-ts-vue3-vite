@@ -8,8 +8,7 @@
  * 
 -->
 <template>
-  <NvapModal 
-  @register="modalRegister" class="NvapModal" @on-ok="okModal">
+  <NvapModal @register="modalRegister" class="NvapModal" @on-ok="okModal">
     <template #default>
       <div flex>
         <n-tree
@@ -64,8 +63,7 @@
             placeholder="请输入按钮权限"
             @change="updatePermiss"
             v-show="title"
-          >
-          </n-input>
+          />
         </div>
       </div>
     </template>
@@ -75,18 +73,18 @@
 import { useModal } from "@/components/Modal/src/hooks/useModal";
 import { TreeOption } from "naive-ui";
 //定义接受父传子的函数getRole
-let role
+let role;
 const Tree = ref([]);
-const expandedKeys:any=ref([]);
+const expandedKeys: any = ref([]);
 
 const checkedKeys = ref([]);
 //定义接受子传父的函数updateRole
-const open = (data,record) => {
-    console.log(data,record);
-    Tree.value = data;
-    role = record;
-    checkedKeys.value = record.code;
-    expandedKeys.value = Tree.value.map((item:any) => item.code);
+const open = (data, record) => {
+  console.log(data, record);
+  Tree.value = data;
+  role = record;
+  checkedKeys.value = record.code;
+  expandedKeys.value = Tree.value.map((item: any) => item.code);
   openModal();
 };
 defineExpose({ open });
@@ -101,7 +99,7 @@ const permissions = ref(); //按钮权限
 const updatePermiss = (res) => {
   const name = unref(title);
   for (let i = 0; i < Tree.value.length; i++) {
-    const node:any = Tree.value[i];
+    const node: any = Tree.value[i];
     if (node.title === name) {
       node.permissions = res.split(",");
       return true;

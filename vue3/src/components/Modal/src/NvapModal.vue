@@ -57,7 +57,7 @@ async function setProps(modalProps: Partial<ModalProps>): Promise<void> {
   propsRef.value = deepMerge(unref(propsRef) || ({} as any), modalProps);
 }
 
-const getBindValue:any = computed(() => {
+const getBindValue: any = computed(() => {
   return {
     ...attrs,
     ...unref(getProps),
@@ -106,7 +106,7 @@ if (instance) {
 }
 </script>
 
-<style lang="less" >
+<style lang="less">
 //  #basic-modal{
 //   width:v-bind(widths)!important;
 // }

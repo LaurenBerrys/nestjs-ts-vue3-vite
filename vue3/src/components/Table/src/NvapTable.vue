@@ -1,6 +1,6 @@
 <template>
   <!-- <div class="table-select"> -->
-    <slot name="tableSelect"></slot>
+  <slot name="tableSelect"></slot>
   <!-- </div> -->
   <div class="table-toolbar">
     <!--顶部左侧区域-->
@@ -91,7 +91,7 @@
 import {
   ReloadOutlined,
   ColumnHeightOutlined,
-  QuestionCircleOutlined,
+  //  QuestionCircleOutlined
 } from "@vicons/antd";
 import { createTableContext } from "./hooks/useTableContext";
 
@@ -129,12 +129,12 @@ const densityOptions = [
 ];
 
 export default defineComponent({
-  name:"NvapTable",
+  name: "NvapTable",
   components: {
     ReloadOutlined,
     ColumnHeightOutlined,
     ColumnSetting,
-    QuestionCircleOutlined,
+    // QuestionCircleOutlined,
   },
   props: {
     ...nvapProps,
@@ -208,6 +208,7 @@ export default defineComponent({
     }
 
     //选中行
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     function updateCheckedRowKeys(rowKeys) {
       emit("update:checked-row-keys", rowKeys);
     }
@@ -232,7 +233,7 @@ export default defineComponent({
     });
 
     //获取分页信息
-    const pagination:any = computed(() => toRaw(unref(getPaginationInfo)));
+    const pagination: any = computed(() => toRaw(unref(getPaginationInfo)));
 
     function setProps(props: Partial<NvapTableProps>) {
       innerPropsRef.value = { ...unref(innerPropsRef), ...props };

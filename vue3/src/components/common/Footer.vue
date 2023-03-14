@@ -8,16 +8,24 @@
  * 
 -->
 <template>
-    <footer text-14 f-c-c flex-col color="#6a6a6a">
-      <p>
-        Copyright©2023
-        <a href="https://github.com/LaurenBerrys/nestjs-ts-vue3-vite" target="__blank" hover="decoration-underline color-primary">LaurenBerrys</a>
-      </p>
-      <p>
-        <a href="http://beian.miit.gov.cn/" target="__blank" hover="decoration-underline color-primary">
-          xxxxxx
-        </a>
-      </p>
-    </footer>
-  </template>
-  
+  <footer text-14 f-c-c flex-col color="#6a6a6a">
+    <p>
+      Copyright©2023
+      <a
+        href="https://github.com/LaurenBerrys/nestjs-ts-vue3-vite"
+        target="__blank"
+        hover="decoration-underline color-primary"
+        >LaurenBerrys</a
+      >
+    </p>
+    <p>
+      <a
+        href="http://beian.miit.gov.cn/"
+        target="__blank"
+        hover="decoration-underline color-primary"
+      >
+        xxxxxx
+      </a>
+    </p>
+  </footer>
+</template>

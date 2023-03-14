@@ -1,26 +1,231 @@
-import{r as A,t as B,W as ke,h as J,bT as lt,bS as st,s as te,Q as Oe,a as ct,e as Ie,aT as De,a$ as ut,ax as ft,cW as dt,bx as Pe,cX as _t,a_ as vt,bg as Le,G as mt}from"./index.8fd7165c.js";import{A as ve,g as pt,B as gt,C as xt,D as ht,E as St,F as yt,G as bt,K as Tt,L as Et,o as Se,Z as Y,_ as Re,$ as Ne}from"./definitions.ce677f69.js";import{E as X,f as ne,s as Ze,x as qe}from"./VertexArrayObject.1b8f3583.js";import{F as Q,C as d,E as L,L as M,R,I as w,O as le,M as pe,P as Z,G as se,D as fe,Y as Ot,V as It,B as Ke,U as Me,_ as ze,N as Ct}from"./enums.64ab819c.js";import{t as de}from"./VertexElementDescriptor.2925c6af.js";import{e as ee,E as re,S as j,T as V,M as ce,w as U}from"./color.4c5303e9.js";import{e as At,a as ge}from"./ProgramTemplate.4bbf0f5e.js";import{U as Dt,w as Pt,N as Lt,Z as Rt,C as Nt,P as Mt}from"./MaterialKey.97cb3dc8.js";import{p as je,s as ae}from"./utils.1f803f1b.js";import{E as xe}from"./Texture.fb0c670a.js";import{r as ie,l as k,n as Fe}from"./StyleDefinition.4f77c81e.js";import{e as Ve}from"./config.1337d16e.js";import{c as we}from"./GeometryUtils.82ab0a13.js";import{r as zt,h as Ft}from"./Container.a5892366.js";import{r as Vt}from"./earcut.9f54f087.js";let Xe=class{constructor(n,e){this._rctx=n,this._vertexBuffer=X.createVertex(n,Q.STATIC_DRAW,new Uint16Array(e)),this._vao=new ne(n,new Map([["a_position",0]]),{geometry:[new de("a_position",2,d.SHORT,0,4)]},{geometry:this._vertexBuffer}),this._count=e.length/2}bind(){this._rctx.bindVAO(this._vao)}unbind(){this._rctx.bindVAO(null)}dispose(){this._vao.dispose(!1),this._vertexBuffer.dispose()}draw(){this._rctx.bindVAO(this._vao),this._rctx.drawArrays(L.TRIANGLE_STRIP,0,this._count)}},W=class{constructor(){this.name=this.constructor.name||"UnnamedBrush",this.brushEffect=null}prepareState(n,e){}draw(n,e,t){}drawMany(n,e,t){for(const a of e)a.visible&&this.draw(n,a,t)}};const ye={nearest:{defines:[],samplingMode:M.NEAREST,mips:!1},bilinear:{defines:[],samplingMode:M.LINEAR,mips:!1},bicubic:{defines:["bicubic"],samplingMode:M.LINEAR,mips:!1},trilinear:{defines:[],samplingMode:M.LINEAR_MIPMAP_LINEAR,mips:!0}};function Qe(){return new Float32Array(4)}function q(n,e,t,a){const o=new Float32Array(4);return o[0]=n,o[1]=e,o[2]=t,o[3]=a,o}function $e(){return Qe()}function Je(){return q(1,1,1,1)}function et(){return q(1,0,0,0)}function tt(){return q(0,1,0,0)}function nt(){return q(0,0,1,0)}function ot(){return q(0,0,0,1)}const wt=$e(),Ut=Je(),Bt=et(),Gt=tt(),Ht=nt(),Yt=ot();Object.freeze(Object.defineProperty({__proto__:null,ONES:Ut,UNIT_W:Yt,UNIT_X:Bt,UNIT_Y:Gt,UNIT_Z:Ht,ZEROS:wt,clone:function(n){const e=new Float32Array(4);return e[0]=n[0],e[1]=n[1],e[2]=n[2],e[3]=n[3],e},create:Qe,createView:function(n,e){return new Float32Array(n,e,4)},fromValues:q,ones:Je,unitW:ot,unitX:et,unitY:tt,unitZ:nt,zeros:$e},Symbol.toStringTag,{value:"Module"}));const Wt={background:{"background.frag":`uniform lowp vec4 u_color;
+import {
+  r as A,
+  t as B,
+  W as ke,
+  h as J,
+  bT as lt,
+  bS as st,
+  s as te,
+  Q as Oe,
+  a as ct,
+  e as Ie,
+  aT as De,
+  a$ as ut,
+  ax as ft,
+  cW as dt,
+  bx as Pe,
+  cX as _t,
+  a_ as vt,
+  bg as Le,
+  G as mt,
+} from "./index.8fd7165c.js";
+import {
+  A as ve,
+  g as pt,
+  B as gt,
+  C as xt,
+  D as ht,
+  E as St,
+  F as yt,
+  G as bt,
+  K as Tt,
+  L as Et,
+  o as Se,
+  Z as Y,
+  _ as Re,
+  $ as Ne,
+} from "./definitions.ce677f69.js";
+import {
+  E as X,
+  f as ne,
+  s as Ze,
+  x as qe,
+} from "./VertexArrayObject.1b8f3583.js";
+import {
+  F as Q,
+  C as d,
+  E as L,
+  L as M,
+  R,
+  I as w,
+  O as le,
+  M as pe,
+  P as Z,
+  G as se,
+  D as fe,
+  Y as Ot,
+  V as It,
+  B as Ke,
+  U as Me,
+  _ as ze,
+  N as Ct,
+} from "./enums.64ab819c.js";
+import { t as de } from "./VertexElementDescriptor.2925c6af.js";
+import {
+  e as ee,
+  E as re,
+  S as j,
+  T as V,
+  M as ce,
+  w as U,
+} from "./color.4c5303e9.js";
+import { e as At, a as ge } from "./ProgramTemplate.4bbf0f5e.js";
+import {
+  U as Dt,
+  w as Pt,
+  N as Lt,
+  Z as Rt,
+  C as Nt,
+  P as Mt,
+} from "./MaterialKey.97cb3dc8.js";
+import { p as je, s as ae } from "./utils.1f803f1b.js";
+import { E as xe } from "./Texture.fb0c670a.js";
+import { r as ie, l as k, n as Fe } from "./StyleDefinition.4f77c81e.js";
+import { e as Ve } from "./config.1337d16e.js";
+import { c as we } from "./GeometryUtils.82ab0a13.js";
+import { r as zt, h as Ft } from "./Container.a5892366.js";
+import { r as Vt } from "./earcut.9f54f087.js";
+let Xe = class {
+    constructor(n, e) {
+      (this._rctx = n),
+        (this._vertexBuffer = X.createVertex(
+          n,
+          Q.STATIC_DRAW,
+          new Uint16Array(e)
+        )),
+        (this._vao = new ne(
+          n,
+          new Map([["a_position", 0]]),
+          { geometry: [new de("a_position", 2, d.SHORT, 0, 4)] },
+          { geometry: this._vertexBuffer }
+        )),
+        (this._count = e.length / 2);
+    }
+    bind() {
+      this._rctx.bindVAO(this._vao);
+    }
+    unbind() {
+      this._rctx.bindVAO(null);
+    }
+    dispose() {
+      this._vao.dispose(!1), this._vertexBuffer.dispose();
+    }
+    draw() {
+      this._rctx.bindVAO(this._vao),
+        this._rctx.drawArrays(L.TRIANGLE_STRIP, 0, this._count);
+    }
+  },
+  W = class {
+    constructor() {
+      (this.name = this.constructor.name || "UnnamedBrush"),
+        (this.brushEffect = null);
+    }
+    prepareState(n, e) {}
+    draw(n, e, t) {}
+    drawMany(n, e, t) {
+      for (const a of e) a.visible && this.draw(n, a, t);
+    }
+  };
+const ye = {
+  nearest: { defines: [], samplingMode: M.NEAREST, mips: !1 },
+  bilinear: { defines: [], samplingMode: M.LINEAR, mips: !1 },
+  bicubic: { defines: ["bicubic"], samplingMode: M.LINEAR, mips: !1 },
+  trilinear: { defines: [], samplingMode: M.LINEAR_MIPMAP_LINEAR, mips: !0 },
+};
+function Qe() {
+  return new Float32Array(4);
+}
+function q(n, e, t, a) {
+  const o = new Float32Array(4);
+  return (o[0] = n), (o[1] = e), (o[2] = t), (o[3] = a), o;
+}
+function $e() {
+  return Qe();
+}
+function Je() {
+  return q(1, 1, 1, 1);
+}
+function et() {
+  return q(1, 0, 0, 0);
+}
+function tt() {
+  return q(0, 1, 0, 0);
+}
+function nt() {
+  return q(0, 0, 1, 0);
+}
+function ot() {
+  return q(0, 0, 0, 1);
+}
+const wt = $e(),
+  Ut = Je(),
+  Bt = et(),
+  Gt = tt(),
+  Ht = nt(),
+  Yt = ot();
+Object.freeze(
+  Object.defineProperty(
+    {
+      __proto__: null,
+      ONES: Ut,
+      UNIT_W: Yt,
+      UNIT_X: Bt,
+      UNIT_Y: Gt,
+      UNIT_Z: Ht,
+      ZEROS: wt,
+      clone: function (n) {
+        const e = new Float32Array(4);
+        return (e[0] = n[0]), (e[1] = n[1]), (e[2] = n[2]), (e[3] = n[3]), e;
+      },
+      create: Qe,
+      createView: function (n, e) {
+        return new Float32Array(n, e, 4);
+      },
+      fromValues: q,
+      ones: Je,
+      unitW: ot,
+      unitX: et,
+      unitY: tt,
+      unitZ: nt,
+      zeros: $e,
+    },
+    Symbol.toStringTag,
+    { value: "Module" }
+  )
+);
+const Wt = {
+    background: {
+      "background.frag": `uniform lowp vec4 u_color;
 void main() {
 gl_FragColor = u_color;
-}`,"background.vert":`attribute vec2 a_pos;
+}`,
+      "background.vert": `attribute vec2 a_pos;
 uniform highp mat3 u_dvsMat3;
 uniform mediump vec2 u_coord_range;
 uniform mediump float u_depth;
 void main() {
 vec3 v_pos = u_dvsMat3 * vec3(u_coord_range * a_pos, 1.0);
 gl_Position = vec4(v_pos.xy, 0.0, 1.0);
-}`},bitBlit:{"bitBlit.frag":`uniform lowp sampler2D u_tex;
+}`,
+    },
+    bitBlit: {
+      "bitBlit.frag": `uniform lowp sampler2D u_tex;
 uniform lowp float u_opacity;
 varying mediump vec2 v_uv;
 void main() {
 lowp vec4 color = texture2D(u_tex, v_uv);
 gl_FragColor = color *  u_opacity;
-}`,"bitBlit.vert":`attribute vec2 a_pos;
+}`,
+      "bitBlit.vert": `attribute vec2 a_pos;
 attribute vec2 a_tex;
 varying mediump vec2 v_uv;
 void main(void) {
 gl_Position = vec4(a_pos, 0.0, 1.0);
 v_uv = a_tex;
-}`},blend:{"blend.frag":`precision mediump float;
+}`,
+    },
+    blend: {
+      "blend.frag": `precision mediump float;
 uniform sampler2D u_layerTexture;
 uniform lowp float u_opacity;
 uniform lowp float u_inFadeOpacity;
@@ -262,16 +467,22 @@ gl_FragColor = vec4(f * as * ab + Cs * as * (1.0 - ab) + Cb * ab *(1.0 - as),
 as + ab * (1.0 - as));
 #endif
 #endif
-}`,"blend.vert":`attribute vec2 a_position;
+}`,
+      "blend.vert": `attribute vec2 a_position;
 varying mediump vec2 v_uv;
 void main(void) {
 gl_Position = vec4(a_position , 0.0, 1.0);
 v_uv = (a_position + 1.0) / 2.0;
-}`},debug:{overlay:{"overlay.frag":`precision mediump float;
+}`,
+    },
+    debug: {
+      overlay: {
+        "overlay.frag": `precision mediump float;
 varying vec4 v_color;
 void main(void) {
 gl_FragColor = v_color;
-}`,"overlay.vert":`attribute vec3 a_PositionAndFlags;
+}`,
+        "overlay.vert": `attribute vec3 a_PositionAndFlags;
 uniform mat3 u_dvsMat3;
 uniform vec4 u_colors[4];
 uniform float u_opacities[4];
@@ -297,7 +508,12 @@ break;
 }
 v_color = color * opacity;
 gl_Position = vec4((u_dvsMat3 * vec3(position, 1.0)).xy, 0.0, 1.0);
-}`}},dot:{dot:{"dot.frag":`precision mediump float;
+}`,
+      },
+    },
+    dot: {
+      dot: {
+        "dot.frag": `precision mediump float;
 varying vec4 v_color;
 varying float v_dotRatio;
 varying float v_invEdgeRatio;
@@ -307,7 +523,8 @@ void main()
 float dist = length(gl_PointCoord - vec2(.5, .5)) * 2.;
 float alpha = smoothstep(0., 1., v_invEdgeRatio * (dist - v_dotRatio) + 1.);
 gl_FragColor = v_color * alpha;
-}`,"dot.vert":`precision highp float;
+}`,
+        "dot.vert": `precision highp float;
 attribute vec2 a_pos;
 uniform sampler2D u_texture;
 uniform highp mat3 u_dvsMat3;
@@ -334,7 +551,11 @@ gl_Position = vec4((u_dvsMat3 * vec3(a_pos + .5, 1.)).xy, z, 1.);
 v_dotRatio = u_dotSize / gl_PointSize;
 v_invEdgeRatio = -1. / ( smoothEdgeWidth / gl_PointSize );
 gl_PointSize  *= (u_pixelRatio * u_tileZoomFactor);
-}`}},filtering:{"bicubic.glsl":`vec4 computeWeights(float v) {
+}`,
+      },
+    },
+    filtering: {
+      "bicubic.glsl": `vec4 computeWeights(float v) {
 float b = 1.0 / 6.0;
 float v2 = v * v;
 float v3 = v2 * v;
@@ -372,7 +593,8 @@ color00 = mix(color00, color01, hgY.z);
 color10 = mix(color10, color11, hgY.z);
 color00 = mix(color00, color10, hgX.z);
 return color00;
-}`,"bilinear.glsl":`vec4 sampleBilinear(sampler2D sampler, vec2 coords, vec2 texSize) {
+}`,
+      "bilinear.glsl": `vec4 sampleBilinear(sampler2D sampler, vec2 coords, vec2 texSize) {
 vec2 texelStart = floor(coords * texSize);
 vec2 coord0 = texelStart / texSize;
 vec2 coord1 = (texelStart +  vec2(1.0, 0.0)) / texSize;
@@ -391,7 +613,8 @@ float alpha = floor(color0.a * color1.a * color2.a * color3.a + 0.5);
 color = color * alpha + (1.0 - alpha) * texture2D(sampler, coords);
 #endif
 return color;
-}`,"epx.glsl":`vec4 sampleEPX(sampler2D sampler, float size, vec2 coords, vec2 texSize) {
+}`,
+      "epx.glsl": `vec4 sampleEPX(sampler2D sampler, float size, vec2 coords, vec2 texSize) {
 vec2 invSize = 1.0 / texSize;
 vec2 texel = coords * texSize;
 vec2 texel_i = floor(texel);
@@ -420,7 +643,11 @@ colorP4 = colorD;
 vec4 colorP12 = mix(colorP1, colorP2, texel_frac.x);
 vec4 colorP34 = mix(colorP1, colorP2, texel_frac.x);
 return mix(colorP12, colorP34, texel_frac.y);
-}`},fx:{integrate:{"integrate.frag":`precision mediump float;
+}`,
+    },
+    fx: {
+      integrate: {
+        "integrate.frag": `precision mediump float;
 uniform lowp sampler2D u_sourceTexture;
 uniform lowp sampler2D u_maskTexture;
 uniform mediump float u_zoomLevel;
@@ -445,14 +672,20 @@ gl_FragColor =  vec4(nextState);
 vec4 texel = texture2D(u_sourceTexture, v_texcoord);
 gl_FragColor = texel;
 #endif
-}`,"integrate.vert":`precision mediump float;
+}`,
+        "integrate.vert": `precision mediump float;
 attribute vec2 a_pos;
 varying highp vec2 v_texcoord;
 void main()
 {
 v_texcoord = a_pos;
 gl_Position = vec4(a_pos * 2.0 - 1.0, 0.0, 1.0);
-}`}},heatmap:{heatmapResolve:{"heatmapResolve.frag":`precision highp float;
+}`,
+      },
+    },
+    heatmap: {
+      heatmapResolve: {
+        "heatmapResolve.frag": `precision highp float;
 #ifdef HEATMAP_PRECISION_HALF_FLOAT
 #define COMPRESSION_FACTOR 4.0
 #else
@@ -470,13 +703,18 @@ density *= u_densityNormalization;
 density = (density - u_densityMinAndInvRange.x) * u_densityMinAndInvRange.y;
 vec4 color = texture2D(u_gradient, vec2(density, 0.5));
 gl_FragColor = vec4(color.rgb * color.a, color.a);
-}`,"heatmapResolve.vert":`precision highp float;
+}`,
+        "heatmapResolve.vert": `precision highp float;
 attribute vec2 a_pos;
 varying vec2 v_uv;
 void main() {
 v_uv = a_pos;
 gl_Position = vec4(a_pos * 2.0 - 1.0, 1., 1.);
-}`}},highlight:{"blur.frag":`varying mediump vec2 v_texcoord;
+}`,
+      },
+    },
+    highlight: {
+      "blur.frag": `varying mediump vec2 v_texcoord;
 uniform mediump vec4 u_direction;
 uniform mediump mat4 u_channelSelector;
 uniform mediump float u_sigma;
@@ -507,7 +745,8 @@ accumGauss1(3.0, tot, weight);
 accumGauss1(4.0, tot, weight);
 accumGauss1(5.0, tot, weight);
 gl_FragColor = vec4(0.0, 0.0, 0.0, tot / weight);
-}`,"highlight.frag":`varying mediump vec2 v_texcoord;
+}`,
+      "highlight.frag": `varying mediump vec2 v_texcoord;
 uniform sampler2D u_texture;
 uniform mediump float u_sigma;
 uniform sampler2D u_shade;
@@ -527,13 +766,17 @@ return texture2D(u_shade, vec2(mappedDistance, 0.5));
 void main(void) {
 mediump float d = estimateDistance();
 gl_FragColor = shade(d);
-}`,"textured.vert":`attribute mediump vec2 a_position;
+}`,
+      "textured.vert": `attribute mediump vec2 a_position;
 attribute mediump vec2 a_texcoord;
 varying mediump vec2 v_texcoord;
 void main(void) {
 gl_Position = vec4(a_position, 0.0, 1.0);
 v_texcoord = a_texcoord;
-}`},magnifier:{"magnifier.frag":`uniform lowp vec4 u_background;
+}`,
+    },
+    magnifier: {
+      "magnifier.frag": `uniform lowp vec4 u_background;
 uniform mediump sampler2D u_readbackTexture;
 uniform mediump sampler2D u_maskTexture;
 uniform mediump sampler2D u_overlayTexture;
@@ -558,7 +801,8 @@ lowp float mask = u_maskEnabled ? texture2D(u_maskTexture, v_texCoord).a : 1.0;
 color *= mask;
 lowp vec4 overlayColor = u_overlayEnabled ? texture2D(u_overlayTexture, v_texCoord) : vec4(0);
 gl_FragColor = overlayColor + (1.0 - overlayColor.a) * color;
-}`,"magnifier.vert":`precision mediump float;
+}`,
+      "magnifier.vert": `precision mediump float;
 attribute mediump vec2 a_pos;
 uniform mediump vec4 u_drawPos;
 varying mediump vec2 v_texCoord;
@@ -566,7 +810,10 @@ void main(void)
 {
 v_texCoord = a_pos;
 gl_Position = vec4(u_drawPos.xy + vec2(a_pos - 0.5) * u_drawPos.zw, 0.0, 1.0);
-}`},materials:{"attributeData.glsl":`uniform highp sampler2D u_attributeData0;
+}`,
+    },
+    materials: {
+      "attributeData.glsl": `uniform highp sampler2D u_attributeData0;
 uniform highp sampler2D u_attributeData1;
 uniform highp sampler2D u_attributeData2;
 uniform highp sampler2D u_attributeData3;
@@ -616,7 +863,8 @@ if (isMagic) {
 return NAN_MAGIC_NUMBER;
 }
 return (v.x + v.y * float(0x100)) - 32768.0;
-}`,"barycentric.glsl":`float inTriangle(vec3 bary) {
+}`,
+      "barycentric.glsl": `float inTriangle(vec3 bary) {
 vec3 absBary = abs(bary);
 return step((absBary.x + absBary.y + absBary.z), 1.05);
 }
@@ -628,7 +876,8 @@ v2.x - v1.x, v0.x - v2.x, v1.x - v0.x
 );
 float A2 = v0.x * (v1.y - v2.y) + v1.x * (v2.y - v0.y) + v2.x * (v0.y - v1.y);
 return (1. / A2) * xyToBarycentricMat3 * vec3(1., pos);
-}`,"constants.glsl":`const float C_DEG_TO_RAD = 3.14159265359 / 180.0;
+}`,
+      "constants.glsl": `const float C_DEG_TO_RAD = 3.14159265359 / 180.0;
 const float C_256_TO_RAD = 3.14159265359 / 128.0;
 const float C_RAD_TO_DEG = 180.0 / 3.141592654;
 const float POSITION_PRECISION = 1.0 / 8.0;
@@ -658,7 +907,9 @@ const int BITSET_MARKER_SCALE_SYMBOLS_PROPORTIONALLY = 3;
 const int BITSET_TYPE_FILL_OUTLINE = 0;
 const int BITSET_FILL_RANDOM_PATTERN_OFFSET = 2;
 const int BITSET_FILL_HAS_UNRESOLVED_REPLACEMENT_COLOR = 3;
-const int BITSET_LINE_SCALE_DASH = 2;`,fill:{"common.glsl":`#include <materials/symbologyTypeUtils.glsl>
+const int BITSET_LINE_SCALE_DASH = 2;`,
+      fill: {
+        "common.glsl": `#include <materials/symbologyTypeUtils.glsl>
 #ifdef PATTERN
 uniform mediump vec2 u_mosaicSize;
 varying mediump float v_sampleAlphaOnly;
@@ -683,7 +934,8 @@ varying lowp float v_isOutline;
 #if SYMBOLOGY_TYPE == SYMBOLOGY_TYPE_DOT_DENSITY
 varying highp vec2 v_dotTextureCoords;
 varying highp vec4 v_dotThresholds[ 2 ];
-#endif`,"fill.frag":`precision highp float;
+#endif`,
+        "fill.frag": `precision highp float;
 #include <materials/constants.glsl>
 #include <materials/utils.glsl>
 #include <materials/fill/common.glsl>
@@ -768,7 +1020,8 @@ gl_FragColor = drawFill();
 #else
 gl_FragColor = drawFill();
 #endif
-}`,"fill.vert":`#include <materials/symbologyTypeUtils.glsl>
+}`,
+        "fill.vert": `#include <materials/symbologyTypeUtils.glsl>
 #define PACKED_LINE
 precision highp float;
 attribute float a_bitset;
@@ -911,7 +1164,8 @@ highp vec4 color  = vec4(0.);
 draw(color, pos);
 v_color = color;
 gl_Position = vec4(clip(v_color, pos, getFilterFlags(), a_zoomRange), 1.0);
-}`,"hittest.glsl":`#ifdef HITTEST
+}`,
+        "hittest.glsl": `#ifdef HITTEST
 #include <materials/hittest/common.glsl>
 attribute vec2 a_pos1;
 attribute vec2 a_pos2;
@@ -930,7 +1184,10 @@ out_pos.z += 2.0;
 }
 out_color = vec4(1. / 255., 0, 0, dist == 0. ? (1. / 255.) : 0.);
 }
-#endif`},hittest:{"common.glsl":`#ifdef HITTEST
+#endif`,
+      },
+      hittest: {
+        "common.glsl": `#ifdef HITTEST
 uniform float u_hittestDist;
 uniform highp vec2 u_hittestPos;
 float projectScalar(vec2 a, vec2 b) {
@@ -970,7 +1227,10 @@ float distBC = distPointSegment(p, b, c);
 float distCA = distPointSegment(p, c, a);
 return min(min(distAB, distBC), distCA);
 }
-#endif`},icon:{"common.glsl":`#include <util/encoding.glsl>
+#endif`,
+      },
+      icon: {
+        "common.glsl": `#include <util/encoding.glsl>
 uniform lowp vec2 u_mosaicSize;
 varying lowp vec4 v_color;
 varying highp vec3 v_id;
@@ -1009,9 +1269,12 @@ vec4 getColor(vec2 _v_size, vec2 v_tex) {
 lowp vec4 texColor = texture2D(u_texture, v_tex);
 return v_opacity * texColor * v_color;
 }
-#endif`,heatmapAccumulate:{"common.glsl":`varying lowp vec4 v_hittestResult;
+#endif`,
+        heatmapAccumulate: {
+          "common.glsl": `varying lowp vec4 v_hittestResult;
 varying mediump vec2 v_offsetFromCenter;
-varying highp float v_fieldValue;`,"heatmapAccumulate.frag":`precision mediump float;
+varying highp float v_fieldValue;`,
+          "heatmapAccumulate.frag": `precision mediump float;
 #include <materials/icon/heatmapAccumulate/common.glsl>
 #ifdef HEATMAP_PRECISION_HALF_FLOAT
 #define COMPRESSION_FACTOR 0.25
@@ -1029,7 +1292,8 @@ float oneMinusRadiusSquared = 1.0 - radius * radius;
 float kernelWeight = oneMinusRadiusSquared * oneMinusRadiusSquared;
 gl_FragColor = vec4(shapeWeight * kernelWeight * v_fieldValue * COMPRESSION_FACTOR);
 #endif
-}`,"heatmapAccumulate.vert":`precision highp float;
+}`,
+          "heatmapAccumulate.vert": `precision highp float;
 attribute vec2 a_vertexOffset;
 vec4 a_color = vec4(0.0);
 vec2 a_zoomRange = vec2(0.0, 10000.0);
@@ -1055,7 +1319,9 @@ vec3 centerPos = u_dvsMat3 * vec3(a_pos * POSITION_PRECISION, 1.0);
 vec3 vertexPos = centerPos + u_displayViewMat3 * vec3(v_offsetFromCenter, 0.0) * u_radius;
 gl_Position = vec4(clip(a_color, vertexPos, filterFlags, a_zoomRange), 1.0);
 #endif
-}`},"hittest.glsl":`#ifdef HITTEST
+}`,
+        },
+        "hittest.glsl": `#ifdef HITTEST
 #include <materials/hittest/common.glsl>
 attribute vec2 a_vertexOffset1;
 attribute vec2 a_vertexOffset2;
@@ -1104,7 +1370,8 @@ alphaSum += inTriangle(bary7) * getColor(size, getTextureCoords(bary7, tex0, tex
 out_pos.z += step(alphaSum, .05) * 2.0;
 out_color = vec4(1. / 255., 0., 0., alphaSum / 255.);
 }
-#endif`,"icon.frag":`precision mediump float;
+#endif`,
+        "icon.frag": `precision mediump float;
 #include <materials/constants.glsl>
 #include <materials/utils.glsl>
 #include <materials/icon/common.glsl>
@@ -1119,7 +1386,8 @@ vec4 color = getColor(v_sizeTex.xy, v_sizeTex.zw);
 color.a = step(1.0 / 255.0, color.a);
 #endif
 gl_FragColor = color;
-}`,"icon.vert":`precision highp float;
+}`,
+        "icon.vert": `precision highp float;
 attribute vec4 a_color;
 attribute vec4 a_outlineColor;
 attribute vec4 a_sizeAndOutlineWidth;
@@ -1182,7 +1450,10 @@ gl_Position = vec4(clip(v_color, out_pos, filterFlags, a_zoomRange), 1.0);
 #else
 gl_Position = vec4(clip(v_color, v_pos, filterFlags, a_zoomRange), 1.0);
 #endif
-}`},label:{"common.glsl":`uniform mediump float u_zoomLevel;
+}`,
+      },
+      label: {
+        "common.glsl": `uniform mediump float u_zoomLevel;
 uniform mediump float u_mapRotation;
 uniform mediump float u_mapAligned;
 uniform mediump vec2 u_mosaicSize;
@@ -1190,7 +1461,9 @@ varying mediump float v_antialiasingWidth;
 varying mediump float v_edgeDistanceOffset;
 varying mediump vec2 v_tex;
 varying mediump vec4 v_color;
-varying lowp vec4 v_animation;`,"label.frag":"#include <materials/text/text.frag>","label.vert":`precision highp float;
+varying lowp vec4 v_animation;`,
+        "label.frag": "#include <materials/text/text.frag>",
+        "label.vert": `precision highp float;
 #include <materials/vcommon.glsl>
 #include <materials/text/common.glsl>
 attribute vec4 a_color;
@@ -1251,7 +1524,10 @@ gl_Position = vec4(v_pos, 1.0);
 #ifdef DEBUG
 v_color = vec4(a_color.rgb, z == 0.0 ? 1.0 : 0.645);
 #endif
-}`},line:{"common.glsl":`varying lowp vec4 v_color;
+}`,
+      },
+      line: {
+        "common.glsl": `varying lowp vec4 v_color;
 varying highp vec3 v_id;
 varying mediump vec2 v_normal;
 varying mediump float v_lineHalfWidth;
@@ -1265,7 +1541,8 @@ varying highp float v_accumulatedDistance;
 #endif
 #ifdef SDF
 varying mediump float v_lineWidthRatio;
-#endif`,"hittest.glsl":`#include <materials/hittest/common.glsl>
+#endif`,
+        "hittest.glsl": `#include <materials/hittest/common.glsl>
 #ifdef HITTEST
 attribute vec2 a_pos1;
 attribute vec2 a_pos2;
@@ -1282,7 +1559,8 @@ out_pos.z += 2.0;
 }
 out_color = vec4(1. / 255., 0, 0, dist <= 0. ? (1. / 255.) : 0.);
 }
-#endif`,"line.frag":`precision lowp float;
+#endif`,
+        "line.frag": `precision lowp float;
 #include <util/encoding.glsl>
 #include <materials/constants.glsl>
 #include <materials/symbologyTypeUtils.glsl>
@@ -1316,7 +1594,8 @@ v_id
 );
 gl_FragColor = shadeLine(inputs);
 }
-#endif`,"line.vert":`precision highp float;
+#endif`,
+        "line.vert": `precision highp float;
 attribute vec4 a_color;
 attribute vec4 a_offsetAndNormal;
 attribute vec2 a_accumulatedDistanceAndHalfWidth;
@@ -1385,7 +1664,10 @@ gl_Position = vec4(clip(outputs.color, pos, getFilterFlags(), a_zoomRange), 1.0)
 void main() {
 INIT;
 draw();
-}`},pie:{"pie.frag":`precision mediump float;
+}`,
+      },
+      pie: {
+        "pie.frag": `precision mediump float;
 #include <util/atan2.glsl>
 #include <materials/constants.glsl>
 #include <materials/utils.glsl>
@@ -1503,7 +1785,8 @@ vec4 color = getColor();
 color.a = step(1.0 / 255.0, color.a);
 #endif
 gl_FragColor = color;
-}`,"pie.vert":`precision highp float;
+}`,
+        "pie.vert": `precision highp float;
 attribute vec4 a_color;
 attribute vec4 a_outlineColor;
 attribute vec4 a_sizeAndOutlineWidth;
@@ -1638,7 +1921,11 @@ gl_Position = vec4(clip(v_color, out_pos, filterFlags, a_zoomRange), 1.0);
 #else
 gl_Position = vec4(clip(v_color, v_pos, filterFlags, a_zoomRange), 1.0);
 #endif
-}`},shared:{line:{"common.glsl":`#if !defined(SYMBOLOGY_TYPE_IS_OUTLINE_FILL_LIKE) && defined(PATTERN)
+}`,
+      },
+      shared: {
+        line: {
+          "common.glsl": `#if !defined(SYMBOLOGY_TYPE_IS_OUTLINE_FILL_LIKE) && defined(PATTERN)
 uniform mediump vec2 u_mosaicSize;
 varying mediump float v_sampleAlphaOnly;
 #endif
@@ -1660,7 +1947,8 @@ highp float accumulatedDistance;
 #endif
 #endif
 highp vec3 id;
-};`,"line.frag":`uniform lowp float u_blur;
+};`,
+          "line.frag": `uniform lowp float u_blur;
 #if !defined(SYMBOLOGY_TYPE_IS_OUTLINE_FILL_LIKE) && !defined(HIGHLIGHT)
 #if defined(PATTERN) || defined(SDF)
 uniform sampler2D u_texture;
@@ -1713,7 +2001,8 @@ discard;
 out_color = vec4(line.id, 0.0);
 #endif
 return out_color;
-}`,"line.vert":`float getBaseLineHalfWidth(in float lineHalfWidth, in float referenceHalfWidth) {
+}`,
+          "line.vert": `float getBaseLineHalfWidth(in float lineHalfWidth, in float referenceHalfWidth) {
 #ifdef VV_SIZE
 float refLineWidth = 2.0 * referenceHalfWidth;
 return 0.5 * (lineHalfWidth / max(referenceHalfWidth, EPSILON)) * getSize(refLineWidth);
@@ -1789,12 +2078,17 @@ in_accumulatedDist * u_zoomFactor + dot(in_segmentDirection, dist),
 #endif
 norm(in_id)
 );
-}`}},"symbologyTypeUtils.glsl":`#if SYMBOLOGY_TYPE == SYMBOLOGY_TYPE_OUTLINE_FILL || SYMBOLOGY_TYPE == SYMBOLOGY_TYPE_OUTLINE_FILL_SIMPLE
+}`,
+        },
+      },
+      "symbologyTypeUtils.glsl": `#if SYMBOLOGY_TYPE == SYMBOLOGY_TYPE_OUTLINE_FILL || SYMBOLOGY_TYPE == SYMBOLOGY_TYPE_OUTLINE_FILL_SIMPLE
 #define SYMBOLOGY_TYPE_IS_OUTLINE_FILL_LIKE
 #endif
 #if SYMBOLOGY_TYPE == SYMBOLOGY_TYPE_SIMPLE || SYMBOLOGY_TYPE == SYMBOLOGY_TYPE_OUTLINE_FILL_SIMPLE
 #define SYMBOLOGY_TYPE_IS_SIMPLE_LIKE
-#endif`,text:{"common.glsl":`uniform highp vec2 u_mosaicSize;
+#endif`,
+      text: {
+        "common.glsl": `uniform highp vec2 u_mosaicSize;
 varying highp vec3 v_id;
 varying mediump vec3 v_pos;
 varying lowp float v_opacity;
@@ -1802,7 +2096,9 @@ varying lowp vec4 v_color;
 varying highp vec2 v_tex;
 varying mediump float v_antialiasingWidth;
 varying mediump float v_edgeDistanceOffset;
-varying lowp float v_transparency;`,"hittest.glsl":"#include <materials/hittest/common.glsl>","text.frag":`precision mediump float;
+varying lowp float v_transparency;`,
+        "hittest.glsl": "#include <materials/hittest/common.glsl>",
+        "text.frag": `precision mediump float;
 #include <materials/text/common.glsl>
 uniform lowp sampler2D u_texture;
 #ifdef HITTEST
@@ -1827,7 +2123,8 @@ return alpha * v_color * v_opacity;
 void main()
 {
 gl_FragColor = getColor();
-}`,"text.vert":`precision highp float;
+}`,
+        "text.vert": `precision highp float;
 #include <materials/utils.glsl>
 #include <materials/vcommon.glsl>
 #include <materials/text/common.glsl>
@@ -1885,7 +2182,9 @@ gl_Position = vec4(clip(v_color, out_pos, getFilterFlags(), a_zoomRange), 1.0);
 #else
 gl_Position =  vec4(clip(v_color, v_pos, getFilterFlags(), a_zoomRange), 1.0);
 #endif
-}`},"utils.glsl":`float rshift(in float u32, in int amount) {
+}`,
+      },
+      "utils.glsl": `float rshift(in float u32, in int amount) {
 return floor(u32 / pow(2.0, float(amount)));
 }
 float getBit(in float bitset, in int bitIndex) {
@@ -1928,7 +2227,8 @@ highp float c = 43758.5453;
 highp float dt = dot(co, vec2(a,b));
 highp float sn = mod(dt, 3.14);
 return fract(sin(sn) * c);
-}`,"vcommon.glsl":`#include <materials/constants.glsl>
+}`,
+      "vcommon.glsl": `#include <materials/constants.glsl>
 #include <materials/utils.glsl>
 #include <materials/attributeData.glsl>
 #include <materials/vv.glsl>
@@ -2024,7 +2324,8 @@ pos.z += 2.0 * (1.0 - getHighlightBit(filterFlags));
 #endif
 pos.z += 2.0 * (step(minMaxZoom.y, u_currentZoom) + (1.0 - step(minMaxZoom.x, u_currentZoom)));
 return pos;
-}`,"vv.glsl":`#if defined(VV_SIZE_MIN_MAX_VALUE) || defined(VV_SIZE_SCALE_STOPS) || defined(VV_SIZE_FIELD_STOPS) || defined(VV_SIZE_UNIT_VALUE)
+}`,
+      "vv.glsl": `#if defined(VV_SIZE_MIN_MAX_VALUE) || defined(VV_SIZE_SCALE_STOPS) || defined(VV_SIZE_FIELD_STOPS) || defined(VV_SIZE_UNIT_VALUE)
 #define VV_SIZE
 #endif
 #if defined(VV_COLOR) || defined(VV_SIZE) || defined(VV_OPACITY) || defined(VV_ROTATION)
@@ -2180,14 +2481,19 @@ return getVVUnitValue(vvSize, size);
 #else
 return size;
 #endif
-}`},overlay:{overlay:{"overlay.frag":`precision lowp float;
+}`,
+    },
+    overlay: {
+      overlay: {
+        "overlay.frag": `precision lowp float;
 uniform lowp sampler2D u_texture;
 uniform lowp float u_opacity;
 varying mediump vec2 v_uv;
 void main() {
 vec4 color = texture2D(u_texture, v_uv);
 gl_FragColor = color *  u_opacity;
-}`,"overlay.vert":`precision mediump float;
+}`,
+        "overlay.vert": `precision mediump float;
 attribute vec2 a_pos;
 attribute vec2 a_uv;
 uniform highp mat3 u_dvsMat3;
@@ -2198,12 +2504,21 @@ v_uv = a_uv;
 float w = 1.0 + dot(a_uv, u_perspective);
 vec3 pos = u_dvsMat3 * vec3(a_pos, 1.0);
 gl_Position = vec4(w * pos.xy, 0.0, w);
-}`}},"post-processing":{blit:{"blit.frag":`precision mediump float;
+}`,
+      },
+    },
+    "post-processing": {
+      blit: {
+        "blit.frag": `precision mediump float;
 uniform sampler2D u_texture;
 varying vec2 v_uv;
 void main() {
 gl_FragColor = texture2D(u_texture, v_uv);
-}`},bloom:{composite:{"composite.frag":`precision mediump float;
+}`,
+      },
+      bloom: {
+        composite: {
+          "composite.frag": `precision mediump float;
 varying vec2 v_uv;
 uniform sampler2D u_blurTexture1;
 uniform sampler2D u_blurTexture2;
@@ -2227,7 +2542,10 @@ lerpBloomFactor(u_bloomFactors[3]) * vec4(u_bloomTintColors[3], 1.0) * texture2D
 lerpBloomFactor(u_bloomFactors[4]) * vec4(u_bloomTintColors[4], 1.0) * texture2D(u_blurTexture5, v_uv)
 );
 gl_FragColor = clamp(color, 0.0, 1.0);
-}`},gaussianBlur:{"gaussianBlur.frag":`precision mediump float;
+}`,
+        },
+        gaussianBlur: {
+          "gaussianBlur.frag": `precision mediump float;
 uniform sampler2D u_colorTexture;
 uniform vec2 u_texSize;
 uniform vec2 u_direction;
@@ -2252,7 +2570,10 @@ pixelColorSum += (sample1 + sample2) * w;
 weightSum += 2.0 * w;
 }
 gl_FragColor = pixelColorSum /weightSum;
-}`},luminosityHighPass:{"luminosityHighPass.frag":`precision mediump float;
+}`,
+        },
+        luminosityHighPass: {
+          "luminosityHighPass.frag": `precision mediump float;
 uniform sampler2D u_texture;
 uniform vec3 u_defaultColor;
 uniform float u_defaultOpacity;
@@ -2266,7 +2587,12 @@ float v = dot(texel.xyz, luma);
 vec4 outputColor = vec4(u_defaultColor.rgb, u_defaultOpacity);
 float alpha = smoothstep(u_luminosityThreshold, u_luminosityThreshold + u_smoothWidth, v);
 gl_FragColor = mix(outputColor, texel, alpha);
-}`}},blur:{gaussianBlur:{"gaussianBlur.frag":`precision mediump float;
+}`,
+        },
+      },
+      blur: {
+        gaussianBlur: {
+          "gaussianBlur.frag": `precision mediump float;
 uniform sampler2D u_colorTexture;
 uniform vec2 u_texSize;
 uniform vec2 u_direction;
@@ -2291,7 +2617,10 @@ pixelColorSum += (sample1 + sample2) * w;
 weightSum += 2.0 * w;
 }
 gl_FragColor = pixelColorSum /weightSum;
-}`},"radial-blur":{"radial-blur.frag":`precision mediump float;
+}`,
+        },
+        "radial-blur": {
+          "radial-blur.frag": `precision mediump float;
 uniform sampler2D u_colorTexture;
 varying vec2 v_uv;
 const float sampleDist = 1.0;
@@ -2320,7 +2649,11 @@ sum *= 1.0 / 11.0;
 float t = dist * sampleStrength;
 t = clamp(t, 0.0, 1.0);
 gl_FragColor = mix(color, sum, t);
-}`}},dra:{"dra.frag":`precision mediump float;
+}`,
+        },
+      },
+      dra: {
+        "dra.frag": `precision mediump float;
 uniform sampler2D u_minColor;
 uniform sampler2D u_maxColor;
 uniform sampler2D u_texture;
@@ -2334,7 +2667,9 @@ vec3 maxColorUnpremultiply = maxColor.rgb / maxColor.a;
 vec3 colorUnpremultiply = color.rgb / color.a;
 vec3 range = maxColorUnpremultiply - minColorUnpremultiply;
 gl_FragColor = vec4(color.a * (colorUnpremultiply - minColorUnpremultiply) / range, color.a);
-}`,"min-max":{"min-max.frag":`#extension GL_EXT_draw_buffers : require
+}`,
+        "min-max": {
+          "min-max.frag": `#extension GL_EXT_draw_buffers : require
 precision mediump float;
 #define CELL_SIZE 2
 uniform sampler2D u_minTexture;
@@ -2357,7 +2692,12 @@ maxColor = max(maxColor, texture2D(u_maxTexture, offset));
 }
 gl_FragData[0] = minColor;
 gl_FragData[1] = maxColor;
-}`}},"drop-shadow":{composite:{"composite.frag":`precision mediump float;
+}`,
+        },
+      },
+      "drop-shadow": {
+        composite: {
+          "composite.frag": `precision mediump float;
 uniform sampler2D u_layerFBOTexture;
 uniform sampler2D u_blurTexture;
 uniform vec4 u_shadowColor;
@@ -2369,7 +2709,12 @@ vec3 offset = u_displayViewMat3 * vec3(u_shadowOffset, 0.0);
 vec4 layerColor = texture2D(u_layerFBOTexture, v_uv);
 vec4 blurColor = texture2D(u_blurTexture, v_uv - offset.xy / 2.0);
 gl_FragColor = ((1.0 - layerColor.a) * blurColor.a * u_shadowColor + layerColor);
-}`}},"edge-detect":{"frei-chen":{"frei-chen.frag":`precision mediump float;
+}`,
+        },
+      },
+      "edge-detect": {
+        "frei-chen": {
+          "frei-chen.frag": `precision mediump float;
 uniform sampler2D u_colorTexture;
 uniform vec2 u_texSize;
 varying vec2 v_uv;
@@ -2410,7 +2755,10 @@ cnv[i] = dp3 * dp3;
 float M = (cnv[0] + cnv[1]) + (cnv[2] + cnv[3]);
 float S = (cnv[4] + cnv[5]) + (cnv[6] + cnv[7]) + (cnv[8] + M);
 gl_FragColor = vec4(vec3(sqrt(M / S)), texture2D(u_colorTexture, v_uv).a);
-}`},sobel:{"sobel.frag":`precision mediump float;
+}`,
+        },
+        sobel: {
+          "sobel.frag": `precision mediump float;
 uniform sampler2D u_colorTexture;
 varying vec2 v_uv;
 uniform vec2 u_texSize;
@@ -2435,7 +2783,11 @@ float dp3 = dot(G[i][0], I[0]) + dot(G[i][1], I[1]) + dot(G[i][2], I[2]);
 cnv[i] = dp3 * dp3;
 }
 gl_FragColor = vec4(vec3(0.5 * sqrt(cnv[0] * cnv[0] + cnv[1] * cnv[1])), texture2D(u_colorTexture, v_uv).a);
-}`}},"edge-enhance":{"edge-enhance.frag":`precision mediump float;
+}`,
+        },
+      },
+      "edge-enhance": {
+        "edge-enhance.frag": `precision mediump float;
 uniform sampler2D u_colorTexture;
 varying vec2 v_uv;
 uniform vec2 u_texSize;
@@ -2461,7 +2813,10 @@ cnv[i] = dp3 * dp3;
 }
 vec4 color = texture2D(u_colorTexture, v_uv);
 gl_FragColor = vec4(0.5 * sqrt(cnv[0] * cnv[0] + cnv[1] * cnv[1]) * color);
-}`},filterEffect:{"filterEffect.frag":`precision mediump float;
+}`,
+      },
+      filterEffect: {
+        "filterEffect.frag": `precision mediump float;
 uniform sampler2D u_colorTexture;
 uniform mat4 u_coefficients;
 varying vec2 v_uv;
@@ -2470,13 +2825,21 @@ vec4 color = texture2D(u_colorTexture, v_uv);
 vec4 rgbw = u_coefficients * vec4(color.a > 0.0 ? color.rgb / color.a : vec3(0.0), 1.0);
 float a = color.a;
 gl_FragColor = vec4(a * rgbw.rgb, a);
-}`},pp:{"pp.vert":`precision mediump float;
+}`,
+      },
+      pp: {
+        "pp.vert": `precision mediump float;
 attribute vec2 a_position;
 varying vec2 v_uv;
 void main() {
 gl_Position = vec4(a_position, 0.0, 1.0);
 v_uv = (a_position + 1.0) / 2.0;
-}`}},raster:{bitmap:{"bitmap.frag":`precision mediump float;
+}`,
+      },
+    },
+    raster: {
+      bitmap: {
+        "bitmap.frag": `precision mediump float;
 varying highp vec2 v_texcoord;
 uniform sampler2D u_texture;
 uniform highp vec2 u_coordScale;
@@ -2489,7 +2852,8 @@ vec4 color = sampleBicubicBSpline(u_texture, v_texcoord, u_coordScale);
 vec4 color = texture2D(u_texture, v_texcoord);
 #endif
 gl_FragColor = vec4(color.rgb * u_opacity, color.a * u_opacity);
-}`,"bitmap.vert":`precision mediump float;
+}`,
+        "bitmap.vert": `precision mediump float;
 attribute vec2 a_pos;
 uniform highp mat3 u_dvsMat3;
 uniform highp vec2 u_coordScale;
@@ -2498,7 +2862,10 @@ void main()
 {
 v_texcoord = a_pos;
 gl_Position = vec4(u_dvsMat3 * vec3(a_pos * u_coordScale, 1.0), 1.0);
-}`},common:{"common.glsl":`uniform sampler2D u_image;
+}`,
+      },
+      common: {
+        "common.glsl": `uniform sampler2D u_image;
 uniform int u_bandCount;
 uniform bool u_flipY;
 uniform float u_opacity;
@@ -2536,7 +2903,8 @@ vec4 color = sampleBilinear(u_image, pixelLocation, u_srcImageSize);
 vec4 color = texture2D(u_image, pixelLocation);
 #endif
 return color;
-}`,"common.vert":`precision mediump float;
+}`,
+        "common.vert": `precision mediump float;
 attribute vec2 a_pos;
 uniform highp mat3 u_dvsMat3;
 uniform highp vec2 u_coordScale;
@@ -2547,7 +2915,8 @@ void main()
 {
 v_texcoord = a_pos * u_scale + u_offset;
 gl_Position = vec4(u_dvsMat3 * vec3(a_pos * u_coordScale, 1.0), 1.0);
-}`,"contrastBrightness.glsl":`uniform float u_contrastOffset;
+}`,
+        "contrastBrightness.glsl": `uniform float u_contrastOffset;
 uniform float u_brightnessOffset;
 vec4 adjustContrastBrightness(vec4 currentPixel, bool isFloat) {
 vec4 pixelValue = isFloat ? currentPixel * 255.0 : currentPixel;
@@ -2567,13 +2936,16 @@ v = (sign(v) + 1.0) / 2.0;
 v = vec4(mid, mid, mid, currentPixel.a);
 }
 return vec4(v.r / 255.0, v.g / 255.0, v.b / 255.0, currentPixel.a);
-}`,"inverse.glsl":`float invertValue(float value) {
+}`,
+        "inverse.glsl": `float invertValue(float value) {
 float s = sign(value);
 return (s * s) / (value + abs(s) - 1.0);
-}`,"mirror.glsl":`vec2 mirror(vec2 pos) {
+}`,
+        "mirror.glsl": `vec2 mirror(vec2 pos) {
 vec2 pos1 = abs(pos);
 return step(pos1, vec2(1.0, 1.0)) * pos1 + step(1.0, pos1) * (2.0 - pos1);
-}`,"projection.glsl":`uniform sampler2D u_transformGrid;
+}`,
+        "projection.glsl": `uniform sampler2D u_transformGrid;
 uniform vec2 u_transformSpacing;
 uniform vec2 u_transformGridSize;
 uniform vec2 u_targetImageSize;
@@ -2600,18 +2972,24 @@ srcLocation.s = dot(ur_abc.rgb, vec3(pos, 1.0));
 srcLocation.t = dot(ur_def.rgb, vec3(pos, 1.0));
 }
 return srcLocation;
-}`},flow:{"getFadeOpacity.glsl":`uniform float u_decayRate;
+}`,
+      },
+      flow: {
+        "getFadeOpacity.glsl": `uniform float u_decayRate;
 uniform float u_fadeToZero;
 float getFadeOpacity(float x) {
 float cutOff = mix(0.0, exp(-u_decayRate), u_fadeToZero);
 return (exp(-u_decayRate * x) - cutOff) / (1.0 - cutOff);
-}`,"getFragmentColor.glsl":`vec4 getFragmentColor(vec4 color, float dist, float size, float featheringSize) {
+}`,
+        "getFragmentColor.glsl": `vec4 getFragmentColor(vec4 color, float dist, float size, float featheringSize) {
 float featheringStart = clamp(0.5 - featheringSize / size, 0.0, 0.5);
 if (dist > featheringStart) {
 color *= 1.0 - (dist - featheringStart) / (0.5 - featheringStart);
 }
 return color;
-}`,imagery:{"imagery.frag":`precision highp float;
+}`,
+        imagery: {
+          "imagery.frag": `precision highp float;
 varying vec2 v_texcoord;
 uniform sampler2D u_texture;
 uniform float u_Min;
@@ -2628,7 +3006,8 @@ gl_FragColor = getColor(intensity);
 gl_FragColor.a *= getOpacity(sampled.r);
 gl_FragColor.a *= sampled.a;
 gl_FragColor.rgb *= gl_FragColor.a;
-}`,"imagery.vert":`attribute vec2 a_position;
+}`,
+          "imagery.vert": `attribute vec2 a_position;
 attribute vec2 a_texcoord;
 uniform mat3 u_dvsMat3;
 varying vec2 v_texcoord;
@@ -2636,7 +3015,10 @@ void main(void) {
 vec2 xy = (u_dvsMat3 * vec3(a_position, 1.0)).xy;
 gl_Position = vec4(xy, 0.0, 1.0);
 v_texcoord = a_texcoord;
-}`},particles:{"particles.frag":`precision highp float;
+}`,
+        },
+        particles: {
+          "particles.frag": `precision highp float;
 varying vec4 v_color;
 varying vec2 v_texcoord;
 varying float v_size;
@@ -2644,7 +3026,8 @@ uniform float u_featheringSize;
 #include <raster/flow/getFragmentColor.glsl>
 void main(void) {
 gl_FragColor = getFragmentColor(v_color, length(v_texcoord - 0.5), v_size, u_featheringSize);
-}`,"particles.vert":`attribute vec4 a_xyts0;
+}`,
+          "particles.vert": `attribute vec4 a_xyts0;
 attribute vec4 a_xyts1;
 attribute vec4 a_typeIdDurationSeed;
 attribute vec4 a_extrudeInfo;
@@ -2760,7 +3143,10 @@ gl_Position = vec4(xy, 0.0, 1.0);
 v_color.a *= fadeOpacity;
 v_color.a *= mix(1.0, introOpacity, u_introFade);
 v_color.rgb *= v_color.a;
-}`},streamlines:{"streamlines.frag":`precision highp float;
+}`,
+        },
+        streamlines: {
+          "streamlines.frag": `precision highp float;
 varying float v_side;
 varying float v_time;
 varying float v_totalTime;
@@ -2779,7 +3165,8 @@ float t = mod(v_timeSeed * (v_totalTime + u_trailLength) + u_time * u_flowSpeed,
 vec4 color = v_color * step(0.0, t) * getFadeOpacity(t / u_trailLength);
 color *= mix(1.0, 1.0 - exp(-v_time), u_introFade);
 gl_FragColor = getFragmentColor(color, length((v_side + 1.0) / 2.0 - 0.5), v_size, u_featheringSize);
-}`,"streamlines.vert":`attribute vec3 a_positionAndSide;
+}`,
+          "streamlines.vert": `attribute vec3 a_positionAndSide;
 attribute vec3 a_timeInfo;
 attribute vec2 a_extrude;
 attribute float a_speed;
@@ -2808,7 +3195,9 @@ v_color = lineColor;
 v_color.a *= lineOpacity;
 v_color.rgb *= v_color.a;
 v_size = lineSize;
-}`},"vv.glsl":`#define MAX_STOPS 8
+}`,
+        },
+        "vv.glsl": `#define MAX_STOPS 8
 #ifdef VV_COLOR
 uniform float u_color_stops[MAX_STOPS];
 uniform vec4 u_color_values[MAX_STOPS];
@@ -2911,7 +3300,10 @@ size = y2;
 float size = u_size;
 #endif
 return size + 2.0 * u_featheringSize * u_featheringOffset;
-}`},hillshade:{"hillshade.frag":`precision mediump float;
+}`,
+      },
+      hillshade: {
+        "hillshade.frag": `precision mediump float;
 varying highp vec2 v_texcoord;
 #include <raster/common/common.glsl>
 uniform int u_hillshadeType;
@@ -3024,7 +3416,10 @@ gl_FragColor = overlay(ve.r, u_minValue, u_maxValue, hillshade) * alpha * u_opac
 #else
 gl_FragColor = vec4(hillshade, hillshade, hillshade, 1.0) * alpha * u_opacity;
 #endif
-}`},lut:{"colorize.glsl":`uniform sampler2D u_colormap;
+}`,
+      },
+      lut: {
+        "colorize.glsl": `uniform sampler2D u_colormap;
 uniform float u_colormapOffset;
 uniform float u_colormapMaxIndex;
 vec4 colorize(vec4 currentPixel, float scaleFactor) {
@@ -3033,7 +3428,8 @@ vec2 clrPosition = vec2((clrIndex + 0.5) / (u_colormapMaxIndex + 1.0), 0.0);
 vec4 color = texture2D(u_colormap, clrPosition);
 vec4 result = vec4(color.rgb, color.a * currentPixel.a);
 return result;
-}`,"lut.frag":`precision mediump float;
+}`,
+        "lut.frag": `precision mediump float;
 varying highp vec2 v_texcoord;
 #include <raster/common/common.glsl>
 #include <raster/lut/colorize.glsl>
@@ -3046,12 +3442,16 @@ return;
 vec4 currentPixel = getPixel(pixelLocation);
 vec4 result = colorize(currentPixel, 1.0);
 gl_FragColor = vec4(result.xyz, 1.0) * result.a * u_opacity;
-}`},magdir:{"magdir.frag":`precision mediump float;
+}`,
+      },
+      magdir: {
+        "magdir.frag": `precision mediump float;
 varying vec4 v_color;
 uniform lowp float u_opacity;
 void main() {
 gl_FragColor = v_color * u_opacity;
-}`,"magdir.vert":`precision mediump float;
+}`,
+        "magdir.vert": `precision mediump float;
 attribute vec2 a_pos;
 attribute vec2 a_offset;
 attribute vec2 a_vv;
@@ -3080,7 +3480,10 @@ float sizePercentage = (u_symbolPercentRange.x + u_symbolPercentRange.y) / 2.0;
 vec2 pos = a_pos + offset * sizePercentage * u_symbolSize;
 v_color = u_colors[int(a_vv.x)];
 gl_Position = vec4(u_dvsMat3 * vec3(pos * u_coordScale, 1.0), 1.0);
-}`},reproject:{"reproject.frag":`precision mediump float;
+}`,
+      },
+      reproject: {
+        "reproject.frag": `precision mediump float;
 varying vec2 v_texcoord;
 #include <raster/common/common.glsl>
 void main() {
@@ -3091,14 +3494,19 @@ return;
 }
 vec4 currentPixel = getPixel(pixelLocation);
 gl_FragColor = vec4(currentPixel.rgb, 1.0) * currentPixel.a * u_opacity;
-}`,"reproject.vert":`precision mediump float;
+}`,
+        "reproject.vert": `precision mediump float;
 attribute vec2 a_position;
 varying highp vec2 v_texcoord;
 void main()
 {
 v_texcoord = a_position;
 gl_Position = vec4(2.0 * (a_position - 0.5), 0.0, 1.0);
-}`},rfx:{aspect:{"aspect.frag":`precision mediump float;
+}`,
+      },
+      rfx: {
+        aspect: {
+          "aspect.frag": `precision mediump float;
 uniform sampler2D u_image;
 varying vec2 v_texcoord;
 uniform vec2 u_cellSize;
@@ -3130,7 +3538,10 @@ float alpha = va.a * vb.a * vc.a * vd.a * ve.a * vf.a * vg.a * vh.a * vi.a * sig
 float aspect_rad = (dzx == 0.0) ? (step(0.0, dzy) * 0.5 * pi + step(dzy, 0.0) * 1.5 * pi) : mod((2.5 * pi + atan(dzy, -dzx)), 2.0 * pi);
 float aspect = aspect_rad * 180.0 / pi;
 gl_FragColor = vec4(aspect, aspect, aspect, 1.0) * alpha;
-}`},bandarithmetic:{"bandarithmetic.frag":`precision mediump float;
+}`,
+        },
+        bandarithmetic: {
+          "bandarithmetic.frag": `precision mediump float;
 uniform sampler2D u_image;
 varying vec2 v_texcoord;
 uniform mediump mat3 u_bandIndexMat3;
@@ -3193,7 +3604,10 @@ gl_FragColor = pv;
 return;
 #endif
 gl_FragColor = vec4(index, index, index, pv.a);
-}`},compositeband:{"compositeband.frag":`precision mediump float;
+}`,
+        },
+        compositeband: {
+          "compositeband.frag": `precision mediump float;
 uniform sampler2D u_image;
 uniform sampler2D u_image1;
 uniform sampler2D u_image2;
@@ -3203,7 +3617,10 @@ vec4 p0 = texture2D(u_image, v_texcoord);
 vec4 p1 = texture2D(u_image1, v_texcoord);
 vec4 p2 = texture2D(u_image2, v_texcoord);
 gl_FragColor = vec4(p0.r, p1.r, p2.r, p0.a * p1.a * p2.a);
-}`},convolution:{"convolution.frag":`precision mediump float;
+}`,
+        },
+        convolution: {
+          "convolution.frag": `precision mediump float;
 uniform sampler2D u_image;
 varying vec2 v_texcoord;
 uniform vec2 u_srcImageSize;
@@ -3229,7 +3646,10 @@ alpha *= pv.a;
 }
 rgb = clamp(rgb, u_clampRange.s, u_clampRange.t);
 gl_FragColor = vec4(rgb * alpha, alpha);
-}`},extractband:{"extractband.frag":`precision mediump float;
+}`,
+        },
+        extractband: {
+          "extractband.frag": `precision mediump float;
 uniform sampler2D u_image;
 varying vec2 v_texcoord;
 uniform mediump mat3 u_bandIndexMat3;
@@ -3237,7 +3657,10 @@ void main() {
 vec4 pv = texture2D(u_image, v_texcoord);
 vec3 pv2 = u_bandIndexMat3 * pv.rgb;
 gl_FragColor = vec4(pv2, pv.a);
-}`},local:{"local.frag":`precision mediump float;
+}`,
+        },
+        local: {
+          "local.frag": `precision mediump float;
 uniform sampler2D u_image;
 uniform sampler2D u_image1;
 #ifdef ONE_CONSTANT
@@ -3430,7 +3853,10 @@ alpha *= float(!isInvalid);
 result = floor(result + 0.5);
 #endif
 gl_FragColor = vec4(result, result, result, alpha);
-}`},mask:{"mask.frag":`precision mediump float;
+}`,
+        },
+        mask: {
+          "mask.frag": `precision mediump float;
 uniform sampler2D u_image;
 varying vec2 v_texcoord;
 #define LEN_INCLUDED_RANGES 6
@@ -3456,7 +3882,10 @@ gl_FragColor = pv * maskFactor;
 #else
 gl_FragColor = pv * redFactor;
 #endif
-}`},ndvi:{"ndvi.frag":`precision mediump float;
+}`,
+        },
+        ndvi: {
+          "ndvi.frag": `precision mediump float;
 uniform sampler2D u_image;
 varying vec2 v_texcoord;
 uniform mediump mat3 u_bandIndexMat3;
@@ -3471,7 +3900,10 @@ float index = (nir - red) * invertValue(nir + red);
 index = floor((index + 1.0) * 100.0 + 0.5);
 #endif
 gl_FragColor = vec4(index, index, index, pv.a);
-}`},remap:{"remap.frag":`precision mediump float;
+}`,
+        },
+        remap: {
+          "remap.frag": `precision mediump float;
 uniform sampler2D u_image;
 varying vec2 v_texcoord;
 #define LEN_REMAP_RANGES 18
@@ -3499,7 +3931,10 @@ bandValue = factor * (mapValue + (1.0 - includeMask) * u_unmatchMask * pv.r);
 float bandMask = factor * max(u_unmatchMask, includeMask);
 bandValue = clamp(bandValue, u_clampRange.s, u_clampRange.t);
 gl_FragColor = vec4(bandValue, bandValue, bandValue, bandMask * pv.a);
-}`},slope:{"slope.frag":`precision mediump float;
+}`,
+        },
+        slope: {
+          "slope.frag": `precision mediump float;
 uniform sampler2D u_image;
 varying vec2 v_texcoord;
 uniform vec2 u_cellSize;
@@ -3540,7 +3975,10 @@ gl_FragColor = vec4(percentRise, percentRise, percentRise, alpha);
 float degree = atan(rise2run) * 57.2957795;
 gl_FragColor = vec4(degree, degree, degree, alpha);
 #endif
-}`},stretch:{"stretch.frag":`precision mediump float;
+}`,
+        },
+        stretch: {
+          "stretch.frag": `precision mediump float;
 uniform sampler2D u_image;
 varying highp vec2 v_texcoord;
 uniform float u_minCutOff[3];
@@ -3578,7 +4016,10 @@ gl_FragColor = vec4(redVal, greenVal, blueVal, currentPixel.a);
 #else
 gl_FragColor = vec4(redVal, redVal, redVal, currentPixel.a);
 #endif
-}`},vs:{"vs.vert":`precision mediump float;
+}`,
+        },
+        vs: {
+          "vs.vert": `precision mediump float;
 attribute vec2 a_pos;
 uniform highp mat3 u_dvsMat3;
 uniform highp vec2 u_coordScale;
@@ -3587,7 +4028,11 @@ void main()
 {
 v_texcoord = a_pos;
 gl_Position = vec4(u_dvsMat3 * vec3(a_pos * u_coordScale, 1.0), 1.0);
-}`}},scalar:{"scalar.frag":`precision mediump float;
+}`,
+        },
+      },
+      scalar: {
+        "scalar.frag": `precision mediump float;
 uniform lowp float u_opacity;
 varying vec2 v_pos;
 const vec4 outlineColor = vec4(0.2, 0.2, 0.2, 1.0);
@@ -3606,7 +4051,8 @@ fillalpha2 *= (1.0-smoothstep(innerRadius + outlineSize, innerRadius + 0.1 + out
 mediump float fillalpha2 = (abs(v_pos.x) < innerSquareLength ? 1.0 : 0.0) * (abs(v_pos.y) < innerSquareLength ? 1.0 : 0.0);
 #endif
 gl_FragColor = (fillalpha2 + fillalpha1) * outlineColor * u_opacity;
-}`,"scalar.vert":`precision mediump float;
+}`,
+        "scalar.vert": `precision mediump float;
 attribute vec2 a_pos;
 attribute vec2 a_offset;
 attribute vec2 a_vv;
@@ -3629,7 +4075,10 @@ vec2 size = u_symbolSize * sizePercentage;
 vec2 pos = a_pos + a_offset * size;
 v_pos = a_offset;
 gl_Position = vec4(u_dvsMat3 * vec3(pos * u_coordScale, 1.0), 1.0);
-}`},stretch:{"stretch.frag":`precision mediump float;
+}`,
+      },
+      stretch: {
+        "stretch.frag": `precision mediump float;
 varying highp vec2 v_texcoord;
 #include <raster/common/common.glsl>
 uniform float u_minCutOff[3];
@@ -3686,18 +4135,27 @@ float greenVal = stretchOneValue(currentPixel.g, u_minCutOff[1], u_maxCutOff[1],
 float blueVal = stretchOneValue(currentPixel.b, u_minCutOff[2], u_maxCutOff[2], u_minOutput, u_maxOutput, u_factor[2], u_useGamma, u_gamma[2], u_gammaCorrection[2]);
 gl_FragColor = vec4(redVal, greenVal, blueVal, 1.0) * currentPixel.a * u_opacity;
 }
-}`}},stencil:{"stencil.frag":`void main() {
+}`,
+      },
+    },
+    stencil: {
+      "stencil.frag": `void main() {
 gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-}`,"stencil.vert":`attribute vec2 a_pos;
+}`,
+      "stencil.vert": `attribute vec2 a_pos;
 uniform mat3 u_worldExtent;
 void main() {
 gl_Position = vec4(u_worldExtent * vec3(a_pos, 1.0), 1.0);
-}`},tileInfo:{"tileInfo.frag":`uniform mediump sampler2D u_texture;
+}`,
+    },
+    tileInfo: {
+      "tileInfo.frag": `uniform mediump sampler2D u_texture;
 varying mediump vec2 v_tex;
 void main(void) {
 lowp vec4 color = texture2D(u_texture, v_tex);
 gl_FragColor = 0.75 * color;
-}`,"tileInfo.vert":`attribute vec2 a_pos;
+}`,
+      "tileInfo.vert": `attribute vec2 a_pos;
 uniform highp mat3 u_dvsMat3;
 uniform mediump float u_depth;
 uniform mediump vec2 u_coord_ratio;
@@ -3709,7 +4167,10 @@ mediump vec2 offset = u_coord_ratio * vec2(u_delta + a_pos * u_dimensions);
 vec3 v_pos = u_dvsMat3 * vec3(offset, 1.0);
 gl_Position = vec4(v_pos.xy, 0.0, 1.0);
 v_tex = a_pos;
-}`},util:{"atan2.glsl":`float atan2(in float y, in float x) {
+}`,
+    },
+    util: {
+      "atan2.glsl": `float atan2(in float y, in float x) {
 float t0, t1, t2, t3, t4;
 t3 = abs(x);
 t1 = abs(y);
@@ -3729,7 +4190,8 @@ t3 = (abs(y) > abs(x)) ? 1.570796327 - t3 : t3;
 t3 = x < 0.0 ?  3.141592654 - t3 : t3;
 t3 = y < 0.0 ? -t3 : t3;
 return t3;
-}`,"encoding.glsl":`const vec4 rgba2float_factors = vec4(
+}`,
+      "encoding.glsl": `const vec4 rgba2float_factors = vec4(
 255.0 / (256.0),
 255.0 / (256.0 * 256.0),
 255.0 / (256.0 * 256.0 * 256.0),
@@ -3737,4 +4199,2567 @@ return t3;
 );
 float rgba2float(vec4 rgba) {
 return dot(rgba, rgba2float_factors);
-}`}},kt=new At(function(n){let e=Wt;return n.split("/").forEach(t=>{e&&(e=e[t])}),e});function he(n){return kt.resolveIncludes(n)}const _e={shaders:{vertexShader:he("background/background.vert"),fragmentShader:he("background/background.frag")},attributes:new Map([["a_pos",0]])};let ue=class extends W{constructor(){super(...arguments),this._computeDesc=new Map}prepareState({context:n},e){e&&e.includes("hittest")?n.setBlendFunctionSeparate(R.ONE,R.ONE,R.ONE,R.ONE):n.setBlendFunctionSeparate(R.ONE,R.ONE_MINUS_SRC_ALPHA,R.ONE,R.ONE_MINUS_SRC_ALPHA),n.setBlendingEnabled(!0),n.setColorMask(!0,!0,!0,!0),n.setStencilWriteMask(0),n.setStencilTestEnabled(!0)}draw(n,e,t){const a=this.getGeometryType();e.commit(n);const o=e.getGeometry(a);B(o)||(n.timeline.begin(this.name),n.attributeView.bindTextures(n.context),n.context.setStencilFunction(w.EQUAL,e.stencilRef,255),o.forEachCommand(i=>{const r=Dt.load(i.materialKey).symbologyType;this.supportsSymbology(r)&&this.drawGeometry(n,e,i,t)}))}_setSharedUniforms(n,e,t){const{displayLevel:a,pixelRatio:o,state:i,passOptions:r}=e;A(r)&&r.type==="hittest"&&(n.setUniform2fv("u_hittestPos",r.position),n.setUniform1f("u_hittestDist",r.distance)),n.setUniform1f("u_pixelRatio",o),n.setUniformMatrix3fv("u_tileMat3",t.transforms.tileMat3),n.setUniformMatrix3fv("u_viewMat3",i.viewMat3),n.setUniformMatrix3fv("u_dvsMat3",t.transforms.dvs),n.setUniformMatrix3fv("u_displayViewMat3",i.displayViewMat3),n.setUniform1f("u_currentZoom",Math.round(a*pt)),n.setUniform1i("u_attributeTextureSize",e.attributeView.size),n.setUniform1i("u_attributeData0",gt),n.setUniform1i("u_attributeData1",xt),n.setUniform1i("u_attributeData2",ht),n.setUniform1i("u_attributeData3",St),n.setUniform1i("u_attributeData4",yt),n.setUniform1i("u_attributeData5",bt)}_setSizeVVUniforms(n,e,t,a){if(n.vvSizeMinMaxValue&&e.setUniform4fv("u_vvSizeMinMaxValue",t.vvSizeMinMaxValue),n.vvSizeScaleStops&&e.setUniform1f("u_vvSizeScaleStopsValue",t.vvSizeScaleStopsValue),n.vvSizeFieldStops){const o=t.getSizeVVFieldStops(a.key.level);o!=null&&(e.setUniform1fv("u_vvSizeFieldStopsValues",o.values),e.setUniform1fv("u_vvSizeFieldStopsSizes",o.sizes))}n.vvSizeUnitValue&&e.setUniform1f("u_vvSizeUnitValueWorldToPixelsRatio",t.vvSizeUnitValueToPixelsRatio)}_setColorAndOpacityVVUniforms(n,e,t){n.vvColor&&(e.setUniform1fv("u_vvColorValues",t.vvColorValues),e.setUniform4fv("u_vvColors",t.vvColors)),n.vvOpacity&&(e.setUniform1fv("u_vvOpacityValues",t.vvOpacityValues),e.setUniform1fv("u_vvOpacities",t.vvOpacities))}_setRotationVVUniforms(n,e,t){n.vvRotation&&e.setUniform1f("u_vvRotationType",t.vvMaterialParameters.vvRotationType==="geographic"?0:1)}_getTriangleDesc(n,e,t=["a_pos"]){const a=e.bufferLayouts.geometry,o=t.map(l=>a.findIndex(s=>s.name===l)),i=`${n}-${o.join("-")}`;let r=this._computeDesc.get(i);if(!r){const l=e.strides,s=e.strides.geometry,c=new Map(e.attributes),_=a.map(m=>({...m})),u=Math.max(...e.attributes.values()),v={geometry:_};let x=0;for(const m of o){const f=a[m];v.geometry.push({count:f.count,name:f.name+"1",divisor:f.divisor,normalized:f.normalized,offset:s+f.offset,stride:s,type:f.type}),v.geometry.push({count:f.count,name:f.name+"2",divisor:f.divisor,normalized:f.normalized,offset:2*s+f.offset,stride:s,type:f.type}),c.set(f.name+"1",u+ ++x),c.set(f.name+"2",u+ ++x)}r={bufferLayouts:v,attributes:c,strides:l},this._computeDesc.set(i,r)}return r}},Ue=class extends ue{dispose(){}getGeometryType(){return re.FILL}supportsSymbology(n){return n!==j.DOT_DENSITY}drawGeometry(n,e,t,a){const{context:o,painter:i,rendererInfo:r,requiredLevel:l,passOptions:s,requestRender:c,allowDelayedRender:_}=n,u=Pt.load(t.materialKey),v=je(u.data),x=A(s)&&s.type==="hittest",m=i.materialManager,{shader:f,vertexLayout:T,hittestAttributes:g}=ke(v.programSpec,function(P){const D={geometry:[{location:0,name:"a_pos",count:2,type:d.SHORT},{location:1,name:"a_id",count:3,type:d.UNSIGNED_BYTE},{location:2,name:"a_bitset",count:1,type:d.UNSIGNED_BYTE},{location:3,name:"a_color",count:4,type:d.UNSIGNED_BYTE,normalized:!0},{location:4,name:"a_aux1",count:4,type:d.UNSIGNED_SHORT},{location:5,name:"a_aux2",count:4,type:d.SHORT},{location:6,name:"a_aux3",count:4,type:d.UNSIGNED_BYTE},{location:7,name:"a_zoomRange",count:2,type:d.UNSIGNED_SHORT}]};switch(P.symbologyType){case j.SIMPLE:case j.OUTLINE_FILL_SIMPLE:D.geometry.splice(7,1),D.geometry.splice(4,1)}return{shader:"materials/fill",vertexLayout:D}}(u));let E=L.TRIANGLES,S=ee(u.data,T);x&&(S=this._getTriangleDesc(t.materialKey,S,g),E=L.POINTS);const{attributes:O,bufferLayouts:h}=S,p=m.getMaterialProgram(n,u,f,O,a);if(_&&A(c)&&!p.compiled)return void c();if(o.useProgram(p),this._setSharedUniforms(p,n,e),p.setUniform2f("u_tileOffset",512*e.key.col,512*e.key.row),u.textureBinding){i.textureManager.bindTextures(o,p,u);const P=1/2**(l-e.key.level);p.setUniform1f("u_zoomFactor",P)}const C=1/n.pixelRatio;p.setUniform1f("u_blur",C),p.setUniform1f("u_antialiasing",C),this._setSizeVVUniforms(u,p,r,e),this._setColorAndOpacityVVUniforms(u,p,r);const I=t.target.getVAO(o,h,O,x);let b=t.indexCount,y=t.indexFrom*Uint32Array.BYTES_PER_ELEMENT;x&&(b/=3,y/=3),o.bindVAO(I),this._drawFills(n,e,p,E,b,y)}_drawFills(n,e,t,a,o,i){n.context.drawElements(a,o,d.UNSIGNED_INT,i)}};const Zt={shader:"materials/icon",vertexLayout:{geometry:[{location:0,name:"a_pos",count:2,type:d.SHORT},{location:1,name:"a_vertexOffset",count:2,type:d.SHORT},{location:2,name:"a_texCoords",count:2,type:d.UNSIGNED_SHORT},{location:3,name:"a_bitSetAndDistRatio",count:2,type:d.UNSIGNED_SHORT},{location:4,name:"a_id",count:4,type:d.UNSIGNED_BYTE},{location:5,name:"a_color",count:4,type:d.UNSIGNED_BYTE,normalized:!0},{location:6,name:"a_outlineColor",count:4,type:d.UNSIGNED_BYTE,normalized:!0},{location:7,name:"a_sizeAndOutlineWidth",count:4,type:d.UNSIGNED_BYTE},{location:8,name:"a_zoomRange",count:2,type:d.UNSIGNED_SHORT}]},hittestAttributes:["a_vertexOffset","a_texCoords"]};class be extends ue{dispose(){}getGeometryType(){return re.MARKER}supportsSymbology(e){return e!==j.HEATMAP&&e!==j.PIE_CHART}drawGeometry(e,t,a,o){const{context:i,painter:r,rendererInfo:l,state:s,passOptions:c,requestRender:_,allowDelayedRender:u}=e,v=Lt.load(a.materialKey),x=je(v.data),m=A(c)&&c.type==="hittest",{shader:f,vertexLayout:T,hittestAttributes:g}=ke(x.programSpec,Zt);let E=L.TRIANGLES,S=ee(v.data,T);m&&(S=this._getTriangleDesc(a.materialKey,S,g),E=L.POINTS);const{attributes:O,bufferLayouts:h}=S,p=r.materialManager.getMaterialProgram(e,v,f,O,o);if(u&&A(_)&&!p.compiled)return void _();i.useProgram(p),v.textureBinding&&r.textureManager.bindTextures(i,p,v,!0),this._setSharedUniforms(p,e,t);const C=v.vvRotation?s.displayViewMat3:s.displayMat3;p.setUniformMatrix3fv("u_displayMat3",C),this._setSizeVVUniforms(v,p,l,t),this._setColorAndOpacityVVUniforms(v,p,l),this._setRotationVVUniforms(v,p,l);const I=a.target.getVAO(i,h,O,m);let b=a.indexCount,y=a.indexFrom*Uint32Array.BYTES_PER_ELEMENT;m&&(b/=3,y/=3),i.bindVAO(I),this._drawMarkers(e,t,p,E,b,y,m),i.bindVAO(null)}_drawMarkers(e,t,a,o,i,r,l){e.context.drawElements(o,i,d.UNSIGNED_INT,r)}}let qt=class{constructor(){this.name=this.constructor.name}createOptions(n,e){return null}};const Be=Oe.getLogger("esri.views.2d.engine.webgl.brushes.WGLBrushHeatmap");function Ge(n){return n.type==="heatmap"}const Kt={vsPath:"heatmap/heatmapResolve",fsPath:"heatmap/heatmapResolve",attributes:new Map([["a_position",0]])};class jt extends qt{constructor(){super(...arguments),this.name=this.constructor.name}createOptions({passOptions:e}){return e}dispose(){this._prevFBO=null,this._accumulateOutputTexture=J(this._accumulateOutputTexture),A(this._accumulateFramebuffer)&&this._accumulateFramebuffer.detachDepthStencilBuffer(),this._accumulateOutputStencilBuffer=J(this._accumulateOutputStencilBuffer),this._accumulateFramebuffer=J(this._accumulateFramebuffer),this._resolveGradientTexture=J(this._resolveGradientTexture),this._tileQuad=J(this._tileQuad)}bind(e){const{context:t,rendererInfo:a,passOptions:o}=e,{rendererSchema:i}=a;(!A(o)||o.type!=="hittest")&&Ge(i)&&(this._prevFBO=t.getBoundFramebufferObject(),this._prevViewport=t.getViewport(),ae(i,"heatmap"),this._loadResources(e),this._updateResources(t,i),t.bindFramebuffer(this._accumulateFramebuffer),t.setViewport(0,0,this._accumulateFramebuffer.width,this._accumulateFramebuffer.height),t.setStencilTestEnabled(!0),t.setBlendingEnabled(!0),t.setBlendFunction(R.ONE,R.ONE),t.setClearColor(0,0,0,0),t.clear(ze.COLOR_BUFFER_BIT))}unbind(){this._prevFBO=null,this._prevViewport=null}draw(e){const{context:t,painter:a,rendererInfo:o,passOptions:i}=e,{rendererSchema:r}=o;if(A(i)&&i.type==="hittest"||!Ge(r))return;const{defines:l}=this.loadQualityProfile(t),s=a.materialManager.getProgram(Kt,l);t.useProgram(s),t.bindFramebuffer(this._prevFBO),t.setViewport(0,0,this._prevViewport.width,this._prevViewport.height),t.setBlendFunction(R.ONE,R.ONE_MINUS_SRC_ALPHA),t.setStencilTestEnabled(!1);const{radius:c,minDensity:_,densityRange:u}=r;t.bindTexture(this._accumulateOutputTexture,8),t.bindTexture(this._resolveGradientTexture,9),s.setUniform1i("u_texture",8),s.setUniform1i("u_gradient",9),s.setUniform2f("u_densityMinAndInvRange",_,1/u),s.setUniform1f("u_densityNormalization",3/(c*c*Math.PI)),this._tileQuad.draw()}_loadResources({context:e,painter:t}){const{dataType:a,samplingMode:o,pixelFormat:i,internalFormat:r,shadingRate:l,requiresSharedStencilBuffer:s}=this.loadQualityProfile(e),{width:c,height:_}=this._prevViewport,u=c*l,v=_*l;this._accumulateOutputTexture??(this._accumulateOutputTexture=new xe(e,{target:pe.TEXTURE_2D,pixelFormat:i,internalFormat:r,dataType:a,samplingMode:o,wrapMode:fe.CLAMP_TO_EDGE,width:u,height:v})),s||(this._accumulateOutputStencilBuffer??(this._accumulateOutputStencilBuffer=new Ze(e,{width:u,height:v,internalFormat:Ke.DEPTH_STENCIL}))),this._accumulateFramebuffer??(this._accumulateFramebuffer=new qe(e,{},this._accumulateOutputTexture,s?t.getSharedStencilBuffer():this._accumulateOutputStencilBuffer)),this._resolveGradientTexture??(this._resolveGradientTexture=new xe(e,{target:pe.TEXTURE_2D,pixelFormat:Z.RGBA,dataType:se.UNSIGNED_BYTE,samplingMode:M.LINEAR,wrapMode:fe.CLAMP_TO_EDGE})),this._tileQuad??(this._tileQuad=new Xe(e,[0,0,1,0,0,1,1,1]))}_updateResources(e,t){const{gradientHash:a,gradient:o}=t;this._prevGradientHash!==a&&(this._resolveGradientTexture.resize(o.length/4,1),this._resolveGradientTexture.setData(o),this._prevGradientHash=a);const{shadingRate:i,requiresSharedStencilBuffer:r}=this.loadQualityProfile(e),{width:l,height:s}=this._prevViewport,c=l*i,_=s*i,{width:u,height:v}=this._accumulateFramebuffer;if(u!==c||v!==_){const x=this._accumulateFramebuffer.depthStencilAttachment;if(r&&A(x)){const{width:m,height:f}=x.descriptor;m===c&&f===_||(Be.errorOnce("Attempted to resize shared stencil buffer! Detaching instead."),this._accumulateFramebuffer.detachDepthStencilBuffer())}this._accumulateFramebuffer.resize(c,_)}r||e.blitFramebuffer(this._prevFBO,this._accumulateFramebuffer,0,0,this._prevFBO.width,this._prevFBO.height,0,0,this._accumulateFramebuffer.width,this._accumulateFramebuffer.height,ze.STENCIL_BUFFER_BIT,M.NEAREST)}loadQualityProfile(e){if(B(this._qualityProfile)){const t=function(o,i){const{textureFloat:r,colorBufferFloat:l}=o.capabilities,s=r==null?void 0:r.textureFloat,c=r==null?void 0:r.textureFloatLinear,_=r==null?void 0:r.textureHalfFloat,u=r==null?void 0:r.textureHalfFloatLinear,v=r==null?void 0:r.HALF_FLOAT,x=l==null?void 0:l.textureFloat,m=l==null?void 0:l.textureHalfFloat,f=l==null?void 0:l.floatBlend,T=st(o.driverTest).floatBufferBlend.result;if(!s&&!_)throw new te("heatmap:missing-texture-float","HeatmapRenderer requires WebGL2 or the WebGL1 extension OES_texture_float or OES_texture_half_float.");if(!x&&!m)throw new te("heatmap:missing-color-buffer-float","HeatmapRenderer requires the WebGL extension EXT_color_buffer_float or EXT_color_buffer_half_float or WEBGL_color_buffer_float.");if(!(f&&T||m))throw new te("heatmap:missing-float-blend","HeatmapRenderer requires the WebGL extension EXT_float_blend or EXT_color_buffer_half_float."+(T?"":" This device claims support for EXT_float_blend, but does not actually support it."));const g=s&&x&&f&&T,E=_&&m,S=c,O=u,h=!!(l!=null&&l.R32F),p=!!(l!=null&&l.R16F);if(g&&(S||!O))return S||i.warnOnce("Missing WebGL extension OES_texture_float_linear. Heatmap quality may be reduced."),{dataType:se.FLOAT,samplingMode:S?M.LINEAR:M.NEAREST,pixelFormat:h?Z.RED:Z.RGBA,internalFormat:h?Me.R32F:Z.RGBA};if(E)return O||i.warnOnce("Missing WebGL extension OES_texture_half_float_linear. Heatmap quality may be reduced."),{dataType:v,samplingMode:O?M.LINEAR:M.NEAREST,pixelFormat:p?Z.RED:Z.RGBA,internalFormat:p?Me.R16F:Z.RGBA};throw new te("heatmap:missing-hardware-support","HeatmapRenderer requires WebGL extensions that allow it to render and blend to float or half float textures.")}(e,Be),a=e.type===ct.WEBGL1;this._qualityProfile={...t,requiresSharedStencilBuffer:a,shadingRate:a?1:.25,defines:t.dataType!==se.FLOAT?["heatmapPrecisionHalfFloat"]:[]}}return this._qualityProfile}}const Ee={geometry:[new de("a_pos",2,d.BYTE,0,2)]},pn={geometry:[new de("a_pos",2,d.BYTE,0,4),new de("a_tex",2,d.BYTE,2,4)]},gn={geometry:[new de("a_pos",2,d.UNSIGNED_SHORT,0,4)]},He={shaders:{vertexShader:he("tileInfo/tileInfo.vert"),fragmentShader:he("tileInfo/tileInfo.frag")},attributes:new Map([["a_pos",0]])},Te=300;let Xt=class extends W{constructor(){super(...arguments),this._color=q(1,0,0,1)}dispose(){var n,e,t,a;(n=this._outlineProgram)==null||n.dispose(),this._outlineProgram=null,(e=this._tileInfoProgram)==null||e.dispose(),this._tileInfoProgram=null,(t=this._outlineVertexArrayObject)==null||t.dispose(),this._outlineVertexArrayObject=null,(a=this._tileInfoVertexArrayObject)==null||a.dispose(),this._tileInfoVertexArrayObject=null,this._canvas=null}prepareState({context:n}){n.setBlendingEnabled(!0),n.setBlendFunctionSeparate(R.ONE,R.ONE_MINUS_SRC_ALPHA,R.ONE,R.ONE_MINUS_SRC_ALPHA),n.setColorMask(!0,!0,!0,!0),n.setStencilWriteMask(0),n.setStencilTestEnabled(!1)}draw(n,e){const{context:t,requestRender:a,allowDelayedRender:o}=n;if(!e.isReady)return;if(this._loadWGLResources(t),o&&A(a)&&(!this._outlineProgram.compiled||!this._tileInfoProgram.compiled))return void a();t.bindVAO(this._outlineVertexArrayObject),t.useProgram(this._outlineProgram),this._outlineProgram.setUniformMatrix3fv("u_dvsMat3",e.transforms.dvs),this._outlineProgram.setUniform2f("u_coord_range",e.rangeX,e.rangeY),this._outlineProgram.setUniform1f("u_depth",0),this._outlineProgram.setUniform4fv("u_color",this._color),t.drawArrays(L.LINE_STRIP,0,4);const i=this._getTexture(t,e);i&&(t.bindVAO(this._tileInfoVertexArrayObject),t.useProgram(this._tileInfoProgram),t.bindTexture(i,0),this._tileInfoProgram.setUniformMatrix3fv("u_dvsMat3",e.transforms.dvs),this._tileInfoProgram.setUniform1f("u_depth",0),this._tileInfoProgram.setUniform2f("u_coord_ratio",e.rangeX/e.width,e.rangeY/e.height),this._tileInfoProgram.setUniform2f("u_delta",8,8),this._tileInfoProgram.setUniform2f("u_dimensions",i.descriptor.width,i.descriptor.height),t.drawArrays(L.TRIANGLE_STRIP,0,4)),t.bindVAO()}_loadWGLResources(n){if(this._outlineProgram&&this._tileInfoProgram)return;const e=ge(n,_e),t=ge(n,He),a=new Int8Array([0,0,1,0,1,1,0,1]),o=X.createVertex(n,Q.STATIC_DRAW,a),i=new ne(n,_e.attributes,Ee,{geometry:o}),r=new Int8Array([0,0,1,0,0,1,1,1]),l=X.createVertex(n,Q.STATIC_DRAW,r),s=new ne(n,He.attributes,Ee,{geometry:l});this._outlineProgram=e,this._tileInfoProgram=t,this._outlineVertexArrayObject=i,this._tileInfoVertexArrayObject=s}_getTexture(n,e){if(e.texture&&e.triangleCountReportedInDebug===e.triangleCount)return e.texture;e.triangleCountReportedInDebug=e.triangleCount,this._canvas||(this._canvas=document.createElement("canvas"),this._canvas.setAttribute("id","canvas2d"),this._canvas.setAttribute("width","300"),this._canvas.setAttribute("height","32"),this._canvas.setAttribute("style","display:none"));const t=e.triangleCount;let a=e.key.id;e.triangleCount>0&&(a+=`, ${t}`);const o=this._canvas,i=o.getContext("2d");return i.font="24px sans-serif",i.textAlign="left",i.textBaseline="top",i.clearRect(0,0,Te,32),t>1e5?(i.fillStyle="red",i.fillRect(0,0,Te,32),i.fillStyle="black"):(i.clearRect(0,0,Te,32),i.fillStyle="blue"),i.fillText(a,0,0),e.texture=new xe(n,{target:pe.TEXTURE_2D,pixelFormat:Z.RGBA,dataType:se.UNSIGNED_BYTE,samplingMode:M.NEAREST,wrapMode:fe.CLAMP_TO_EDGE},o),e.texture}},Qt=class extends W{constructor(){super(...arguments),this._color=q(1,0,0,1),this._initialized=!1}dispose(){this._solidProgram&&(this._solidProgram.dispose(),this._solidProgram=null),this._solidVertexArrayObject&&(this._solidVertexArrayObject.dispose(),this._solidVertexArrayObject=null)}prepareState({context:n}){n.setDepthWriteEnabled(!1),n.setDepthTestEnabled(!1),n.setStencilTestEnabled(!0),n.setBlendingEnabled(!1),n.setColorMask(!1,!1,!1,!1),n.setStencilOp(le.KEEP,le.KEEP,le.REPLACE),n.setStencilWriteMask(255)}draw(n,e){const{context:t,requestRender:a,allowDelayedRender:o}=n;this._initialized||this._initialize(t),o&&A(a)&&!this._solidProgram.compiled?a():(t.setStencilFunctionSeparate(Ct.FRONT_AND_BACK,w.GREATER,e.stencilRef,255),t.bindVAO(this._solidVertexArrayObject),t.useProgram(this._solidProgram),this._solidProgram.setUniformMatrix3fv("u_dvsMat3",e.transforms.dvs),this._solidProgram.setUniform2fv("u_coord_range",[e.rangeX,e.rangeY]),this._solidProgram.setUniform1f("u_depth",0),this._solidProgram.setUniform4fv("u_color",this._color),t.drawArrays(L.TRIANGLE_STRIP,0,4),t.bindVAO())}_initialize(n){if(this._initialized)return!0;const e=ge(n,_e);if(!e)return!1;const t=new Int8Array([0,0,1,0,0,1,1,1]),a=X.createVertex(n,Q.STATIC_DRAW,t),o=new ne(n,_e.attributes,Ee,{geometry:a});return this._solidProgram=e,this._solidVertexArrayObject=o,this._initialized=!0,!0}};const Ye=1/65536,$t={marker:be,line:class extends ue{dispose(){}getGeometryType(){return re.LINE}supportsSymbology(n){return!0}drawGeometry(n,e,t,a){const{context:o,painter:i,rendererInfo:r,displayLevel:l,passOptions:s,requestRender:c,allowDelayedRender:_}=n,u=Nt.load(t.materialKey),v=A(s)&&s.type==="hittest";let x=(C=>ee(C.data,{geometry:[{location:0,name:"a_pos",count:2,type:d.SHORT},{location:1,name:"a_id",count:4,type:d.UNSIGNED_BYTE},{location:2,name:"a_color",count:4,type:d.UNSIGNED_BYTE,normalized:!0},{location:3,name:"a_offsetAndNormal",count:4,type:d.BYTE},{location:4,name:"a_accumulatedDistanceAndHalfWidth",count:2,type:d.UNSIGNED_SHORT},{location:5,name:"a_tlbr",count:4,type:d.UNSIGNED_SHORT},{location:6,name:"a_segmentDirection",count:4,type:d.BYTE},{location:7,name:"a_aux",count:2,type:d.UNSIGNED_SHORT},{location:8,name:"a_zoomRange",count:2,type:d.UNSIGNED_SHORT}]}))(u),m=L.TRIANGLES;v&&(x=this._getTriangleDesc(t.materialKey,x),m=L.POINTS);const{attributes:f,bufferLayouts:T}=x,g=i.materialManager.getMaterialProgram(n,u,"materials/line",f,a);if(_&&A(c)&&!g.compiled)return void c();const E=1/n.pixelRatio;o.useProgram(g),this._setSharedUniforms(g,n,e),u.textureBinding&&i.textureManager.bindTextures(o,g,u);const S=2**(l-e.key.level);g.setUniform1f("u_zoomFactor",S),g.setUniform1f("u_blur",0+E),g.setUniform1f("u_antialiasing",E),this._setSizeVVUniforms(u,g,r,e),this._setColorAndOpacityVVUniforms(u,g,r),o.setFaceCullingEnabled(!1);const O=t.target.getVAO(o,T,f,v);let h=t.indexCount,p=t.indexFrom*Uint32Array.BYTES_PER_ELEMENT;v&&(h/=3,p/=3),o.bindVAO(O),o.drawElements(m,h,d.UNSIGNED_INT,p)}},fill:Ue,text:class extends ue{dispose(){}getGeometryType(){return re.TEXT}supportsSymbology(n){return!0}drawGeometry(n,e,t,a){const{context:o,painter:i,rendererInfo:r,state:l,passOptions:s,requestRender:c,allowDelayedRender:_}=n,u=Mt.load(t.materialKey),v=A(s)&&s.type==="hittest",{bufferLayouts:x,attributes:m}=(S=>ee(S.data,{geometry:[{location:0,name:"a_pos",count:2,type:d.SHORT},{location:1,name:"a_id",count:4,type:d.UNSIGNED_BYTE},{location:2,name:"a_color",count:4,type:d.UNSIGNED_BYTE,normalized:!0},{location:3,name:"a_haloColor",count:4,type:d.UNSIGNED_BYTE,normalized:!0},{location:4,name:"a_texFontSize",count:4,type:d.UNSIGNED_BYTE},{location:5,name:"a_aux",count:4,type:d.BYTE},{location:6,name:"a_zoomRange",count:2,type:d.UNSIGNED_SHORT},{location:7,name:"a_vertexOffset",count:2,type:d.SHORT},{location:8,name:"a_texCoords",count:2,type:d.UNSIGNED_SHORT}]}))(u),f=i.materialManager.getMaterialProgram(n,u,"materials/text",m,a);if(_&&A(c)&&!f.compiled)return void c();o.useProgram(f);let T=L.TRIANGLES;v&&(T=L.POINTS),this._setSharedUniforms(f,n,e),i.textureManager.bindTextures(o,f,u),f.setUniformMatrix3fv("u_displayMat3",l.displayMat3),f.setUniformMatrix3fv("u_displayViewMat3",l.displayViewMat3),this._setSizeVVUniforms(u,f,r,e),this._setColorAndOpacityVVUniforms(u,f,r),this._setRotationVVUniforms(u,f,r);const g=t.target.getVAO(o,x,m),E=t.indexFrom*Uint32Array.BYTES_PER_ELEMENT;f.setUniform1f("u_isHaloPass",0),f.setUniform1f("u_isBackgroundPass",1),o.bindVAO(g),o.drawElements(T,t.indexCount,d.UNSIGNED_INT,E),f.setUniform1f("u_isHaloPass",1),f.setUniform1f("u_isBackgroundPass",0),o.drawElements(L.TRIANGLES,t.indexCount,d.UNSIGNED_INT,E),f.setUniform1f("u_isHaloPass",0),f.setUniform1f("u_isBackgroundPass",0),o.drawElements(T,t.indexCount,d.UNSIGNED_INT,E)}},label:class extends ue{dispose(){}getGeometryType(){return re.LABEL}supportsSymbology(n){return!0}drawGeometry(n,e,t,a){const{context:o,painter:i,state:r,rendererInfo:l,requestRender:s,allowDelayedRender:c}=n,_=Rt.load(t.materialKey),u=_.mapAligned?1:0;if(!u&&Math.abs(e.key.level-Math.round(100*n.displayLevel)/100)>=1)return;const{bufferLayouts:v,attributes:x}=(E=>ee(E.data,{geometry:[{location:0,name:"a_pos",count:2,type:d.SHORT},{location:1,name:"a_id",count:4,type:d.UNSIGNED_BYTE},{location:2,name:"a_color",count:4,type:d.UNSIGNED_BYTE,normalized:!0},{location:3,name:"a_haloColor",count:4,type:d.UNSIGNED_BYTE,normalized:!0},{location:4,name:"a_texAndSize",count:4,type:d.UNSIGNED_BYTE},{location:5,name:"a_refSymbolAndPlacementOffset",count:4,type:d.UNSIGNED_BYTE},{location:6,name:"a_glyphData",count:4,type:d.UNSIGNED_BYTE},{location:7,name:"a_vertexOffset",count:2,type:d.SHORT},{location:8,name:"a_texCoords",count:2,type:d.UNSIGNED_SHORT}]}))(_),m=i.materialManager.getMaterialProgram(n,_,"materials/label",x,a);if(c&&A(s)&&!m.compiled)return void s();n.context.setStencilFunction(w.EQUAL,0,255),o.useProgram(m),this._setSharedUniforms(m,n,e),i.textureManager.bindTextures(o,m,_);const f=u===1?r.displayViewMat3:r.displayMat3;this._setSizeVVUniforms(_,m,l,e),m.setUniform1f("u_mapRotation",Math.floor(r.rotation/360*254)),m.setUniform1f("u_mapAligned",u),m.setUniformMatrix3fv("u_displayMat3",f),m.setUniform1f("u_opacity",1),m.setUniform2fv("u_screenSize",n.state.size);const T=t.target.getVAO(o,v,x),g=t.indexFrom*Uint32Array.BYTES_PER_ELEMENT;o.bindVAO(T),m.setUniform1f("u_isHaloPass",0),m.setUniform1f("u_isBackgroundPass",1),o.drawElements(L.TRIANGLES,t.indexCount,d.UNSIGNED_INT,g),m.setUniform1f("u_isHaloPass",1),m.setUniform1f("u_isBackgroundPass",0),o.drawElements(L.TRIANGLES,t.indexCount,d.UNSIGNED_INT,g),m.setUniform1f("u_isHaloPass",0),m.setUniform1f("u_isBackgroundPass",0),o.drawElements(L.TRIANGLES,t.indexCount,d.UNSIGNED_INT,g),o.setStencilTestEnabled(!0),o.setBlendingEnabled(!0)}},clip:class extends W{constructor(){super(...arguments),this._color=q(0,1,0,1)}dispose(){this._program&&this._program.dispose()}prepareState({context:n}){n.setStencilTestEnabled(!0),n.setBlendingEnabled(!1),n.setFaceCullingEnabled(!1),n.setColorMask(!1,!1,!1,!1),n.setStencilOp(le.KEEP,le.KEEP,le.REPLACE),n.setStencilWriteMask(255),n.setStencilFunction(w.ALWAYS,0,255)}draw(n,e){const{context:t,state:a,requestRender:o,allowDelayedRender:i}=n,r=ee("clip",{geometry:[{location:0,name:"a_pos",count:2,type:d.SHORT}]}),l=e.getVAO(t,a,r.attributes,r.bufferLayouts);B(l.indexBuffer)||(this._program||(this._program=ge(t,_e)),i&&A(o)&&!this._program.compiled?o():(t.useProgram(this._program),this._program.setUniform2fv("u_coord_range",[1,1]),this._program.setUniform4fv("u_color",this._color),this._program.setUniformMatrix3fv("u_dvsMat3",a.displayMat3),t.bindVAO(l),t.drawElements(L.TRIANGLES,l.indexBuffer.size,d.UNSIGNED_INT,0),t.bindVAO()))}},stencil:Qt,bitmap:class extends W{constructor(){super(...arguments),this._desc={vsPath:"raster/bitmap",fsPath:"raster/bitmap",attributes:new Map([["a_pos",0]])}}dispose(){this._quad&&this._quad.dispose()}prepareState({context:n}){n.setBlendingEnabled(!0),n.setColorMask(!0,!0,!0,!0),n.setStencilWriteMask(0),n.setStencilTestEnabled(!0)}draw(n,e){const{context:t,renderingOptions:a,painter:o,requestRender:i,allowDelayedRender:r}=n;if(!e.source||!e.isReady)return;const l=((v,x,m)=>{if(m.samplingMode==="dynamic"){const{state:f}=v,T=x.resolution/x.pixelRatio/f.resolution,g=Math.round(v.pixelRatio)!==v.pixelRatio,E=T>1.05||T<.95;return f.rotation||E||g||x.isSourceScaled||x.rotation?ye.bilinear:ye.nearest}return ye[m.samplingMode]})(n,e,a),s=o.materialManager.getProgram(this._desc,l.defines);if(r&&A(i)&&!s.compiled)return void i();n.timeline.begin(this.name),e.blendFunction==="additive"?t.setBlendFunctionSeparate(R.ONE,R.ONE,R.ONE,R.ONE):t.setBlendFunctionSeparate(R.ONE,R.ONE_MINUS_SRC_ALPHA,R.ONE,R.ONE_MINUS_SRC_ALPHA),t.setStencilFunction(w.EQUAL,e.stencilRef,255),this._quad||(this._quad=new Xe(t,[0,0,1,0,0,1,1,1]));const{coordScale:c,computedOpacity:_,transforms:u}=e;e.setSamplingProfile(l),e.bind(n.context,ve),t.useProgram(s),s.setUniformMatrix3fv("u_dvsMat3",u.dvs),s.setUniform1i("u_texture",ve),s.setUniform2fv("u_coordScale",c),s.setUniform1f("u_opacity",_),this._quad.draw(),n.timeline.end(this.name)}},overlay:class extends W{constructor(){super(...arguments),this._desc={vsPath:"overlay/overlay",fsPath:"overlay/overlay",attributes:new Map([["a_pos",0],["a_uv",1]])}}dispose(){}prepareState({context:n}){n.setBlendingEnabled(!0),n.setColorMask(!0,!0,!0,!0),n.setBlendFunctionSeparate(R.ONE,R.ONE_MINUS_SRC_ALPHA,R.ONE,R.ONE_MINUS_SRC_ALPHA),n.setStencilWriteMask(0),n.setStencilTestEnabled(!0),n.setStencilFunction(w.GREATER,255,255)}draw(n,e){const{context:t,painter:a,requestRender:o,allowDelayedRender:i}=n;if(!e.isReady)return;const{computedOpacity:r,dvsMat3:l,isWrapAround:s,perspectiveTransform:c,texture:_}=e;n.timeline.begin(this.name);const u=a.materialManager.getProgram(this._desc);if(i&&A(o)&&!u.compiled)return void o();const v=ee("overlay",{geometry:[{location:0,name:"a_pos",count:2,type:d.FLOAT}],tex:[{location:1,name:"a_uv",count:2,type:d.UNSIGNED_SHORT}]}),x=e.getVAO(t,v.bufferLayouts,v.attributes);if(!x)return;t.bindVAO(x),t.useProgram(u),t.bindTexture(_,ve),u.setUniformMatrix3fv("u_dvsMat3",l),u.setUniform1i("u_texture",ve),u.setUniform1f("u_opacity",r),u.setUniform2fv("u_perspective",c);const m=s?10:4;t.drawArrays(L.TRIANGLE_STRIP,0,m),t.bindVAO(),n.timeline.end(this.name)}},tileInfo:Xt,vtlBackground:class extends W{constructor(){super(...arguments),this._color=q(1,0,0,1),this._patternMatrix=Ie(),this._programOptions={id:!1,pattern:!1}}dispose(){this._vao&&(this._vao.dispose(),this._vao=null)}drawMany(n,e){const{context:t,painter:a,styleLayerUID:o,requestRender:i,allowDelayedRender:r}=n;this._loadWGLResources(n);const l=n.displayLevel,s=n.styleLayer,c=s.backgroundMaterial,_=a.vectorTilesMaterialManager,u=s.getPaintValue("background-color",l),v=s.getPaintValue("background-opacity",l),x=s.getPaintValue("background-pattern",l),m=x!==void 0,f=u[3]*v,T=1|window.devicePixelRatio,g=n.spriteMosaic;let E,S;const O=T>Re?2:1,h=n.drawPhase===V.HITTEST,p=this._programOptions;p.id=h,p.pattern=m;const C=_.getMaterialProgram(t,c,p);if(r&&A(i)&&!C.compiled)i();else{if(t.bindVAO(this._vao),t.useProgram(C),m){const I=g.getMosaicItemPosition(x,!0);if(A(I)){const{tl:b,br:y,page:P}=I;E=y[0]-b[0],S=y[1]-b[1];const D=g.getPageSize(P);A(D)&&(g.bind(t,M.LINEAR,P,Y),C.setUniform4f("u_tlbr",b[0],b[1],y[0],y[1]),C.setUniform2fv("u_mosaicSize",D),C.setUniform1i("u_texture",Y))}C.setUniform1f("u_opacity",v)}else this._color[0]=f*u[0],this._color[1]=f*u[1],this._color[2]=f*u[2],this._color[3]=f,C.setUniform4fv("u_color",this._color);if(C.setUniform1f("u_depth",s.z||0),h){const I=ce(o+1);C.setUniform4fv("u_id",I)}for(const I of e){if(C.setUniform1f("u_coord_range",I.rangeX),C.setUniformMatrix3fv("u_dvsMat3",I.transforms.dvs),m){const b=Math.max(2**(Math.round(l)-I.key.level),1),y=O*I.width*b,P=y/De(E),D=y/De(S);this._patternMatrix[0]=P,this._patternMatrix[4]=D,C.setUniformMatrix3fv("u_pattern_matrix",this._patternMatrix)}t.setStencilFunction(w.EQUAL,0,255),t.drawArrays(L.TRIANGLE_STRIP,0,4)}}}_loadWGLResources(n){if(this._vao)return;const{context:e,styleLayer:t}=n,a=t.backgroundMaterial,o=new Int8Array([0,0,1,0,0,1,1,1]),i=X.createVertex(e,Q.STATIC_DRAW,o),r=new ne(e,a.getAttributeLocations(),a.getLayoutInfo(),{geometry:i});this._vao=r}},vtlFill:class extends W{constructor(){super(...arguments),this._fillProgramOptions={id:!1,pattern:!1},this._outlineProgramOptions={id:!1}}dispose(){}drawMany(n,e){const{displayLevel:t,drawPhase:a,renderPass:o,spriteMosaic:i,styleLayerUID:r}=n;let l=!1;for(const O of e)if(O.layerData.has(r)){const h=O.layerData.get(r);if(h.fillIndexCount>0||h.outlineIndexCount>0){l=!0;break}}if(!l)return;const s=n.styleLayer,c=s.getPaintProperty("fill-pattern"),_=c!==void 0,u=_&&c.isDataDriven;let v;if(_&&!u){const O=c.getValue(t);v=i.getMosaicItemPosition(O,!0)}const x=!_&&s.getPaintValue("fill-antialias",t);let m,f=!0,T=1;if(!_){const O=s.getPaintProperty("fill-color"),h=s.getPaintProperty("fill-opacity");if(!(O!=null&&O.isDataDriven)&&!(h!=null&&h.isDataDriven)){const p=s.getPaintValue("fill-color",t);T=s.getPaintValue("fill-opacity",t)*p[3],T>=1&&(f=!1)}}if(f&&o==="opaque")return;a===V.HITTEST&&(m=ce(r+1));const g=s.getPaintValue("fill-translate",t),E=s.getPaintValue("fill-translate-anchor",t);(f||o!=="translucent")&&this._drawFill(n,r,s,e,g,E,_,v,u,m);const S=!s.hasDataDrivenOutlineColor&&s.outlineUsesFillColor&&T<1;x&&o!=="opaque"&&!S&&this._drawOutline(n,r,s,e,g,E,m)}_drawFill(n,e,t,a,o,i,r,l,s,c){if(r&&!s&&B(l))return;const{context:_,displayLevel:u,state:v,drawPhase:x,painter:m,pixelRatio:f,spriteMosaic:T,requestRender:g,allowDelayedRender:E}=n,S=t.fillMaterial,O=m.vectorTilesMaterialManager,h=f>Re?2:1,p=x===V.HITTEST,C=this._fillProgramOptions;C.id=p,C.pattern=r;const I=O.getMaterialProgram(_,S,C);if(E&&A(g)&&!I.compiled)return void g();if(_.useProgram(I),A(l)){const{page:y}=l,P=T.getPageSize(y);A(P)&&(T.bind(_,M.LINEAR,y,Y),I.setUniform2fv("u_mosaicSize",P),I.setUniform1i("u_texture",Y))}I.setUniformMatrix3fv("u_displayMat3",i===ie.VIEWPORT?v.displayMat3:v.displayViewMat3),I.setUniform2fv("u_fillTranslation",o),I.setUniform1f("u_depth",t.z+Ye),p&&I.setUniform4fv("u_id",c);let b=-1;for(const y of a){if(!y.layerData.has(e))continue;y.key.level!==b&&(b=y.key.level,S.setDataUniforms(I,u,t,b,T));const P=y.layerData.get(e);if(!P.fillIndexCount)continue;P.prepareForRendering(_);const D=P.fillVertexArrayObject;if(!B(D)){if(_.bindVAO(D),I.setUniformMatrix3fv("u_dvsMat3",y.transforms.dvs),_.setStencilFunction(w.EQUAL,y.stencilRef,255),r){const z=Math.max(2**(Math.round(u)-y.key.level),1),F=y.rangeX/(h*y.width*z);I.setUniform1f("u_patternFactor",F)}if(s){const z=P.patternMap;if(!z)continue;for(const[F,$]of z){const K=T.getPageSize(F);A(K)&&(T.bind(_,M.LINEAR,F,Y),I.setUniform2fv("u_mosaicSize",K),I.setUniform1i("u_texture",Y),_.drawElements(L.TRIANGLES,$[1],d.UNSIGNED_INT,Uint32Array.BYTES_PER_ELEMENT*$[0]))}}else _.drawElements(L.TRIANGLES,P.fillIndexCount,d.UNSIGNED_INT,Uint32Array.BYTES_PER_ELEMENT*P.fillIndexStart);y.triangleCount+=P.fillIndexCount/3}}}_drawOutline(n,e,t,a,o,i,r){const{context:l,displayLevel:s,state:c,drawPhase:_,painter:u,pixelRatio:v,spriteMosaic:x,requestRender:m,allowDelayedRender:f}=n,T=t.outlineMaterial,g=u.vectorTilesMaterialManager,E=.75/v,S=_===V.HITTEST,O=this._outlineProgramOptions;O.id=S;const h=g.getMaterialProgram(l,T,O);if(f&&A(m)&&!h.compiled)return void m();l.useProgram(h),h.setUniformMatrix3fv("u_displayMat3",i===ie.VIEWPORT?c.displayMat3:c.displayViewMat3),h.setUniform2fv("u_fillTranslation",o),h.setUniform1f("u_depth",t.z+Ye),h.setUniform1f("u_outline_width",E),S&&h.setUniform4fv("u_id",r);let p=-1;for(const C of a){if(!C.layerData.has(e))continue;C.key.level!==p&&(p=C.key.level,T.setDataUniforms(h,s,t,p,x));const I=C.layerData.get(e);if(I.prepareForRendering(l),!I.outlineIndexCount)continue;const b=I.outlineVertexArrayObject;B(b)||(l.bindVAO(b),h.setUniformMatrix3fv("u_dvsMat3",C.transforms.dvs),l.setStencilFunction(w.EQUAL,C.stencilRef,255),l.drawElements(L.TRIANGLES,I.outlineIndexCount,d.UNSIGNED_INT,Uint32Array.BYTES_PER_ELEMENT*I.outlineIndexStart),C.triangleCount+=I.outlineIndexCount/3)}}},vtlLine:class extends W{constructor(){super(...arguments),this._programOptions={id:!1,pattern:!1,sdf:!1}}dispose(){}drawMany(n,e){const{context:t,displayLevel:a,state:o,drawPhase:i,painter:r,pixelRatio:l,spriteMosaic:s,styleLayerUID:c,requestRender:_,allowDelayedRender:u}=n;if(!e.some(D=>{var z;return((z=D.layerData.get(c))==null?void 0:z.lineIndexCount)??!1}))return;const v=n.styleLayer,x=v.lineMaterial,m=r.vectorTilesMaterialManager,f=v.getPaintValue("line-translate",a),T=v.getPaintValue("line-translate-anchor",a),g=v.getPaintProperty("line-pattern"),E=g!==void 0,S=E&&g.isDataDriven;let O,h;if(E&&!S){const D=g.getValue(a);O=s.getMosaicItemPosition(D)}let p=!1;if(!E){const D=v.getPaintProperty("line-dasharray");if(h=D!==void 0,p=h&&D.isDataDriven,h&&!p){const z=D.getValue(a),F=v.getDashKey(z,v.getLayoutValue("line-cap",a));O=s.getMosaicItemPosition(F)}}const C=1/l,I=i===V.HITTEST,b=this._programOptions;b.id=I,b.pattern=E,b.sdf=h;const y=m.getMaterialProgram(t,x,b);if(u&&A(_)&&!y.compiled)return void _();if(t.useProgram(y),y.setUniformMatrix3fv("u_displayViewMat3",o.displayViewMat3),y.setUniformMatrix3fv("u_displayMat3",T===ie.VIEWPORT?o.displayMat3:o.displayViewMat3),y.setUniform2fv("u_lineTranslation",f),y.setUniform1f("u_depth",v.z),y.setUniform1f("u_antialiasing",C),I){const D=ce(c+1);y.setUniform4fv("u_id",D)}if(O&&A(O)){const{page:D}=O,z=s.getPageSize(D);A(z)&&(s.bind(t,M.LINEAR,D,Y),y.setUniform2fv("u_mosaicSize",z),y.setUniform1i("u_texture",Y))}let P=-1;for(const D of e){if(!D.layerData.has(c))continue;D.key.level!==P&&(P=D.key.level,x.setDataUniforms(y,a,v,P,s));const z=2**(a-P)/l;y.setUniform1f("u_zoomFactor",z);const F=D.layerData.get(c);if(!F.lineIndexCount)continue;F.prepareForRendering(t);const $=F.lineVertexArrayObject;if(!B($)){if(t.bindVAO($),y.setUniformMatrix3fv("u_dvsMat3",D.transforms.dvs),t.setStencilFunction(w.EQUAL,D.stencilRef,255),S||p){const K=F.patternMap;if(!K)continue;for(const[N,oe]of K){const H=s.getPageSize(N);A(H)&&(s.bind(t,M.LINEAR,N,Y),y.setUniform2fv("u_mosaicSize",H),y.setUniform1i("u_texture",Y),t.drawElements(L.TRIANGLES,oe[1],d.UNSIGNED_INT,Uint32Array.BYTES_PER_ELEMENT*oe[0]))}}else t.drawElements(L.TRIANGLES,F.lineIndexCount,d.UNSIGNED_INT,Uint32Array.BYTES_PER_ELEMENT*F.lineIndexStart);D.triangleCount+=F.lineIndexCount/3}}}},vtlCircle:class extends W{constructor(){super(...arguments),this._programOptions={id:!1}}dispose(){}drawMany(n,e){const{context:t,displayLevel:a,requiredLevel:o,state:i,drawPhase:r,painter:l,spriteMosaic:s,styleLayerUID:c,requestRender:_,allowDelayedRender:u}=n;if(!e.some(h=>{var p;return((p=h.layerData.get(c))==null?void 0:p.circleIndexCount)??!1}))return;const v=n.styleLayer,x=v.circleMaterial,m=l.vectorTilesMaterialManager,f=v.getPaintValue("circle-translate",a),T=v.getPaintValue("circle-translate-anchor",a),g=r===V.HITTEST,E=this._programOptions;E.id=g;const S=m.getMaterialProgram(t,x,E);if(u&&A(_)&&!S.compiled)return void _();t.useProgram(S),S.setUniformMatrix3fv("u_displayMat3",T===ie.VIEWPORT?i.displayMat3:i.displayViewMat3),S.setUniform2fv("u_circleTranslation",f),S.setUniform1f("u_depth",v.z),S.setUniform1f("u_antialiasingWidth",1.2);let O=-1;if(g){const h=ce(c+1);S.setUniform4fv("u_id",h)}for(const h of e){if(!h.layerData.has(c))continue;h.key.level!==O&&(O=h.key.level,x.setDataUniforms(S,a,v,O,s));const p=h.layerData.get(c);if(!p.circleIndexCount)continue;p.prepareForRendering(t);const C=p.circleVertexArrayObject;B(C)||(t.bindVAO(C),S.setUniformMatrix3fv("u_dvsMat3",h.transforms.dvs),o!==h.key.level?t.setStencilFunction(w.EQUAL,h.stencilRef,255):t.setStencilFunction(w.GREATER,255,255),t.drawElements(L.TRIANGLES,p.circleIndexCount,d.UNSIGNED_INT,Uint32Array.BYTES_PER_ELEMENT*p.circleIndexStart),h.triangleCount+=p.circleIndexCount/3)}}},vtlSymbol:class extends W{constructor(){super(...arguments),this._iconProgramOptions={id:!1,sdf:!1},this._sdfProgramOptions={id:!1},this._spritesTextureSize=ut()}dispose(){}drawMany(n,e){const{drawPhase:t,styleLayerUID:a}=n,o=n.styleLayer;let i;t===V.HITTEST&&(i=ce(a+1)),this._drawIcons(n,o,e,i),this._drawText(n,o,e,i)}_drawIcons(n,e,t,a){const{context:o,displayLevel:i,drawPhase:r,painter:l,spriteMosaic:s,state:c,styleLayerUID:_,requestRender:u,allowDelayedRender:v}=n,x=e.iconMaterial,m=l.vectorTilesMaterialManager;let f,T=!1;for(const P of t)if(P.layerData.has(_)&&(f=P.layerData.get(_),f.iconPerPageElementsMap.size>0)){T=!0;break}if(!T)return;const g=e.getPaintValue("icon-translate",i),E=e.getPaintValue("icon-translate-anchor",i);let S=e.getLayoutValue("icon-rotation-alignment",i);S===k.AUTO&&(S=e.getLayoutValue("symbol-placement",i)===Fe.POINT?k.VIEWPORT:k.MAP);const O=S===k.MAP,h=e.getLayoutValue("icon-keep-upright",i)&&O,p=f.isIconSDF,C=r===V.HITTEST,I=this._iconProgramOptions;I.id=C,I.sdf=p;const b=m.getMaterialProgram(o,x,I);if(v&&A(u)&&!b.compiled)return void u();o.useProgram(b),b.setUniformMatrix3fv("u_displayViewMat3",S===k.MAP?c.displayViewMat3:c.displayMat3),b.setUniformMatrix3fv("u_displayMat3",E===ie.VIEWPORT?c.displayMat3:c.displayViewMat3),b.setUniform2fv("u_iconTranslation",g),b.setUniform1f("u_depth",e.z),b.setUniform1f("u_mapRotation",we(c.rotation)),b.setUniform1f("u_keepUpright",h?1:0),b.setUniform1f("u_level",10*i),b.setUniform1i("u_texture",Y),b.setUniform1f("u_fadeDuration",Ve/1e3),C&&b.setUniform4fv("u_id",a);let y=-1;for(const P of t){if(!P.layerData.has(_)||(P.key.level!==y&&(y=P.key.level,x.setDataUniforms(b,i,e,y,s)),f=P.layerData.get(_),f.iconPerPageElementsMap.size===0))continue;f.prepareForRendering(o),f.updateOpacityInfo();const D=f.iconVertexArrayObject;if(!B(D)){o.bindVAO(D),b.setUniformMatrix3fv("u_dvsMat3",P.transforms.dvs),b.setUniform1f("u_time",(performance.now()-f.lastOpacityUpdate)/1e3);for(const[z,F]of f.iconPerPageElementsMap)this._renderIconRange(n,b,F,z,P)}}}_renderIconRange(n,e,t,a,o){const{context:i,spriteMosaic:r}=n;this._spritesTextureSize[0]=r.getWidth(a)/4,this._spritesTextureSize[1]=r.getHeight(a)/4,e.setUniform2fv("u_mosaicSize",this._spritesTextureSize),r.bind(i,M.LINEAR,a,Y),i.setStencilTestEnabled(!0),i.setStencilFunction(w.GREATER,255,255),i.setStencilWriteMask(0),i.drawElements(L.TRIANGLES,t[1],d.UNSIGNED_INT,Uint32Array.BYTES_PER_ELEMENT*t[0]),o.triangleCount+=t[1]/3}_drawText(n,e,t,a){const{context:o,displayLevel:i,drawPhase:r,glyphMosaic:l,painter:s,pixelRatio:c,spriteMosaic:_,state:u,styleLayerUID:v,requestRender:x,allowDelayedRender:m}=n,f=e.textMaterial,T=s.vectorTilesMaterialManager;let g,E=!1;for(const H of t)if(H.layerData.has(v)&&(g=H.layerData.get(v),g.glyphPerPageElementsMap.size>0)){E=!0;break}if(!E)return;const S=e.getPaintProperty("text-opacity");if(S&&!S.isDataDriven&&S.getValue(i)===0)return;const O=e.getPaintProperty("text-color"),h=!O||O.isDataDriven||O.getValue(i)[3]>0,p=e.getPaintProperty("text-halo-width"),C=e.getPaintProperty("text-halo-color"),I=(!p||p.isDataDriven||p.getValue(i)>0)&&(!C||C.isDataDriven||C.getValue(i)[3]>0);if(!h&&!I)return;let b=e.getLayoutValue("text-rotation-alignment",i);b===k.AUTO&&(b=e.getLayoutValue("symbol-placement",i)===Fe.POINT?k.VIEWPORT:k.MAP);const y=b===k.MAP,P=e.getLayoutValue("text-keep-upright",i)&&y,D=r===V.HITTEST,z=.8*3/c;this._glyphTextureSize||(this._glyphTextureSize=ft(l.width/4,l.height/4));const F=e.getPaintValue("text-translate",i),$=e.getPaintValue("text-translate-anchor",i),K=this._sdfProgramOptions;K.id=D;const N=T.getMaterialProgram(o,f,K);if(m&&A(x)&&!N.compiled)return void x();o.useProgram(N),N.setUniformMatrix3fv("u_displayViewMat3",b===k.MAP?u.displayViewMat3:u.displayMat3),N.setUniformMatrix3fv("u_displayMat3",$===ie.VIEWPORT?u.displayMat3:u.displayViewMat3),N.setUniform2fv("u_textTranslation",F),N.setUniform1f("u_depth",e.z+152587890625e-16),N.setUniform2fv("u_mosaicSize",this._glyphTextureSize),N.setUniform1f("u_mapRotation",we(u.rotation)),N.setUniform1f("u_keepUpright",P?1:0),N.setUniform1f("u_level",10*i),N.setUniform1i("u_texture",Ne),N.setUniform1f("u_antialiasingWidth",z),N.setUniform1f("u_fadeDuration",Ve/1e3),D&&N.setUniform4fv("u_id",a);let oe=-1;for(const H of t){if(!H.layerData.has(v)||(H.key.level!==oe&&(oe=H.key.level,f.setDataUniforms(N,i,e,oe,_)),g=H.layerData.get(v),g.glyphPerPageElementsMap.size===0))continue;g.prepareForRendering(o),g.updateOpacityInfo();const Ae=g.textVertexArrayObject;if(B(Ae))continue;o.bindVAO(Ae),N.setUniformMatrix3fv("u_dvsMat3",H.transforms.dvs),o.setStencilTestEnabled(!0),o.setStencilFunction(w.GREATER,255,255),o.setStencilWriteMask(0);const it=(performance.now()-g.lastOpacityUpdate)/1e3;N.setUniform1f("u_time",it),g.glyphPerPageElementsMap.forEach((at,rt)=>{this._renderGlyphRange(o,at,rt,l,N,I,h,H)})}}_renderGlyphRange(n,e,t,a,o,i,r,l){a.bind(n,M.LINEAR,t,Ne),i&&(o.setUniform1f("u_halo",1),n.drawElements(L.TRIANGLES,e[1],d.UNSIGNED_INT,Uint32Array.BYTES_PER_ELEMENT*e[0]),l.triangleCount+=e[1]/3),r&&(o.setUniform1f("u_halo",0),n.drawElements(L.TRIANGLES,e[1],d.UNSIGNED_INT,Uint32Array.BYTES_PER_ELEMENT*e[0]),l.triangleCount+=e[1]/3)}},dotDensity:class extends Ue{constructor(){super(...arguments),this._dotTextureSize=0,this._dotTextures=null,this._dotSamplers=new Int32Array([Tt,Et]),this._dotVAO=null,this._dotDesc={vsPath:"dot/dot",fsPath:"dot/dot",attributes:new Map([["a_pos",0]])}}dispose(){super.dispose(),this._disposeTextures(),this._dotFBO=J(this._dotFBO),this._dotVAO=J(this._dotVAO)}getGeometryType(){return re.FILL}supportsSymbology(n){return n===j.DOT_DENSITY}_drawFills(n,e,t,a,o,i){const{passOptions:r}=n;if(A(r)&&r.type==="hittest")super._drawFills(n,e,t,a,o,i);else{const l=this._drawDotLocations(n,e,t,o,i);this._drawDotDensity(n,e,l)}}_drawDotDensity(n,e,t){const{context:a,painter:o,rendererInfo:i,requestRender:r,allowDelayedRender:l}=n,s=o.materialManager.getProgram(this._dotDesc);if(l&&A(r)&&!s.compiled)return void r();const{rendererSchema:c}=i;ae(c,"dot-density");const _=this._createDotDensityMesh(a,this._dotDesc.attributes,{geometry:[{name:"a_pos",count:2,type:d.SHORT,divisor:0,normalized:!1,offset:0,stride:4}]});a.setStencilTestEnabled(!0),a.useProgram(s),s.setUniform1f("u_tileZoomFactor",1),s.setUniform1i("u_texture",this._dotSamplers[0]),s.setUniform1f("u_dotSize",Math.max(c.dotSize,1)),s.setUniform1f("u_pixelRatio",window.devicePixelRatio),this._setSharedUniforms(s,n,e),a.bindTexture(t,this._dotSamplers[0]),a.bindVAO(_),a.drawArrays(L.POINTS,0,262144)}_drawDotLocations(n,e,t,a,o){const{context:i,rendererInfo:r,requiredLevel:l}=n,s=i.getViewport(),{rendererSchema:c}=r;ae(c,"dot-density");const{dotScale:_,colors:u,activeDots:v,backgroundColor:x,dotValue:m}=c;i.setViewport(0,0,512,512);const f=i.getBoundFramebufferObject(),T=this._createFBO(i);i.bindFramebuffer(T),i.setClearColor(0,0,0,0),i.clear(i.gl.COLOR_BUFFER_BIT|i.gl.STENCIL_BUFFER_BIT),i.setStencilTestEnabled(!1);const g=1/2**(l-e.key.level),E=Se,S=E*window.devicePixelRatio*E*window.devicePixelRatio,O=1/g*(1/g),h=_?n.state.scale/_:1;return t.setUniform1f("u_tileZoomFactor",g),t.setUniform1f("u_tileDotsOverArea",S/(Se*window.devicePixelRatio*Se*window.devicePixelRatio)),t.setUniformMatrix4fv("u_dotColors",u),t.setUniform4fv("u_isActive",v),t.setUniform4fv("u_dotBackgroundColor",x),t.setUniform1f("u_dotValue",Math.max(1,m*h*O)),this._bindDotDensityTextures(i,t,r,E),i.drawElements(L.TRIANGLES,a,d.UNSIGNED_INT,o),i.setViewport(s.x,s.y,s.width,s.height),i.bindFramebuffer(f),T.colorTexture}_createFBO(n){if(B(this._dotFBO)){const a={target:pe.TEXTURE_2D,pixelFormat:Z.RGBA,dataType:se.UNSIGNED_BYTE,samplingMode:M.NEAREST,wrapMode:fe.CLAMP_TO_EDGE,width:512,height:512},o={colorTarget:Ot.TEXTURE,depthStencilTarget:It.DEPTH_STENCIL_RENDER_BUFFER},i=new Ze(n,{width:512,height:512,internalFormat:Ke.DEPTH_STENCIL});this._dotFBO=new qe(n,o,a,i)}return this._dotFBO}_disposeTextures(){if(this._dotTextures){for(let n=0;n<this._dotTextures.length;n++)this._dotTextures[n].dispose();this._dotTextures=null}}_bindDotDensityTextures(n,e,t,a){const{rendererSchema:o}=t;ae(o,"dot-density");const i=this._createDotDensityTextures(n,a,o.seed);e.setUniform1iv("u_dotTextures",this._dotSamplers);for(let r=0;r<i.length;r++)n.bindTexture(i[r],this._dotSamplers[r])}_createDotDensityMesh(n,e,t){if(B(this._dotVAO)){const o=new Int16Array(524288);for(let r=0;r<512;r++)for(let l=0;l<512;l++)o[2*(l+512*r)]=l,o[2*(l+512*r)+1]=r;const i=X.createVertex(n,Q.STATIC_DRAW,o);this._dotVAO=new ne(n,e,t,{geometry:i},null)}return this._dotVAO}_createDotDensityTextures(n,e,t){if(this._dotTextureSize===e&&this._seed===t||(this._disposeTextures(),this._dotTextureSize=e,this._seed=t),this._dotTextures===null){const a=new lt(t);this._dotTextures=[this._allocDotDensityTexture(n,e,a),this._allocDotDensityTexture(n,e,a)]}return this._dotTextures}_allocDotDensityTexture(n,e,t){const a=new Float32Array(e*e*4);for(let o=0;o<a.length;o++)a[o]=t.getFloat();return new xe(n,{wrapMode:fe.REPEAT,pixelFormat:Z.RGBA,dataType:se.FLOAT,samplingMode:M.NEAREST,width:e,height:e},a)}},heatmap:class extends be{constructor(){super(...arguments),this.brushEffect=new jt}supportsSymbology(n){return n===j.HEATMAP}dispose(){super.dispose(),this.brushEffect.dispose(),this.brushEffect=null}prepareState(){}drawGeometry(n,e,t,a){const{defines:o}=this.brushEffect.loadQualityProfile(n.context);super.drawGeometry(n,e,t,a?[...a,...o]:o)}_drawMarkers(n,e,t,a,o,i,r){const{context:l,rendererInfo:s,state:c}=n,{rendererSchema:_}=s;ae(_,"heatmap");const{referenceScale:u,radius:v,isFieldActive:x}=_,m=v*(u!==0?u/c.scale:1);t.setUniform1f("u_radius",m),r||(t.setUniform1f("u_isFieldActive",x),l.setStencilFunction(w.GEQUAL,e.stencilRef,255)),l.drawElements(a,o,d.UNSIGNED_INT,i)}},pieChart:class extends be{supportsSymbology(n){return n===j.PIE_CHART}_drawMarkers(n,e,t,a,o,i,r){const{context:l}=n,{rendererInfo:s}=n,{rendererSchema:c}=s;ae(c,"pie-chart"),t.setUniform4fv("u_colors",c.colors),t.setUniform4fv("u_defaultColor",c.defaultColor),t.setUniform4fv("u_othersColor",c.othersColor),t.setUniform4fv("u_outlineColor",c.outlineColor),t.setUniform1f("u_donutRatio",c.holePercentage),t.setUniform1f("u_sectorThreshold",c.sectorThreshold),t.setUniform1f("u_outlineWidth",c.outlineWidth),l.drawElements(a,o,d.UNSIGNED_INT,i)}}},Jt=(n,e,t,a)=>{let o=0;for(let i=1;i<t;i++){const r=n[2*(e+i-1)],l=n[2*(e+i-1)+1];o+=(n[2*(e+i)]-r)*(n[2*(e+i)+1]+l)}return a?o>0:o<0},We=({coords:n,lengths:e},t)=>{const a=[];for(let o=0,i=0;o<e.length;i+=e[o],o+=1){const r=i,l=[];for(;o<e.length-1&&Jt(n,i+e[o],e[o+1],t);o+=1,i+=e[o])l.push(i+e[o]-r);const s=n.slice(2*r,2*(i+e[o])),c=Vt(s,l,2);for(const _ of c)a.push(_+r)}return a};class G{constructor(e,t,a,o=!1){this._cache={},this.vertices=e,this.indices=t,this.primitiveType=a,this.isMapSpace=o}static fromRect({x:e,y:t,width:a,height:o}){const i=e,r=t,l=i+a,s=r+o;return G.fromScreenExtent({xmin:i,ymin:r,xmax:l,ymax:s})}static fromPath(e){const t=dt(new Pe,e.path,!1,!1),a=t.coords,o=new Uint32Array(We(t,!0)),i=new Uint32Array(a.length/2);for(let r=0;r<i.length;r++)i[r]=U(Math.floor(a[2*r]),Math.floor(a[2*r+1]));return new G({geometry:i},o,L.TRIANGLES)}static fromGeometry(e,t){var o;const a=(o=t.geometry)==null?void 0:o.type;switch(a){case"polygon":return G.fromPolygon(e,t.geometry);case"extent":return G.fromMapExtent(e,t.geometry);default:return Oe.getLogger("esri.views.2d.engine.webgl.Mesh2D").error(new te("mapview-bad-type",`Unable to create a mesh from type ${a}`,t)),G.fromRect({x:0,y:0,width:1,height:1})}}static fromPolygon(e,t){const a=_t(new Pe,t,!1,!1),o=a.coords,i=new Uint32Array(We(a,!1)),r=new Uint32Array(o.length/2),l=Le(),s=Le();for(let c=0;c<r.length;c++)vt(l,o[2*c],o[2*c+1]),e.toScreen(s,l),r[c]=U(Math.floor(s[0]),Math.floor(s[1]));return new G({geometry:r},i,L.TRIANGLES,!0)}static fromScreenExtent({xmin:e,xmax:t,ymin:a,ymax:o}){const i={geometry:new Uint32Array([U(e,a),U(t,a),U(e,o),U(e,o),U(t,a),U(t,o)])},r=new Uint32Array([0,1,2,3,4,5]);return new G(i,r,L.TRIANGLES)}static fromMapExtent(e,t){const[a,o]=e.toScreen([0,0],[t.xmin,t.ymin]),[i,r]=e.toScreen([0,0],[t.xmax,t.ymax]),l={geometry:new Uint32Array([U(a,o),U(i,o),U(a,r),U(a,r),U(i,o),U(i,r)])},s=new Uint32Array([0,1,2,3,4,5]);return new G(l,s,L.TRIANGLES)}destroy(){A(this._cache.indexBuffer)&&this._cache.indexBuffer.dispose();for(const e in this._cache.vertexBuffers)A(this._cache.vertexBuffers[e])&&this._cache.vertexBuffers[e].dispose()}get elementType(){return(e=>{switch(e.BYTES_PER_ELEMENT){case 1:return d.UNSIGNED_BYTE;case 2:return d.UNSIGNED_SHORT;case 4:return d.UNSIGNED_INT;default:throw new te("Cannot get DataType of array")}})(this.indices)}getIndexBuffer(e,t=Q.STATIC_DRAW){return this._cache.indexBuffer||(this._cache.indexBuffer=X.createIndex(e,t,this.indices)),this._cache.indexBuffer}getVertexBuffers(e,t=Q.STATIC_DRAW){return this._cache.vertexBuffers||(this._cache.vertexBuffers=Object.keys(this.vertices).reduce((a,o)=>({...a,[o]:X.createVertex(e,t,this.vertices[o])}),{})),this._cache.vertexBuffers}}const me=n=>parseFloat(n)/100;class Ce extends zt{constructor(e,t){super(),this._clip=t,this._cache={},this.stage=e,this._handle=mt(()=>t.version,()=>this._invalidate()),this.ready()}static fromClipArea(e,t){return new Ce(e,t)}_destroyGL(){A(this._cache.mesh)&&(this._cache.mesh.destroy(),this._cache.mesh=null),A(this._cache.vao)&&(this._cache.vao.dispose(),this._cache.vao=null)}destroy(){this._destroyGL(),this._handle.remove()}getVAO(e,t,a,o){const[i,r]=t.size;if(this._clip.type!=="geometry"&&this._lastWidth===i&&this._lastHeight===r||(this._lastWidth=i,this._lastHeight=r,this._destroyGL()),B(this._cache.vao)){const l=this._createMesh(t,this._clip),s=l.getIndexBuffer(e),c=l.getVertexBuffers(e);this._cache.mesh=l,this._cache.vao=new ne(e,a,o,c,s)}return this._cache.vao}_createTransforms(){return{dvs:Ie()}}_invalidate(){this._destroyGL(),this.requestRender()}_createScreenRect(e,t){const[a,o]=e.size,i=typeof t.left=="string"?me(t.left)*a:t.left,r=typeof t.right=="string"?me(t.right)*a:t.right,l=typeof t.top=="string"?me(t.top)*o:t.top,s=typeof t.bottom=="string"?me(t.bottom)*o:t.bottom,c=i,_=l;return{x:c,y:_,width:Math.max(a-r-c,0),height:Math.max(o-s-_,0)}}_createMesh(e,t){switch(t.type){case"rect":return G.fromRect(this._createScreenRect(e,t));case"path":return G.fromPath(t);case"geometry":return G.fromGeometry(e,t);default:return Oe.getLogger("esri.views.2d.engine.webgl.ClippingInfo").error(new te("mapview-bad-type","Unable to create ClippingInfo mesh from clip of type: ${clip.type}")),G.fromRect({x:0,y:0,width:1,height:1})}}}let xn=class extends Ft{constructor(){super(...arguments),this.name=this.constructor.name}set clips(n){this._clips=n,this.children.forEach(e=>e.clips=n),this._updateClippingInfo()}beforeRender(n){super.beforeRender(n),this.updateTransforms(n.state)}_createTransforms(){return{dvs:Ie()}}doRender(n){const e=this.createRenderParams(n),{painter:t,globalOpacity:a,profiler:o,drawPhase:i}=e,r=i===V.LABEL||i===V.HIGHLIGHT?1:a*this.computedOpacity;o.recordContainerStart(this.name),t.beforeRenderLayer(e,this._clippingInfos?255:0,r),this.renderChildren(e),t.compositeLayer(e,r),o.recordContainerEnd()}renderChildren(n){B(this._renderPasses)&&(this._renderPasses=this.prepareRenderPasses(n.painter));for(const e of this._renderPasses)try{e.render(n)}catch{}}createRenderParams(n){return n.requireFBO=this.requiresDedicatedFBO,n}prepareRenderPasses(n){return[n.registerRenderPass({name:"clip",brushes:[$t.clip],target:()=>this._clippingInfos,drawPhase:V.MAP|V.LABEL|V.LABEL_ALPHA|V.DEBUG|V.HIGHLIGHT})]}updateTransforms(n){for(const e of this.children)e.setTransform(n)}onAttach(){super.onAttach(),this._updateClippingInfo()}onDetach(){super.onDetach(),this._updateClippingInfo()}_updateClippingInfo(){A(this._clippingInfos)&&(this._clippingInfos.forEach(t=>t.destroy()),this._clippingInfos=null);const n=this.stage;if(!n)return;const e=this._clips;A(e)&&e.length&&(this._clippingInfos=e.items.map(t=>Ce.fromClipArea(n,t))),this.requestRender()}};export{qt as a,xn as b,W as c,he as d,Qt as h,gn as m,Xe as n,pn as t,$t as w,Xt as x};
+}`,
+    },
+  },
+  kt = new At(function (n) {
+    let e = Wt;
+    return (
+      n.split("/").forEach((t) => {
+        e && (e = e[t]);
+      }),
+      e
+    );
+  });
+function he(n) {
+  return kt.resolveIncludes(n);
+}
+const _e = {
+  shaders: {
+    vertexShader: he("background/background.vert"),
+    fragmentShader: he("background/background.frag"),
+  },
+  attributes: new Map([["a_pos", 0]]),
+};
+let ue = class extends W {
+    constructor() {
+      super(...arguments), (this._computeDesc = new Map());
+    }
+    prepareState({ context: n }, e) {
+      e && e.includes("hittest")
+        ? n.setBlendFunctionSeparate(R.ONE, R.ONE, R.ONE, R.ONE)
+        : n.setBlendFunctionSeparate(
+            R.ONE,
+            R.ONE_MINUS_SRC_ALPHA,
+            R.ONE,
+            R.ONE_MINUS_SRC_ALPHA
+          ),
+        n.setBlendingEnabled(!0),
+        n.setColorMask(!0, !0, !0, !0),
+        n.setStencilWriteMask(0),
+        n.setStencilTestEnabled(!0);
+    }
+    draw(n, e, t) {
+      const a = this.getGeometryType();
+      e.commit(n);
+      const o = e.getGeometry(a);
+      B(o) ||
+        (n.timeline.begin(this.name),
+        n.attributeView.bindTextures(n.context),
+        n.context.setStencilFunction(w.EQUAL, e.stencilRef, 255),
+        o.forEachCommand((i) => {
+          const r = Dt.load(i.materialKey).symbologyType;
+          this.supportsSymbology(r) && this.drawGeometry(n, e, i, t);
+        }));
+    }
+    _setSharedUniforms(n, e, t) {
+      const { displayLevel: a, pixelRatio: o, state: i, passOptions: r } = e;
+      A(r) &&
+        r.type === "hittest" &&
+        (n.setUniform2fv("u_hittestPos", r.position),
+        n.setUniform1f("u_hittestDist", r.distance)),
+        n.setUniform1f("u_pixelRatio", o),
+        n.setUniformMatrix3fv("u_tileMat3", t.transforms.tileMat3),
+        n.setUniformMatrix3fv("u_viewMat3", i.viewMat3),
+        n.setUniformMatrix3fv("u_dvsMat3", t.transforms.dvs),
+        n.setUniformMatrix3fv("u_displayViewMat3", i.displayViewMat3),
+        n.setUniform1f("u_currentZoom", Math.round(a * pt)),
+        n.setUniform1i("u_attributeTextureSize", e.attributeView.size),
+        n.setUniform1i("u_attributeData0", gt),
+        n.setUniform1i("u_attributeData1", xt),
+        n.setUniform1i("u_attributeData2", ht),
+        n.setUniform1i("u_attributeData3", St),
+        n.setUniform1i("u_attributeData4", yt),
+        n.setUniform1i("u_attributeData5", bt);
+    }
+    _setSizeVVUniforms(n, e, t, a) {
+      if (
+        (n.vvSizeMinMaxValue &&
+          e.setUniform4fv("u_vvSizeMinMaxValue", t.vvSizeMinMaxValue),
+        n.vvSizeScaleStops &&
+          e.setUniform1f("u_vvSizeScaleStopsValue", t.vvSizeScaleStopsValue),
+        n.vvSizeFieldStops)
+      ) {
+        const o = t.getSizeVVFieldStops(a.key.level);
+        o != null &&
+          (e.setUniform1fv("u_vvSizeFieldStopsValues", o.values),
+          e.setUniform1fv("u_vvSizeFieldStopsSizes", o.sizes));
+      }
+      n.vvSizeUnitValue &&
+        e.setUniform1f(
+          "u_vvSizeUnitValueWorldToPixelsRatio",
+          t.vvSizeUnitValueToPixelsRatio
+        );
+    }
+    _setColorAndOpacityVVUniforms(n, e, t) {
+      n.vvColor &&
+        (e.setUniform1fv("u_vvColorValues", t.vvColorValues),
+        e.setUniform4fv("u_vvColors", t.vvColors)),
+        n.vvOpacity &&
+          (e.setUniform1fv("u_vvOpacityValues", t.vvOpacityValues),
+          e.setUniform1fv("u_vvOpacities", t.vvOpacities));
+    }
+    _setRotationVVUniforms(n, e, t) {
+      n.vvRotation &&
+        e.setUniform1f(
+          "u_vvRotationType",
+          t.vvMaterialParameters.vvRotationType === "geographic" ? 0 : 1
+        );
+    }
+    _getTriangleDesc(n, e, t = ["a_pos"]) {
+      const a = e.bufferLayouts.geometry,
+        o = t.map((l) => a.findIndex((s) => s.name === l)),
+        i = `${n}-${o.join("-")}`;
+      let r = this._computeDesc.get(i);
+      if (!r) {
+        const l = e.strides,
+          s = e.strides.geometry,
+          c = new Map(e.attributes),
+          _ = a.map((m) => ({ ...m })),
+          u = Math.max(...e.attributes.values()),
+          v = { geometry: _ };
+        let x = 0;
+        for (const m of o) {
+          const f = a[m];
+          v.geometry.push({
+            count: f.count,
+            name: f.name + "1",
+            divisor: f.divisor,
+            normalized: f.normalized,
+            offset: s + f.offset,
+            stride: s,
+            type: f.type,
+          }),
+            v.geometry.push({
+              count: f.count,
+              name: f.name + "2",
+              divisor: f.divisor,
+              normalized: f.normalized,
+              offset: 2 * s + f.offset,
+              stride: s,
+              type: f.type,
+            }),
+            c.set(f.name + "1", u + ++x),
+            c.set(f.name + "2", u + ++x);
+        }
+        (r = { bufferLayouts: v, attributes: c, strides: l }),
+          this._computeDesc.set(i, r);
+      }
+      return r;
+    }
+  },
+  Ue = class extends ue {
+    dispose() {}
+    getGeometryType() {
+      return re.FILL;
+    }
+    supportsSymbology(n) {
+      return n !== j.DOT_DENSITY;
+    }
+    drawGeometry(n, e, t, a) {
+      const {
+          context: o,
+          painter: i,
+          rendererInfo: r,
+          requiredLevel: l,
+          passOptions: s,
+          requestRender: c,
+          allowDelayedRender: _,
+        } = n,
+        u = Pt.load(t.materialKey),
+        v = je(u.data),
+        x = A(s) && s.type === "hittest",
+        m = i.materialManager,
+        {
+          shader: f,
+          vertexLayout: T,
+          hittestAttributes: g,
+        } = ke(
+          v.programSpec,
+          (function (P) {
+            const D = {
+              geometry: [
+                { location: 0, name: "a_pos", count: 2, type: d.SHORT },
+                { location: 1, name: "a_id", count: 3, type: d.UNSIGNED_BYTE },
+                {
+                  location: 2,
+                  name: "a_bitset",
+                  count: 1,
+                  type: d.UNSIGNED_BYTE,
+                },
+                {
+                  location: 3,
+                  name: "a_color",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                  normalized: !0,
+                },
+                {
+                  location: 4,
+                  name: "a_aux1",
+                  count: 4,
+                  type: d.UNSIGNED_SHORT,
+                },
+                { location: 5, name: "a_aux2", count: 4, type: d.SHORT },
+                {
+                  location: 6,
+                  name: "a_aux3",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                },
+                {
+                  location: 7,
+                  name: "a_zoomRange",
+                  count: 2,
+                  type: d.UNSIGNED_SHORT,
+                },
+              ],
+            };
+            switch (P.symbologyType) {
+              case j.SIMPLE:
+              case j.OUTLINE_FILL_SIMPLE:
+                D.geometry.splice(7, 1), D.geometry.splice(4, 1);
+            }
+            return { shader: "materials/fill", vertexLayout: D };
+          })(u)
+        );
+      let E = L.TRIANGLES,
+        S = ee(u.data, T);
+      x && ((S = this._getTriangleDesc(t.materialKey, S, g)), (E = L.POINTS));
+      const { attributes: O, bufferLayouts: h } = S,
+        p = m.getMaterialProgram(n, u, f, O, a);
+      if (_ && A(c) && !p.compiled) return void c();
+      if (
+        (o.useProgram(p),
+        this._setSharedUniforms(p, n, e),
+        p.setUniform2f("u_tileOffset", 512 * e.key.col, 512 * e.key.row),
+        u.textureBinding)
+      ) {
+        i.textureManager.bindTextures(o, p, u);
+        const P = 1 / 2 ** (l - e.key.level);
+        p.setUniform1f("u_zoomFactor", P);
+      }
+      const C = 1 / n.pixelRatio;
+      p.setUniform1f("u_blur", C),
+        p.setUniform1f("u_antialiasing", C),
+        this._setSizeVVUniforms(u, p, r, e),
+        this._setColorAndOpacityVVUniforms(u, p, r);
+      const I = t.target.getVAO(o, h, O, x);
+      let b = t.indexCount,
+        y = t.indexFrom * Uint32Array.BYTES_PER_ELEMENT;
+      x && ((b /= 3), (y /= 3)),
+        o.bindVAO(I),
+        this._drawFills(n, e, p, E, b, y);
+    }
+    _drawFills(n, e, t, a, o, i) {
+      n.context.drawElements(a, o, d.UNSIGNED_INT, i);
+    }
+  };
+const Zt = {
+  shader: "materials/icon",
+  vertexLayout: {
+    geometry: [
+      { location: 0, name: "a_pos", count: 2, type: d.SHORT },
+      { location: 1, name: "a_vertexOffset", count: 2, type: d.SHORT },
+      { location: 2, name: "a_texCoords", count: 2, type: d.UNSIGNED_SHORT },
+      {
+        location: 3,
+        name: "a_bitSetAndDistRatio",
+        count: 2,
+        type: d.UNSIGNED_SHORT,
+      },
+      { location: 4, name: "a_id", count: 4, type: d.UNSIGNED_BYTE },
+      {
+        location: 5,
+        name: "a_color",
+        count: 4,
+        type: d.UNSIGNED_BYTE,
+        normalized: !0,
+      },
+      {
+        location: 6,
+        name: "a_outlineColor",
+        count: 4,
+        type: d.UNSIGNED_BYTE,
+        normalized: !0,
+      },
+      {
+        location: 7,
+        name: "a_sizeAndOutlineWidth",
+        count: 4,
+        type: d.UNSIGNED_BYTE,
+      },
+      { location: 8, name: "a_zoomRange", count: 2, type: d.UNSIGNED_SHORT },
+    ],
+  },
+  hittestAttributes: ["a_vertexOffset", "a_texCoords"],
+};
+class be extends ue {
+  dispose() {}
+  getGeometryType() {
+    return re.MARKER;
+  }
+  supportsSymbology(e) {
+    return e !== j.HEATMAP && e !== j.PIE_CHART;
+  }
+  drawGeometry(e, t, a, o) {
+    const {
+        context: i,
+        painter: r,
+        rendererInfo: l,
+        state: s,
+        passOptions: c,
+        requestRender: _,
+        allowDelayedRender: u,
+      } = e,
+      v = Lt.load(a.materialKey),
+      x = je(v.data),
+      m = A(c) && c.type === "hittest",
+      {
+        shader: f,
+        vertexLayout: T,
+        hittestAttributes: g,
+      } = ke(x.programSpec, Zt);
+    let E = L.TRIANGLES,
+      S = ee(v.data, T);
+    m && ((S = this._getTriangleDesc(a.materialKey, S, g)), (E = L.POINTS));
+    const { attributes: O, bufferLayouts: h } = S,
+      p = r.materialManager.getMaterialProgram(e, v, f, O, o);
+    if (u && A(_) && !p.compiled) return void _();
+    i.useProgram(p),
+      v.textureBinding && r.textureManager.bindTextures(i, p, v, !0),
+      this._setSharedUniforms(p, e, t);
+    const C = v.vvRotation ? s.displayViewMat3 : s.displayMat3;
+    p.setUniformMatrix3fv("u_displayMat3", C),
+      this._setSizeVVUniforms(v, p, l, t),
+      this._setColorAndOpacityVVUniforms(v, p, l),
+      this._setRotationVVUniforms(v, p, l);
+    const I = a.target.getVAO(i, h, O, m);
+    let b = a.indexCount,
+      y = a.indexFrom * Uint32Array.BYTES_PER_ELEMENT;
+    m && ((b /= 3), (y /= 3)),
+      i.bindVAO(I),
+      this._drawMarkers(e, t, p, E, b, y, m),
+      i.bindVAO(null);
+  }
+  _drawMarkers(e, t, a, o, i, r, l) {
+    e.context.drawElements(o, i, d.UNSIGNED_INT, r);
+  }
+}
+let qt = class {
+  constructor() {
+    this.name = this.constructor.name;
+  }
+  createOptions(n, e) {
+    return null;
+  }
+};
+const Be = Oe.getLogger("esri.views.2d.engine.webgl.brushes.WGLBrushHeatmap");
+function Ge(n) {
+  return n.type === "heatmap";
+}
+const Kt = {
+  vsPath: "heatmap/heatmapResolve",
+  fsPath: "heatmap/heatmapResolve",
+  attributes: new Map([["a_position", 0]]),
+};
+class jt extends qt {
+  constructor() {
+    super(...arguments), (this.name = this.constructor.name);
+  }
+  createOptions({ passOptions: e }) {
+    return e;
+  }
+  dispose() {
+    (this._prevFBO = null),
+      (this._accumulateOutputTexture = J(this._accumulateOutputTexture)),
+      A(this._accumulateFramebuffer) &&
+        this._accumulateFramebuffer.detachDepthStencilBuffer(),
+      (this._accumulateOutputStencilBuffer = J(
+        this._accumulateOutputStencilBuffer
+      )),
+      (this._accumulateFramebuffer = J(this._accumulateFramebuffer)),
+      (this._resolveGradientTexture = J(this._resolveGradientTexture)),
+      (this._tileQuad = J(this._tileQuad));
+  }
+  bind(e) {
+    const { context: t, rendererInfo: a, passOptions: o } = e,
+      { rendererSchema: i } = a;
+    (!A(o) || o.type !== "hittest") &&
+      Ge(i) &&
+      ((this._prevFBO = t.getBoundFramebufferObject()),
+      (this._prevViewport = t.getViewport()),
+      ae(i, "heatmap"),
+      this._loadResources(e),
+      this._updateResources(t, i),
+      t.bindFramebuffer(this._accumulateFramebuffer),
+      t.setViewport(
+        0,
+        0,
+        this._accumulateFramebuffer.width,
+        this._accumulateFramebuffer.height
+      ),
+      t.setStencilTestEnabled(!0),
+      t.setBlendingEnabled(!0),
+      t.setBlendFunction(R.ONE, R.ONE),
+      t.setClearColor(0, 0, 0, 0),
+      t.clear(ze.COLOR_BUFFER_BIT));
+  }
+  unbind() {
+    (this._prevFBO = null), (this._prevViewport = null);
+  }
+  draw(e) {
+    const { context: t, painter: a, rendererInfo: o, passOptions: i } = e,
+      { rendererSchema: r } = o;
+    if ((A(i) && i.type === "hittest") || !Ge(r)) return;
+    const { defines: l } = this.loadQualityProfile(t),
+      s = a.materialManager.getProgram(Kt, l);
+    t.useProgram(s),
+      t.bindFramebuffer(this._prevFBO),
+      t.setViewport(0, 0, this._prevViewport.width, this._prevViewport.height),
+      t.setBlendFunction(R.ONE, R.ONE_MINUS_SRC_ALPHA),
+      t.setStencilTestEnabled(!1);
+    const { radius: c, minDensity: _, densityRange: u } = r;
+    t.bindTexture(this._accumulateOutputTexture, 8),
+      t.bindTexture(this._resolveGradientTexture, 9),
+      s.setUniform1i("u_texture", 8),
+      s.setUniform1i("u_gradient", 9),
+      s.setUniform2f("u_densityMinAndInvRange", _, 1 / u),
+      s.setUniform1f("u_densityNormalization", 3 / (c * c * Math.PI)),
+      this._tileQuad.draw();
+  }
+  _loadResources({ context: e, painter: t }) {
+    const {
+        dataType: a,
+        samplingMode: o,
+        pixelFormat: i,
+        internalFormat: r,
+        shadingRate: l,
+        requiresSharedStencilBuffer: s,
+      } = this.loadQualityProfile(e),
+      { width: c, height: _ } = this._prevViewport,
+      u = c * l,
+      v = _ * l;
+    this._accumulateOutputTexture ??
+      (this._accumulateOutputTexture = new xe(e, {
+        target: pe.TEXTURE_2D,
+        pixelFormat: i,
+        internalFormat: r,
+        dataType: a,
+        samplingMode: o,
+        wrapMode: fe.CLAMP_TO_EDGE,
+        width: u,
+        height: v,
+      })),
+      s ||
+        (this._accumulateOutputStencilBuffer ??
+          (this._accumulateOutputStencilBuffer = new Ze(e, {
+            width: u,
+            height: v,
+            internalFormat: Ke.DEPTH_STENCIL,
+          }))),
+      this._accumulateFramebuffer ??
+        (this._accumulateFramebuffer = new qe(
+          e,
+          {},
+          this._accumulateOutputTexture,
+          s ? t.getSharedStencilBuffer() : this._accumulateOutputStencilBuffer
+        )),
+      this._resolveGradientTexture ??
+        (this._resolveGradientTexture = new xe(e, {
+          target: pe.TEXTURE_2D,
+          pixelFormat: Z.RGBA,
+          dataType: se.UNSIGNED_BYTE,
+          samplingMode: M.LINEAR,
+          wrapMode: fe.CLAMP_TO_EDGE,
+        })),
+      this._tileQuad ?? (this._tileQuad = new Xe(e, [0, 0, 1, 0, 0, 1, 1, 1]));
+  }
+  _updateResources(e, t) {
+    const { gradientHash: a, gradient: o } = t;
+    this._prevGradientHash !== a &&
+      (this._resolveGradientTexture.resize(o.length / 4, 1),
+      this._resolveGradientTexture.setData(o),
+      (this._prevGradientHash = a));
+    const { shadingRate: i, requiresSharedStencilBuffer: r } =
+        this.loadQualityProfile(e),
+      { width: l, height: s } = this._prevViewport,
+      c = l * i,
+      _ = s * i,
+      { width: u, height: v } = this._accumulateFramebuffer;
+    if (u !== c || v !== _) {
+      const x = this._accumulateFramebuffer.depthStencilAttachment;
+      if (r && A(x)) {
+        const { width: m, height: f } = x.descriptor;
+        (m === c && f === _) ||
+          (Be.errorOnce(
+            "Attempted to resize shared stencil buffer! Detaching instead."
+          ),
+          this._accumulateFramebuffer.detachDepthStencilBuffer());
+      }
+      this._accumulateFramebuffer.resize(c, _);
+    }
+    r ||
+      e.blitFramebuffer(
+        this._prevFBO,
+        this._accumulateFramebuffer,
+        0,
+        0,
+        this._prevFBO.width,
+        this._prevFBO.height,
+        0,
+        0,
+        this._accumulateFramebuffer.width,
+        this._accumulateFramebuffer.height,
+        ze.STENCIL_BUFFER_BIT,
+        M.NEAREST
+      );
+  }
+  loadQualityProfile(e) {
+    if (B(this._qualityProfile)) {
+      const t = (function (o, i) {
+          const { textureFloat: r, colorBufferFloat: l } = o.capabilities,
+            s = r == null ? void 0 : r.textureFloat,
+            c = r == null ? void 0 : r.textureFloatLinear,
+            _ = r == null ? void 0 : r.textureHalfFloat,
+            u = r == null ? void 0 : r.textureHalfFloatLinear,
+            v = r == null ? void 0 : r.HALF_FLOAT,
+            x = l == null ? void 0 : l.textureFloat,
+            m = l == null ? void 0 : l.textureHalfFloat,
+            f = l == null ? void 0 : l.floatBlend,
+            T = st(o.driverTest).floatBufferBlend.result;
+          if (!s && !_)
+            throw new te(
+              "heatmap:missing-texture-float",
+              "HeatmapRenderer requires WebGL2 or the WebGL1 extension OES_texture_float or OES_texture_half_float."
+            );
+          if (!x && !m)
+            throw new te(
+              "heatmap:missing-color-buffer-float",
+              "HeatmapRenderer requires the WebGL extension EXT_color_buffer_float or EXT_color_buffer_half_float or WEBGL_color_buffer_float."
+            );
+          if (!((f && T) || m))
+            throw new te(
+              "heatmap:missing-float-blend",
+              "HeatmapRenderer requires the WebGL extension EXT_float_blend or EXT_color_buffer_half_float." +
+                (T
+                  ? ""
+                  : " This device claims support for EXT_float_blend, but does not actually support it.")
+            );
+          const g = s && x && f && T,
+            E = _ && m,
+            S = c,
+            O = u,
+            h = !!(l != null && l.R32F),
+            p = !!(l != null && l.R16F);
+          if (g && (S || !O))
+            return (
+              S ||
+                i.warnOnce(
+                  "Missing WebGL extension OES_texture_float_linear. Heatmap quality may be reduced."
+                ),
+              {
+                dataType: se.FLOAT,
+                samplingMode: S ? M.LINEAR : M.NEAREST,
+                pixelFormat: h ? Z.RED : Z.RGBA,
+                internalFormat: h ? Me.R32F : Z.RGBA,
+              }
+            );
+          if (E)
+            return (
+              O ||
+                i.warnOnce(
+                  "Missing WebGL extension OES_texture_half_float_linear. Heatmap quality may be reduced."
+                ),
+              {
+                dataType: v,
+                samplingMode: O ? M.LINEAR : M.NEAREST,
+                pixelFormat: p ? Z.RED : Z.RGBA,
+                internalFormat: p ? Me.R16F : Z.RGBA,
+              }
+            );
+          throw new te(
+            "heatmap:missing-hardware-support",
+            "HeatmapRenderer requires WebGL extensions that allow it to render and blend to float or half float textures."
+          );
+        })(e, Be),
+        a = e.type === ct.WEBGL1;
+      this._qualityProfile = {
+        ...t,
+        requiresSharedStencilBuffer: a,
+        shadingRate: a ? 1 : 0.25,
+        defines: t.dataType !== se.FLOAT ? ["heatmapPrecisionHalfFloat"] : [],
+      };
+    }
+    return this._qualityProfile;
+  }
+}
+const Ee = { geometry: [new de("a_pos", 2, d.BYTE, 0, 2)] },
+  pn = {
+    geometry: [
+      new de("a_pos", 2, d.BYTE, 0, 4),
+      new de("a_tex", 2, d.BYTE, 2, 4),
+    ],
+  },
+  gn = { geometry: [new de("a_pos", 2, d.UNSIGNED_SHORT, 0, 4)] },
+  He = {
+    shaders: {
+      vertexShader: he("tileInfo/tileInfo.vert"),
+      fragmentShader: he("tileInfo/tileInfo.frag"),
+    },
+    attributes: new Map([["a_pos", 0]]),
+  },
+  Te = 300;
+let Xt = class extends W {
+    constructor() {
+      super(...arguments), (this._color = q(1, 0, 0, 1));
+    }
+    dispose() {
+      var n, e, t, a;
+      (n = this._outlineProgram) == null || n.dispose(),
+        (this._outlineProgram = null),
+        (e = this._tileInfoProgram) == null || e.dispose(),
+        (this._tileInfoProgram = null),
+        (t = this._outlineVertexArrayObject) == null || t.dispose(),
+        (this._outlineVertexArrayObject = null),
+        (a = this._tileInfoVertexArrayObject) == null || a.dispose(),
+        (this._tileInfoVertexArrayObject = null),
+        (this._canvas = null);
+    }
+    prepareState({ context: n }) {
+      n.setBlendingEnabled(!0),
+        n.setBlendFunctionSeparate(
+          R.ONE,
+          R.ONE_MINUS_SRC_ALPHA,
+          R.ONE,
+          R.ONE_MINUS_SRC_ALPHA
+        ),
+        n.setColorMask(!0, !0, !0, !0),
+        n.setStencilWriteMask(0),
+        n.setStencilTestEnabled(!1);
+    }
+    draw(n, e) {
+      const { context: t, requestRender: a, allowDelayedRender: o } = n;
+      if (!e.isReady) return;
+      if (
+        (this._loadWGLResources(t),
+        o &&
+          A(a) &&
+          (!this._outlineProgram.compiled || !this._tileInfoProgram.compiled))
+      )
+        return void a();
+      t.bindVAO(this._outlineVertexArrayObject),
+        t.useProgram(this._outlineProgram),
+        this._outlineProgram.setUniformMatrix3fv("u_dvsMat3", e.transforms.dvs),
+        this._outlineProgram.setUniform2f("u_coord_range", e.rangeX, e.rangeY),
+        this._outlineProgram.setUniform1f("u_depth", 0),
+        this._outlineProgram.setUniform4fv("u_color", this._color),
+        t.drawArrays(L.LINE_STRIP, 0, 4);
+      const i = this._getTexture(t, e);
+      i &&
+        (t.bindVAO(this._tileInfoVertexArrayObject),
+        t.useProgram(this._tileInfoProgram),
+        t.bindTexture(i, 0),
+        this._tileInfoProgram.setUniformMatrix3fv(
+          "u_dvsMat3",
+          e.transforms.dvs
+        ),
+        this._tileInfoProgram.setUniform1f("u_depth", 0),
+        this._tileInfoProgram.setUniform2f(
+          "u_coord_ratio",
+          e.rangeX / e.width,
+          e.rangeY / e.height
+        ),
+        this._tileInfoProgram.setUniform2f("u_delta", 8, 8),
+        this._tileInfoProgram.setUniform2f(
+          "u_dimensions",
+          i.descriptor.width,
+          i.descriptor.height
+        ),
+        t.drawArrays(L.TRIANGLE_STRIP, 0, 4)),
+        t.bindVAO();
+    }
+    _loadWGLResources(n) {
+      if (this._outlineProgram && this._tileInfoProgram) return;
+      const e = ge(n, _e),
+        t = ge(n, He),
+        a = new Int8Array([0, 0, 1, 0, 1, 1, 0, 1]),
+        o = X.createVertex(n, Q.STATIC_DRAW, a),
+        i = new ne(n, _e.attributes, Ee, { geometry: o }),
+        r = new Int8Array([0, 0, 1, 0, 0, 1, 1, 1]),
+        l = X.createVertex(n, Q.STATIC_DRAW, r),
+        s = new ne(n, He.attributes, Ee, { geometry: l });
+      (this._outlineProgram = e),
+        (this._tileInfoProgram = t),
+        (this._outlineVertexArrayObject = i),
+        (this._tileInfoVertexArrayObject = s);
+    }
+    _getTexture(n, e) {
+      if (e.texture && e.triangleCountReportedInDebug === e.triangleCount)
+        return e.texture;
+      (e.triangleCountReportedInDebug = e.triangleCount),
+        this._canvas ||
+          ((this._canvas = document.createElement("canvas")),
+          this._canvas.setAttribute("id", "canvas2d"),
+          this._canvas.setAttribute("width", "300"),
+          this._canvas.setAttribute("height", "32"),
+          this._canvas.setAttribute("style", "display:none"));
+      const t = e.triangleCount;
+      let a = e.key.id;
+      e.triangleCount > 0 && (a += `, ${t}`);
+      const o = this._canvas,
+        i = o.getContext("2d");
+      return (
+        (i.font = "24px sans-serif"),
+        (i.textAlign = "left"),
+        (i.textBaseline = "top"),
+        i.clearRect(0, 0, Te, 32),
+        t > 1e5
+          ? ((i.fillStyle = "red"),
+            i.fillRect(0, 0, Te, 32),
+            (i.fillStyle = "black"))
+          : (i.clearRect(0, 0, Te, 32), (i.fillStyle = "blue")),
+        i.fillText(a, 0, 0),
+        (e.texture = new xe(
+          n,
+          {
+            target: pe.TEXTURE_2D,
+            pixelFormat: Z.RGBA,
+            dataType: se.UNSIGNED_BYTE,
+            samplingMode: M.NEAREST,
+            wrapMode: fe.CLAMP_TO_EDGE,
+          },
+          o
+        )),
+        e.texture
+      );
+    }
+  },
+  Qt = class extends W {
+    constructor() {
+      super(...arguments),
+        (this._color = q(1, 0, 0, 1)),
+        (this._initialized = !1);
+    }
+    dispose() {
+      this._solidProgram &&
+        (this._solidProgram.dispose(), (this._solidProgram = null)),
+        this._solidVertexArrayObject &&
+          (this._solidVertexArrayObject.dispose(),
+          (this._solidVertexArrayObject = null));
+    }
+    prepareState({ context: n }) {
+      n.setDepthWriteEnabled(!1),
+        n.setDepthTestEnabled(!1),
+        n.setStencilTestEnabled(!0),
+        n.setBlendingEnabled(!1),
+        n.setColorMask(!1, !1, !1, !1),
+        n.setStencilOp(le.KEEP, le.KEEP, le.REPLACE),
+        n.setStencilWriteMask(255);
+    }
+    draw(n, e) {
+      const { context: t, requestRender: a, allowDelayedRender: o } = n;
+      this._initialized || this._initialize(t),
+        o && A(a) && !this._solidProgram.compiled
+          ? a()
+          : (t.setStencilFunctionSeparate(
+              Ct.FRONT_AND_BACK,
+              w.GREATER,
+              e.stencilRef,
+              255
+            ),
+            t.bindVAO(this._solidVertexArrayObject),
+            t.useProgram(this._solidProgram),
+            this._solidProgram.setUniformMatrix3fv(
+              "u_dvsMat3",
+              e.transforms.dvs
+            ),
+            this._solidProgram.setUniform2fv("u_coord_range", [
+              e.rangeX,
+              e.rangeY,
+            ]),
+            this._solidProgram.setUniform1f("u_depth", 0),
+            this._solidProgram.setUniform4fv("u_color", this._color),
+            t.drawArrays(L.TRIANGLE_STRIP, 0, 4),
+            t.bindVAO());
+    }
+    _initialize(n) {
+      if (this._initialized) return !0;
+      const e = ge(n, _e);
+      if (!e) return !1;
+      const t = new Int8Array([0, 0, 1, 0, 0, 1, 1, 1]),
+        a = X.createVertex(n, Q.STATIC_DRAW, t),
+        o = new ne(n, _e.attributes, Ee, { geometry: a });
+      return (
+        (this._solidProgram = e),
+        (this._solidVertexArrayObject = o),
+        (this._initialized = !0),
+        !0
+      );
+    }
+  };
+const Ye = 1 / 65536,
+  $t = {
+    marker: be,
+    line: class extends ue {
+      dispose() {}
+      getGeometryType() {
+        return re.LINE;
+      }
+      supportsSymbology(n) {
+        return !0;
+      }
+      drawGeometry(n, e, t, a) {
+        const {
+            context: o,
+            painter: i,
+            rendererInfo: r,
+            displayLevel: l,
+            passOptions: s,
+            requestRender: c,
+            allowDelayedRender: _,
+          } = n,
+          u = Nt.load(t.materialKey),
+          v = A(s) && s.type === "hittest";
+        let x = ((C) =>
+            ee(C.data, {
+              geometry: [
+                { location: 0, name: "a_pos", count: 2, type: d.SHORT },
+                { location: 1, name: "a_id", count: 4, type: d.UNSIGNED_BYTE },
+                {
+                  location: 2,
+                  name: "a_color",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                  normalized: !0,
+                },
+                {
+                  location: 3,
+                  name: "a_offsetAndNormal",
+                  count: 4,
+                  type: d.BYTE,
+                },
+                {
+                  location: 4,
+                  name: "a_accumulatedDistanceAndHalfWidth",
+                  count: 2,
+                  type: d.UNSIGNED_SHORT,
+                },
+                {
+                  location: 5,
+                  name: "a_tlbr",
+                  count: 4,
+                  type: d.UNSIGNED_SHORT,
+                },
+                {
+                  location: 6,
+                  name: "a_segmentDirection",
+                  count: 4,
+                  type: d.BYTE,
+                },
+                {
+                  location: 7,
+                  name: "a_aux",
+                  count: 2,
+                  type: d.UNSIGNED_SHORT,
+                },
+                {
+                  location: 8,
+                  name: "a_zoomRange",
+                  count: 2,
+                  type: d.UNSIGNED_SHORT,
+                },
+              ],
+            }))(u),
+          m = L.TRIANGLES;
+        v && ((x = this._getTriangleDesc(t.materialKey, x)), (m = L.POINTS));
+        const { attributes: f, bufferLayouts: T } = x,
+          g = i.materialManager.getMaterialProgram(
+            n,
+            u,
+            "materials/line",
+            f,
+            a
+          );
+        if (_ && A(c) && !g.compiled) return void c();
+        const E = 1 / n.pixelRatio;
+        o.useProgram(g),
+          this._setSharedUniforms(g, n, e),
+          u.textureBinding && i.textureManager.bindTextures(o, g, u);
+        const S = 2 ** (l - e.key.level);
+        g.setUniform1f("u_zoomFactor", S),
+          g.setUniform1f("u_blur", 0 + E),
+          g.setUniform1f("u_antialiasing", E),
+          this._setSizeVVUniforms(u, g, r, e),
+          this._setColorAndOpacityVVUniforms(u, g, r),
+          o.setFaceCullingEnabled(!1);
+        const O = t.target.getVAO(o, T, f, v);
+        let h = t.indexCount,
+          p = t.indexFrom * Uint32Array.BYTES_PER_ELEMENT;
+        v && ((h /= 3), (p /= 3)),
+          o.bindVAO(O),
+          o.drawElements(m, h, d.UNSIGNED_INT, p);
+      }
+    },
+    fill: Ue,
+    text: class extends ue {
+      dispose() {}
+      getGeometryType() {
+        return re.TEXT;
+      }
+      supportsSymbology(n) {
+        return !0;
+      }
+      drawGeometry(n, e, t, a) {
+        const {
+            context: o,
+            painter: i,
+            rendererInfo: r,
+            state: l,
+            passOptions: s,
+            requestRender: c,
+            allowDelayedRender: _,
+          } = n,
+          u = Mt.load(t.materialKey),
+          v = A(s) && s.type === "hittest",
+          { bufferLayouts: x, attributes: m } = ((S) =>
+            ee(S.data, {
+              geometry: [
+                { location: 0, name: "a_pos", count: 2, type: d.SHORT },
+                { location: 1, name: "a_id", count: 4, type: d.UNSIGNED_BYTE },
+                {
+                  location: 2,
+                  name: "a_color",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                  normalized: !0,
+                },
+                {
+                  location: 3,
+                  name: "a_haloColor",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                  normalized: !0,
+                },
+                {
+                  location: 4,
+                  name: "a_texFontSize",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                },
+                { location: 5, name: "a_aux", count: 4, type: d.BYTE },
+                {
+                  location: 6,
+                  name: "a_zoomRange",
+                  count: 2,
+                  type: d.UNSIGNED_SHORT,
+                },
+                {
+                  location: 7,
+                  name: "a_vertexOffset",
+                  count: 2,
+                  type: d.SHORT,
+                },
+                {
+                  location: 8,
+                  name: "a_texCoords",
+                  count: 2,
+                  type: d.UNSIGNED_SHORT,
+                },
+              ],
+            }))(u),
+          f = i.materialManager.getMaterialProgram(
+            n,
+            u,
+            "materials/text",
+            m,
+            a
+          );
+        if (_ && A(c) && !f.compiled) return void c();
+        o.useProgram(f);
+        let T = L.TRIANGLES;
+        v && (T = L.POINTS),
+          this._setSharedUniforms(f, n, e),
+          i.textureManager.bindTextures(o, f, u),
+          f.setUniformMatrix3fv("u_displayMat3", l.displayMat3),
+          f.setUniformMatrix3fv("u_displayViewMat3", l.displayViewMat3),
+          this._setSizeVVUniforms(u, f, r, e),
+          this._setColorAndOpacityVVUniforms(u, f, r),
+          this._setRotationVVUniforms(u, f, r);
+        const g = t.target.getVAO(o, x, m),
+          E = t.indexFrom * Uint32Array.BYTES_PER_ELEMENT;
+        f.setUniform1f("u_isHaloPass", 0),
+          f.setUniform1f("u_isBackgroundPass", 1),
+          o.bindVAO(g),
+          o.drawElements(T, t.indexCount, d.UNSIGNED_INT, E),
+          f.setUniform1f("u_isHaloPass", 1),
+          f.setUniform1f("u_isBackgroundPass", 0),
+          o.drawElements(L.TRIANGLES, t.indexCount, d.UNSIGNED_INT, E),
+          f.setUniform1f("u_isHaloPass", 0),
+          f.setUniform1f("u_isBackgroundPass", 0),
+          o.drawElements(T, t.indexCount, d.UNSIGNED_INT, E);
+      }
+    },
+    label: class extends ue {
+      dispose() {}
+      getGeometryType() {
+        return re.LABEL;
+      }
+      supportsSymbology(n) {
+        return !0;
+      }
+      drawGeometry(n, e, t, a) {
+        const {
+            context: o,
+            painter: i,
+            state: r,
+            rendererInfo: l,
+            requestRender: s,
+            allowDelayedRender: c,
+          } = n,
+          _ = Rt.load(t.materialKey),
+          u = _.mapAligned ? 1 : 0;
+        if (
+          !u &&
+          Math.abs(e.key.level - Math.round(100 * n.displayLevel) / 100) >= 1
+        )
+          return;
+        const { bufferLayouts: v, attributes: x } = ((E) =>
+            ee(E.data, {
+              geometry: [
+                { location: 0, name: "a_pos", count: 2, type: d.SHORT },
+                { location: 1, name: "a_id", count: 4, type: d.UNSIGNED_BYTE },
+                {
+                  location: 2,
+                  name: "a_color",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                  normalized: !0,
+                },
+                {
+                  location: 3,
+                  name: "a_haloColor",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                  normalized: !0,
+                },
+                {
+                  location: 4,
+                  name: "a_texAndSize",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                },
+                {
+                  location: 5,
+                  name: "a_refSymbolAndPlacementOffset",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                },
+                {
+                  location: 6,
+                  name: "a_glyphData",
+                  count: 4,
+                  type: d.UNSIGNED_BYTE,
+                },
+                {
+                  location: 7,
+                  name: "a_vertexOffset",
+                  count: 2,
+                  type: d.SHORT,
+                },
+                {
+                  location: 8,
+                  name: "a_texCoords",
+                  count: 2,
+                  type: d.UNSIGNED_SHORT,
+                },
+              ],
+            }))(_),
+          m = i.materialManager.getMaterialProgram(
+            n,
+            _,
+            "materials/label",
+            x,
+            a
+          );
+        if (c && A(s) && !m.compiled) return void s();
+        n.context.setStencilFunction(w.EQUAL, 0, 255),
+          o.useProgram(m),
+          this._setSharedUniforms(m, n, e),
+          i.textureManager.bindTextures(o, m, _);
+        const f = u === 1 ? r.displayViewMat3 : r.displayMat3;
+        this._setSizeVVUniforms(_, m, l, e),
+          m.setUniform1f("u_mapRotation", Math.floor((r.rotation / 360) * 254)),
+          m.setUniform1f("u_mapAligned", u),
+          m.setUniformMatrix3fv("u_displayMat3", f),
+          m.setUniform1f("u_opacity", 1),
+          m.setUniform2fv("u_screenSize", n.state.size);
+        const T = t.target.getVAO(o, v, x),
+          g = t.indexFrom * Uint32Array.BYTES_PER_ELEMENT;
+        o.bindVAO(T),
+          m.setUniform1f("u_isHaloPass", 0),
+          m.setUniform1f("u_isBackgroundPass", 1),
+          o.drawElements(L.TRIANGLES, t.indexCount, d.UNSIGNED_INT, g),
+          m.setUniform1f("u_isHaloPass", 1),
+          m.setUniform1f("u_isBackgroundPass", 0),
+          o.drawElements(L.TRIANGLES, t.indexCount, d.UNSIGNED_INT, g),
+          m.setUniform1f("u_isHaloPass", 0),
+          m.setUniform1f("u_isBackgroundPass", 0),
+          o.drawElements(L.TRIANGLES, t.indexCount, d.UNSIGNED_INT, g),
+          o.setStencilTestEnabled(!0),
+          o.setBlendingEnabled(!0);
+      }
+    },
+    clip: class extends W {
+      constructor() {
+        super(...arguments), (this._color = q(0, 1, 0, 1));
+      }
+      dispose() {
+        this._program && this._program.dispose();
+      }
+      prepareState({ context: n }) {
+        n.setStencilTestEnabled(!0),
+          n.setBlendingEnabled(!1),
+          n.setFaceCullingEnabled(!1),
+          n.setColorMask(!1, !1, !1, !1),
+          n.setStencilOp(le.KEEP, le.KEEP, le.REPLACE),
+          n.setStencilWriteMask(255),
+          n.setStencilFunction(w.ALWAYS, 0, 255);
+      }
+      draw(n, e) {
+        const {
+            context: t,
+            state: a,
+            requestRender: o,
+            allowDelayedRender: i,
+          } = n,
+          r = ee("clip", {
+            geometry: [{ location: 0, name: "a_pos", count: 2, type: d.SHORT }],
+          }),
+          l = e.getVAO(t, a, r.attributes, r.bufferLayouts);
+        B(l.indexBuffer) ||
+          (this._program || (this._program = ge(t, _e)),
+          i && A(o) && !this._program.compiled
+            ? o()
+            : (t.useProgram(this._program),
+              this._program.setUniform2fv("u_coord_range", [1, 1]),
+              this._program.setUniform4fv("u_color", this._color),
+              this._program.setUniformMatrix3fv("u_dvsMat3", a.displayMat3),
+              t.bindVAO(l),
+              t.drawElements(
+                L.TRIANGLES,
+                l.indexBuffer.size,
+                d.UNSIGNED_INT,
+                0
+              ),
+              t.bindVAO()));
+      }
+    },
+    stencil: Qt,
+    bitmap: class extends W {
+      constructor() {
+        super(...arguments),
+          (this._desc = {
+            vsPath: "raster/bitmap",
+            fsPath: "raster/bitmap",
+            attributes: new Map([["a_pos", 0]]),
+          });
+      }
+      dispose() {
+        this._quad && this._quad.dispose();
+      }
+      prepareState({ context: n }) {
+        n.setBlendingEnabled(!0),
+          n.setColorMask(!0, !0, !0, !0),
+          n.setStencilWriteMask(0),
+          n.setStencilTestEnabled(!0);
+      }
+      draw(n, e) {
+        const {
+          context: t,
+          renderingOptions: a,
+          painter: o,
+          requestRender: i,
+          allowDelayedRender: r,
+        } = n;
+        if (!e.source || !e.isReady) return;
+        const l = ((v, x, m) => {
+            if (m.samplingMode === "dynamic") {
+              const { state: f } = v,
+                T = x.resolution / x.pixelRatio / f.resolution,
+                g = Math.round(v.pixelRatio) !== v.pixelRatio,
+                E = T > 1.05 || T < 0.95;
+              return f.rotation || E || g || x.isSourceScaled || x.rotation
+                ? ye.bilinear
+                : ye.nearest;
+            }
+            return ye[m.samplingMode];
+          })(n, e, a),
+          s = o.materialManager.getProgram(this._desc, l.defines);
+        if (r && A(i) && !s.compiled) return void i();
+        n.timeline.begin(this.name),
+          e.blendFunction === "additive"
+            ? t.setBlendFunctionSeparate(R.ONE, R.ONE, R.ONE, R.ONE)
+            : t.setBlendFunctionSeparate(
+                R.ONE,
+                R.ONE_MINUS_SRC_ALPHA,
+                R.ONE,
+                R.ONE_MINUS_SRC_ALPHA
+              ),
+          t.setStencilFunction(w.EQUAL, e.stencilRef, 255),
+          this._quad || (this._quad = new Xe(t, [0, 0, 1, 0, 0, 1, 1, 1]));
+        const { coordScale: c, computedOpacity: _, transforms: u } = e;
+        e.setSamplingProfile(l),
+          e.bind(n.context, ve),
+          t.useProgram(s),
+          s.setUniformMatrix3fv("u_dvsMat3", u.dvs),
+          s.setUniform1i("u_texture", ve),
+          s.setUniform2fv("u_coordScale", c),
+          s.setUniform1f("u_opacity", _),
+          this._quad.draw(),
+          n.timeline.end(this.name);
+      }
+    },
+    overlay: class extends W {
+      constructor() {
+        super(...arguments),
+          (this._desc = {
+            vsPath: "overlay/overlay",
+            fsPath: "overlay/overlay",
+            attributes: new Map([
+              ["a_pos", 0],
+              ["a_uv", 1],
+            ]),
+          });
+      }
+      dispose() {}
+      prepareState({ context: n }) {
+        n.setBlendingEnabled(!0),
+          n.setColorMask(!0, !0, !0, !0),
+          n.setBlendFunctionSeparate(
+            R.ONE,
+            R.ONE_MINUS_SRC_ALPHA,
+            R.ONE,
+            R.ONE_MINUS_SRC_ALPHA
+          ),
+          n.setStencilWriteMask(0),
+          n.setStencilTestEnabled(!0),
+          n.setStencilFunction(w.GREATER, 255, 255);
+      }
+      draw(n, e) {
+        const {
+          context: t,
+          painter: a,
+          requestRender: o,
+          allowDelayedRender: i,
+        } = n;
+        if (!e.isReady) return;
+        const {
+          computedOpacity: r,
+          dvsMat3: l,
+          isWrapAround: s,
+          perspectiveTransform: c,
+          texture: _,
+        } = e;
+        n.timeline.begin(this.name);
+        const u = a.materialManager.getProgram(this._desc);
+        if (i && A(o) && !u.compiled) return void o();
+        const v = ee("overlay", {
+            geometry: [{ location: 0, name: "a_pos", count: 2, type: d.FLOAT }],
+            tex: [
+              { location: 1, name: "a_uv", count: 2, type: d.UNSIGNED_SHORT },
+            ],
+          }),
+          x = e.getVAO(t, v.bufferLayouts, v.attributes);
+        if (!x) return;
+        t.bindVAO(x),
+          t.useProgram(u),
+          t.bindTexture(_, ve),
+          u.setUniformMatrix3fv("u_dvsMat3", l),
+          u.setUniform1i("u_texture", ve),
+          u.setUniform1f("u_opacity", r),
+          u.setUniform2fv("u_perspective", c);
+        const m = s ? 10 : 4;
+        t.drawArrays(L.TRIANGLE_STRIP, 0, m),
+          t.bindVAO(),
+          n.timeline.end(this.name);
+      }
+    },
+    tileInfo: Xt,
+    vtlBackground: class extends W {
+      constructor() {
+        super(...arguments),
+          (this._color = q(1, 0, 0, 1)),
+          (this._patternMatrix = Ie()),
+          (this._programOptions = { id: !1, pattern: !1 });
+      }
+      dispose() {
+        this._vao && (this._vao.dispose(), (this._vao = null));
+      }
+      drawMany(n, e) {
+        const {
+          context: t,
+          painter: a,
+          styleLayerUID: o,
+          requestRender: i,
+          allowDelayedRender: r,
+        } = n;
+        this._loadWGLResources(n);
+        const l = n.displayLevel,
+          s = n.styleLayer,
+          c = s.backgroundMaterial,
+          _ = a.vectorTilesMaterialManager,
+          u = s.getPaintValue("background-color", l),
+          v = s.getPaintValue("background-opacity", l),
+          x = s.getPaintValue("background-pattern", l),
+          m = x !== void 0,
+          f = u[3] * v,
+          T = 1 | window.devicePixelRatio,
+          g = n.spriteMosaic;
+        let E, S;
+        const O = T > Re ? 2 : 1,
+          h = n.drawPhase === V.HITTEST,
+          p = this._programOptions;
+        (p.id = h), (p.pattern = m);
+        const C = _.getMaterialProgram(t, c, p);
+        if (r && A(i) && !C.compiled) i();
+        else {
+          if ((t.bindVAO(this._vao), t.useProgram(C), m)) {
+            const I = g.getMosaicItemPosition(x, !0);
+            if (A(I)) {
+              const { tl: b, br: y, page: P } = I;
+              (E = y[0] - b[0]), (S = y[1] - b[1]);
+              const D = g.getPageSize(P);
+              A(D) &&
+                (g.bind(t, M.LINEAR, P, Y),
+                C.setUniform4f("u_tlbr", b[0], b[1], y[0], y[1]),
+                C.setUniform2fv("u_mosaicSize", D),
+                C.setUniform1i("u_texture", Y));
+            }
+            C.setUniform1f("u_opacity", v);
+          } else
+            (this._color[0] = f * u[0]),
+              (this._color[1] = f * u[1]),
+              (this._color[2] = f * u[2]),
+              (this._color[3] = f),
+              C.setUniform4fv("u_color", this._color);
+          if ((C.setUniform1f("u_depth", s.z || 0), h)) {
+            const I = ce(o + 1);
+            C.setUniform4fv("u_id", I);
+          }
+          for (const I of e) {
+            if (
+              (C.setUniform1f("u_coord_range", I.rangeX),
+              C.setUniformMatrix3fv("u_dvsMat3", I.transforms.dvs),
+              m)
+            ) {
+              const b = Math.max(2 ** (Math.round(l) - I.key.level), 1),
+                y = O * I.width * b,
+                P = y / De(E),
+                D = y / De(S);
+              (this._patternMatrix[0] = P),
+                (this._patternMatrix[4] = D),
+                C.setUniformMatrix3fv("u_pattern_matrix", this._patternMatrix);
+            }
+            t.setStencilFunction(w.EQUAL, 0, 255),
+              t.drawArrays(L.TRIANGLE_STRIP, 0, 4);
+          }
+        }
+      }
+      _loadWGLResources(n) {
+        if (this._vao) return;
+        const { context: e, styleLayer: t } = n,
+          a = t.backgroundMaterial,
+          o = new Int8Array([0, 0, 1, 0, 0, 1, 1, 1]),
+          i = X.createVertex(e, Q.STATIC_DRAW, o),
+          r = new ne(e, a.getAttributeLocations(), a.getLayoutInfo(), {
+            geometry: i,
+          });
+        this._vao = r;
+      }
+    },
+    vtlFill: class extends W {
+      constructor() {
+        super(...arguments),
+          (this._fillProgramOptions = { id: !1, pattern: !1 }),
+          (this._outlineProgramOptions = { id: !1 });
+      }
+      dispose() {}
+      drawMany(n, e) {
+        const {
+          displayLevel: t,
+          drawPhase: a,
+          renderPass: o,
+          spriteMosaic: i,
+          styleLayerUID: r,
+        } = n;
+        let l = !1;
+        for (const O of e)
+          if (O.layerData.has(r)) {
+            const h = O.layerData.get(r);
+            if (h.fillIndexCount > 0 || h.outlineIndexCount > 0) {
+              l = !0;
+              break;
+            }
+          }
+        if (!l) return;
+        const s = n.styleLayer,
+          c = s.getPaintProperty("fill-pattern"),
+          _ = c !== void 0,
+          u = _ && c.isDataDriven;
+        let v;
+        if (_ && !u) {
+          const O = c.getValue(t);
+          v = i.getMosaicItemPosition(O, !0);
+        }
+        const x = !_ && s.getPaintValue("fill-antialias", t);
+        let m,
+          f = !0,
+          T = 1;
+        if (!_) {
+          const O = s.getPaintProperty("fill-color"),
+            h = s.getPaintProperty("fill-opacity");
+          if (
+            !(O != null && O.isDataDriven) &&
+            !(h != null && h.isDataDriven)
+          ) {
+            const p = s.getPaintValue("fill-color", t);
+            (T = s.getPaintValue("fill-opacity", t) * p[3]), T >= 1 && (f = !1);
+          }
+        }
+        if (f && o === "opaque") return;
+        a === V.HITTEST && (m = ce(r + 1));
+        const g = s.getPaintValue("fill-translate", t),
+          E = s.getPaintValue("fill-translate-anchor", t);
+        (f || o !== "translucent") &&
+          this._drawFill(n, r, s, e, g, E, _, v, u, m);
+        const S =
+          !s.hasDataDrivenOutlineColor && s.outlineUsesFillColor && T < 1;
+        x && o !== "opaque" && !S && this._drawOutline(n, r, s, e, g, E, m);
+      }
+      _drawFill(n, e, t, a, o, i, r, l, s, c) {
+        if (r && !s && B(l)) return;
+        const {
+            context: _,
+            displayLevel: u,
+            state: v,
+            drawPhase: x,
+            painter: m,
+            pixelRatio: f,
+            spriteMosaic: T,
+            requestRender: g,
+            allowDelayedRender: E,
+          } = n,
+          S = t.fillMaterial,
+          O = m.vectorTilesMaterialManager,
+          h = f > Re ? 2 : 1,
+          p = x === V.HITTEST,
+          C = this._fillProgramOptions;
+        (C.id = p), (C.pattern = r);
+        const I = O.getMaterialProgram(_, S, C);
+        if (E && A(g) && !I.compiled) return void g();
+        if ((_.useProgram(I), A(l))) {
+          const { page: y } = l,
+            P = T.getPageSize(y);
+          A(P) &&
+            (T.bind(_, M.LINEAR, y, Y),
+            I.setUniform2fv("u_mosaicSize", P),
+            I.setUniform1i("u_texture", Y));
+        }
+        I.setUniformMatrix3fv(
+          "u_displayMat3",
+          i === ie.VIEWPORT ? v.displayMat3 : v.displayViewMat3
+        ),
+          I.setUniform2fv("u_fillTranslation", o),
+          I.setUniform1f("u_depth", t.z + Ye),
+          p && I.setUniform4fv("u_id", c);
+        let b = -1;
+        for (const y of a) {
+          if (!y.layerData.has(e)) continue;
+          y.key.level !== b &&
+            ((b = y.key.level), S.setDataUniforms(I, u, t, b, T));
+          const P = y.layerData.get(e);
+          if (!P.fillIndexCount) continue;
+          P.prepareForRendering(_);
+          const D = P.fillVertexArrayObject;
+          if (!B(D)) {
+            if (
+              (_.bindVAO(D),
+              I.setUniformMatrix3fv("u_dvsMat3", y.transforms.dvs),
+              _.setStencilFunction(w.EQUAL, y.stencilRef, 255),
+              r)
+            ) {
+              const z = Math.max(2 ** (Math.round(u) - y.key.level), 1),
+                F = y.rangeX / (h * y.width * z);
+              I.setUniform1f("u_patternFactor", F);
+            }
+            if (s) {
+              const z = P.patternMap;
+              if (!z) continue;
+              for (const [F, $] of z) {
+                const K = T.getPageSize(F);
+                A(K) &&
+                  (T.bind(_, M.LINEAR, F, Y),
+                  I.setUniform2fv("u_mosaicSize", K),
+                  I.setUniform1i("u_texture", Y),
+                  _.drawElements(
+                    L.TRIANGLES,
+                    $[1],
+                    d.UNSIGNED_INT,
+                    Uint32Array.BYTES_PER_ELEMENT * $[0]
+                  ));
+              }
+            } else
+              _.drawElements(
+                L.TRIANGLES,
+                P.fillIndexCount,
+                d.UNSIGNED_INT,
+                Uint32Array.BYTES_PER_ELEMENT * P.fillIndexStart
+              );
+            y.triangleCount += P.fillIndexCount / 3;
+          }
+        }
+      }
+      _drawOutline(n, e, t, a, o, i, r) {
+        const {
+            context: l,
+            displayLevel: s,
+            state: c,
+            drawPhase: _,
+            painter: u,
+            pixelRatio: v,
+            spriteMosaic: x,
+            requestRender: m,
+            allowDelayedRender: f,
+          } = n,
+          T = t.outlineMaterial,
+          g = u.vectorTilesMaterialManager,
+          E = 0.75 / v,
+          S = _ === V.HITTEST,
+          O = this._outlineProgramOptions;
+        O.id = S;
+        const h = g.getMaterialProgram(l, T, O);
+        if (f && A(m) && !h.compiled) return void m();
+        l.useProgram(h),
+          h.setUniformMatrix3fv(
+            "u_displayMat3",
+            i === ie.VIEWPORT ? c.displayMat3 : c.displayViewMat3
+          ),
+          h.setUniform2fv("u_fillTranslation", o),
+          h.setUniform1f("u_depth", t.z + Ye),
+          h.setUniform1f("u_outline_width", E),
+          S && h.setUniform4fv("u_id", r);
+        let p = -1;
+        for (const C of a) {
+          if (!C.layerData.has(e)) continue;
+          C.key.level !== p &&
+            ((p = C.key.level), T.setDataUniforms(h, s, t, p, x));
+          const I = C.layerData.get(e);
+          if ((I.prepareForRendering(l), !I.outlineIndexCount)) continue;
+          const b = I.outlineVertexArrayObject;
+          B(b) ||
+            (l.bindVAO(b),
+            h.setUniformMatrix3fv("u_dvsMat3", C.transforms.dvs),
+            l.setStencilFunction(w.EQUAL, C.stencilRef, 255),
+            l.drawElements(
+              L.TRIANGLES,
+              I.outlineIndexCount,
+              d.UNSIGNED_INT,
+              Uint32Array.BYTES_PER_ELEMENT * I.outlineIndexStart
+            ),
+            (C.triangleCount += I.outlineIndexCount / 3));
+        }
+      }
+    },
+    vtlLine: class extends W {
+      constructor() {
+        super(...arguments),
+          (this._programOptions = { id: !1, pattern: !1, sdf: !1 });
+      }
+      dispose() {}
+      drawMany(n, e) {
+        const {
+          context: t,
+          displayLevel: a,
+          state: o,
+          drawPhase: i,
+          painter: r,
+          pixelRatio: l,
+          spriteMosaic: s,
+          styleLayerUID: c,
+          requestRender: _,
+          allowDelayedRender: u,
+        } = n;
+        if (
+          !e.some((D) => {
+            var z;
+            return (
+              ((z = D.layerData.get(c)) == null ? void 0 : z.lineIndexCount) ??
+              !1
+            );
+          })
+        )
+          return;
+        const v = n.styleLayer,
+          x = v.lineMaterial,
+          m = r.vectorTilesMaterialManager,
+          f = v.getPaintValue("line-translate", a),
+          T = v.getPaintValue("line-translate-anchor", a),
+          g = v.getPaintProperty("line-pattern"),
+          E = g !== void 0,
+          S = E && g.isDataDriven;
+        let O, h;
+        if (E && !S) {
+          const D = g.getValue(a);
+          O = s.getMosaicItemPosition(D);
+        }
+        let p = !1;
+        if (!E) {
+          const D = v.getPaintProperty("line-dasharray");
+          if (((h = D !== void 0), (p = h && D.isDataDriven), h && !p)) {
+            const z = D.getValue(a),
+              F = v.getDashKey(z, v.getLayoutValue("line-cap", a));
+            O = s.getMosaicItemPosition(F);
+          }
+        }
+        const C = 1 / l,
+          I = i === V.HITTEST,
+          b = this._programOptions;
+        (b.id = I), (b.pattern = E), (b.sdf = h);
+        const y = m.getMaterialProgram(t, x, b);
+        if (u && A(_) && !y.compiled) return void _();
+        if (
+          (t.useProgram(y),
+          y.setUniformMatrix3fv("u_displayViewMat3", o.displayViewMat3),
+          y.setUniformMatrix3fv(
+            "u_displayMat3",
+            T === ie.VIEWPORT ? o.displayMat3 : o.displayViewMat3
+          ),
+          y.setUniform2fv("u_lineTranslation", f),
+          y.setUniform1f("u_depth", v.z),
+          y.setUniform1f("u_antialiasing", C),
+          I)
+        ) {
+          const D = ce(c + 1);
+          y.setUniform4fv("u_id", D);
+        }
+        if (O && A(O)) {
+          const { page: D } = O,
+            z = s.getPageSize(D);
+          A(z) &&
+            (s.bind(t, M.LINEAR, D, Y),
+            y.setUniform2fv("u_mosaicSize", z),
+            y.setUniform1i("u_texture", Y));
+        }
+        let P = -1;
+        for (const D of e) {
+          if (!D.layerData.has(c)) continue;
+          D.key.level !== P &&
+            ((P = D.key.level), x.setDataUniforms(y, a, v, P, s));
+          const z = 2 ** (a - P) / l;
+          y.setUniform1f("u_zoomFactor", z);
+          const F = D.layerData.get(c);
+          if (!F.lineIndexCount) continue;
+          F.prepareForRendering(t);
+          const $ = F.lineVertexArrayObject;
+          if (!B($)) {
+            if (
+              (t.bindVAO($),
+              y.setUniformMatrix3fv("u_dvsMat3", D.transforms.dvs),
+              t.setStencilFunction(w.EQUAL, D.stencilRef, 255),
+              S || p)
+            ) {
+              const K = F.patternMap;
+              if (!K) continue;
+              for (const [N, oe] of K) {
+                const H = s.getPageSize(N);
+                A(H) &&
+                  (s.bind(t, M.LINEAR, N, Y),
+                  y.setUniform2fv("u_mosaicSize", H),
+                  y.setUniform1i("u_texture", Y),
+                  t.drawElements(
+                    L.TRIANGLES,
+                    oe[1],
+                    d.UNSIGNED_INT,
+                    Uint32Array.BYTES_PER_ELEMENT * oe[0]
+                  ));
+              }
+            } else
+              t.drawElements(
+                L.TRIANGLES,
+                F.lineIndexCount,
+                d.UNSIGNED_INT,
+                Uint32Array.BYTES_PER_ELEMENT * F.lineIndexStart
+              );
+            D.triangleCount += F.lineIndexCount / 3;
+          }
+        }
+      }
+    },
+    vtlCircle: class extends W {
+      constructor() {
+        super(...arguments), (this._programOptions = { id: !1 });
+      }
+      dispose() {}
+      drawMany(n, e) {
+        const {
+          context: t,
+          displayLevel: a,
+          requiredLevel: o,
+          state: i,
+          drawPhase: r,
+          painter: l,
+          spriteMosaic: s,
+          styleLayerUID: c,
+          requestRender: _,
+          allowDelayedRender: u,
+        } = n;
+        if (
+          !e.some((h) => {
+            var p;
+            return (
+              ((p = h.layerData.get(c)) == null
+                ? void 0
+                : p.circleIndexCount) ?? !1
+            );
+          })
+        )
+          return;
+        const v = n.styleLayer,
+          x = v.circleMaterial,
+          m = l.vectorTilesMaterialManager,
+          f = v.getPaintValue("circle-translate", a),
+          T = v.getPaintValue("circle-translate-anchor", a),
+          g = r === V.HITTEST,
+          E = this._programOptions;
+        E.id = g;
+        const S = m.getMaterialProgram(t, x, E);
+        if (u && A(_) && !S.compiled) return void _();
+        t.useProgram(S),
+          S.setUniformMatrix3fv(
+            "u_displayMat3",
+            T === ie.VIEWPORT ? i.displayMat3 : i.displayViewMat3
+          ),
+          S.setUniform2fv("u_circleTranslation", f),
+          S.setUniform1f("u_depth", v.z),
+          S.setUniform1f("u_antialiasingWidth", 1.2);
+        let O = -1;
+        if (g) {
+          const h = ce(c + 1);
+          S.setUniform4fv("u_id", h);
+        }
+        for (const h of e) {
+          if (!h.layerData.has(c)) continue;
+          h.key.level !== O &&
+            ((O = h.key.level), x.setDataUniforms(S, a, v, O, s));
+          const p = h.layerData.get(c);
+          if (!p.circleIndexCount) continue;
+          p.prepareForRendering(t);
+          const C = p.circleVertexArrayObject;
+          B(C) ||
+            (t.bindVAO(C),
+            S.setUniformMatrix3fv("u_dvsMat3", h.transforms.dvs),
+            o !== h.key.level
+              ? t.setStencilFunction(w.EQUAL, h.stencilRef, 255)
+              : t.setStencilFunction(w.GREATER, 255, 255),
+            t.drawElements(
+              L.TRIANGLES,
+              p.circleIndexCount,
+              d.UNSIGNED_INT,
+              Uint32Array.BYTES_PER_ELEMENT * p.circleIndexStart
+            ),
+            (h.triangleCount += p.circleIndexCount / 3));
+        }
+      }
+    },
+    vtlSymbol: class extends W {
+      constructor() {
+        super(...arguments),
+          (this._iconProgramOptions = { id: !1, sdf: !1 }),
+          (this._sdfProgramOptions = { id: !1 }),
+          (this._spritesTextureSize = ut());
+      }
+      dispose() {}
+      drawMany(n, e) {
+        const { drawPhase: t, styleLayerUID: a } = n,
+          o = n.styleLayer;
+        let i;
+        t === V.HITTEST && (i = ce(a + 1)),
+          this._drawIcons(n, o, e, i),
+          this._drawText(n, o, e, i);
+      }
+      _drawIcons(n, e, t, a) {
+        const {
+            context: o,
+            displayLevel: i,
+            drawPhase: r,
+            painter: l,
+            spriteMosaic: s,
+            state: c,
+            styleLayerUID: _,
+            requestRender: u,
+            allowDelayedRender: v,
+          } = n,
+          x = e.iconMaterial,
+          m = l.vectorTilesMaterialManager;
+        let f,
+          T = !1;
+        for (const P of t)
+          if (
+            P.layerData.has(_) &&
+            ((f = P.layerData.get(_)), f.iconPerPageElementsMap.size > 0)
+          ) {
+            T = !0;
+            break;
+          }
+        if (!T) return;
+        const g = e.getPaintValue("icon-translate", i),
+          E = e.getPaintValue("icon-translate-anchor", i);
+        let S = e.getLayoutValue("icon-rotation-alignment", i);
+        S === k.AUTO &&
+          (S =
+            e.getLayoutValue("symbol-placement", i) === Fe.POINT
+              ? k.VIEWPORT
+              : k.MAP);
+        const O = S === k.MAP,
+          h = e.getLayoutValue("icon-keep-upright", i) && O,
+          p = f.isIconSDF,
+          C = r === V.HITTEST,
+          I = this._iconProgramOptions;
+        (I.id = C), (I.sdf = p);
+        const b = m.getMaterialProgram(o, x, I);
+        if (v && A(u) && !b.compiled) return void u();
+        o.useProgram(b),
+          b.setUniformMatrix3fv(
+            "u_displayViewMat3",
+            S === k.MAP ? c.displayViewMat3 : c.displayMat3
+          ),
+          b.setUniformMatrix3fv(
+            "u_displayMat3",
+            E === ie.VIEWPORT ? c.displayMat3 : c.displayViewMat3
+          ),
+          b.setUniform2fv("u_iconTranslation", g),
+          b.setUniform1f("u_depth", e.z),
+          b.setUniform1f("u_mapRotation", we(c.rotation)),
+          b.setUniform1f("u_keepUpright", h ? 1 : 0),
+          b.setUniform1f("u_level", 10 * i),
+          b.setUniform1i("u_texture", Y),
+          b.setUniform1f("u_fadeDuration", Ve / 1e3),
+          C && b.setUniform4fv("u_id", a);
+        let y = -1;
+        for (const P of t) {
+          if (
+            !P.layerData.has(_) ||
+            (P.key.level !== y &&
+              ((y = P.key.level), x.setDataUniforms(b, i, e, y, s)),
+            (f = P.layerData.get(_)),
+            f.iconPerPageElementsMap.size === 0)
+          )
+            continue;
+          f.prepareForRendering(o), f.updateOpacityInfo();
+          const D = f.iconVertexArrayObject;
+          if (!B(D)) {
+            o.bindVAO(D),
+              b.setUniformMatrix3fv("u_dvsMat3", P.transforms.dvs),
+              b.setUniform1f(
+                "u_time",
+                (performance.now() - f.lastOpacityUpdate) / 1e3
+              );
+            for (const [z, F] of f.iconPerPageElementsMap)
+              this._renderIconRange(n, b, F, z, P);
+          }
+        }
+      }
+      _renderIconRange(n, e, t, a, o) {
+        const { context: i, spriteMosaic: r } = n;
+        (this._spritesTextureSize[0] = r.getWidth(a) / 4),
+          (this._spritesTextureSize[1] = r.getHeight(a) / 4),
+          e.setUniform2fv("u_mosaicSize", this._spritesTextureSize),
+          r.bind(i, M.LINEAR, a, Y),
+          i.setStencilTestEnabled(!0),
+          i.setStencilFunction(w.GREATER, 255, 255),
+          i.setStencilWriteMask(0),
+          i.drawElements(
+            L.TRIANGLES,
+            t[1],
+            d.UNSIGNED_INT,
+            Uint32Array.BYTES_PER_ELEMENT * t[0]
+          ),
+          (o.triangleCount += t[1] / 3);
+      }
+      _drawText(n, e, t, a) {
+        const {
+            context: o,
+            displayLevel: i,
+            drawPhase: r,
+            glyphMosaic: l,
+            painter: s,
+            pixelRatio: c,
+            spriteMosaic: _,
+            state: u,
+            styleLayerUID: v,
+            requestRender: x,
+            allowDelayedRender: m,
+          } = n,
+          f = e.textMaterial,
+          T = s.vectorTilesMaterialManager;
+        let g,
+          E = !1;
+        for (const H of t)
+          if (
+            H.layerData.has(v) &&
+            ((g = H.layerData.get(v)), g.glyphPerPageElementsMap.size > 0)
+          ) {
+            E = !0;
+            break;
+          }
+        if (!E) return;
+        const S = e.getPaintProperty("text-opacity");
+        if (S && !S.isDataDriven && S.getValue(i) === 0) return;
+        const O = e.getPaintProperty("text-color"),
+          h = !O || O.isDataDriven || O.getValue(i)[3] > 0,
+          p = e.getPaintProperty("text-halo-width"),
+          C = e.getPaintProperty("text-halo-color"),
+          I =
+            (!p || p.isDataDriven || p.getValue(i) > 0) &&
+            (!C || C.isDataDriven || C.getValue(i)[3] > 0);
+        if (!h && !I) return;
+        let b = e.getLayoutValue("text-rotation-alignment", i);
+        b === k.AUTO &&
+          (b =
+            e.getLayoutValue("symbol-placement", i) === Fe.POINT
+              ? k.VIEWPORT
+              : k.MAP);
+        const y = b === k.MAP,
+          P = e.getLayoutValue("text-keep-upright", i) && y,
+          D = r === V.HITTEST,
+          z = (0.8 * 3) / c;
+        this._glyphTextureSize ||
+          (this._glyphTextureSize = ft(l.width / 4, l.height / 4));
+        const F = e.getPaintValue("text-translate", i),
+          $ = e.getPaintValue("text-translate-anchor", i),
+          K = this._sdfProgramOptions;
+        K.id = D;
+        const N = T.getMaterialProgram(o, f, K);
+        if (m && A(x) && !N.compiled) return void x();
+        o.useProgram(N),
+          N.setUniformMatrix3fv(
+            "u_displayViewMat3",
+            b === k.MAP ? u.displayViewMat3 : u.displayMat3
+          ),
+          N.setUniformMatrix3fv(
+            "u_displayMat3",
+            $ === ie.VIEWPORT ? u.displayMat3 : u.displayViewMat3
+          ),
+          N.setUniform2fv("u_textTranslation", F),
+          N.setUniform1f("u_depth", e.z + 152587890625e-16),
+          N.setUniform2fv("u_mosaicSize", this._glyphTextureSize),
+          N.setUniform1f("u_mapRotation", we(u.rotation)),
+          N.setUniform1f("u_keepUpright", P ? 1 : 0),
+          N.setUniform1f("u_level", 10 * i),
+          N.setUniform1i("u_texture", Ne),
+          N.setUniform1f("u_antialiasingWidth", z),
+          N.setUniform1f("u_fadeDuration", Ve / 1e3),
+          D && N.setUniform4fv("u_id", a);
+        let oe = -1;
+        for (const H of t) {
+          if (
+            !H.layerData.has(v) ||
+            (H.key.level !== oe &&
+              ((oe = H.key.level), f.setDataUniforms(N, i, e, oe, _)),
+            (g = H.layerData.get(v)),
+            g.glyphPerPageElementsMap.size === 0)
+          )
+            continue;
+          g.prepareForRendering(o), g.updateOpacityInfo();
+          const Ae = g.textVertexArrayObject;
+          if (B(Ae)) continue;
+          o.bindVAO(Ae),
+            N.setUniformMatrix3fv("u_dvsMat3", H.transforms.dvs),
+            o.setStencilTestEnabled(!0),
+            o.setStencilFunction(w.GREATER, 255, 255),
+            o.setStencilWriteMask(0);
+          const it = (performance.now() - g.lastOpacityUpdate) / 1e3;
+          N.setUniform1f("u_time", it),
+            g.glyphPerPageElementsMap.forEach((at, rt) => {
+              this._renderGlyphRange(o, at, rt, l, N, I, h, H);
+            });
+        }
+      }
+      _renderGlyphRange(n, e, t, a, o, i, r, l) {
+        a.bind(n, M.LINEAR, t, Ne),
+          i &&
+            (o.setUniform1f("u_halo", 1),
+            n.drawElements(
+              L.TRIANGLES,
+              e[1],
+              d.UNSIGNED_INT,
+              Uint32Array.BYTES_PER_ELEMENT * e[0]
+            ),
+            (l.triangleCount += e[1] / 3)),
+          r &&
+            (o.setUniform1f("u_halo", 0),
+            n.drawElements(
+              L.TRIANGLES,
+              e[1],
+              d.UNSIGNED_INT,
+              Uint32Array.BYTES_PER_ELEMENT * e[0]
+            ),
+            (l.triangleCount += e[1] / 3));
+      }
+    },
+    dotDensity: class extends Ue {
+      constructor() {
+        super(...arguments),
+          (this._dotTextureSize = 0),
+          (this._dotTextures = null),
+          (this._dotSamplers = new Int32Array([Tt, Et])),
+          (this._dotVAO = null),
+          (this._dotDesc = {
+            vsPath: "dot/dot",
+            fsPath: "dot/dot",
+            attributes: new Map([["a_pos", 0]]),
+          });
+      }
+      dispose() {
+        super.dispose(),
+          this._disposeTextures(),
+          (this._dotFBO = J(this._dotFBO)),
+          (this._dotVAO = J(this._dotVAO));
+      }
+      getGeometryType() {
+        return re.FILL;
+      }
+      supportsSymbology(n) {
+        return n === j.DOT_DENSITY;
+      }
+      _drawFills(n, e, t, a, o, i) {
+        const { passOptions: r } = n;
+        if (A(r) && r.type === "hittest") super._drawFills(n, e, t, a, o, i);
+        else {
+          const l = this._drawDotLocations(n, e, t, o, i);
+          this._drawDotDensity(n, e, l);
+        }
+      }
+      _drawDotDensity(n, e, t) {
+        const {
+            context: a,
+            painter: o,
+            rendererInfo: i,
+            requestRender: r,
+            allowDelayedRender: l,
+          } = n,
+          s = o.materialManager.getProgram(this._dotDesc);
+        if (l && A(r) && !s.compiled) return void r();
+        const { rendererSchema: c } = i;
+        ae(c, "dot-density");
+        const _ = this._createDotDensityMesh(a, this._dotDesc.attributes, {
+          geometry: [
+            {
+              name: "a_pos",
+              count: 2,
+              type: d.SHORT,
+              divisor: 0,
+              normalized: !1,
+              offset: 0,
+              stride: 4,
+            },
+          ],
+        });
+        a.setStencilTestEnabled(!0),
+          a.useProgram(s),
+          s.setUniform1f("u_tileZoomFactor", 1),
+          s.setUniform1i("u_texture", this._dotSamplers[0]),
+          s.setUniform1f("u_dotSize", Math.max(c.dotSize, 1)),
+          s.setUniform1f("u_pixelRatio", window.devicePixelRatio),
+          this._setSharedUniforms(s, n, e),
+          a.bindTexture(t, this._dotSamplers[0]),
+          a.bindVAO(_),
+          a.drawArrays(L.POINTS, 0, 262144);
+      }
+      _drawDotLocations(n, e, t, a, o) {
+        const { context: i, rendererInfo: r, requiredLevel: l } = n,
+          s = i.getViewport(),
+          { rendererSchema: c } = r;
+        ae(c, "dot-density");
+        const {
+          dotScale: _,
+          colors: u,
+          activeDots: v,
+          backgroundColor: x,
+          dotValue: m,
+        } = c;
+        i.setViewport(0, 0, 512, 512);
+        const f = i.getBoundFramebufferObject(),
+          T = this._createFBO(i);
+        i.bindFramebuffer(T),
+          i.setClearColor(0, 0, 0, 0),
+          i.clear(i.gl.COLOR_BUFFER_BIT | i.gl.STENCIL_BUFFER_BIT),
+          i.setStencilTestEnabled(!1);
+        const g = 1 / 2 ** (l - e.key.level),
+          E = Se,
+          S = E * window.devicePixelRatio * E * window.devicePixelRatio,
+          O = (1 / g) * (1 / g),
+          h = _ ? n.state.scale / _ : 1;
+        return (
+          t.setUniform1f("u_tileZoomFactor", g),
+          t.setUniform1f(
+            "u_tileDotsOverArea",
+            S / (Se * window.devicePixelRatio * Se * window.devicePixelRatio)
+          ),
+          t.setUniformMatrix4fv("u_dotColors", u),
+          t.setUniform4fv("u_isActive", v),
+          t.setUniform4fv("u_dotBackgroundColor", x),
+          t.setUniform1f("u_dotValue", Math.max(1, m * h * O)),
+          this._bindDotDensityTextures(i, t, r, E),
+          i.drawElements(L.TRIANGLES, a, d.UNSIGNED_INT, o),
+          i.setViewport(s.x, s.y, s.width, s.height),
+          i.bindFramebuffer(f),
+          T.colorTexture
+        );
+      }
+      _createFBO(n) {
+        if (B(this._dotFBO)) {
+          const a = {
+              target: pe.TEXTURE_2D,
+              pixelFormat: Z.RGBA,
+              dataType: se.UNSIGNED_BYTE,
+              samplingMode: M.NEAREST,
+              wrapMode: fe.CLAMP_TO_EDGE,
+              width: 512,
+              height: 512,
+            },
+            o = {
+              colorTarget: Ot.TEXTURE,
+              depthStencilTarget: It.DEPTH_STENCIL_RENDER_BUFFER,
+            },
+            i = new Ze(n, {
+              width: 512,
+              height: 512,
+              internalFormat: Ke.DEPTH_STENCIL,
+            });
+          this._dotFBO = new qe(n, o, a, i);
+        }
+        return this._dotFBO;
+      }
+      _disposeTextures() {
+        if (this._dotTextures) {
+          for (let n = 0; n < this._dotTextures.length; n++)
+            this._dotTextures[n].dispose();
+          this._dotTextures = null;
+        }
+      }
+      _bindDotDensityTextures(n, e, t, a) {
+        const { rendererSchema: o } = t;
+        ae(o, "dot-density");
+        const i = this._createDotDensityTextures(n, a, o.seed);
+        e.setUniform1iv("u_dotTextures", this._dotSamplers);
+        for (let r = 0; r < i.length; r++)
+          n.bindTexture(i[r], this._dotSamplers[r]);
+      }
+      _createDotDensityMesh(n, e, t) {
+        if (B(this._dotVAO)) {
+          const o = new Int16Array(524288);
+          for (let r = 0; r < 512; r++)
+            for (let l = 0; l < 512; l++)
+              (o[2 * (l + 512 * r)] = l), (o[2 * (l + 512 * r) + 1] = r);
+          const i = X.createVertex(n, Q.STATIC_DRAW, o);
+          this._dotVAO = new ne(n, e, t, { geometry: i }, null);
+        }
+        return this._dotVAO;
+      }
+      _createDotDensityTextures(n, e, t) {
+        if (
+          ((this._dotTextureSize === e && this._seed === t) ||
+            (this._disposeTextures(),
+            (this._dotTextureSize = e),
+            (this._seed = t)),
+          this._dotTextures === null)
+        ) {
+          const a = new lt(t);
+          this._dotTextures = [
+            this._allocDotDensityTexture(n, e, a),
+            this._allocDotDensityTexture(n, e, a),
+          ];
+        }
+        return this._dotTextures;
+      }
+      _allocDotDensityTexture(n, e, t) {
+        const a = new Float32Array(e * e * 4);
+        for (let o = 0; o < a.length; o++) a[o] = t.getFloat();
+        return new xe(
+          n,
+          {
+            wrapMode: fe.REPEAT,
+            pixelFormat: Z.RGBA,
+            dataType: se.FLOAT,
+            samplingMode: M.NEAREST,
+            width: e,
+            height: e,
+          },
+          a
+        );
+      }
+    },
+    heatmap: class extends be {
+      constructor() {
+        super(...arguments), (this.brushEffect = new jt());
+      }
+      supportsSymbology(n) {
+        return n === j.HEATMAP;
+      }
+      dispose() {
+        super.dispose(), this.brushEffect.dispose(), (this.brushEffect = null);
+      }
+      prepareState() {}
+      drawGeometry(n, e, t, a) {
+        const { defines: o } = this.brushEffect.loadQualityProfile(n.context);
+        super.drawGeometry(n, e, t, a ? [...a, ...o] : o);
+      }
+      _drawMarkers(n, e, t, a, o, i, r) {
+        const { context: l, rendererInfo: s, state: c } = n,
+          { rendererSchema: _ } = s;
+        ae(_, "heatmap");
+        const { referenceScale: u, radius: v, isFieldActive: x } = _,
+          m = v * (u !== 0 ? u / c.scale : 1);
+        t.setUniform1f("u_radius", m),
+          r ||
+            (t.setUniform1f("u_isFieldActive", x),
+            l.setStencilFunction(w.GEQUAL, e.stencilRef, 255)),
+          l.drawElements(a, o, d.UNSIGNED_INT, i);
+      }
+    },
+    pieChart: class extends be {
+      supportsSymbology(n) {
+        return n === j.PIE_CHART;
+      }
+      _drawMarkers(n, e, t, a, o, i, r) {
+        const { context: l } = n,
+          { rendererInfo: s } = n,
+          { rendererSchema: c } = s;
+        ae(c, "pie-chart"),
+          t.setUniform4fv("u_colors", c.colors),
+          t.setUniform4fv("u_defaultColor", c.defaultColor),
+          t.setUniform4fv("u_othersColor", c.othersColor),
+          t.setUniform4fv("u_outlineColor", c.outlineColor),
+          t.setUniform1f("u_donutRatio", c.holePercentage),
+          t.setUniform1f("u_sectorThreshold", c.sectorThreshold),
+          t.setUniform1f("u_outlineWidth", c.outlineWidth),
+          l.drawElements(a, o, d.UNSIGNED_INT, i);
+      }
+    },
+  },
+  Jt = (n, e, t, a) => {
+    let o = 0;
+    for (let i = 1; i < t; i++) {
+      const r = n[2 * (e + i - 1)],
+        l = n[2 * (e + i - 1) + 1];
+      o += (n[2 * (e + i)] - r) * (n[2 * (e + i) + 1] + l);
+    }
+    return a ? o > 0 : o < 0;
+  },
+  We = ({ coords: n, lengths: e }, t) => {
+    const a = [];
+    for (let o = 0, i = 0; o < e.length; i += e[o], o += 1) {
+      const r = i,
+        l = [];
+      for (
+        ;
+        o < e.length - 1 && Jt(n, i + e[o], e[o + 1], t);
+        o += 1, i += e[o]
+      )
+        l.push(i + e[o] - r);
+      const s = n.slice(2 * r, 2 * (i + e[o])),
+        c = Vt(s, l, 2);
+      for (const _ of c) a.push(_ + r);
+    }
+    return a;
+  };
+class G {
+  constructor(e, t, a, o = !1) {
+    (this._cache = {}),
+      (this.vertices = e),
+      (this.indices = t),
+      (this.primitiveType = a),
+      (this.isMapSpace = o);
+  }
+  static fromRect({ x: e, y: t, width: a, height: o }) {
+    const i = e,
+      r = t,
+      l = i + a,
+      s = r + o;
+    return G.fromScreenExtent({ xmin: i, ymin: r, xmax: l, ymax: s });
+  }
+  static fromPath(e) {
+    const t = dt(new Pe(), e.path, !1, !1),
+      a = t.coords,
+      o = new Uint32Array(We(t, !0)),
+      i = new Uint32Array(a.length / 2);
+    for (let r = 0; r < i.length; r++)
+      i[r] = U(Math.floor(a[2 * r]), Math.floor(a[2 * r + 1]));
+    return new G({ geometry: i }, o, L.TRIANGLES);
+  }
+  static fromGeometry(e, t) {
+    var o;
+    const a = (o = t.geometry) == null ? void 0 : o.type;
+    switch (a) {
+      case "polygon":
+        return G.fromPolygon(e, t.geometry);
+      case "extent":
+        return G.fromMapExtent(e, t.geometry);
+      default:
+        return (
+          Oe.getLogger("esri.views.2d.engine.webgl.Mesh2D").error(
+            new te(
+              "mapview-bad-type",
+              `Unable to create a mesh from type ${a}`,
+              t
+            )
+          ),
+          G.fromRect({ x: 0, y: 0, width: 1, height: 1 })
+        );
+    }
+  }
+  static fromPolygon(e, t) {
+    const a = _t(new Pe(), t, !1, !1),
+      o = a.coords,
+      i = new Uint32Array(We(a, !1)),
+      r = new Uint32Array(o.length / 2),
+      l = Le(),
+      s = Le();
+    for (let c = 0; c < r.length; c++)
+      vt(l, o[2 * c], o[2 * c + 1]),
+        e.toScreen(s, l),
+        (r[c] = U(Math.floor(s[0]), Math.floor(s[1])));
+    return new G({ geometry: r }, i, L.TRIANGLES, !0);
+  }
+  static fromScreenExtent({ xmin: e, xmax: t, ymin: a, ymax: o }) {
+    const i = {
+        geometry: new Uint32Array([
+          U(e, a),
+          U(t, a),
+          U(e, o),
+          U(e, o),
+          U(t, a),
+          U(t, o),
+        ]),
+      },
+      r = new Uint32Array([0, 1, 2, 3, 4, 5]);
+    return new G(i, r, L.TRIANGLES);
+  }
+  static fromMapExtent(e, t) {
+    const [a, o] = e.toScreen([0, 0], [t.xmin, t.ymin]),
+      [i, r] = e.toScreen([0, 0], [t.xmax, t.ymax]),
+      l = {
+        geometry: new Uint32Array([
+          U(a, o),
+          U(i, o),
+          U(a, r),
+          U(a, r),
+          U(i, o),
+          U(i, r),
+        ]),
+      },
+      s = new Uint32Array([0, 1, 2, 3, 4, 5]);
+    return new G(l, s, L.TRIANGLES);
+  }
+  destroy() {
+    A(this._cache.indexBuffer) && this._cache.indexBuffer.dispose();
+    for (const e in this._cache.vertexBuffers)
+      A(this._cache.vertexBuffers[e]) && this._cache.vertexBuffers[e].dispose();
+  }
+  get elementType() {
+    return ((e) => {
+      switch (e.BYTES_PER_ELEMENT) {
+        case 1:
+          return d.UNSIGNED_BYTE;
+        case 2:
+          return d.UNSIGNED_SHORT;
+        case 4:
+          return d.UNSIGNED_INT;
+        default:
+          throw new te("Cannot get DataType of array");
+      }
+    })(this.indices);
+  }
+  getIndexBuffer(e, t = Q.STATIC_DRAW) {
+    return (
+      this._cache.indexBuffer ||
+        (this._cache.indexBuffer = X.createIndex(e, t, this.indices)),
+      this._cache.indexBuffer
+    );
+  }
+  getVertexBuffers(e, t = Q.STATIC_DRAW) {
+    return (
+      this._cache.vertexBuffers ||
+        (this._cache.vertexBuffers = Object.keys(this.vertices).reduce(
+          (a, o) => ({ ...a, [o]: X.createVertex(e, t, this.vertices[o]) }),
+          {}
+        )),
+      this._cache.vertexBuffers
+    );
+  }
+}
+const me = (n) => parseFloat(n) / 100;
+class Ce extends zt {
+  constructor(e, t) {
+    super(),
+      (this._clip = t),
+      (this._cache = {}),
+      (this.stage = e),
+      (this._handle = mt(
+        () => t.version,
+        () => this._invalidate()
+      )),
+      this.ready();
+  }
+  static fromClipArea(e, t) {
+    return new Ce(e, t);
+  }
+  _destroyGL() {
+    A(this._cache.mesh) &&
+      (this._cache.mesh.destroy(), (this._cache.mesh = null)),
+      A(this._cache.vao) &&
+        (this._cache.vao.dispose(), (this._cache.vao = null));
+  }
+  destroy() {
+    this._destroyGL(), this._handle.remove();
+  }
+  getVAO(e, t, a, o) {
+    const [i, r] = t.size;
+    if (
+      ((this._clip.type !== "geometry" &&
+        this._lastWidth === i &&
+        this._lastHeight === r) ||
+        ((this._lastWidth = i), (this._lastHeight = r), this._destroyGL()),
+      B(this._cache.vao))
+    ) {
+      const l = this._createMesh(t, this._clip),
+        s = l.getIndexBuffer(e),
+        c = l.getVertexBuffers(e);
+      (this._cache.mesh = l), (this._cache.vao = new ne(e, a, o, c, s));
+    }
+    return this._cache.vao;
+  }
+  _createTransforms() {
+    return { dvs: Ie() };
+  }
+  _invalidate() {
+    this._destroyGL(), this.requestRender();
+  }
+  _createScreenRect(e, t) {
+    const [a, o] = e.size,
+      i = typeof t.left == "string" ? me(t.left) * a : t.left,
+      r = typeof t.right == "string" ? me(t.right) * a : t.right,
+      l = typeof t.top == "string" ? me(t.top) * o : t.top,
+      s = typeof t.bottom == "string" ? me(t.bottom) * o : t.bottom,
+      c = i,
+      _ = l;
+    return {
+      x: c,
+      y: _,
+      width: Math.max(a - r - c, 0),
+      height: Math.max(o - s - _, 0),
+    };
+  }
+  _createMesh(e, t) {
+    switch (t.type) {
+      case "rect":
+        return G.fromRect(this._createScreenRect(e, t));
+      case "path":
+        return G.fromPath(t);
+      case "geometry":
+        return G.fromGeometry(e, t);
+      default:
+        return (
+          Oe.getLogger("esri.views.2d.engine.webgl.ClippingInfo").error(
+            new te(
+              "mapview-bad-type",
+              "Unable to create ClippingInfo mesh from clip of type: ${clip.type}"
+            )
+          ),
+          G.fromRect({ x: 0, y: 0, width: 1, height: 1 })
+        );
+    }
+  }
+}
+let xn = class extends Ft {
+  constructor() {
+    super(...arguments), (this.name = this.constructor.name);
+  }
+  set clips(n) {
+    (this._clips = n),
+      this.children.forEach((e) => (e.clips = n)),
+      this._updateClippingInfo();
+  }
+  beforeRender(n) {
+    super.beforeRender(n), this.updateTransforms(n.state);
+  }
+  _createTransforms() {
+    return { dvs: Ie() };
+  }
+  doRender(n) {
+    const e = this.createRenderParams(n),
+      { painter: t, globalOpacity: a, profiler: o, drawPhase: i } = e,
+      r = i === V.LABEL || i === V.HIGHLIGHT ? 1 : a * this.computedOpacity;
+    o.recordContainerStart(this.name),
+      t.beforeRenderLayer(e, this._clippingInfos ? 255 : 0, r),
+      this.renderChildren(e),
+      t.compositeLayer(e, r),
+      o.recordContainerEnd();
+  }
+  renderChildren(n) {
+    B(this._renderPasses) &&
+      (this._renderPasses = this.prepareRenderPasses(n.painter));
+    for (const e of this._renderPasses)
+      try {
+        e.render(n);
+      } catch {}
+  }
+  createRenderParams(n) {
+    return (n.requireFBO = this.requiresDedicatedFBO), n;
+  }
+  prepareRenderPasses(n) {
+    return [
+      n.registerRenderPass({
+        name: "clip",
+        brushes: [$t.clip],
+        target: () => this._clippingInfos,
+        drawPhase: V.MAP | V.LABEL | V.LABEL_ALPHA | V.DEBUG | V.HIGHLIGHT,
+      }),
+    ];
+  }
+  updateTransforms(n) {
+    for (const e of this.children) e.setTransform(n);
+  }
+  onAttach() {
+    super.onAttach(), this._updateClippingInfo();
+  }
+  onDetach() {
+    super.onDetach(), this._updateClippingInfo();
+  }
+  _updateClippingInfo() {
+    A(this._clippingInfos) &&
+      (this._clippingInfos.forEach((t) => t.destroy()),
+      (this._clippingInfos = null));
+    const n = this.stage;
+    if (!n) return;
+    const e = this._clips;
+    A(e) &&
+      e.length &&
+      (this._clippingInfos = e.items.map((t) => Ce.fromClipArea(n, t))),
+      this.requestRender();
+  }
+};
+export {
+  qt as a,
+  xn as b,
+  W as c,
+  he as d,
+  Qt as h,
+  gn as m,
+  Xe as n,
+  pn as t,
+  $t as w,
+  Xt as x,
+};

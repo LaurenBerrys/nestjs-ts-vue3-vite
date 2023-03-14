@@ -14,17 +14,28 @@
         <n-form-item label="路径" path="path">
           <n-input placeholder="请输入路径" v-model:value="formParams.path" />
         </n-form-item>
-        <n-form-item label="地址" v-show="title!=='添加顶级菜单'" path="component">
-          <n-input placeholder="请输入路径" v-model:value="formParams.component" />
+        <n-form-item
+          label="地址"
+          v-show="title !== '添加顶级菜单'"
+          path="component"
+        >
+          <n-input
+            placeholder="请输入路径"
+            v-model:value="formParams.component"
+          />
         </n-form-item>
-        <n-form-item label="重定向" v-show="title==='添加顶级菜单'"  path="redirect">
-          <n-input placeholder="请输入重定向" v-model:value="formParams.redirect" />
+        <n-form-item
+          label="重定向"
+          v-show="title === '添加顶级菜单'"
+          path="redirect"
+        >
+          <n-input
+            placeholder="请输入重定向"
+            v-model:value="formParams.redirect"
+          />
         </n-form-item>
         <n-form-item label="菜单权限" path="code">
-          <n-input
-            placeholder="请输入权限"
-            v-model:value="formParams.code"
-          />
+          <n-input placeholder="请输入权限" v-model:value="formParams.code" />
         </n-form-item>
         <n-form-item label="按钮权限名称" path="permissions">
           <n-input
@@ -43,20 +54,33 @@
           <n-input-number v-model:value="formParams.order" />
         </n-form-item>
         <n-form-item label="是否隐藏" path="hidden">
-          <n-switch :round="false" v-model:value="formParams.hidden" size="large" />
+          <n-switch
+            :round="false"
+            v-model:value="formParams.hidden"
+            size="large"
+          />
         </n-form-item>
         <n-form-item label="是否缓存" path="keepAlive">
-          <n-switch :round="false" v-model:value="formParams.keepAlive" size="large" />
+          <n-switch
+            :round="false"
+            v-model:value="formParams.keepAlive"
+            size="large"
+          />
         </n-form-item>
-        
+
         <n-card
           title="图标"
           size="small"
           style="height: 200px; overflow: hidden; overflow-y: scroll"
         >
-        <div v-for="item in sourceData" :key="item" style="height: 27px" @click="enterIcons(item)">
+          <div
+            v-for="item in sourceData"
+            :key="item"
+            style="height: 27px"
+            @click="enterIcons(item)"
+          >
             <component :is="getIcon(item)" />
-        </div>
+          </div>
         </n-card>
       </n-form>
 
@@ -74,9 +98,9 @@
 
 <script lang="ts">
 import { sourceData } from "@/utils/IconList";
-import{createMenu} from '@/api/menu'
+import { createMenu } from "@/api/menu";
 const rules = {
-  icon:{
+  icon: {
     required: true,
     message: "请选择图标",
     trigger: "blur",
@@ -91,7 +115,7 @@ const rules = {
     message: "请输入路径",
     trigger: "blur",
   },
-  code:{
+  code: {
     required: true,
     message: "请输入权限",
     trigger: "blur",
@@ -108,13 +132,13 @@ export default defineComponent({
       type: Number,
       default: 450,
     },
-    parentId:{
-      type:String,
-      default:'0'
-    }
+    parentId: {
+      type: String,
+      default: "0",
+    },
   },
-  setup(props, { emit }) {
-    const {title,parentId} = toRefs(props)
+  setup(props) {
+    const { title, parentId } = toRefs(props);
     const formRef: any = ref(null);
     const defaultValueRef = () => ({
       name: "",
@@ -125,10 +149,10 @@ export default defineComponent({
       code: "",
       icon: "",
       order: 0,
-      redirect:"",
+      redirect: "",
       permissions: "" as any,
-      hidden:false,
-      keepAlive:false
+      hidden: false,
+      keepAlive: false,
     });
     const getIcon = (name) => {
       return renderIcon("system-uicons:" + name, { size: 20 });
@@ -155,17 +179,18 @@ export default defineComponent({
         if (!errors) {
           window.$message.success("添加成功");
           state.formParams.name = state.formParams.title;
-          state.formParams.icon="system-uicons:"+state.formParams.icon
-          if(title.value=="添加顶级菜单"){
-            state.formParams.component ="Layout";
-          }else{
-            state.formParams.parentId=parentId.value
+          state.formParams.icon = "system-uicons:" + state.formParams.icon;
+          if (title.value == "添加顶级菜单") {
+            state.formParams.component = "Layout";
+          } else {
+            state.formParams.parentId = parentId.value;
           }
-          state.formParams.permissions=state.formParams.permissions.split(',')
+          state.formParams.permissions =
+            state.formParams.permissions.split(",");
           createMenu(state.formParams).then((res) => {
             console.log(res);
-          handleReset();
-          closeDrawer();
+            handleReset();
+            closeDrawer();
           });
         } else {
           window.$message.error("请填写完整信息");
@@ -177,6 +202,7 @@ export default defineComponent({
       state.formParams = Object.assign(state.formParams, defaultValueRef());
     }
     return {
+      // eslint-disable-next-line vue/no-dupe-keys
       title,
       enterIcons,
       getIcon,
@@ -193,7 +219,7 @@ export default defineComponent({
 });
 </script>
 <style scoped lang="scss">
- :deep(.n-card__content ){
+:deep(.n-card__content) {
   display: flex;
   flex-wrap: wrap;
 }

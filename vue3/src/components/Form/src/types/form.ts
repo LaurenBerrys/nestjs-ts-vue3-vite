@@ -4,14 +4,14 @@
  * @LastEditors: Please set LastEditors
  * @LastEditTime: 2023-03-13 18:21:49
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Form/src/types/form.ts
- * @Description: 
- * 
+ * @Description:
+ *
  */
-import { ComponentType } from './index';
-import type { CSSProperties } from 'vue';
-import type { GridProps, GridItemProps } from 'naive-ui/lib/grid';
-import type { ButtonProps } from 'naive-ui/lib/button';
-import {Layout_Enum} from '@/enums/layenum'
+import { ComponentType } from "./index";
+import type { CSSProperties } from "vue";
+import type { GridProps, GridItemProps } from "naive-ui/lib/grid";
+import type { ButtonProps } from "naive-ui/lib/button";
+import { Layout_Enum } from "@/enums/layenum";
 export interface FormSchema {
   field: string;
   label: string;
@@ -55,7 +55,7 @@ export interface FormProps {
   size: string;
   labelPlacement: string;
   isFull: boolean;
-  offset:boolean;
+  offset: boolean;
   showActionButtonGroup?: boolean;
   showResetButton?: boolean;
   resetButtonOptions?: Partial<ButtonProps>;
@@ -74,7 +74,7 @@ export interface FormProps {
 }
 
 export interface FormActionType {
-  setSchemas:(name:string, value:any) => Promise<void>;
+  setSchemas: (name: string, value: any) => Promise<void>;
   submit: () => Promise<any>;
   setProps: (formProps: Partial<FormProps>) => Promise<void>;
   setFieldsValue: (values: Recordable) => Promise<void>;

@@ -4,17 +4,17 @@
  * @LastEditors: Nie Chengyong
  * @LastEditTime: 2023-03-04 01:52:03
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/hooks/use-self-router.ts
- * @Description: 
- * 
+ * @Description:
+ *
  */
-import router from '@/router'
+import router from "@/router";
 export const getQueryParam = () => {
-  const route: any = router.currentRoute
+  const route: any = router.currentRoute;
   if (route.value?.query.params) {
-    return JSON.parse(route.value.query.params)
+    return JSON.parse(route.value.query.params);
   }
-}
-/** 
+};
+/**
  * @description: 路由跳转
  * @param name // 路由名称
  * @param params // 路由参数
@@ -22,19 +22,19 @@ export const getQueryParam = () => {
  * @LastEditors: Nie Chengyong
  */
 export const routerPush = (name, params) => {
-  let data = {}
+  let data = {};
   if (params) {
     data = {
-      params: JSON.stringify(params)
-    }
+      params: JSON.stringify(params),
+    };
   } else {
-    data = {}
+    data = {};
   }
   router.push({
     name,
-    query: data
-  })
-}
+    query: data,
+  });
+};
 /**
  *  @description: 路由替换
  * @param name // 路由名称
@@ -44,19 +44,19 @@ export const routerPush = (name, params) => {
  * @LastEditors: Nie Chengyong
  * */
 export const routerReplace = (name, params) => {
-  let data = {}
+  let data = {};
   if (params) {
     data = {
-      params: JSON.stringify(params)
-    }
+      params: JSON.stringify(params),
+    };
   } else {
-    data = {}
+    data = {};
   }
   router.replace({
     name,
-    query: data
-  })
-}
+    query: data,
+  });
+};
 /**
  * @description: 获取当前路由信息
  * @return {*}
@@ -64,8 +64,8 @@ export const routerReplace = (name, params) => {
  * @LastEditors: Nie Chengyong
  * */
 export const routeInfo = () => {
-  return router.currentRoute
-}
+  return router.currentRoute;
+};
 /**
  * @description: 路由返回
  * @return {*}
@@ -73,5 +73,5 @@ export const routeInfo = () => {
  * @LastEditors: Nie Chengyong
  * */
 export const routerBack = () => {
-  router.go(-1)
-}
+  router.go(-1);
+};

@@ -1,4 +1,4 @@
-import type { DialogOptions } from 'naive-ui/lib/dialog';
+import type { DialogOptions } from "naive-ui/lib/dialog";
 /**
  * @description: 弹窗对外暴露的方法
  */

@@ -1,13 +1,17 @@
+<!--
+ * @Editors: Nie Chengyong
+ * @Date: 2023-02-16 14:10:02
+ * @LastEditTime: 2023-03-14 16:36:54
+ * @Description: 
+-->
 <script setup lang="ts">
-import { useDark, useToggle } from '@vueuse/core'
-import { darkTheme } from 'naive-ui';
-const Store = useConfigStore()
-const isDark = useDark()
+import { useDark, useToggle } from "@vueuse/core";
+const Store = useConfigStore();
+const isDark = useDark();
 const toggleDark = () => {
-Store.toggleDark()
-  useToggle(isDark)()
-}
-
+  Store.toggleDark();
+  useToggle(isDark)();
+};
 </script>
 
 <template>

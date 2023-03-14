@@ -65,9 +65,8 @@
             :is="schema.component"
             v-model:value="formModel[schema.field]"
             :class="{ isFull: schema.isFull != false && getProps.isFull }"
-            >
-          </CellComponent>
-            <!-- <component
+          />
+          <!-- <component
           /> -->
           <!--组件后面的内容-->
           <template v-if="schema.suffix">
@@ -142,7 +141,12 @@ import { isArray } from "@/utils/is";
 import { deepMerge } from "@/utils/common";
 export default defineComponent({
   name: "NvapForm",
-  components: { DownOutlined, UpOutlined, QuestionCircleOutlined,CellComponent },
+  components: {
+    DownOutlined,
+    UpOutlined,
+    QuestionCircleOutlined,
+    CellComponent,
+  },
   props: {
     ...nvapProps,
   },
@@ -200,10 +204,10 @@ export default defineComponent({
       });
       return { ...formProps, ...unref(rulesObj) };
     });
-   const offset =computed(()=>{
-    const {offset}=unref(getProps);
-    return offset
-   })
+    const offset = computed(() => {
+      const { offset } = unref(getProps);
+      return offset;
+    });
     const isInline = computed(() => {
       const { layout } = unref(getProps);
       return layout === "inline";
@@ -247,7 +251,7 @@ export default defineComponent({
       getFieldsValue,
       clearValidate,
       setFieldsValue,
-      setSchemas
+      setSchemas,
     } = useFormEvents({
       emit,
       getProps,
@@ -275,7 +279,7 @@ export default defineComponent({
       clearValidate,
       setProps,
       submit: handleSubmit,
-      setSchemas
+      setSchemas,
     };
 
     watch(

@@ -1,8 +1,12 @@
 {
-    "cSpell.words": [
-        "tableselect"
-    ],
-    "unocss.root": [
-        "packages/client"
-    ]
+  "cSpell.words": ["tableselect"],
+  "unocss.root": ["packages/client"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": false,
+    "source.fixAll.eslint": false
+  },
+  // 保存的时候自动格式化
+  "editor.formatOnSave": true,
+  // 默认格式化工具选择prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

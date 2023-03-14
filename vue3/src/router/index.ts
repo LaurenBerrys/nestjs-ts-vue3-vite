@@ -4,64 +4,63 @@
  * @LastEditors: Nie Chengyong
  * @LastEditTime: 2023-03-08 15:30:24
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/router/index.ts
- * @Description: 
- * 
+ * @Description:
+ *
  */
-import { createRouter, createWebHashHistory } from 'vue-router'
-import type { RouterTypes } from '~/basic'
-const layout = () => import('@/layout/index.vue');
+import { createRouter, createWebHashHistory } from "vue-router";
+import type { RouterTypes } from "~/basic";
+const layout = () => import("@/layout/index.vue");
 
 export const constantRoutes: RouterTypes = [
   {
-    name: '系统设置',
-    path: '/',
-    redirect:'/user',
+    name: "系统设置",
+    path: "/",
+    redirect: "/user",
     component: layout,
     meta: {
-      title: '系统设置',
-      icon: 'system-uicons:airplay',
+      title: "系统设置",
+      icon: "system-uicons:airplay",
       order: 0,
     },
     children: [
       {
-        name: 'user',
-        path: '/user',
-        component: () => import('@/views/system/user/index.vue'),
+        name: "user",
+        path: "/user",
+        component: () => import("@/views/system/user/index.vue"),
         meta: {
-          title: '用户管理',
-          icon: 'system-uicons:contacts',
+          title: "用户管理",
+          icon: "system-uicons:contacts",
           order: 0,
         },
       },
       {
-        name: 'roles',
-        path: '/roles',
-        component: () => import('@/views/system/roles/index.vue'),
+        name: "roles",
+        path: "/roles",
+        component: () => import("@/views/system/roles/index.vue"),
         meta: {
-          title: '角色管理',
-          icon: 'ep:avatar',
+          title: "角色管理",
+          icon: "ep:avatar",
           order: 0,
         },
       },
       {
-        name: 'menu',
-        path: '/menu',
-        component: () => import('@/views/system/menu/index.vue'),
+        name: "menu",
+        path: "/menu",
+        component: () => import("@/views/system/menu/index.vue"),
         meta: {
-          title: '菜单管理',
-          icon: 'mdi:home',
+          title: "菜单管理",
+          icon: "mdi:home",
           order: 0,
         },
       },
     ],
   },
   {
-    path: '/login',
+    path: "/login",
     hidden: true,
-    component: () => import('@/views/login/index.vue'),
+    component: () => import("@/views/login/index.vue"),
   },
-]
-
+];
 
 //角色和code数组动态路由
 export const roleCodeRoutes: RouterTypes = [
@@ -103,21 +102,20 @@ export const roleCodeRoutes: RouterTypes = [
   //     }
   //   ]
   // }
-]
+];
 /**
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes: RouterTypes = [
   // 404 page must be placed at the end !!!
-  { path: '/:catchAll(.*)', name: 'CatchAll', redirect: '/404', hidden: true }
-]
-
+  { path: "/:catchAll(.*)", name: "CatchAll", redirect: "/404", hidden: true },
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
   scrollBehavior: () => ({ top: 0 }),
-  routes: constantRoutes
-})
+  routes: constantRoutes,
+});
 
-export default router
+export default router;

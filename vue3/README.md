@@ -4,9 +4,10 @@
  * @LastEditors: Nie Chengyong
  * @LastEditTime: 2023-03-04 11:56:00
  * @FilePath: /nestjs-ts-vue3-vite/vue3/README.md
- * @Description: 
- * 
+ * @Description:
+ *
 -->
+
 ## 使用 iconify 图标
 
 首先去图标库地址：[icones](https://icones.js.org/) 找合适的图标
@@ -14,9 +15,7 @@
 ### 1. 结合 unocss 使用
 
 ```html
-
-<i i-carbon-sun />
-<i class="i-carbon-sun" />
+<i i-carbon-sun /> <i class="i-carbon-sun" />
 ```
 
 ### 2. 结合插件 unplugin-icons 自定义标签使用
@@ -24,7 +23,7 @@
 `<icon-[iconify图标名称]`
 
 ```html
-<icon-ant-design:fullscreen-exit-outlined  />
+<icon-ant-design:fullscreen-exit-outlined />
 <icon-ant-design:fullscreen-outlined />
 ```
 
@@ -46,7 +45,11 @@
 ```
 
 封装组件参看 src/components/icon
-### 4 使用UnoCss
-[保熟的UnoCSS使用指北，优雅使用antfu大佬的原子化CSS](https://juejin.cn/post/7142466784971456548)
-### 5 使用ArcGis
+
+### 4 使用 UnoCss
+
+[保熟的 UnoCSS 使用指北，优雅使用 antfu 大佬的原子化 CSS](https://juejin.cn/post/7142466784971456548)
+
+### 5 使用 ArcGis
+
 npm install @arcgis/core

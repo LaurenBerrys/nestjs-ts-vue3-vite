@@ -11,6 +11,7 @@
     "PostUpload": true,
     "PropType": true,
     "Ref": true,
+    "Upload_Enum": true,
     "VNode": true,
     "WITHOUT_TAG_PATHS": true,
     "addClass": true,

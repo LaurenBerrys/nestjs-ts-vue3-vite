@@ -42,22 +42,12 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "~/*": [
-        "typings/*"
-      ]
+      "@/*": ["src/*"],
+      "~/*": ["typings/*"]
     },
     //指定默认读取的目录
-    "typeRoots": [
-      "./node_modules/@types/",
-      "./types"
-    ],
-    "lib": [
-      "dom",
-      "esnext"
-    ]
+    "typeRoots": ["./node_modules/@types/", "./types"],
+    "lib": ["dom", "esnext"]
   },
   "include": [
     "src/**/*.ts",
@@ -65,11 +55,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "vite.config.ts",
-    "typings",
+    "typings"
   ],
-  "exclude": [
-    "node_modules",
-    "**/dist",
-    "**/*.js"
-  ]
+  "exclude": ["node_modules", "**/dist", "**/*.js"]
 }

@@ -1,3 +1,9 @@
+<!--
+ * @Editors: Nie Chengyong
+ * @Date: 2023-03-04 11:28:47
+ * @LastEditTime: 2023-03-14 16:37:56
+ * @Description: 
+-->
 <template>
   <ComponentPage>
     <template #header>
@@ -15,16 +21,17 @@ import Map from "@arcgis/core/Map.js";
 import MapView from "@arcgis/core/views/MapView.js";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer.js";
 import Graphic from "@arcgis/core/Graphic.js";
-import '@arcgis/core/assets/esri/themes/light/main.css';
+import "@arcgis/core/assets/esri/themes/light/main.css";
 onMounted(() => {
   initMap();
 });
 const initMap = () => {
-    esriConfig.apiKey = "AAPK54b0c0d11341479eb79685174bd2e4410labXiwiHQUITb3IwalzUkkg1-Mj85koUCYFS419S1hHVg5RDRFl4qDWb6l_YrCc";
+  esriConfig.apiKey =
+    "AAPK54b0c0d11341479eb79685174bd2e4410labXiwiHQUITb3IwalzUkkg1-Mj85koUCYFS419S1hHVg5RDRFl4qDWb6l_YrCc";
   const map = new Map({
     basemap: "arcgis-topographic",
   });
-  const view = new MapView({
+  new MapView({
     container: "viewDiv", //html容器，即将地图添加到哪个容器里
     map: map,
     zoom: 4,
@@ -37,7 +44,6 @@ const initMap = () => {
     type: "point",
     longitude: -118.80657463861,
     latitude: 34.0005930608889,
-
   };
   //点样式
   const simpleMarkerSymbol = {
@@ -51,18 +57,18 @@ const initMap = () => {
   //弹窗
   const popupTemplate = {
     title: "{Name}",
-    content: "{Description}"
- }
- //属性
- const attributes = {
+    content: "{Description}",
+  };
+  //属性
+  const attributes = {
     Name: "Graphic",
-    Description: "我是一个点样式"
- }
+    Description: "我是一个点样式",
+  };
   const pointGraphic = new Graphic({
     geometry: point as GeometryProperties,
     symbol: simpleMarkerSymbol,
     attributes: attributes,
-    popupTemplate: popupTemplate
+    popupTemplate: popupTemplate,
   });
   graphicsLayer.add(pointGraphic);
 };

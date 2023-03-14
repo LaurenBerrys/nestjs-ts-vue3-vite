@@ -7,6 +7,9 @@
     "dev": "vite --mode dev",
     "stage": "vue-tsc --noEmit && vite build --mode stage",
     "prod": "vue-tsc --noEmit && vite build --mode prod",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "format": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\"",
+    "prepare": "husky install",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -19,6 +22,7 @@
     "@vicons/antd": "^0.12.0",
     "@vueuse/core": "^9.12.0",
     "axios": "^1.3.3",
+    "eslint-define-config": "^1.16.0",
     "less": "^4.1.3",
     "less-loader": "^11.1.0",
     "ol": "^7.3.0",
@@ -42,11 +46,20 @@
   "devDependencies": {
     "@types/node": "^18.14.5",
     "@types/three": "^0.142.0",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/tsconfig": "^0.1.3",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.9.0",
+    "husky": "^8.0.3",
     "jsdom": "^20.0.3",
+    "lint-staged": "^13.2.0",
     "naive-ui": "^2.34.3",
+    "prettier": "^2.8.4",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-visualizer": "^5.9.0",
     "terser-webpack-plugin": "^5.3.6",
@@ -57,5 +70,14 @@
     "vite-plugin-externals": "^0.6.2",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^1.0.24"
+  },
+  "lint-staged": {
+    "*.{js,vue,ts,jsx,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{html,css,less,scss,md}": [
+      "prettier --write"
+    ]
   }
 }

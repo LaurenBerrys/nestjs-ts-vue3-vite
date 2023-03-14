@@ -1,11 +1,11 @@
-import { NModal } from 'naive-ui';
+import { NModal } from "naive-ui";
 
 export const nvapProps = {
   ...NModal.props,
   // 确认按钮文字
   subBtuText: {
     type: String,
-    default: '确认',
+    default: "确认",
   },
   showIcon: {
     type: Boolean,
@@ -17,7 +17,7 @@ export const nvapProps = {
   },
   title: {
     type: String,
-    default: '',
+    default: "",
   },
   maskClosable: {
     type: Boolean,
@@ -25,6 +25,6 @@ export const nvapProps = {
   },
   preset: {
     type: String,
-    default: 'dialog',
+    default: "dialog",
   },
 };

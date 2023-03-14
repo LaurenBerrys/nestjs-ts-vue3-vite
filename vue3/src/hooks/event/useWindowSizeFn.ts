@@ -4,11 +4,11 @@
  * @LastEditors: Nie Chengyong
  * @LastEditTime: 2023-02-28 19:32:53
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/hooks/event/useWindowSizeFn.ts
- * @Description: 
- * 
+ * @Description:
+ *
  */
-import { tryOnMounted, tryOnUnmounted } from '@vueuse/core';
-import { useDebounceFn } from '@vueuse/core';
+import { tryOnMounted, tryOnUnmounted } from "@vueuse/core";
+import { useDebounceFn } from "@vueuse/core";
 
 interface WindowSizeOptions {
   once?: boolean;
@@ -16,7 +16,11 @@ interface WindowSizeOptions {
   listenerOptions?: AddEventListenerOptions | boolean;
 }
 
-export function useWindowSizeFn<T>(fn: Fn<T>, wait = 150, options?: WindowSizeOptions) {
+export function useWindowSizeFn<T>(
+  fn: Fn<T>,
+  wait = 150,
+  options?: WindowSizeOptions
+) {
   let handler = () => {
     fn();
   };
@@ -27,11 +31,11 @@ export function useWindowSizeFn<T>(fn: Fn<T>, wait = 150, options?: WindowSizeOp
     if (options && options.immediate) {
       handler();
     }
-    window.addEventListener('resize', handler);
+    window.addEventListener("resize", handler);
   };
 
   const stop = () => {
-    window.removeEventListener('resize', handler);
+    window.removeEventListener("resize", handler);
   };
 
   tryOnMounted(() => {

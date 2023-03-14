@@ -9,17 +9,14 @@
  * 
 -->
 <template>
-    <ComponentPage class="page">
-        <div id="container"  class="container_box"></div>
-    </ComponentPage>
-  </template>
-  
-<script lang="ts" setup>
+  <ComponentPage class="page">
+    <div id="container" class="container_box"></div>
+  </ComponentPage>
+</template>
 
-</script>
+<script lang="ts" setup></script>
 <style lang="scss" scoped>
-
-#container{
+#container {
   width: 100%;
   height: 100%;
 }

@@ -4,8 +4,8 @@
  * @LastEditors: Nie Chengyong
  * @LastEditTime: 2023-03-07 20:19:39
  * @FilePath: /nestjs-ts-vue3-vite/vue3/typings/basic.d.ts
- * @Description: 
- * 
+ * @Description:
+ *
  */
 /*
  * 声明.d.ts文件规范
@@ -18,45 +18,45 @@
  * 实例：instance
  * */
 /*router*/
-import type { RouteRecordRaw} from 'vue-router'
+import type { RouteRecordRaw } from "vue-router";
 export interface rawConfig {
-  hidden?: boolean
-  alwaysShow?: boolean
-  code?: number
-  name?: string
-  fullPath?: string
-  path?: string
+  hidden?: boolean;
+  alwaysShow?: boolean;
+  code?: number;
+  name?: string;
+  fullPath?: string;
+  path?: string;
   meta?: {
-    title: string
-    icon?: string
-    affix?: boolean
-    activeMenu?: string
-    breadcrumb?: boolean
-    roles?: Array<string>
-    elSvgIcon?: string
-    code?: number
-    cachePage?: boolean
-    leaveRmCachePage?: boolean
-    closeTabRmCache?: boolean
-  }
-  children?: RouterOptions
-  redirect?: string
+    title: string;
+    icon?: string;
+    affix?: boolean;
+    activeMenu?: string;
+    breadcrumb?: boolean;
+    roles?: Array<string>;
+    elSvgIcon?: string;
+    code?: number;
+    cachePage?: boolean;
+    leaveRmCachePage?: boolean;
+    closeTabRmCache?: boolean;
+  };
+  children?: RouterOptions;
+  redirect?: string;
 }
-export type RouteRawConfig = RouteRecordRaw & rawConfig
-export type RouterTypes = Array<rawProp>
+export type RouteRawConfig = RouteRecordRaw & rawConfig;
+export type RouterTypes = Array<rawProp>;
 
 /*settings*/
 export interface SettingsConfig {
-  title: string
-  defaultLanguage: string
-  defaultTheme:string|null
-  collapsed: boolean
-  isNeedLogin: boolean
-  viteBasePath: string
-  headHight: number
-  tagsView: boolean
-  tagsHeight: number
-  permissionMode:string
+  title: string;
+  defaultLanguage: string;
+  defaultTheme: string | null;
+  collapsed: boolean;
+  isNeedLogin: boolean;
+  viteBasePath: string;
+  headHight: number;
+  tagsView: boolean;
+  tagsHeight: number;
+  permissionMode: string;
 }
 
-export {}
+export {};
