@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 14:22:38
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-22 15:47:41
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-13 15:49:42
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/tags.ts
  * @Description: 
  * 
@@ -10,12 +10,17 @@
 import { defineStore } from 'pinia'
 import router from '@/router'
 export const WITHOUT_TAG_PATHS = ['/404', '/login']
+type Tag={
+  name:string;
+  path:string;
+  title:string
+}
 
 export const useTagsStore = defineStore('tag', {
   state() {
     return {
-      tags: [] as any,
-      activeTag: '' as any,
+      tags: []  as Array<Tag> ,
+      activeTag: '' as string,
     }
   },
   persist: {
@@ -31,6 +36,8 @@ export const useTagsStore = defineStore('tag', {
     },
     setTags(tags) {
       this.tags = tags
+      console.log(this.tags,222);
+      
     },
     addTag(tag: any = {}) {
       this.setActiveTag(tag.path)

@@ -18,7 +18,7 @@
     </n-dropdown>
 </template>
 <script setup lang="ts">
-import { LANG_VALUE } from '@/lang/enum';
+import { LANG_VALUE } from '@/enums/enum';
 import { zhCN ,enUS} from 'naive-ui';
 const options = [
     {

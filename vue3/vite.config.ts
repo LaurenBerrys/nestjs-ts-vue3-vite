@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-11 10:59:11
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-13 18:25:14
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description: 
  * 
@@ -112,9 +112,12 @@ export default ({ mode }: ConfigEnv): UserConfig => {
             'useLoadingBar'
           ]
         },
-     
       ],
-      dirs: ['src/hooks/**', 'src/utils/**', 'src/store/**', 'src/api/**', 'src/directives/**'],
+      dirs: ['src/hooks/**', 'src/utils/**', 
+      'src/store/**', 'src/api/**',
+      'src/directives/**',
+      'src/enums/**'
+    ],
       dts: './typings/auto-imports.d.ts',
       eslintrc: {
         enabled: true

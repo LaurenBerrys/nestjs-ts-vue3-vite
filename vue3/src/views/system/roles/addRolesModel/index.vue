@@ -1,8 +1,8 @@
 <!--
  * @Author: Nie Chengyong
  * @Date: 2023-03-04 18:58:09
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 19:11:33
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-13 18:27:38
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/addRolesModel/index.vue
  * @Description: 
  * 
@@ -15,7 +15,7 @@
     >
       <template #default>
         <NvapForm
-            ref="formRef"
+          ref="formRef"
           @register="register"
           @reset="handleReset"
           class="NvapForm"
@@ -46,7 +46,7 @@ const [register, { submit, validate, getFieldsValue, setSchemas }] = useForm({
   gridProps: { cols: 1 },
   collapsedRows: 3,
   labelWidth: 120,
-  layout: "horizontal",
+  layout: Layout_Enum.horizontal,
   showActionButtonGroup: false,
   schemas,
 });
@@ -56,7 +56,6 @@ const addRoles=async()=>{
     if (!formRes) {
       const param = getFieldsValue();
       const data = await createRoles(param);
-      console.log(data, 2222);
       closeModal();
       window.$message.success("提交成功");
     }

@@ -5,6 +5,8 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const LANG_VALUE: typeof import('../src/enums/enum')['LANG_VALUE']
+  const Layout_Enum: typeof import('../src/enums/layenum')['Layout_Enum']
   const NInput: typeof import('naive-ui')['NInput']
   const PostUpload: typeof import('../src/api/upload')['PostUpload']
   const WITHOUT_TAG_PATHS: typeof import('../src/store/tags')['WITHOUT_TAG_PATHS']

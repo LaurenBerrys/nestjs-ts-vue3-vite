@@ -1,14 +1,15 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 19:37:37
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-08 14:09:02
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-13 17:33:42
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/rolesColumns.ts
  * @Description: 
  * 
  */
 import { FormSchema } from "@/components/Form";
 import {TableAction } from "@/components/Table";
+import { NTag } from "naive-ui";
 export const columns = [
   {
     title: 'id',
@@ -17,6 +18,15 @@ export const columns = [
   {
     title: '角色名称',
     key: 'name',
+    render:(row)=>{
+      return h(NTag,{
+        type:'success'
+      },
+      {
+        default: () => (row.name),
+      }
+      )
+    }
   },
 ];
 export  const action =(handeone,hand)=>{

@@ -1,8 +1,8 @@
 <!--
  * @Author: Nie Chengyong
  * @Date: 2023-02-22 15:25:08
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 20:17:13
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-13 15:51:10
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/index.vue
  * @Description: 
  * 
@@ -37,8 +37,7 @@ const { userInfo } = useAppStore();
 const modalRef=ref()
 const Assign=ref()//分配权限组件
 const params = reactive({
-  pageSize: 10,
-  name: null,
+  // name: '',
 });
 //勾选的行
 const onCheckedRow = (rowKeys: any[]) => {
@@ -50,7 +49,6 @@ const loadDataTable = async (res) => {
     ...unref(params),
     ...res,
   };
-  console.log(param,1111)
   const { data } = await getRoles(param);
   return data;
 };

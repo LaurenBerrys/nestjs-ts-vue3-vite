@@ -8,7 +8,7 @@
  * 
  */
 import packageJson from '../package.json'
-import {LANG_VALUE} from './lang/enum'
+import {LANG_VALUE} from './enums/enum'
 import type { SettingsConfig } from '~/basic'
 console.log(packageJson.name);
 

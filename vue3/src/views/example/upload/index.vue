@@ -1,21 +1,19 @@
 <!--
- * @Author: Nie Chengyong
+ * @Editors: Nie Chengyong
  * @Date: 2023-03-08 17:55:59
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-11 11:47:34
- * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/example/upload/index.vue
+ * @LastEditTime: 2023-03-14 10:22:39
  * @Description: 
- * 
 -->
 <template>
   <ComponentPage>
-    <div style="width:500px">
+    <div w-500>
     <NvapUpload/>
-  </div>
+    </div>
   </ComponentPage>
 </template>
 
 <script setup lang="ts">
+
 </script>
 
 <style scoped></style>

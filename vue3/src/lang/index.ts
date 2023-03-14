@@ -8,7 +8,7 @@
  * 
  */
 import { createI18n } from 'vue-i18n'
-import { LANG_VALUE } from './enum'
+import { LANG_VALUE } from '../enums/enum'
 import en from './en'
 import zh from './zh'
 import settings from '@/settings'

@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 15:11:45
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 19:51:24
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-13 18:26:37
  * @FilePath: /nestjs-ts-vue3-vite/vue3/typings/global.d.ts
  * @Description: 
  * 
@@ -28,4 +28,6 @@ interface ApiResponse {
   const defineOptions: typeof _defineOptions
   const $ref: any
 }
+
+
 export {}

@@ -5,6 +5,8 @@
     "ComputedRef": true,
     "EffectScope": true,
     "InjectionKey": true,
+    "LANG_VALUE": true,
+    "Layout_Enum": true,
     "NInput": true,
     "PostUpload": true,
     "PropType": true,

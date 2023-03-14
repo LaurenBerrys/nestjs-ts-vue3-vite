@@ -89,7 +89,7 @@
       >
         <n-space
           align="center"
-          :justify="isInline ? 'end' : 'start'"
+          :justify="offset ? 'end' : 'start'"
           :style="{ 'margin-left': `${isInline ? 12 : getProps.labelWidth}px` }"
         >
           <n-button
@@ -200,7 +200,10 @@ export default defineComponent({
       });
       return { ...formProps, ...unref(rulesObj) };
     });
-
+   const offset =computed(()=>{
+    const {offset}=unref(getProps);
+    return offset
+   })
     const isInline = computed(() => {
       const { layout } = unref(getProps);
       return layout === "inline";
@@ -292,6 +295,7 @@ export default defineComponent({
       emit("register", formActionType);
     });
     return {
+      offset,
       formElRef,
       formModel,
       getGrid,

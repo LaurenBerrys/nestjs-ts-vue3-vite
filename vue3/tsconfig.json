@@ -1,4 +1,3 @@
-
 {
   "compilerOptions": {
     "target": "esnext",
@@ -43,16 +42,34 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "~/*": ["typings/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "~/*": [
+        "typings/*"
+      ]
     },
     //指定默认读取的目录
-    "typeRoots": ["./node_modules/@types/", "./types"],
-    "lib": ["dom", "esnext"]
+    "typeRoots": [
+      "./node_modules/@types/",
+      "./types"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ]
   },
-  "include": [ "src/**/*.ts",
-  "src/**/*.d.ts",
-  "src/**/*.tsx",
-  "src/**/*.vue", "vite.config.ts", "typings", "src/views/example/upload/hash-worker.ts", "src/views/example/upload/hash-worker.ts", "src/views/example/upload/worker-build.js", "src/views/example/upload/worker-build.js"],
-  "exclude":["node_modules", "**/dist","**/*.js"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite.config.ts",
+    "typings",
+  ],
+  "exclude": [
+    "node_modules",
+    "**/dist",
+    "**/*.js"
+  ]
 }

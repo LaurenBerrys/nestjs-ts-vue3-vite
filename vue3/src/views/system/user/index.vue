@@ -1,8 +1,8 @@
 <!--
  * @Author: Nie Chengyong
  * @Date: 2023-02-22 15:24:47
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-11 06:18:30
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-13 15:56:24
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/user/index.vue
  * @Description: 
  * 
@@ -34,7 +34,7 @@
   import { columns, action } from "./userColumns";
   import { hasOwn } from "@vueuse/core";
   const param = reactive({
-    pageSize: 10,
+    name:''
   });
   const addUse=ref();
   const assignRole=ref()
@@ -45,7 +45,6 @@
       ...unref(param),
       ...res,
     };
-    console.log(params,2222);
     const { data } = await getUser(params);
     console.log(data);
     return data;

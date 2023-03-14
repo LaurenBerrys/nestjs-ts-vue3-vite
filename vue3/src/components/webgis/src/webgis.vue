@@ -1,4 +1,13 @@
-<!-- <template>
+<!--
+ * @Author: Nie Chengyong
+ * @Date: 2023-03-06 21:46:56
+ * @LastEditors: Nie Chengyong
+ * @LastEditTime: 2023-03-13 10:36:33
+ * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/webgis/src/webgis.vue
+ * @Description: 
+ * 
+-->
+ <template>
     <div id="map">
 
     </div>
@@ -26,7 +35,7 @@ const map = new Map({
 
 <style scoped lang="scss">
 #map{
-    width: 100%
+    width: 100%;
     height: 100%;
 }
 </style> -->

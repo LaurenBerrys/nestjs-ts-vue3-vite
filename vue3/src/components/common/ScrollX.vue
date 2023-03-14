@@ -32,7 +32,6 @@ defineProps({
 });
 const colores= ref('#fff') 
 watch(()=>config.isDark,(val)=>{
-  console.log(val,2222);
   if(!val){
     colores.value='#fff'
   }else{
