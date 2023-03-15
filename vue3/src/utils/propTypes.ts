@@ -7,7 +7,7 @@
  * @Description:
  *
  */
-import { CSSProperties, VNodeChild, PropType } from "vue";
+import { CSSProperties, VNodeChild, PropType } from 'vue';
 
 export type VueNode = VNodeChild | JSX.Element;
 const propTypes = {

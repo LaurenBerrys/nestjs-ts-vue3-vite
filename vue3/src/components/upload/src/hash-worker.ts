@@ -7,7 +7,7 @@
  * @Description:
  *
  */
-import SparkMD5 from "spark-md5";
+import SparkMD5 from 'spark-md5';
 const ctx: Worker = self as any;
 //非vite模式下引入，需要把spark-md5.min放入到静态资源里面
 // self.importScripts("http://localhost:3000/spark-md5.min.js")

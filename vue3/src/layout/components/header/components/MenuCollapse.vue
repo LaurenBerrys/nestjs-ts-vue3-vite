@@ -15,5 +15,5 @@
 </template>
 
 <script setup>
-const Store = useConfigStore();
+  const Store = useConfigStore();
 </script>

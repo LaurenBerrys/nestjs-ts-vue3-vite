@@ -16,27 +16,27 @@
   </n-dropdown>
 </template>
 <script setup lang="ts">
-import { LANG_VALUE } from "@/enums/enum";
-import { zhCN, enUS } from "naive-ui";
-const options = [
-  {
-    label: "中文",
-    key: LANG_VALUE.Zh,
-  },
-  {
-    label: "English",
-    key: LANG_VALUE.En,
-  },
-];
-const Store = useConfigStore();
-const changeLang = (lang: any) => {
-  console.log(lang);
-  if (lang == "zhCN") {
-    Store.setLanguage(zhCN);
-  } else {
-    Store.setLanguage(enUS);
-  }
-};
+  import { LANG_VALUE } from '@/enums/enum';
+  import { zhCN, enUS } from 'naive-ui';
+  const options = [
+    {
+      label: '中文',
+      key: LANG_VALUE.Zh,
+    },
+    {
+      label: 'English',
+      key: LANG_VALUE.En,
+    },
+  ];
+  const Store = useConfigStore();
+  const changeLang = (lang: any) => {
+    console.log(lang);
+    if (lang == 'zhCN') {
+      Store.setLanguage(zhCN);
+    } else {
+      Store.setLanguage(enUS);
+    }
+  };
 </script>
 
 <style scoped></style>

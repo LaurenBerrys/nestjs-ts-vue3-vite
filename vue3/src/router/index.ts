@@ -7,58 +7,58 @@
  * @Description:
  *
  */
-import { createRouter, createWebHashHistory } from "vue-router";
-import type { RouterTypes } from "~/basic";
-const layout = () => import("@/layout/index.vue");
+import { createRouter, createWebHashHistory } from 'vue-router';
+import type { RouterTypes } from '~/basic';
+const layout = () => import('@/layout/index.vue');
 
 export const constantRoutes: RouterTypes = [
   {
-    name: "系统设置",
-    path: "/",
-    redirect: "/user",
+    name: '系统设置',
+    path: '/',
+    redirect: '/user',
     component: layout,
     meta: {
-      title: "系统设置",
-      icon: "system-uicons:airplay",
+      title: '系统设置',
+      icon: 'system-uicons:airplay',
       order: 0,
     },
     children: [
       {
-        name: "user",
-        path: "/user",
-        component: () => import("@/views/system/user/index.vue"),
+        name: 'user',
+        path: '/user',
+        component: () => import('@/views/system/user/index.vue'),
         meta: {
-          title: "用户管理",
-          icon: "system-uicons:contacts",
+          title: '用户管理',
+          icon: 'system-uicons:contacts',
           order: 0,
         },
       },
       {
-        name: "roles",
-        path: "/roles",
-        component: () => import("@/views/system/roles/index.vue"),
+        name: 'roles',
+        path: '/roles',
+        component: () => import('@/views/system/roles/index.vue'),
         meta: {
-          title: "角色管理",
-          icon: "ep:avatar",
+          title: '角色管理',
+          icon: 'ep:avatar',
           order: 0,
         },
       },
       {
-        name: "menu",
-        path: "/menu",
-        component: () => import("@/views/system/menu/index.vue"),
+        name: 'menu',
+        path: '/menu',
+        component: () => import('@/views/system/menu/index.vue'),
         meta: {
-          title: "菜单管理",
-          icon: "mdi:home",
+          title: '菜单管理',
+          icon: 'mdi:home',
           order: 0,
         },
       },
     ],
   },
   {
-    path: "/login",
+    path: '/login',
     hidden: true,
-    component: () => import("@/views/login/index.vue"),
+    component: () => import('@/views/login/index.vue'),
   },
 ];
 
@@ -109,7 +109,7 @@ export const roleCodeRoutes: RouterTypes = [
  */
 export const asyncRoutes: RouterTypes = [
   // 404 page must be placed at the end !!!
-  { path: "/:catchAll(.*)", name: "CatchAll", redirect: "/404", hidden: true },
+  { path: '/:catchAll(.*)', name: 'CatchAll', redirect: '/404', hidden: true },
 ];
 
 const router = createRouter({

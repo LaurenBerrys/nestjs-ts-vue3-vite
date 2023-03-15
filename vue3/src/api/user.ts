@@ -8,12 +8,12 @@
  *
  */
 //获取用户信息
-import axiosReq from "@/utils/axios";
+import axiosReq from '@/utils/axios';
 export const userInfoReq = (): Promise<any> => {
   return new Promise((resolve) => {
     const reqConfig = {
-      url: "/nest-api/user/" + useAppStore().name,
-      method: "get",
+      url: '/nest-api/user/' + useAppStore().name,
+      method: 'get',
     };
     //这里是将拿到的菜单数据转换成树形结构，方便后面使用
     axiosReq(reqConfig).then(({ data }) => {
@@ -34,7 +34,7 @@ export const userInfoReq = (): Promise<any> => {
           //将res去重
           const obj = {};
           res = res.reduce((cur, next) => {
-            obj[next.id] ? "" : (obj[next.id] = true && cur.push(next));
+            obj[next.id] ? '' : (obj[next.id] = true && cur.push(next));
             return cur;
           }, []);
           return res;
@@ -50,42 +50,42 @@ export const userInfoReq = (): Promise<any> => {
 //登录
 export const loginReq = (subForm) => {
   return axiosReq({
-    url: "/nest-api/user/login",
+    url: '/nest-api/user/login',
     data: subForm,
-    method: "post",
+    method: 'post',
   });
 };
 //退出登录
 export const loginOutReq = () => {
   return axiosReq({
-    url: "/nest-api/user/loginValid",
-    method: "post",
+    url: '/nest-api/user/loginValid',
+    method: 'post',
   });
 };
 export const getUser = (params) => {
   return axiosReq({
-    url: "/nest-api/user",
-    method: "get",
+    url: '/nest-api/user',
+    method: 'get',
     params,
   });
 };
 export const updateUser = (url, data) => {
   return axiosReq({
-    url: "/nest-api/user/" + url,
-    method: "patch",
+    url: '/nest-api/user/' + url,
+    method: 'patch',
     data,
   });
 };
 export const deleteUser = (url) => {
   return axiosReq({
-    url: "/nest-api/user/" + url,
-    method: "delete",
+    url: '/nest-api/user/' + url,
+    method: 'delete',
   });
 };
 export const createUser = (data) => {
   return axiosReq({
-    url: "/nest-api/user",
-    method: "post",
+    url: '/nest-api/user',
+    method: 'post',
     data,
   });
 };

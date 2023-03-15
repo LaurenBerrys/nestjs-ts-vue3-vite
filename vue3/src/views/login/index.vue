@@ -1,9 +1,5 @@
 <template>
-  <AppPage
-    :show-footer="true"
-    bg-cover
-    :style="{ backgroundImage: `url(${bgImg})` }"
-  >
+  <AppPage :show-footer="true" bg-cover :style="{ backgroundImage: `url(${bgImg})` }">
     <div
       style="transform: translateY(25px)"
       class="m-auto p-15 f-c-c min-w-345 max-w-700 rounded-10 card-shadow bg-white"
@@ -65,57 +61,56 @@
 </template>
 
 <script setup lang="ts">
-import AppPage from "@/components/page/AppPage.vue";
-import { useStorage } from "@vueuse/core";
-import bgImg from "@/assets/images/login_bg.jpg";
-import { loginReq } from "@/api/user";
-import settings from "@/settings";
-//   import { addDynamicRoutes } from '@/router'
+  import AppPage from '@/components/page/AppPage.vue';
+  import { useStorage } from '@vueuse/core';
+  import bgImg from '@/assets/images/login_bg.jpg';
+  import { loginReq } from '@/api/user';
+  import settings from '@/settings';
+  //   import { addDynamicRoutes } from '@/router'
+  const title = settings.title;
+  const router = useRouter();
 
-const title = settings.title;
+  const { query } = useRoute();
+  const loginInfo = ref({
+    name: '',
+    password: '',
+  });
 
-const router = useRouter();
-const { query } = useRoute();
-
-const loginInfo = ref({
-  name: "",
-  password: "",
-});
-
-initLoginInfo();
-function initLoginInfo() {
-  // const localLoginInfo = lStorage.get('loginInfo')
-  // if (localLoginInfo) {
-  //   loginInfo.value.name = localLoginInfo.name || ''
-  //   loginInfo.value.password = localLoginInfo.password || ''
-  // }
-}
-
-const isRemember = useStorage("isRemember", false);
-const loading = ref(false);
-async function handleLogin() {
-  const { name, password } = loginInfo.value;
-  if (!name || !password) {
-    window.$message.warning("请输入用户名和密码");
-    return;
+  initLoginInfo();
+  function initLoginInfo() {
+    // const localLoginInfo = lStorage.get('loginInfo')
+    // if (localLoginInfo) {
+    //   loginInfo.value.name = localLoginInfo.name || ''
+    //   loginInfo.value.password = localLoginInfo.password || ''
+    // }
   }
-  try {
-    loading.value = true;
-    window.$message.loading("正在验证...");
-    const { data } = await loginReq({ name, password: password.toString() });
-    window.$message.success("登录成功");
-    useAppStore().setToken(data.token, name);
-    if (query.redirect) {
-      const path: any = query.redirect;
-      Reflect.deleteProperty(query, "redirect");
-      router.push({ path, query });
-    } else {
-      router.push("/");
+
+  const isRemember = useStorage('isRemember', false);
+  const loading = ref(false);
+  async function handleLogin() {
+    const { name, password } = loginInfo.value;
+    if (!name || !password) {
+      window.$message.warning('请输入用户名和密码');
+      return;
     }
-  } catch (error) {
-    console.error(error);
-    window.$message.removeMessage();
+    try {
+      loading.value = true;
+      window.$message.loading('正在验证...');
+
+      const { data } = await loginReq({ name, password: password.toString() });
+      window.$message.success('登录成功');
+      useAppStore().setToken(data.token, name);
+      if (query.redirect) {
+        const path: any = query.redirect;
+        Reflect.deleteProperty(query, 'redirect');
+        router.push({ path, query });
+      } else {
+        router.push('/');
+      }
+    } catch (error) {
+      console.error(error);
+      window.$message.removeMessage();
+    }
+    loading.value = false;
   }
-  loading.value = false;
-}
 </script>

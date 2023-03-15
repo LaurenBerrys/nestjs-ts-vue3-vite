@@ -9,31 +9,31 @@
  */
 
 //创建角色
-import axiosReq from "@/utils/axios";
+import axiosReq from '@/utils/axios';
 export const createRoles = (data) => {
   return axiosReq({
-    url: "/nest-api/role",
-    method: "post",
+    url: '/nest-api/role',
+    method: 'post',
     data,
   });
 };
 export const getRoles = (params?) => {
   return axiosReq({
-    url: "/nest-api/role",
-    method: "get",
+    url: '/nest-api/role',
+    method: 'get',
     params,
   });
 };
 export const updateRoles = (url, data) => {
   return axiosReq({
-    url: "/nest-api/role/" + url,
-    method: "patch",
+    url: '/nest-api/role/' + url,
+    method: 'patch',
     data,
   });
 };
 export const deleteRoles = (url) => {
   return axiosReq({
-    url: "/nest-api/role/" + url,
-    method: "delete",
+    url: '/nest-api/role/' + url,
+    method: 'delete',
   });
 };

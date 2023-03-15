@@ -5,13 +5,13 @@
  * @Description: 
 -->
 <script setup lang="ts">
-import { useDark, useToggle } from "@vueuse/core";
-const Store = useConfigStore();
-const isDark = useDark();
-const toggleDark = () => {
-  Store.toggleDark();
-  useToggle(isDark)();
-};
+  import { useDark, useToggle } from '@vueuse/core';
+  const Store = useConfigStore();
+  const isDark = useDark();
+  const toggleDark = () => {
+    Store.toggleDark();
+    useToggle(isDark)();
+  };
 </script>
 
 <template>

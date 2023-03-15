@@ -8,7 +8,7 @@
  *
  */
 
-const key = Symbol("formElRef");
+const key = Symbol('formElRef');
 export function createFormContext(instance) {
   provide(key, instance);
 }

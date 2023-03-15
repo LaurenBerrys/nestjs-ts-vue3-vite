@@ -75,220 +75,219 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from "vue";
-import recharge from "./Recharge.vue";
-import {
-  LockOutlined,
-  LoadingOutlined,
-  UserOutlined,
-  ApiOutlined,
-  ArrowRightOutlined,
-  WifiOutlined,
-} from "@vicons/antd";
-import { useOnline, useTime, useBatterer } from "@/hooks/use-online";
-
-export default defineComponent({
-  name: "Lockscreen",
-  components: {
+  import { defineComponent, reactive, toRefs } from 'vue';
+  import recharge from './Recharge.vue';
+  import {
     LockOutlined,
     LoadingOutlined,
     UserOutlined,
-    ArrowRightOutlined,
     ApiOutlined,
+    ArrowRightOutlined,
     WifiOutlined,
-    recharge,
-  },
-  setup() {
-    const useLockscreen = useConfigStore();
-    const userStore = useAppStore();
+  } from '@vicons/antd';
+  import { useOnline, useTime, useBatterer } from '@/hooks/use-online';
 
-    // 获取时间
-    const { month, day, hour, minute, second, week } = useTime();
-    const { online } = useOnline();
+  export default defineComponent({
+    name: 'Lockscreen',
+    components: {
+      LockOutlined,
+      LoadingOutlined,
+      UserOutlined,
+      ArrowRightOutlined,
+      ApiOutlined,
+      WifiOutlined,
+      recharge,
+    },
+    setup() {
+      const useLockscreen = useConfigStore();
+      const userStore = useAppStore();
 
-    const { battery, batteryStatus, calcDischargingTime, calcChargingTime } =
-      useBatterer();
-    const userInfo: object = userStore.userInfo || {};
-    const username = userInfo["name"] || "";
-    const state = reactive({
-      showLogin: false,
-      loginLoading: false, // 正在登录
-      isLoginError: false, //密码错误
-      errorMsg: "密码错误",
-      loginParams: {
-        name: username || "",
-        password: "",
-      },
-    });
+      // 获取时间
+      const { month, day, hour, minute, second, week } = useTime();
+      const { online } = useOnline();
 
-    // 解锁登录
-    const onLockLogin = (value: boolean) => (state.showLogin = value);
+      const { battery, batteryStatus, calcDischargingTime, calcChargingTime } = useBatterer();
+      const userInfo: object = userStore.userInfo || {};
+      const username = userInfo['name'] || '';
+      const state = reactive({
+        showLogin: false,
+        loginLoading: false, // 正在登录
+        isLoginError: false, //密码错误
+        errorMsg: '密码错误',
+        loginParams: {
+          name: username || '',
+          password: '',
+        },
+      });
 
-    // 登录
-    const onLogin = async () => {
-      if (!state.loginParams.password.trim()) {
-        return;
-      }
-      const params = {
-        name: username,
-        password: state.loginParams.password,
-      };
-      state.loginLoading = true;
-      try {
-        const { code, msg } = await userStore.login(params);
-        if (code === 200) {
-          onLockLogin(false);
-          useLockscreen.setLock(false);
-        } else {
-          state.errorMsg = msg;
-          state.isLoginError = true;
-          state.loginLoading = false;
+      // 解锁登录
+      const onLockLogin = (value: boolean) => (state.showLogin = value);
+
+      // 登录
+      const onLogin = async () => {
+        if (!state.loginParams.password.trim()) {
+          return;
         }
-      } catch (error) {}
+        const params = {
+          name: username,
+          password: state.loginParams.password,
+        };
+        state.loginLoading = true;
+        try {
+          const { code, msg } = await userStore.login(params);
+          if (code === 200) {
+            onLockLogin(false);
+            useLockscreen.setLock(false);
+          } else {
+            state.errorMsg = msg;
+            state.isLoginError = true;
+            state.loginLoading = false;
+          }
+        } catch (error) {}
 
-      state.loginLoading = false;
-    };
+        state.loginLoading = false;
+      };
 
-    //重新登录
-    const goLogin = () => {
-      onLockLogin(false);
-      useLockscreen.setLock(false);
-      userStore.resetStateAndToLogin();
-    };
+      //重新登录
+      const goLogin = () => {
+        onLockLogin(false);
+        useLockscreen.setLock(false);
+        userStore.resetStateAndToLogin();
+      };
 
-    return {
-      ...toRefs(state),
-      online,
-      month,
-      day,
-      hour,
-      minute,
-      second,
-      week,
-      battery,
-      batteryStatus,
-      calcDischargingTime,
-      calcChargingTime,
-      onLockLogin,
-      onLogin,
-      goLogin,
-    };
-  },
-});
+      return {
+        ...toRefs(state),
+        online,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        week,
+        battery,
+        batteryStatus,
+        calcDischargingTime,
+        calcChargingTime,
+        onLockLogin,
+        onLogin,
+        goLogin,
+      };
+    },
+  });
 </script>
 
 <style lang="less" scoped>
-.lockscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  background: #000;
-  color: white;
-  overflow: hidden;
-  z-index: 9999;
-
-  &.onLockLogin {
-    background-color: rgba(25, 28, 34, 0.88);
-    backdrop-filter: blur(7px);
-  }
-
-  .login-box {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .lockscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background: #000;
+    color: white;
+    overflow: hidden;
+    z-index: 9999;
 
-    > * {
-      margin-bottom: 14px;
+    &.onLockLogin {
+      background-color: rgba(25, 28, 34, 0.88);
+      backdrop-filter: blur(7px);
     }
 
-    .username {
-      font-size: 30px;
-    }
-  }
-
-  .lock-box {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 34px;
-    z-index: 100;
-
-    .tips {
-      color: white;
-      cursor: text;
-    }
-
-    .lock {
+    .login-box {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       display: flex;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
 
-      .lock-icon {
-        cursor: pointer;
+      > * {
+        margin-bottom: 14px;
+      }
 
-        .anticon-unlock {
-          display: none;
+      .username {
+        font-size: 30px;
+      }
+    }
+
+    .lock-box {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 34px;
+      z-index: 100;
+
+      .tips {
+        color: white;
+        cursor: text;
+      }
+
+      .lock {
+        display: flex;
+        justify-content: center;
+
+        .lock-icon {
+          cursor: pointer;
+
+          .anticon-unlock {
+            display: none;
+          }
+
+          &:hover .anticon-unlock {
+            display: initial;
+          }
+
+          &:hover .anticon-lock {
+            display: none;
+          }
         }
+      }
+    }
 
-        &:hover .anticon-unlock {
-          display: initial;
-        }
+    .local-time {
+      position: absolute;
+      bottom: 60px;
+      left: 60px;
+      font-family: helvetica;
 
-        &:hover .anticon-lock {
-          display: none;
+      .time {
+        font-size: 70px;
+      }
+
+      .date {
+        font-size: 40px;
+      }
+    }
+
+    .computer-status {
+      position: absolute;
+      bottom: 60px;
+      right: 60px;
+      font-size: 24px;
+
+      > * {
+        margin-left: 14px;
+      }
+
+      .network {
+        position: relative;
+
+        &.offline::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 2px;
+          height: 28px;
+          transform: translate(-50%, -50%) rotate(45deg);
+          background-color: red;
+          z-index: 10;
         }
       }
     }
   }
-
-  .local-time {
-    position: absolute;
-    bottom: 60px;
-    left: 60px;
-    font-family: helvetica;
-
-    .time {
-      font-size: 70px;
-    }
-
-    .date {
-      font-size: 40px;
-    }
-  }
-
-  .computer-status {
-    position: absolute;
-    bottom: 60px;
-    right: 60px;
-    font-size: 24px;
-
-    > * {
-      margin-left: 14px;
-    }
-
-    .network {
-      position: relative;
-
-      &.offline::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 2px;
-        height: 28px;
-        transform: translate(-50%, -50%) rotate(45deg);
-        background-color: red;
-        z-index: 10;
-      }
-    }
-  }
-}
 </style>

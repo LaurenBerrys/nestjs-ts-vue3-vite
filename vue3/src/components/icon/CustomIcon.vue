@@ -8,24 +8,24 @@
  * 
 -->
 <script setup>
-//setup中我要如何声明props
+  //setup中我要如何声明props
 
-/** 自定义图标 */
-const props = defineProps({
-  /** 图标名称(assets/svg下的文件名) */
-  icon: {
-    type: String,
-    required: true,
-  },
-  size: {
-    type: Number,
-    default: 14,
-  },
-  color: {
-    type: String,
-    default: undefined,
-  },
-});
+  /** 自定义图标 */
+  const props = defineProps({
+    /** 图标名称(assets/svg下的文件名) */
+    icon: {
+      type: String,
+      required: true,
+    },
+    size: {
+      type: Number,
+      default: 14,
+    },
+    color: {
+      type: String,
+      default: undefined,
+    },
+  });
 </script>
 
 <template>

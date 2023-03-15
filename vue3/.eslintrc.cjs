@@ -47,13 +47,6 @@ module.exports = defineConfig({
                 varsIgnorePattern: '^_',
             },
         ],
-        'no-unused-vars': [
-            'error',
-            {
-                argsIgnorePattern: '^_',
-                varsIgnorePattern: '^_',
-            },
-        ],
         'space-before-function-paren': 'off',
 
         'vue/attributes-order': 'off',

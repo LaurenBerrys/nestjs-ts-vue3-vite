@@ -5,6 +5,11 @@
     "source.fixAll": false,
     "source.fixAll.eslint": false
   },
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
   // 保存的时候自动格式化
   "editor.formatOnSave": true,
   // 默认格式化工具选择prettier

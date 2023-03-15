@@ -7,25 +7,25 @@
  * @Description:
  *
  */
-import { defineStore } from "pinia";
-import router from "@/router";
-export const WITHOUT_TAG_PATHS = ["/404", "/login"];
+import { defineStore } from 'pinia';
+import router from '@/router';
+export const WITHOUT_TAG_PATHS = ['/404', '/login'];
 type Tag = {
   name: string;
   path: string;
   title: string;
 };
 
-export const useTagsStore = defineStore("tag", {
+export const useTagsStore = defineStore('tag', {
   state() {
     return {
       tags: [] as Array<Tag>,
-      activeTag: "" as string,
+      activeTag: '' as string,
     };
   },
   persist: {
     storage: localStorage,
-    paths: ["tags", "activeTag"],
+    paths: ['tags', 'activeTag'],
   },
   actions: {
     activeIndex() {
@@ -80,7 +80,7 @@ export const useTagsStore = defineStore("tag", {
     },
     resetTags() {
       this.setTags([]);
-      this.setActiveTag("");
+      this.setActiveTag('');
     },
   },
 });

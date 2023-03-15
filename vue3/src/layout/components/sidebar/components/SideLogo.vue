@@ -10,22 +10,14 @@
 <template>
   <router-link h-60 f-c-c to="/">
     <icon-custom-logo text-16 color-primary />
-    <h2
-      v-show="!appStore.collapsed"
-      ml-10
-      color-primary
-      text-16
-      font-bold
-      max-w-140
-      flex-shrink-0
-    >
+    <h2 v-show="!appStore.collapsed" ml-10 color-primary text-16 font-bold max-w-140 flex-shrink-0>
       {{ title }}
     </h2>
   </router-link>
 </template>
 
 <script setup>
-import settings from "@/settings";
-const title = settings.title;
-const appStore = useConfigStore();
+  import settings from '@/settings';
+  const title = settings.title;
+  const appStore = useConfigStore();
 </script>

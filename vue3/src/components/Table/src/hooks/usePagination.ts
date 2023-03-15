@@ -1,9 +1,9 @@
-import type { PaginationProps } from "../types/pagination";
-import type { NvapTableProps } from "../types/table";
-import { computed, unref, ref, ComputedRef } from "vue";
+import type { PaginationProps } from '../types/pagination';
+import type { NvapTableProps } from '../types/table';
+import { computed, unref, ref, ComputedRef } from 'vue';
 
-import { isBoolean } from "@/utils/is";
-import { APISETTING, DEFAULTPAGESIZE, PAGESIZES } from "../const";
+import { isBoolean } from '@/utils/is';
+import { APISETTING, DEFAULTPAGESIZE, PAGESIZES } from '../const';
 
 export function usePagination(refProps: ComputedRef<NvapTableProps>) {
   const configRef = ref<PaginationProps>({});

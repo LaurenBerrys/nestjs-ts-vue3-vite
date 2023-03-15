@@ -7,7 +7,7 @@
  * @Description:
  *
  */
-import type { defineOptions as _defineOptions } from "unplugin-vue-define-options/macros.d.ts";
+import type { defineOptions as _defineOptions } from 'unplugin-vue-define-options/macros.d.ts';
 declare global {
   interface ObjKeys {
     [propName: string]: any;

@@ -7,11 +7,11 @@
  * @Description:
  *
  */
-import { createI18n } from "vue-i18n";
-import { LANG_VALUE } from "../enums/enum";
-import en from "./en";
-import zh from "./zh";
-import settings from "@/settings";
+import { createI18n } from 'vue-i18n';
+import { LANG_VALUE } from '../enums/enum';
+import en from './en';
+import zh from './zh';
+import settings from '@/settings';
 const messages = {
   [LANG_VALUE.En]: en,
   [LANG_VALUE.Zh]: zh,

@@ -7,10 +7,10 @@
  * @Description:
  *
  */
-import { h } from "vue";
-import { Icon } from "@iconify/vue";
-import { NIcon } from "naive-ui";
-import SvgIcon from "@/components/icon/SvgIcon.vue";
+import { h } from 'vue';
+import { Icon } from '@iconify/vue';
+import { NIcon } from 'naive-ui';
+import SvgIcon from '@/components/icon/SvgIcon.vue';
 
 /**
  * @description: 生成icon组件

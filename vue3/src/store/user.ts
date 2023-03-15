@@ -7,9 +7,9 @@
  * @Description:
  *
  */
-import { defineStore } from "pinia";
-import { resetState } from "@/hooks/use-permission";
-export const useUserStore = defineStore("user", {
+import { defineStore } from 'pinia';
+import { resetState } from '@/hooks/use-permission';
+export const useUserStore = defineStore('user', {
   state() {
     return {
       userInfo: {} as any,
@@ -17,7 +17,7 @@ export const useUserStore = defineStore("user", {
   },
   persist: {
     storage: localStorage,
-    paths: ["userInfo"],
+    paths: ['userInfo'],
   },
   actions: {
     userId() {

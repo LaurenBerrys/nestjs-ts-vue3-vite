@@ -4,8 +4,8 @@
  * @LastEditTime: 2023-03-13 18:26:57
  * @Description:
  */
-import { NButton } from "naive-ui";
-import type { Component } from "vue";
+import { NButton } from 'naive-ui';
+import type { Component } from 'vue';
 export interface PermissionsEnum {
   value: string;
   label: string;
@@ -13,7 +13,7 @@ export interface PermissionsEnum {
 export interface ActionItem extends Partial<InstanceType<typeof NButton>> {
   onClick?: Fn;
   label?: string;
-  type?: "success" | "error" | "warning" | "info" | "primary" | "default";
+  type?: 'success' | 'error' | 'warning' | 'info' | 'primary' | 'default';
   // 设定 color 后会覆盖 type 的样式
   color?: string;
   icon?: Component;

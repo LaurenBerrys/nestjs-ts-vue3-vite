@@ -23,12 +23,12 @@
 </template>
 
 <script setup>
-import LockScreen from "./components/LockScreen.vue";
-import Lang from "./components/Lang.vue";
-import BreadCrumb from "./components/BreadCrumb.vue";
-import MenuCollapse from "./components/MenuCollapse.vue";
-import FullScreen from "./components/FullScreen.vue";
-import UserAvatar from "./components/UserAvatar.vue";
-import GithubSite from "./components/GithubSite.vue";
-import ThemeMode from "./components/ThemeMode.vue";
+  import LockScreen from './components/LockScreen.vue';
+  import Lang from './components/Lang.vue';
+  import BreadCrumb from './components/BreadCrumb.vue';
+  import MenuCollapse from './components/MenuCollapse.vue';
+  import FullScreen from './components/FullScreen.vue';
+  import UserAvatar from './components/UserAvatar.vue';
+  import GithubSite from './components/GithubSite.vue';
+  import ThemeMode from './components/ThemeMode.vue';
 </script>

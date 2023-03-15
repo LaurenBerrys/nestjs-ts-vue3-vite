@@ -7,20 +7,20 @@
  * @Description:
  *
  */
-import router from "@/router";
-import { userInfoReq } from "@/api/user";
-import { langTitle } from "@/hooks/use-common";
+import router from '@/router';
+import { userInfoReq } from '@/api/user';
+import { langTitle } from '@/hooks/use-common';
 
 //路由进入前拦截
 //to:将要进入的页面 vue-router4.0 不推荐使用next()
-const whiteList = ["/login", "/404", "/401"]; // no redirect whitelist
+const whiteList = ['/login', '/404', '/401']; // no redirect whitelist
 router.beforeEach(async (to) => {
   document.title = langTitle(to.meta?.title); // i18 page title
   const appStore = useAppStore();
   //1.判断token
   if (appStore.token) {
-    if (to.path === "/login") {
-      return "/";
+    if (to.path === '/login') {
+      return '/';
     } else {
       //2.判断是否获取用户信息
       if (!appStore.userInfo) {
@@ -40,9 +40,7 @@ router.beforeEach(async (to) => {
         }
       } else {
         if (router.getRoutes().length === 5) {
-          const asyncRouter = filterAsyncRoutesByMenuList(
-            appStore.userInfo.menuList
-          );
+          const asyncRouter = filterAsyncRoutesByMenuList(appStore.userInfo.menuList);
           asyncRouter.forEach((route) => {
             router.addRoute(route);
           });

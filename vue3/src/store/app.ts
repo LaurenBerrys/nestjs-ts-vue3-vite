@@ -7,16 +7,16 @@
  * @Description:
  *
  */
-import { nextTick } from "vue";
-import { defineStore } from "pinia";
-import defaultSettings from "@/settings";
-import router, { constantRoutes } from "@/router";
-export const useAppStore = defineStore("app", {
+import { nextTick } from 'vue';
+import { defineStore } from 'pinia';
+import defaultSettings from '@/settings';
+import router, { constantRoutes } from '@/router';
+export const useAppStore = defineStore('app', {
   state: () => {
     return {
       reloadFlag: true,
-      token: "",
-      name: "",
+      token: '',
+      name: '',
       /** keepAlive路由的key，重新赋值可重置keepAlive */
       aliveKeys: [] as any,
       allRoutes: [] as any,
@@ -28,7 +28,7 @@ export const useAppStore = defineStore("app", {
   },
   persist: {
     storage: localStorage,
-    paths: ["token", "name", "allRoutes", "userInfo"],
+    paths: ['token', 'name', 'allRoutes', 'userInfo'],
   },
   actions: {
     async reloadPage() {
@@ -76,9 +76,9 @@ export const useAppStore = defineStore("app", {
     resetState() {
       // $patch方法用来在当前state上执行Provide函数，从而更新store中存放的数据
       this.$patch((state) => {
-        state.token = ""; //reset token
+        state.token = ''; //reset token
         state.allRoutes = [];
-        state.name = "";
+        state.name = '';
         state.userInfo = null;
       });
     },
@@ -94,7 +94,7 @@ export const useAppStore = defineStore("app", {
       resetPermission();
       this.resetState();
       nextTick(() => {
-        router.push({ path: "/login" });
+        router.push({ path: '/login' });
       });
     },
     //登陆

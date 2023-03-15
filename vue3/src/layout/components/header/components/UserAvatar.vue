@@ -18,28 +18,28 @@
 </template>
 
 <script setup>
-import { renderIcon } from "@/utils/icon";
-const appStore = useAppStore();
-const { avatar = "" } = appStore.userInfo;
-const options = [
-  {
-    label: "退出登录",
-    key: "logout",
-    icon: renderIcon("mdi:exit-to-app", { size: 14 }),
-  },
-];
+  import { renderIcon } from '@/utils/icon';
+  const appStore = useAppStore();
+  const { avatar = '' } = appStore.userInfo;
+  const options = [
+    {
+      label: '退出登录',
+      key: 'logout',
+      icon: renderIcon('mdi:exit-to-app', { size: 14 }),
+    },
+  ];
 
-function handleSelect(key) {
-  if (key === "logout") {
-    window.$dialog.confirm({
-      title: "提示",
-      type: "info",
-      content: "确认退出？",
-      confirm() {
-        appStore.resetStateAndToLogin();
-        window.$message.success("已退出登录");
-      },
-    });
+  function handleSelect(key) {
+    if (key === 'logout') {
+      window.$dialog.confirm({
+        title: '提示',
+        type: 'info',
+        content: '确认退出？',
+        confirm() {
+          appStore.resetStateAndToLogin();
+          window.$message.success('已退出登录');
+        },
+      });
+    }
   }
-}
 </script>

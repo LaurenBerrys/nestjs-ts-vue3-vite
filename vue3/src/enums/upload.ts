@@ -5,6 +5,6 @@
  * @Description:
  */
 export enum Upload_Enum {
-  button = "button",
-  dragger = "dragger",
+  button = 'button',
+  dragger = 'dragger',
 }

@@ -9,15 +9,7 @@
 -->
 <template>
   <AppPage :show-footer="showFooter">
-    <header
-      v-if="showHeader"
-      px-15
-      mb-15
-      min-h-45
-      flex
-      justify-between
-      items-center
-    >
+    <header v-if="showHeader" px-15 mb-15 min-h-45 flex justify-between items-center>
       <slot v-if="$slots.header" name="header"></slot>
       <template v-else>
         <h2 text-22 font-normal text-hex-333 dark:text-hex-ccc>
@@ -33,19 +25,19 @@
 </template>
 
 <script setup lang="ts" name="ComponentPage">
-defineProps({
-  showFooter: {
-    type: Boolean,
-    default: false,
-  },
-  showHeader: {
-    type: Boolean,
-    default: true,
-  },
-  title: {
-    type: String,
-    default: undefined,
-  },
-});
-const route = useRoute();
+  defineProps({
+    showFooter: {
+      type: Boolean,
+      default: false,
+    },
+    showHeader: {
+      type: Boolean,
+      default: true,
+    },
+    title: {
+      type: String,
+      default: undefined,
+    },
+  });
+  const route = useRoute();
 </script>

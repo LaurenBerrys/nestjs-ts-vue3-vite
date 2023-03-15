@@ -88,85 +88,84 @@
 </template>
 
 <script lang="ts">
-import {
-  ReloadOutlined,
-  ColumnHeightOutlined,
-  //  QuestionCircleOutlined
-} from "@vicons/antd";
-import { createTableContext } from "./hooks/useTableContext";
-
-import ColumnSetting from "./components/settings/ColumnSetting.vue";
-
-import { useLoading } from "./hooks/useLoading";
-import { useColumns } from "./hooks/useColumns";
-import { useDataSource } from "./hooks/useDataSource";
-import { usePagination } from "./hooks/usePagination";
-
-import { nvapProps } from "./props";
-
-import { NvapTableProps } from "./types/table";
-
-import { getViewportOffset } from "@/utils/domUtils";
-import { useWindowSizeFn } from "@/hooks/event/useWindowSizeFn";
-import { isBoolean } from "@/utils/is";
-
-const densityOptions = [
-  {
-    type: "menu",
-    label: "紧凑",
-    key: "small",
-  },
-  {
-    type: "menu",
-    label: "默认",
-    key: "medium",
-  },
-  {
-    type: "menu",
-    label: "宽松",
-    key: "large",
-  },
-];
-
-export default defineComponent({
-  name: "NvapTable",
-  components: {
+  import {
     ReloadOutlined,
     ColumnHeightOutlined,
-    ColumnSetting,
-    // QuestionCircleOutlined,
-  },
-  props: {
-    ...nvapProps,
-  },
-  emits: [
-    "fetch-success",
-    "fetch-error",
-    "update:checked-row-keys",
-    "edit-end",
-    "edit-cancel",
-    "edit-row-end",
-    "edit-change",
-  ],
-  setup(props, { emit }) {
-    const deviceHeight = ref(150);
-    const tableElRef = ref<ComponentRef>(null);
-    const wrapRef = ref<Nullable<HTMLDivElement>>(null);
-    let paginationEl: HTMLElement | null;
-    const isStriped = ref(false);
-    const tableData = ref<Recordable[]>([]);
-    const innerPropsRef = ref<Partial<NvapTableProps>>();
+    //  QuestionCircleOutlined
+  } from '@vicons/antd';
+  import { createTableContext } from './hooks/useTableContext';
 
-    const getProps = computed(() => {
-      return { ...props, ...unref(innerPropsRef) } as NvapTableProps;
-    });
+  import ColumnSetting from './components/settings/ColumnSetting.vue';
 
-    const { getLoading, setLoading } = useLoading(getProps);
+  import { useLoading } from './hooks/useLoading';
+  import { useColumns } from './hooks/useColumns';
+  import { useDataSource } from './hooks/useDataSource';
+  import { usePagination } from './hooks/usePagination';
 
-    const { getPaginationInfo, setPagination } = usePagination(getProps);
+  import { nvapProps } from './props';
 
-    const { getDataSourceRef, getDataSource, getRowKey, reload } =
-      useDataSource(
+  import { NvapTableProps } from './types/table';
+
+  import { getViewportOffset } from '@/utils/domUtils';
+  import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn';
+  import { isBoolean } from '@/utils/is';
+
+  const densityOptions = [
+    {
+      type: 'menu',
+      label: '紧凑',
+      key: 'small',
+    },
+    {
+      type: 'menu',
+      label: '默认',
+      key: 'medium',
+    },
+    {
+      type: 'menu',
+      label: '宽松',
+      key: 'large',
+    },
+  ];
+
+  export default defineComponent({
+    name: 'NvapTable',
+    components: {
+      ReloadOutlined,
+      ColumnHeightOutlined,
+      ColumnSetting,
+      // QuestionCircleOutlined,
+    },
+    props: {
+      ...nvapProps,
+    },
+    emits: [
+      'fetch-success',
+      'fetch-error',
+      'update:checked-row-keys',
+      'edit-end',
+      'edit-cancel',
+      'edit-row-end',
+      'edit-change',
+    ],
+    setup(props, { emit }) {
+      const deviceHeight = ref(150);
+      const tableElRef = ref<ComponentRef>(null);
+      const wrapRef = ref<Nullable<HTMLDivElement>>(null);
+      let paginationEl: HTMLElement | null;
+      const isStriped = ref(false);
+      const tableData = ref<Recordable[]>([]);
+      const innerPropsRef = ref<Partial<NvapTableProps>>();
+
+      const getProps = computed(() => {
+        return { ...props, ...unref(innerPropsRef) } as NvapTableProps;
+      });
+
+      const { getLoading, setLoading } = useLoading(getProps);
+
+      const { getPaginationInfo, setPagination } = usePagination(getProps);
+
+      const { getDataSourceRef, getDataSource, getRowKey, reload } = useDataSource(
         getProps,
         {
           getPaginationInfo,
@@ -177,190 +176,182 @@ export default defineComponent({
         emit
       );
 
-    const {
-      getPageColumns,
-      setColumns,
-      getColumns,
-      getCacheColumns,
-      setCacheColumnsField,
-    } = useColumns(getProps);
+      const { getPageColumns, setColumns, getColumns, getCacheColumns, setCacheColumnsField } =
+        useColumns(getProps);
 
-    const state = reactive({
-      tableSize: unref(getProps as any).size || "medium",
-      isColumnSetting: false,
-    });
-
-    //页码切换
-    function updatePage(page) {
-      setPagination({ page: page });
-      reload();
-    }
-
-    //分页数量切换
-    function updatePageSize(size) {
-      setPagination({ page: 1, pageSize: size });
-      reload();
-    }
-
-    //密度切换
-    function densitySelect(e) {
-      state.tableSize = e;
-    }
-
-    //选中行
-    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    function updateCheckedRowKeys(rowKeys) {
-      emit("update:checked-row-keys", rowKeys);
-    }
-
-    //获取表格大小
-    const getTableSize = computed(() => state.tableSize);
-
-    //组装表格信息
-    const getBindValues = computed(() => {
-      const tableData = unref(getDataSourceRef);
-      const maxHeight = tableData.length ? `${unref(deviceHeight)}px` : "auto";
-      return {
-        ...unref(getProps),
-        loading: unref(getLoading),
-        columns: toRaw(unref(getPageColumns)),
-        rowKey: unref(getRowKey),
-        data: tableData,
-        size: unref(getTableSize),
-        remote: true,
-        "max-height": maxHeight,
-      };
-    });
-
-    //获取分页信息
-    const pagination: any = computed(() => toRaw(unref(getPaginationInfo)));
-
-    function setProps(props: Partial<NvapTableProps>) {
-      innerPropsRef.value = { ...unref(innerPropsRef), ...props };
-    }
-
-    const setStriped = (value: boolean) => (isStriped.value = value);
-
-    const tableAction = {
-      reload,
-      setColumns,
-      setLoading,
-      setProps,
-      getColumns,
-      getPageColumns,
-      getCacheColumns,
-      setCacheColumnsField,
-      emit,
-    };
-
-    const getCanResize = computed(() => {
-      const { canResize } = unref(getProps);
-      return canResize;
-    });
-
-    async function computeTableHeight() {
-      const table = unref(tableElRef);
-      if (!table) return;
-      if (!unref(getCanResize)) return;
-      const tableEl: any = table?.$el;
-      const headEl = tableEl.querySelector(".n-data-table-thead ");
-      const { bottomIncludeBody } = getViewportOffset(headEl);
-      const headerH = 64;
-      let paginationH = 2;
-      let marginH = 24;
-      if (!isBoolean(unref(pagination))) {
-        paginationEl = tableEl.querySelector(
-          ".n-data-table__pagination"
-        ) as HTMLElement;
-        if (paginationEl) {
-          const offsetHeight = paginationEl.offsetHeight;
-          paginationH += offsetHeight || 0;
-        } else {
-          paginationH += 28;
-        }
-      }
-      let height =
-        bottomIncludeBody -
-        (headerH + paginationH + marginH + (props.resizeHeightOffset || 0));
-      const maxHeight = props.maxHeight;
-      height = maxHeight && maxHeight < height ? maxHeight : height;
-      deviceHeight.value = height;
-    }
-
-    useWindowSizeFn(computeTableHeight, 280);
-
-    onMounted(() => {
-      nextTick(() => {
-        computeTableHeight();
+      const state = reactive({
+        tableSize: unref(getProps as any).size || 'medium',
+        isColumnSetting: false,
       });
-    });
 
-    createTableContext({ ...tableAction, wrapRef, getBindValues });
+      //页码切换
+      function updatePage(page) {
+        setPagination({ page: page });
+        reload();
+      }
 
-    return {
-      ...toRefs(state),
-      tableElRef,
-      getBindValues,
-      getDataSource,
-      densityOptions,
-      reload,
-      densitySelect,
-      updatePage,
-      updatePageSize,
-      pagination,
-      tableAction,
-      setStriped,
-      isStriped,
-    };
-  },
-});
+      //分页数量切换
+      function updatePageSize(size) {
+        setPagination({ page: 1, pageSize: size });
+        reload();
+      }
+
+      //密度切换
+      function densitySelect(e) {
+        state.tableSize = e;
+      }
+
+      //选中行
+      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+      function updateCheckedRowKeys(rowKeys) {
+        emit('update:checked-row-keys', rowKeys);
+      }
+
+      //获取表格大小
+      const getTableSize = computed(() => state.tableSize);
+
+      //组装表格信息
+      const getBindValues = computed(() => {
+        const tableData = unref(getDataSourceRef);
+        const maxHeight = tableData.length ? `${unref(deviceHeight)}px` : 'auto';
+        return {
+          ...unref(getProps),
+          loading: unref(getLoading),
+          columns: toRaw(unref(getPageColumns)),
+          rowKey: unref(getRowKey),
+          data: tableData,
+          size: unref(getTableSize),
+          remote: true,
+          'max-height': maxHeight,
+        };
+      });
+
+      //获取分页信息
+      const pagination: any = computed(() => toRaw(unref(getPaginationInfo)));
+
+      function setProps(props: Partial<NvapTableProps>) {
+        innerPropsRef.value = { ...unref(innerPropsRef), ...props };
+      }
+
+      const setStriped = (value: boolean) => (isStriped.value = value);
+
+      const tableAction = {
+        reload,
+        setColumns,
+        setLoading,
+        setProps,
+        getColumns,
+        getPageColumns,
+        getCacheColumns,
+        setCacheColumnsField,
+        emit,
+      };
+
+      const getCanResize = computed(() => {
+        const { canResize } = unref(getProps);
+        return canResize;
+      });
+
+      async function computeTableHeight() {
+        const table = unref(tableElRef);
+        if (!table) return;
+        if (!unref(getCanResize)) return;
+        const tableEl: any = table?.$el;
+        const headEl = tableEl.querySelector('.n-data-table-thead ');
+        const { bottomIncludeBody } = getViewportOffset(headEl);
+        const headerH = 64;
+        let paginationH = 2;
+        let marginH = 24;
+        if (!isBoolean(unref(pagination))) {
+          paginationEl = tableEl.querySelector('.n-data-table__pagination') as HTMLElement;
+          if (paginationEl) {
+            const offsetHeight = paginationEl.offsetHeight;
+            paginationH += offsetHeight || 0;
+          } else {
+            paginationH += 28;
+          }
+        }
+        let height =
+          bottomIncludeBody - (headerH + paginationH + marginH + (props.resizeHeightOffset || 0));
+        const maxHeight = props.maxHeight;
+        height = maxHeight && maxHeight < height ? maxHeight : height;
+        deviceHeight.value = height;
+      }
+
+      useWindowSizeFn(computeTableHeight, 280);
+
+      onMounted(() => {
+        nextTick(() => {
+          computeTableHeight();
+        });
+      });
+
+      createTableContext({ ...tableAction, wrapRef, getBindValues });
+
+      return {
+        ...toRefs(state),
+        tableElRef,
+        getBindValues,
+        getDataSource,
+        densityOptions,
+        reload,
+        densitySelect,
+        updatePage,
+        updatePageSize,
+        pagination,
+        tableAction,
+        setStriped,
+        isStriped,
+      };
+    },
+  });
 </script>
-<style lang="less" scoped>
-.table-select {
-  display: flex;
-  padding: 0 0 16px 0;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
-.table-toolbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 0 16px 0;
-
-  &-left {
+<style lang="scss" scoped>
+  .table-select {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex: 1;
+    padding: 0 0 16px 0;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 16px 0;
 
-    &-title {
+    &-left {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      font-size: 16px;
-      font-weight: 600;
+      flex: 1;
+
+      &-title {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 16px;
+        font-weight: 600;
+      }
     }
-  }
 
-  &-right {
-    display: flex;
-    justify-content: flex-end;
-    flex: 1;
+    &-right {
+      display: flex;
+      justify-content: flex-end;
+      flex: 1;
 
-    &-icon {
-      margin-left: 12px;
-      font-size: 16px;
-      cursor: pointer;
-      color: var(--text-color);
+      &-icon {
+        margin-left: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        color: var(--text-color);
 
-      :hover {
-        color: #1890ff;
+        :hover {
+          color: #1890ff;
+        }
       }
     }
   }
-}
 
-.table-toolbar-inner-popover-title {
-  padding: 2px 0;
-}
+  .table-toolbar-inner-popover-title {
+    padding: 2px 0;
+  }
 </style>

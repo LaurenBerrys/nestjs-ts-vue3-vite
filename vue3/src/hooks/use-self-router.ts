@@ -7,7 +7,7 @@
  * @Description:
  *
  */
-import router from "@/router";
+import router from '@/router';
 export const getQueryParam = () => {
   const route: any = router.currentRoute;
   if (route.value?.query.params) {

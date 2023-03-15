@@ -1,7 +1,7 @@
-import type { RouteRawConfig, RouterTypes, rawConfig } from "~/basic";
-import type { RouteRecordName } from "vue-router";
-const modules = import.meta.glob("../views/**/*.{vue,tsx}");
-const Layout = () => import("@/layout/index.vue");
+import type { RouteRawConfig, RouterTypes, rawConfig } from '~/basic';
+import type { RouteRecordName } from 'vue-router';
+const modules = import.meta.glob('../views/**/*.{vue,tsx}');
+const Layout = () => import('@/layout/index.vue');
 /**
  * 根据请求，过滤异步路由
  * @param:menuList 异步路由数组
@@ -11,7 +11,7 @@ const Layout = () => import("@/layout/index.vue");
 /*
  * 路由操作
  * */
-import router, { asyncRoutes, constantRoutes, roleCodeRoutes } from "@/router";
+import router, { asyncRoutes, constantRoutes, roleCodeRoutes } from '@/router';
 
 const buttonCodes: Array<number> = []; //按钮权限
 interface menuRow {
@@ -30,9 +30,7 @@ export const filterAsyncRoutesByMenuList = (menuList) => {
       const itemFromReqRouter = getRouteItemFromReqRouter(route);
       if (route.children?.length) {
         //judge  the type is router or button
-        itemFromReqRouter.children = filterAsyncRoutesByMenuList(
-          route.children
-        );
+        itemFromReqRouter.children = filterAsyncRoutesByMenuList(route.children);
       }
       filterRouter.push(itemFromReqRouter);
     }
@@ -40,26 +38,26 @@ export const filterAsyncRoutesByMenuList = (menuList) => {
   return filterRouter;
 };
 const getRouteItemFromReqRouter = (route): RouteRawConfig => {
-  const tmp: rawConfig = { meta: { title: "" } };
-  const routeKeyArr = ["path", "component", "name", "hidden"];
-  const metaKeyArr = ["title", "icon", "order", "keepAlive"];
+  const tmp: rawConfig = { meta: { title: '' } };
+  const routeKeyArr = ['path', 'component', 'name', 'hidden'];
+  const metaKeyArr = ['title', 'icon', 'order', 'keepAlive'];
   // @ts-ignore
   //generator routeKey
   routeKeyArr.forEach((fItem) => {
-    if (fItem === "component") {
-      if (route[fItem] === "Layout") {
+    if (fItem === 'component') {
+      if (route[fItem] === 'Layout') {
         tmp[fItem] = Layout;
       } else {
         tmp[fItem] = dynamicImport(modules, route[fItem]);
       }
-    } else if (fItem === "path") {
+    } else if (fItem === 'path') {
       tmp[fItem] = `${route[fItem]}`;
     }
     // else if (['hidden', 'alwaysShow'].includes(fItem)) {
     //   tmp[fItem] = !!route[fItem]
     // }
-    else if (["name"].includes(fItem)) {
-      tmp[fItem] = route["code"];
+    else if (['name'].includes(fItem)) {
+      tmp[fItem] = route['code'];
     } else if (route[fItem]) {
       tmp[fItem] = route[fItem];
     }
@@ -71,7 +69,7 @@ const getRouteItemFromReqRouter = (route): RouteRawConfig => {
   //route extra insert
   if (route.extra) {
     Object.entries(route.extra.parse(route.extra)).forEach(([key, value]) => {
-      if (key === "meta" && tmp.meta) {
+      if (key === 'meta' && tmp.meta) {
         tmp.meta[key] = value;
       } else {
         tmp[key] = value;
@@ -119,10 +117,7 @@ export function filterAsyncRouterByCodes(codesRoutes, codes) {
   codesRoutes.forEach((routeItem: RouteRawConfig) => {
     if (hasCodePermission(codes, routeItem)) {
       if (routeItem.children)
-        routeItem.children = filterAsyncRouterByCodes(
-          routeItem.children,
-          codes
-        );
+        routeItem.children = filterAsyncRouterByCodes(routeItem.children, codes);
       filterRouter.push(routeItem);
     }
   });
@@ -140,9 +135,9 @@ export function filterAsyncRouter({ menuList = [], roles, codes }) {
   const appStore = useAppStore();
   let accessRoutes: RouterTypes = [];
   const permissionMode = appStore.settings?.permissionMode;
-  if (permissionMode === "roles") {
+  if (permissionMode === 'roles') {
     accessRoutes = filterAsyncRoutesByMenuList(menuList); //by menuList
-  } else if (permissionMode === "rbac") {
+  } else if (permissionMode === 'rbac') {
     accessRoutes = filterAsyncRoutesByRoles(roleCodeRoutes, roles); //by roles
   } else {
     accessRoutes = filterAsyncRouterByCodes(roleCodeRoutes, codes); //by codes
@@ -180,8 +175,8 @@ export function freshRouter(data) {
 export const dynamicImport = (viewsModules: any, component: string) => {
   const keys = Object.keys(viewsModules);
   const matchKeys = keys.filter((key) => {
-    let k = key.replace("../views", "");
-    const lastIndex = k.lastIndexOf(".");
+    let k = key.replace('../views', '');
+    const lastIndex = k.lastIndexOf('.');
     k = k.substring(0, lastIndex);
     return k === component;
   });
@@ -191,7 +186,7 @@ export const dynamicImport = (viewsModules: any, component: string) => {
   }
   if (matchKeys?.length > 1) {
     console.warn(
-      "Please do not create `.vue` and `.TSX` files with the same file name in the same hierarchical directory under the views folder. This will cause dynamic introduction failure"
+      'Please do not create `.vue` and `.TSX` files with the same file name in the same hierarchical directory under the views folder. This will cause dynamic introduction failure'
     );
     return;
   }

@@ -7,11 +7,11 @@
  * @Description:
  *
  */
-import { ComponentType } from "./index";
-import type { CSSProperties } from "vue";
-import type { GridProps, GridItemProps } from "naive-ui/lib/grid";
-import type { ButtonProps } from "naive-ui/lib/button";
-import { Layout_Enum } from "@/enums/layenum";
+import { ComponentType } from './index';
+import type { CSSProperties } from 'vue';
+import type { GridProps, GridItemProps } from 'naive-ui/lib/grid';
+import type { ButtonProps } from 'naive-ui/lib/button';
+import { Layout_Enum } from '@/enums/layenum';
 export interface FormSchema {
   field: string;
   label: string;

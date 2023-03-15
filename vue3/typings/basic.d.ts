@@ -18,7 +18,7 @@
  * 实例：instance
  * */
 /*router*/
-import type { RouteRecordRaw } from "vue-router";
+import type { RouteRecordRaw } from 'vue-router';
 export interface rawConfig {
   hidden?: boolean;
   alwaysShow?: boolean;

@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-function handleLinkClick() {
-  window.open("https://github.com/supercode-peter/nestjs-ts-vue3-vite.git");
-}
+  function handleLinkClick() {
+    window.open('https://github.com/supercode-peter/nestjs-ts-vue3-vite.git');
+  }
 </script>

@@ -10,12 +10,7 @@
 <template>
   <n-tooltip trigger="hover">
     <template #trigger>
-      <n-icon
-        mr-20
-        size="18"
-        style="cursor: pointer"
-        @click="Store.setLock(true)"
-      >
+      <n-icon mr-20 size="18" style="cursor: pointer" @click="Store.setLock(true)">
         <icon-system-uicons:lock />
       </n-icon>
     </template>
@@ -24,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-const Store = useConfigStore();
-//锁屏
+  const Store = useConfigStore();
+  //锁屏
 </script>
 
 <style scoped></style>

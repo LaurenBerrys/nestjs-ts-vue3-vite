@@ -7,9 +7,9 @@
  * @Description:
  *
  */
-import type { FunctionalComponent, defineComponent } from "vue";
-import type { ComponentType } from "./types/index";
-import { componentMap } from "./componentMap";
+import type { FunctionalComponent, defineComponent } from 'vue';
+import type { ComponentType } from './types/index';
+import { componentMap } from './componentMap';
 
 export interface ComponentProps {
   is: ComponentType;
@@ -19,10 +19,7 @@ export interface ComponentProps {
   ruleMessage: string;
 }
 
-export const CellComponent: FunctionalComponent = (
-  { is }: ComponentProps,
-  { attrs }
-) => {
+export const CellComponent: FunctionalComponent = ({ is }: ComponentProps, { attrs }) => {
   const Comp = componentMap.get(is) as typeof defineComponent;
   //@ts-expect-error
   const DefaultComp = h(Comp, attrs);

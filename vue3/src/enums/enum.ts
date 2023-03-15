@@ -8,6 +8,6 @@
  *
  */
 export enum LANG_VALUE {
-  En = "enUS",
-  Zh = "zhCN",
+  En = 'enUS',
+  Zh = 'zhCN',
 }

@@ -28,14 +28,7 @@
       >
         <AppHeader />
       </header>
-      <section
-        v-if="settings.tagsView"
-        border-b
-        bc-eee
-        dark:border-0
-        hidden
-        sm:block
-      >
+      <section v-if="settings.tagsView" border-b bc-eee dark:border-0 hidden sm:block>
         <AppTags :style="{ height: `${settings.tagsHeight}px` }" />
       </section>
       <section flex-1 overflow-hidden bg-hex-f5f6fb dark:bg-hex-101014>
@@ -45,10 +38,10 @@
   </n-layout>
 </template>
 <script setup lang="ts">
-import AppHeader from "./components/header/index.vue";
-import SideBar from "./components/sidebar/index.vue";
-import AppMain from "./components/AppMain.vue";
-import AppTags from "./components/tags/index.vue";
-import settings from "@/settings";
-const Config = useConfigStore();
+  import AppHeader from './components/header/index.vue';
+  import SideBar from './components/sidebar/index.vue';
+  import AppMain from './components/AppMain.vue';
+  import AppTags from './components/tags/index.vue';
+  import settings from '@/settings';
+  const Config = useConfigStore();
 </script>

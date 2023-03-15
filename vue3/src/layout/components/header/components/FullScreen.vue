@@ -15,10 +15,10 @@
 </template>
 
 <script setup>
-import { useFullscreen } from "@vueuse/core";
-/**
- * 全屏组件
- * @description: https://vueuse.org/core/useFullscreen/
- */
-const { isFullscreen, toggle } = useFullscreen();
+  import { useFullscreen } from '@vueuse/core';
+  /**
+   * 全屏组件
+   * @description: https://vueuse.org/core/useFullscreen/
+   */
+  const { isFullscreen, toggle } = useFullscreen();
 </script>

@@ -7,10 +7,10 @@
  * @Description:
  *
  */
-import { ref, unref, getCurrentInstance, watch } from "vue";
-import { ModalMethods, UseModalReturnType } from "../type";
-import { getDynamicProps } from "@/utils/common";
-import { tryOnUnmounted } from "@vueuse/core";
+import { ref, unref, getCurrentInstance, watch } from 'vue';
+import { ModalMethods, UseModalReturnType } from '../type';
+import { getDynamicProps } from '@/utils/common';
+import { tryOnUnmounted } from '@vueuse/core';
 export function useModal(props): UseModalReturnType {
   const modalRef = ref<Nullable<ModalMethods>>(null);
   const currentInstance = getCurrentInstance();
@@ -18,7 +18,7 @@ export function useModal(props): UseModalReturnType {
   const getInstance = () => {
     const instance = unref(modalRef.value);
     if (!instance) {
-      console.error("useModal instance is undefined!");
+      console.error('useModal instance is undefined!');
     }
     return instance;
   };
@@ -28,7 +28,7 @@ export function useModal(props): UseModalReturnType {
       modalRef.value = null;
     });
     modalRef.value = modalInstance;
-    currentInstance?.emit("register", modalInstance);
+    currentInstance?.emit('register', modalInstance);
 
     watch(
       () => props,

@@ -9,10 +9,10 @@
  */
 //复制文本
 // i18n language  match title
-import { i18n } from "@/lang";
+import { i18n } from '@/lang';
 // the keys using  zh file
-import langEn from "@/lang/zh";
-import settings from "@/settings";
+import langEn from '@/lang/zh';
+import settings from '@/settings';
 
 export const sleepTimeout = (time: number) => {
   return new Promise((resolve) => {
@@ -27,7 +27,7 @@ export const sleepTimeout = (time: number) => {
 export function cloneDeep(obj, hash = new WeakMap()) {
   if (obj instanceof RegExp) return new RegExp(obj);
   if (obj instanceof Date) return new Date(obj);
-  if (obj === null || typeof obj !== "object") {
+  if (obj === null || typeof obj !== 'object') {
     return obj;
   }
   //hash.has根据是否有key关联对象返回一个Boolean值。
@@ -121,25 +121,25 @@ export function asyncWrapper(fn, ...args) {
   const func = fn;
   fn = () => {
     if (cache[i]) {
-      if (cache[i].status === "fulfilled") {
+      if (cache[i].status === 'fulfilled') {
         return cache[i].data;
-      } else if (cache[i].status === "rejected") {
+      } else if (cache[i].status === 'rejected') {
         throw cache[i].error;
       }
     }
     const result = {
-      status: "panding",
+      status: 'pending',
       data: null,
       error: null,
     };
     cache[i++] = result;
     throw func(...data)
       .then((res) => {
-        result.status = "fulfilled";
+        result.status = 'fulfilled';
         result.data = res;
       })
       .catch((err) => {
-        result.status = "rejected";
+        result.status = 'rejected';
         result.error = err;
       });
   };

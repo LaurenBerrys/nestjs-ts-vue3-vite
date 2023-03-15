@@ -7,7 +7,7 @@
  * @Description:
  *
  */
-import hashWorker from "../hash-worker.ts?worker";
+import hashWorker from '../hash-worker.ts?worker';
 /**
  * @description 切割文件
  * @param file 文件

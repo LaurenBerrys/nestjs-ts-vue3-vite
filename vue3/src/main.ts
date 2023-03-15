@@ -7,27 +7,27 @@
  * @Description:
  *
  */
-import "@/assets/style/reset.css";
-import "@/assets/style/global.scss";
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router/index";
-import { setupI18n } from "@/lang/index";
-import { createPinia } from "pinia";
-import "uno.css";
-import "vfonts/FiraCode.css";
+import '@/assets/style/reset.css';
+import '@/assets/style/global.scss';
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router/index';
+import { setupI18n } from '@/lang/index';
+import { createPinia } from 'pinia';
+import 'uno.css';
+import 'vfonts/FiraCode.css';
 //数据持久化，刷新页面数据不丢失
-import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 const store = createPinia();
 store.use(piniaPluginPersistedstate);
-import "./permission";
-import { myDirective } from "./utils/directive";
+import './permission';
+import { myDirective } from './utils/directive';
 const app = createApp(App);
-app.directive("permission", myDirective);
+app.directive('permission', myDirective);
 //store
 app.use(store);
 //router
 app.use(router);
 //i18n
 app.use(setupI18n);
-app.mount("#app");
+app.mount('#app');

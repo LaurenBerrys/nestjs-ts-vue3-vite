@@ -7,10 +7,10 @@
  * @Description:
  *
  */
-import type { PropType } from "vue";
-import { propTypes } from "@/utils/propTypes";
-import { BasicColumn } from "./types/table";
-import { NDataTable } from "naive-ui";
+import type { PropType } from 'vue';
+import { propTypes } from '@/utils/propTypes';
+import { BasicColumn } from './types/table';
+import { NDataTable } from 'naive-ui';
 export const nvapProps = {
   ...NDataTable.props, // 这里继承原 UI 组件的 props
   title: {
@@ -23,7 +23,7 @@ export const nvapProps = {
   },
   size: {
     type: String,
-    default: "medium",
+    default: 'medium',
   },
   dataSource: {
     type: [Object],
@@ -57,7 +57,7 @@ export const nvapProps = {
   //废弃
   showPagination: {
     type: [String, Boolean],
-    default: "auto",
+    default: 'auto',
   },
   actionColumn: {
     type: Object as PropType<BasicColumn>,

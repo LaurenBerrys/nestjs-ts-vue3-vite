@@ -5,6 +5,6 @@
  * @Description:
  */
 export enum Layout_Enum {
-  horizontal = "horizontal",
-  inline = "inline",
+  horizontal = 'horizontal',
+  inline = 'inline',
 }

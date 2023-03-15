@@ -8,13 +8,13 @@
  *
  */
 // proj4 配置
-import "./config/proj4";
+import './config/proj4';
 
 // ol styles
-import "ol/ol.css";
+import 'ol/ol.css';
 
 // ol custom styles
-import "./styles/index.scss";
+import './styles/index.scss';
 
-import { default as GIS } from "./core/map";
+import { default as GIS } from './core/map';
 export default GIS;

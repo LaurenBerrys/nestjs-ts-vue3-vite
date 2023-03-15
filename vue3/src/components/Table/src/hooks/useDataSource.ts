@@ -1,16 +1,8 @@
-import {
-  ref,
-  ComputedRef,
-  unref,
-  computed,
-  onMounted,
-  watchEffect,
-  watch,
-} from "vue";
-import type { NvapTableProps } from "../types/table";
-import type { PaginationProps } from "../types/pagination";
-import { isBoolean, isFunction } from "@/utils/is";
-import { APISETTING } from "../const";
+import { ref, ComputedRef, unref, computed, onMounted, watchEffect, watch } from 'vue';
+import type { NvapTableProps } from '../types/table';
+import type { PaginationProps } from '../types/pagination';
+import { isBoolean, isFunction } from '@/utils/is';
+import { APISETTING } from '../const';
 
 export function useDataSource(
   propsRef: ComputedRef<NvapTableProps>,
@@ -39,7 +31,7 @@ export function useDataSource(
     return rowKey
       ? rowKey
       : () => {
-          return "key";
+          return 'key';
         };
   });
 
@@ -54,8 +46,7 @@ export function useDataSource(
   async function fetch(opt?) {
     try {
       setLoading(true);
-      const { request, pagination, beforeRequest, afterRequest }: any =
-        unref(propsRef);
+      const { request, pagination, beforeRequest, afterRequest }: any = unref(propsRef);
       if (!request) return;
       //组装分页信息
       const pageField = APISETTING.pageField;
@@ -64,14 +55,9 @@ export function useDataSource(
       const listField = APISETTING.listField;
 
       let pageParams = {};
-      const { page = 1, pageSize = 10 } = unref(
-        getPaginationInfo
-      ) as PaginationProps;
+      const { page = 1, pageSize = 10 } = unref(getPaginationInfo) as PaginationProps;
 
-      if (
-        (isBoolean(pagination) && !pagination) ||
-        isBoolean(getPaginationInfo)
-      ) {
+      if ((isBoolean(pagination) && !pagination) || isBoolean(getPaginationInfo)) {
         pageParams = {};
       } else {
         pageParams[pageField] = (opt && opt[pageField]) || page;
@@ -114,13 +100,13 @@ export function useDataSource(
           [pageField]: opt[pageField] || 1,
         });
       }
-      emit("fetch-success", {
+      emit('fetch-success', {
         items: unref(resultInfo),
         resultTotal,
       });
     } catch (error) {
       console.error(error);
-      emit("fetch-error", error);
+      emit('fetch-error', error);
       dataSourceRef.value = [];
       // setPagination({
       //   pageCount: 0,

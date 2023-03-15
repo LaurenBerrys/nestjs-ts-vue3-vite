@@ -1,17 +1,15 @@
-import { ref, Ref, ComputedRef, unref, computed, watch, toRaw, h } from "vue";
-import type { BasicColumn, NvapTableProps } from "../types/table";
-import { isEqual, cloneDeep } from "lodash-es";
-import { isArray, isString, isBoolean, isFunction } from "@/utils/is";
-import { usePermission } from "@/hooks/web/usePermission";
-import { ActionItem } from "@/components/Table";
-import { renderEditCell } from "../components/editable";
-import { NTooltip, NIcon } from "naive-ui";
-import { FormOutlined } from "@vicons/antd";
+import { ref, Ref, ComputedRef, unref, computed, watch, toRaw, h } from 'vue';
+import type { BasicColumn, NvapTableProps } from '../types/table';
+import { isEqual, cloneDeep } from 'lodash-es';
+import { isArray, isString, isBoolean, isFunction } from '@/utils/is';
+import { usePermission } from '@/hooks/web/usePermission';
+import { ActionItem } from '@/components/Table';
+import { renderEditCell } from '../components/editable';
+import { NTooltip, NIcon } from 'naive-ui';
+import { FormOutlined } from '@vicons/antd';
 
 export function useColumns(propsRef: ComputedRef<NvapTableProps>) {
-  const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<
-    BasicColumn[]
-  >;
+  const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<BasicColumn[]>;
   let cacheColumns = unref(propsRef).columns;
 
   const getColumnsRef = computed(() => {
@@ -54,8 +52,7 @@ export function useColumns(propsRef: ComputedRef<NvapTableProps>) {
       })
       .map((column) => {
         //默认 ellipsis 为true
-        column.ellipsis =
-          typeof column.ellipsis === "undefined" ? { tooltip: true } : false;
+        column.ellipsis = typeof column.ellipsis === 'undefined' ? { tooltip: true } : false;
         const { edit } = column;
         if (edit) {
           column.render = renderEditCell(column);
@@ -63,8 +60,8 @@ export function useColumns(propsRef: ComputedRef<NvapTableProps>) {
             const title: any = column.title;
             column.title = () => {
               return renderTooltip(
-                h("span", {}, [
-                  h("span", { style: { "margin-right": "5px" } }, title),
+                h('span', {}, [
+                  h('span', { style: { 'margin-right': '5px' } }, title),
                   h(
                     NIcon,
                     {
@@ -75,7 +72,7 @@ export function useColumns(propsRef: ComputedRef<NvapTableProps>) {
                     }
                   ),
                 ]),
-                "该列可编辑"
+                '该列可编辑'
               );
             };
           }
@@ -92,13 +89,10 @@ export function useColumns(propsRef: ComputedRef<NvapTableProps>) {
     }
   );
 
-  function handleActionColumn(
-    propsRef: ComputedRef<NvapTableProps>,
-    columns: BasicColumn[]
-  ) {
+  function handleActionColumn(propsRef: ComputedRef<NvapTableProps>, columns: BasicColumn[]) {
     const { actionColumn } = unref(propsRef);
     if (!actionColumn) return;
-    !columns.find((col) => col.key === "action") &&
+    !columns.find((col) => col.key === 'action') &&
       columns.push({
         ...(actionColumn as any),
       });
@@ -152,10 +146,7 @@ export function useColumns(propsRef: ComputedRef<NvapTableProps>) {
   }
 
   //更新原始数据单个字段
-  function setCacheColumnsField(
-    key: string | undefined,
-    value: Partial<BasicColumn>
-  ) {
+  function setCacheColumnsField(key: string | undefined, value: Partial<BasicColumn>) {
     if (!key || !value) {
       return;
     }

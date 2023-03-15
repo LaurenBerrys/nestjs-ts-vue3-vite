@@ -7,7 +7,7 @@
  * @Description:
  *
  */
-import { usePermission } from "@/hooks/web/usePermission";
+import { usePermission } from '@/hooks/web/usePermission';
 export const myDirective = {
   // 在绑定元素的 attribute 前
   // 或事件监听器应用前调用
@@ -17,7 +17,7 @@ export const myDirective = {
 
     if (!usePermission().hasPermission([...value])) {
       //删除元素el
-      el.style.display = "none";
+      el.style.display = 'none';
     }
   },
   // // 在元素被插入到 DOM 前调用

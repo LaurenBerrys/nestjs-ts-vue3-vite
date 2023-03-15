@@ -7,23 +7,23 @@
  * @Description:
  *
  */
-import { defineStore } from "pinia";
-import { langTitle } from "@/hooks/use-common";
-import settings from "@/settings";
-import { i18n } from "@/lang";
-import { useDark } from "@vueuse/core";
+import { defineStore } from 'pinia';
+import { langTitle } from '@/hooks/use-common';
+import settings from '@/settings';
+import { i18n } from '@/lang';
+import { useDark } from '@vueuse/core';
 const isDark = useDark();
-const isLock = localStorage.getItem("config")
-  ? JSON.parse(localStorage.getItem("config")!).lock
+const isLock = localStorage.getItem('config')
+  ? JSON.parse(localStorage.getItem('config')!).lock
   : false;
-console.log("isLock", isLock);
+console.log('isLock', isLock);
 
 // 长时间不操作默认锁屏时间
 const initTime = 60 * 60;
-export const useConfigStore = defineStore("config", {
+export const useConfigStore = defineStore('config', {
   state: () => {
     return {
-      dateLocale: "dateZhCN",
+      dateLocale: 'dateZhCN',
       language: settings.defaultLanguage as any,
       theme: settings.defaultTheme as any,
       collapsed: settings.collapsed,
@@ -35,7 +35,7 @@ export const useConfigStore = defineStore("config", {
   },
   persist: {
     storage: localStorage,
-    paths: ["language", "theme", "dateLocale", "collapsed", "settings", "lock"],
+    paths: ['language', 'theme', 'dateLocale', 'collapsed', 'settings', 'lock'],
   },
   actions: {
     setLock(lock) {

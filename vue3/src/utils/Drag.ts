@@ -35,11 +35,11 @@ const startDrag = function (bar, target, callback?) {
   const maxDragDomLeft = screenWidth - minDomLeft - dragDomW;
   const maxDragDomTop = screenHeight - minDomTop - dragDomH;
 
-  if (getCss(target, "left") !== "auto") {
-    params.left = getCss(target, "left");
+  if (getCss(target, 'left') !== 'auto') {
+    params.left = getCss(target, 'left');
   }
-  if (getCss(target, "top") !== "auto") {
-    params.top = getCss(target, "top");
+  if (getCss(target, 'top') !== 'auto') {
+    params.top = getCss(target, 'top');
   }
 
   //o是移动对象
@@ -58,11 +58,11 @@ const startDrag = function (bar, target, callback?) {
   };
   document.onmouseup = function () {
     params.flag = false;
-    if (getCss(target, "left") !== "auto") {
-      params.left = getCss(target, "left");
+    if (getCss(target, 'left') !== 'auto') {
+      params.left = getCss(target, 'left');
     }
-    if (getCss(target, "top") !== "auto") {
-      params.top = getCss(target, "top");
+    if (getCss(target, 'top') !== 'auto') {
+      params.top = getCss(target, 'top');
     }
   };
   document.onmousemove = function (event) {
@@ -89,14 +89,11 @@ const startDrag = function (bar, target, callback?) {
         top = maxDragDomTop;
       }
 
-      target.style.left = left + "px";
-      target.style.top = top + "px";
+      target.style.left = left + 'px';
+      target.style.top = top + 'px';
 
-      if (typeof callback == "function") {
-        callback(
-          (parseInt(params.left) || 0) + disX,
-          (parseInt(params.top) || 0) + disY
-        );
+      if (typeof callback == 'function') {
+        callback((parseInt(params.left) || 0) + disX, (parseInt(params.top) || 0) + disY);
       }
 
       if (event.preventDefault) {

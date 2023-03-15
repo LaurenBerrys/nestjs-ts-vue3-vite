@@ -1,29 +1,23 @@
-import { ComponentType } from "./types/index";
+import { ComponentType } from './types/index';
 
 /**
  * @description: 生成placeholder
  */
 export function createPlaceholderMessage(component: ComponentType) {
-  if (component === "NInput") return "请输入";
+  if (component === 'NInput') return '请输入';
   if (
-    [
-      "NPicker",
-      "NSelect",
-      "NCheckbox",
-      "NRadio",
-      "NSwitch",
-      "NDatePicker",
-      "NTimePicker",
-    ].includes(component)
+    ['NPicker', 'NSelect', 'NCheckbox', 'NRadio', 'NSwitch', 'NDatePicker', 'NTimePicker'].includes(
+      component
+    )
   )
-    return "请选择";
-  return "";
+    return '请选择';
+  return '';
 }
 
-const DATE_TYPE = ["DatePicker", "MonthPicker", "WeekPicker", "TimePicker"];
+const DATE_TYPE = ['DatePicker', 'MonthPicker', 'WeekPicker', 'TimePicker'];
 
 function genType() {
-  return [...DATE_TYPE, "RangePicker"];
+  return [...DATE_TYPE, 'RangePicker'];
 }
 
 /**
@@ -32,17 +26,17 @@ function genType() {
 export const dateItemType = genType();
 
 export function defaultType(component) {
-  if (component === "NInput") return "";
-  if (component === "NInputNumber") return null;
+  if (component === 'NInput') return '';
+  if (component === 'NInputNumber') return null;
   return [
-    "NPicker",
-    "NSelect",
-    "NCheckbox",
-    "NRadio",
-    "NSwitch",
-    "NDatePicker",
-    "NTimePicker",
+    'NPicker',
+    'NSelect',
+    'NCheckbox',
+    'NRadio',
+    'NSwitch',
+    'NDatePicker',
+    'NTimePicker',
   ].includes(component)
-    ? ""
+    ? ''
     : undefined;
 }

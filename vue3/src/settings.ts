@@ -7,9 +7,9 @@
  * @Description:
  *
  */
-import packageJson from "../package.json";
-import { LANG_VALUE } from "./enums/enum";
-import type { SettingsConfig } from "~/basic";
+import packageJson from '../package.json';
+import { LANG_VALUE } from './enums/enum';
+import type { SettingsConfig } from '~/basic';
 console.log(packageJson.name);
 
 export const settings: SettingsConfig = {
@@ -58,13 +58,13 @@ export const settings: SettingsConfig = {
    * @type {string} true | false
    * @description  页面的路径
    */
-  viteBasePath: "./",
+  viteBasePath: './',
   /*page login or other*/
   /**
    * @type {string} true | false
    * @description  路由权限模式
    */
-  permissionMode: "roles",
+  permissionMode: 'roles',
 };
 
 export default settings;

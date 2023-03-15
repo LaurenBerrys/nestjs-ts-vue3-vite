@@ -21,17 +21,17 @@
 </template>
 
 <script setup lang="ts">
-import { renderCustomIcon, renderIcon } from "@/utils/icon";
-const router = useRouter();
-const route = useRoute();
+  import { renderCustomIcon, renderIcon } from '@/utils/icon';
+  const router = useRouter();
+  const route = useRoute();
 
-function handleBreadClick(path) {
-  if (path === route.path) return;
-  router.push(path);
-}
-function getIcon(meta) {
-  if (meta?.customIcon) return renderCustomIcon(meta.customIcon, { size: 18 });
-  if (meta?.icon) return renderIcon(meta.icon, { size: 18 });
-  return null;
-}
+  function handleBreadClick(path) {
+    if (path === route.path) return;
+    router.push(path);
+  }
+  function getIcon(meta) {
+    if (meta?.customIcon) return renderCustomIcon(meta.customIcon, { size: 18 });
+    if (meta?.icon) return renderIcon(meta.icon, { size: 18 });
+    return null;
+  }
 </script>

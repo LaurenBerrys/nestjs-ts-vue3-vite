@@ -23,8 +23,7 @@
 `<icon-[iconify图标名称]`
 
 ```html
-<icon-ant-design:fullscreen-exit-outlined />
-<icon-ant-design:fullscreen-outlined />
+<icon-ant-design:fullscreen-exit-outlined /> <icon-ant-design:fullscreen-outlined />
 ```
 
 这种方式还支持自定义 svg 图标，本项目自定义 svg 图标固定放在 src/assets/svg 下

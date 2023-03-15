@@ -15,7 +15,7 @@ export function useOnline() {
   const online = ref(true);
 
   const showStatus = (val) => {
-    online.value = typeof val == "boolean" ? val : val.target.online;
+    online.value = typeof val == 'boolean' ? val : val.target.online;
   };
 
   // 在页面加载后，设置正确的网络状态
@@ -23,15 +23,15 @@ export function useOnline() {
 
   onMounted(() => {
     // 开始监听网络状态的变化
-    window.addEventListener("online", showStatus);
+    window.addEventListener('online', showStatus);
 
-    window.addEventListener("offline", showStatus);
+    window.addEventListener('offline', showStatus);
   });
   onUnmounted(() => {
     // 移除监听网络状态的变化
-    window.removeEventListener("online", showStatus);
+    window.removeEventListener('online', showStatus);
 
-    window.removeEventListener("offline", showStatus);
+    window.removeEventListener('offline', showStatus);
   });
 
   return { online };
@@ -44,7 +44,7 @@ export function useTime() {
   let timer; // 定时器
   const year = ref(0); // 年份
   const month = ref(0); // 月份
-  const week = ref(""); // 星期几
+  const week = ref(''); // 星期几
   const day = ref(0); // 天数
   const hour = ref<number | string>(0); // 小时
   const minute = ref<number | string>(0); // 分钟
@@ -55,18 +55,14 @@ export function useTime() {
     const date = new Date();
     year.value = date.getFullYear();
     month.value = date.getMonth() + 1;
-    week.value = "日一二三四五六".charAt(date.getDay());
+    week.value = '日一二三四五六'.charAt(date.getDay());
     day.value = date.getDate();
     hour.value =
-      (date.getHours() + "")?.padStart(2, "0") ||
-      new Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(
-        date.getHours()
-      );
+      (date.getHours() + '')?.padStart(2, '0') ||
+      new Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(date.getHours());
     minute.value =
-      (date.getMinutes() + "")?.padStart(2, "0") ||
-      new Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(
-        date.getMinutes()
-      );
+      (date.getMinutes() + '')?.padStart(2, '0') ||
+      new Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(date.getMinutes());
     second.value = date.getSeconds();
   };
 
@@ -94,7 +90,7 @@ export function useTime() {
 
   return { month, day, hour, minute, second, week };
 }
-import { useBattery } from "@vueuse/core";
+import { useBattery } from '@vueuse/core';
 
 // interface Battery {
 //   charging: boolean; // 当前电池是否正在充电
@@ -141,11 +137,11 @@ export const useBatterer = () => {
   // 电池状态
   const batteryStatus = computed(() => {
     if (state.battery.charging && state.battery.level >= 100) {
-      return "已充满";
+      return '已充满';
     } else if (state.battery.charging) {
-      return "充电中";
+      return '充电中';
     } else {
-      return "已断开电源";
+      return '已断开电源';
     }
   });
 

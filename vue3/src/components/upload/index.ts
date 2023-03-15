@@ -7,4 +7,4 @@
  * @Description:
  *
  */
-export { default as NvapUpload } from "./src/NvapUpload.vue";
+export { default as NvapUpload } from './src/NvapUpload.vue';

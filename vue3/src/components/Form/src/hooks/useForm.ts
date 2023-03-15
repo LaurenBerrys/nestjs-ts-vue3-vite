@@ -7,12 +7,8 @@
  * @Description:
  *
  */
-import type {
-  FormProps,
-  FormActionType,
-  UseFormReturnType,
-} from "../types/form";
-import { getDynamicProps } from "@/utils/common";
+import type { FormProps, FormActionType, UseFormReturnType } from '../types/form';
+import { getDynamicProps } from '@/utils/common';
 
 type Props = Partial<DynamicProps<FormProps>>;
 
@@ -24,7 +20,7 @@ export function useForm(props?: Props): UseFormReturnType {
     const form = unref(formRef);
     if (!form) {
       console.error(
-        "The form instance has not been obtained, please make sure that the form has been rendered when performing the form operation!"
+        'The form instance has not been obtained, please make sure that the form has been rendered when performing the form operation!'
       );
     }
     await nextTick();
