@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-03-03 21:23:01
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-14 16:37:36
+ * @LastEditTime: 2023-03-15 17:15:28
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/directive.ts
  * @Description:
  *
@@ -16,7 +16,7 @@ export const myDirective = {
     const { value } = binding;
 
     if (!usePermission().hasPermission([...value])) {
-      //删除元素el
+      //隐藏元素el
       el.style.display = 'none';
     }
   },
@@ -35,3 +35,4 @@ export const myDirective = {
   // // 绑定元素的父组件卸载后调用
   // unmounted(el, binding, vnode, prevVnode) {},
 };
+

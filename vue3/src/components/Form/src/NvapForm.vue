@@ -315,6 +315,9 @@
 </script>
 
 <style lang="scss" scoped>
+  :deep(.n-form-item-blank){
+  flex-direction: column;
+}
   .isFull {
     width: 100%;
     justify-content: flex-start;

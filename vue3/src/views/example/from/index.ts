@@ -1,7 +1,7 @@
 /*
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-15 10:45:40
- * @LastEditTime: 2023-03-15 11:24:08
+ * @LastEditTime: 2023-03-15 17:07:04
  * @Description:
  */
 import { FormSchema } from '@/components/Form';
@@ -41,12 +41,14 @@ export const schemas: FormSchema[] = [
   {
     field: 'height',
     label: '身高',
-    component: 'NInput',
+    component: 'NSelect',
     componentProps: {
-      placeholder: '请输入身高',
-      onInput: () => {},
+      options: [
+        { label: '身高1', value: '身高1' },
+        { label: '身高2', value: '身高2' },
+        { label: '身高3', value: '身高3' },
+        ]
     },
-    rules: [{ required: true, message: '请输入身高', trigger: ['blur'] }],
   },
   {
     field: 'upload',

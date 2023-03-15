@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-27 20:48:13
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-15 11:09:01
+ * @LastEditTime: 2023-03-15 17:10:39
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/example/from/index.vue
  * @Description: 
  * 
@@ -13,7 +13,7 @@
       <h2 text-22 font-normal text-hex-333 dark:text-hex-ccc>表单</h2>
     </template>
     <NvapForm
-      w-300
+      w-400
       :schemas="schemas"
       @register="register"
       @submit="handleSubmit"
@@ -50,4 +50,5 @@
     console.log(val);
   };
 </script>
-<style></style>
+<style>
+</style>

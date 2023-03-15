@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
- * @LastEditors: LaurenBerrys 949154547@qq.com
- * @LastEditTime: 2023-03-14 18:45:13
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-15 17:07:46
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description:
  *
@@ -144,6 +144,10 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       inject: 'body-last',
       customDomId: '__CUSTOM_SVG_ICON__',
     }),
+    // legacy({
+    //   targets: ['chrome80'],
+    //   modernPolyfills: true
+    // })
   ];
   if (IS_PROD) {
     plugins = [...plugins, visualizer()];
@@ -153,6 +157,9 @@ export default ({ mode }: ConfigEnv): UserConfig => {
   // }
 
   const build = {
+    commonjsOptions: {
+      transformMixedEsModules: true
+    },
     cssCodeSplit: true, //css代码分割
     cssTarget: 'chrome80',
     minify: IS_PROD,
