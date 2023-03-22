@@ -1,14 +1,20 @@
 <!--
  * @Author: Nie Chengyong
  * @Date: 2023-03-08 17:55:59
- * @LastEditors: LaurenBerrys 949154547@qq.com
- * @LastEditTime: 2023-03-14 18:52:13
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-16 18:01:42
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/upload/src/NvapUpload.vue
  * @Description: 
  * 
 -->
 <template>
-  <n-upload :on-before-upload="beforUpload" directory-dnd :directory="directory" class="upload">
+  <n-upload
+    v-bind="$props"
+    :on-before-upload="beforUpload"
+    directory-dnd
+    :directory="directory"
+    class="upload"
+  >
     <template #default>
       <n-button v-show="views" @click="directory = false">上传文件</n-button>
       <!-- <n-button @click="directory = true" :disabled="true">上传目录</n-button> -->
@@ -37,12 +43,15 @@
 <script setup lang="ts">
   import { useAsyncQueue } from '@vueuse/core';
   import { calculateHash, splitFile } from './hooks/common';
-  defineProps({
+  const props = defineProps({
     views: {
       type: Boolean,
       default: false,
     },
   });
+  const emit = defineEmits(['onUpload']);
+  console.log(props, 2321312);
+  const { views } = toRefs(props);
   const CHUNK_SIZE = 1 * 1024 * 1024;
   const progress = ref(false);
   const directory = ref(false);
@@ -88,7 +97,8 @@
     //合并文件
     requestList.push(merge);
     // 进行按顺序上传
-    await useAsyncQueue(requestList);
+    const { result } = await useAsyncQueue(requestList);
+    emit('onUpload', result);
   };
   const Percentage = computed(() => {
     if (isNaN(Math.floor((Percentages.value / chunkList.value.length) * 100))) {

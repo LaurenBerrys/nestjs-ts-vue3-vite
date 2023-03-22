@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-27 20:48:13
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-15 17:10:39
+ * @LastEditTime: 2023-03-16 17:34:32
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/example/from/index.vue
  * @Description: 
  * 
@@ -42,6 +42,7 @@
     schemas,
   });
   const handleSubmit = (val: Recordable, loading: Ref) => {
+    console.log(val);
     setTimeout(() => {
       loading.value = false;
     }, 1000);
@@ -50,5 +51,4 @@
     console.log(val);
   };
 </script>
-<style>
-</style>
+<style></style>

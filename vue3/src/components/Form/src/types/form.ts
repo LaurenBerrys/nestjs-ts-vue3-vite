@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 09:16:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-13 18:21:49
+ * @LastEditTime: 2023-03-21 10:51:17
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Form/src/types/form.ts
  * @Description:
  *
@@ -50,12 +50,12 @@ export interface FormProps {
   model?: Recordable;
   labelWidth?: number | string;
   schemas?: FormSchema[];
-  inline: boolean;
+  inline?: boolean;
   layout?: Layout_Enum;
-  size: string;
-  labelPlacement: string;
-  isFull: boolean;
-  offset: boolean;
+  size?: string;
+  labelPlacement?: string;
+  isFull?: boolean;
+  offset?: boolean;
   showActionButtonGroup?: boolean;
   showResetButton?: boolean;
   resetButtonOptions?: Partial<ButtonProps>;
@@ -73,6 +73,18 @@ export interface FormProps {
   collapsedRows?: number;
 }
 
+/**
+ * @description: useForm的返回值
+ * @param {*} setSchemas 设置表单
+ * @param {*} submit 提交表单
+ * @param {*} setProps 设置表单属性
+ * @param {*} setFieldsValue 设置表单值
+ * @param {*} clearValidate 清除表单验证
+ * @param {*} getFieldsValue 获取表单值
+ * @param {*} resetFields 重置表单
+ * @param {*} validate 验证表单
+ * @return {setSchemas,submit,setProps,setFieldsValue,clearValidate,getFieldsValue,resetFields,validate}
+ */
 export interface FormActionType {
   setSchemas: (name: string, value: any) => Promise<void>;
   submit: () => Promise<any>;

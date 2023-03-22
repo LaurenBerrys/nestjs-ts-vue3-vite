@@ -39,7 +39,12 @@
               </n-space>
             </n-checkbox-group>
           </template>
-
+          <template v-else-if="schema.component === 'NvapUpload'">
+            <NvapUpload
+              :views="schema.componentProps.views"
+              @on-upload="schema.componentProps.onUpload"
+            />
+          </template>
           <!--NRadioGroup-->
           <template v-else-if="schema.component === 'NRadioGroup'">
             <n-radio-group v-model:value="formModel[schema.field]">
@@ -208,7 +213,6 @@
         const { layout } = unref(getProps);
         return layout === 'inline';
       });
-
       const getGrid = computed((): GridProps => {
         const { gridProps } = unref(getProps);
         return {
@@ -315,9 +319,9 @@
 </script>
 
 <style lang="scss" scoped>
-  :deep(.n-form-item-blank){
-  flex-direction: column;
-}
+  :deep(.n-form-item-blank) {
+    flex-direction: column;
+  }
   .isFull {
     width: 100%;
     justify-content: flex-start;

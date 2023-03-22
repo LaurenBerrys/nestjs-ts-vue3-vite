@@ -1,7 +1,7 @@
 /*
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-15 10:45:40
- * @LastEditTime: 2023-03-15 17:07:04
+ * @LastEditTime: 2023-03-20 11:53:32
  * @Description:
  */
 import { FormSchema } from '@/components/Form';
@@ -10,6 +10,7 @@ export const schemas: FormSchema[] = [
     field: 'name',
     label: '名称',
     component: 'NInput',
+    giProps: { span: 12 },
     isFull: false,
     componentProps: {
       placeholder: '请输入姓名',
@@ -21,7 +22,7 @@ export const schemas: FormSchema[] = [
     field: 'age',
     label: '性别',
     component: 'NInput',
-    //   giProps: { span: 10 },
+    giProps: { span: 2 },
     componentProps: {
       placeholder: '请输入性别',
       onInput: () => {},
@@ -47,7 +48,7 @@ export const schemas: FormSchema[] = [
         { label: '身高1', value: '身高1' },
         { label: '身高2', value: '身高2' },
         { label: '身高3', value: '身高3' },
-        ]
+      ],
     },
   },
   {
@@ -56,6 +57,9 @@ export const schemas: FormSchema[] = [
     component: 'NvapUpload',
     componentProps: {
       views: true,
+      onUpload: (res) => {
+        console.log(res);
+      },
     },
   },
 ];

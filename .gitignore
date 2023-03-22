@@ -3,3 +3,4 @@ node_modules
 /nest/log
 /nest/node_modules
 /nest/node_modules
+.DS_Store

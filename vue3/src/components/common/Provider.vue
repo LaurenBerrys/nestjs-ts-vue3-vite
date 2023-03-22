@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 10:10:55
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-14 16:35:42
+ * @LastEditTime: 2023-03-16 16:42:45
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/common/Provider.vue
  * @Description: 
  * 
@@ -21,11 +21,8 @@
   import type { NLocale, NDateLocale, GlobalTheme } from 'naive-ui';
   import { naiveThemeOverrides } from '../settings/theme.json';
   import { setupMessage, setupDialog } from '@/utils/naivetools';
-  import { storeToRefs } from 'pinia';
-  import { useRoute } from 'vue-router';
   import { useCssVar } from '@vueuse/core';
   import { kebabCase } from 'lodash-es';
-  import { useConfigStore } from '@/store/config';
   const { language, isDark } = storeToRefs(useConfigStore());
   const { setTheme, setLanguage } = useConfigStore();
   const locale = ref<NLocale | null>(null);

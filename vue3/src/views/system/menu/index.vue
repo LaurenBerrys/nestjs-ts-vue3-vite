@@ -90,9 +90,6 @@
             <n-form-item label="路径" path="path">
               <n-input placeholder="请输入路径" v-model:value="formParams.path" />
             </n-form-item>
-            <n-form-item label="路径名" path="name">
-              <n-input placeholder="请输入路径名字" v-model:value="formParams.name" />
-            </n-form-item>
             <n-form-item label="地址" path="component">
               <n-input placeholder="请输入地址" v-model:value="formParams.component" />
             </n-form-item>

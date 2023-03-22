@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-03 21:27:21
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-21 17:52:14
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/main.ts
  * @Description:
  *
@@ -23,6 +23,10 @@ store.use(piniaPluginPersistedstate);
 import './permission';
 import { myDirective } from './utils/directive';
 const app = createApp(App);
+app.config.warnHandler = (msg, vm) => {
+  console.log(msg);
+  console.log(vm);
+};
 app.directive('permission', myDirective);
 //store
 app.use(store);

@@ -1,7 +1,7 @@
 <!--
  * @Editors: Nie Chengyong
  * @Date: 2023-02-27 20:39:35
- * @LastEditTime: 2023-03-14 17:36:04
+ * @LastEditTime: 2023-03-21 11:02:59
  * @Description: 
 -->
 <template>
@@ -24,17 +24,9 @@
 <script lang="ts" setup>
   import { useForm } from '@/components/Form';
   import { columns, data, schemas } from './index';
-
   const handleAdd = () => {};
-  const [
-    register,
-    {
-      // validate,
-      // getFieldsValue,
-      //  setSchemas
-    },
-  ] = useForm({
-    gridProps: { cols: 9, responsive: 'self' },
+  const [register] = useForm({
+    gridProps: { cols: 9 },
     collapsedRows: 10,
     labelWidth: 60,
     layout: Layout_Enum.inline,

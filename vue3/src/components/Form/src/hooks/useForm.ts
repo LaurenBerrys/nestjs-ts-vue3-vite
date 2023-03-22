@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 09:16:58
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 21:52:13
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-21 10:56:12
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Form/src/hooks/useForm.ts
  * @Description:
  *
@@ -11,7 +11,6 @@ import type { FormProps, FormActionType, UseFormReturnType } from '../types/form
 import { getDynamicProps } from '@/utils/common';
 
 type Props = Partial<DynamicProps<FormProps>>;
-
 export function useForm(props?: Props): UseFormReturnType {
   const formRef = ref<Nullable<FormActionType>>(null);
   const loadedRef = ref<Nullable<boolean>>(false);

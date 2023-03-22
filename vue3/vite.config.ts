@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-15 17:07:46
+ * @LastEditTime: 2023-03-22 12:23:38
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description:
  *
@@ -14,10 +14,11 @@ import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
-// import path from 'path';
 //setup 支持name属性
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'; //setup 支持name属性
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import VueMacros from 'unplugin-vue-macros/vite'; //宏指令 https://vue-macros.sxzz.moe/guide/configurations.html
+import { transformShortVmodel } from '@vue-macros/short-vmodel'; //配置简写v-model
 //打包分析插件
 import { visualizer } from 'rollup-plugin-visualizer';
 //消除 JavaScript 代码中未使用的死代码。
@@ -38,8 +39,8 @@ import IconsResolver from 'unplugin-icons/resolver';
 import Icons from 'unplugin-icons/vite';
 
 const customIconPath = fileURLToPath(new URL('./src/assets/svg', import.meta.url));
-// const nodeResolve = (dir) => path.resolve(__dirname, dir);
 export default ({ mode }: ConfigEnv): UserConfig => {
+  console.log('mode', mode);
   const IS_PROD = ['prod', 'production'].includes(mode);
   process.env = {
     ...process.env,
@@ -60,7 +61,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     proxy: {
       '/nest-api': {
         changeOrigin: true,
-        target: ' http://192.168.31.151:3000/',
+        target: 'http://192.168.31.151:3000/',
       },
     },
   };
@@ -74,6 +75,24 @@ export default ({ mode }: ConfigEnv): UserConfig => {
   };
 
   let plugins = [
+    vueJsx(),
+    VueMacros({
+      plugins: {
+        vue: vue({
+          template: {
+            compilerOptions: {
+              // isCustomElement: tag => (console.log('tag', tag)),
+              nodeTransforms: [
+                transformShortVmodel({
+                  prefix: '::',
+                }),
+              ],
+            },
+          },
+        }),
+      },
+    }),
+    // vue(),
     compressionPlugin({
       algorithm: 'gzip',
       ext: '.gz',
@@ -92,8 +111,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     }),
     //setup 支持name属性
     vueSetupExtend(),
-    vueJsx(),
-    vue(),
+
     unocss(),
     //自动导入
     AutoImport({
@@ -157,16 +175,17 @@ export default ({ mode }: ConfigEnv): UserConfig => {
   // }
 
   const build = {
-    commonjsOptions: {
-      transformMixedEsModules: true
-    },
+    outDir: 'dist', //打包后的目录
+    // terser:['chrome87'], //js兼容浏览器
+    // cssTarget: ['chrome80'],//css兼容浏览器
     cssCodeSplit: true, //css代码分割
-    cssTarget: 'chrome80',
-    minify: IS_PROD,
-    sourcemap: !IS_PROD,
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+    minify: IS_PROD, //代码混淆
+    sourcemap: !IS_PROD, //构建后是否生成 source map 文件。
     /* 禁用默认行为 */
     preserveModules: true,
-    outDir: 'dist',
     rollupOptions: {
       output: {
         //有许多依赖项被多个页面或入口使用，
@@ -179,18 +198,17 @@ export default ({ mode }: ConfigEnv): UserConfig => {
           NvapForm: ['./src/components/Form/src/NvapForm.vue'],
           NvapTable: ['./src/components/Table/src/NvapTable.vue'],
           NvapModal: ['./src/components/Modal/src/NvapModal.vue'],
-          layout: ['./src/layout/index.vue'],
         },
         entryFileNames: 'js/[name].[hash].js', //入口文件名
         chunkFileNames: 'js/[name].[hash].js', //非入口文件名
         assetFileNames: 'assets/[name].[hash][extname]', //资源文件名
       },
+      // //多页面配置
     },
     //optimizeDeps 是用来优化模块依赖的构建选项，其会静态地分析源代码，
     //识别并序列化模块（包括 .js 、.css、json、wasm 等文件）之间的依赖关系。
     optimizeDeps: {
       //默认情况下，不在 node_modules 中的，链接的包不会被预构建。使用此选项可强制预构建链接的包。
-      // include:['@arcgis/core'],
       //include：如果只需要优化部分依赖，可以使用 include 来指定需要优化的依赖。
       //include默认优化package.json中的依赖,尽量不要修改
       exclude: ['@types/node'],
@@ -199,7 +217,6 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     chunkSizeWarningLimit: 2000,
   };
   return {
-    // optimizeDeps,
     build,
     base,
     plugins,

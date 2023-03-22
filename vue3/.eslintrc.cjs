@@ -1,7 +1,7 @@
 /*
  * @Editors: Nie Chengyong
  * @Date: 2023-03-14 16:24:47
- * @LastEditTime: 2023-03-14 16:32:43
+ * @LastEditTime: 2023-03-21 15:56:33
  * @Description:
  */
 const { defineConfig } = require('eslint-define-config');
@@ -48,7 +48,7 @@ module.exports = defineConfig({
             },
         ],
         'space-before-function-paren': 'off',
-
+        'vue/valid-define-props': 'off', // 关闭defineProps的校验
         'vue/attributes-order': 'off',
         'vue/one-component-per-file': 'off',
         'vue/html-closing-bracket-newline': 'off',

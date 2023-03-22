@@ -1,8 +1,8 @@
 <!--
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 11:58:19
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-16 11:58:25
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-03-21 16:45:37
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/icon/TheIcon.vue
  * @Description: 
  * 
@@ -32,8 +32,10 @@
 
   const iconCom = computed(() =>
     props.type === 'iconify'
-      ? renderIcon(props.icon, { size: props.size, color: props.color })
-      : renderCustomIcon(props.icon, { size: props.size, color: props.color })
+      ? // @ts-ignore
+        renderIcon(props.icon, { size: props.size, color: props.color })
+      : // @ts-ignore
+        renderCustomIcon(props.icon, { size: props.size, color: props.color })
   );
 </script>
 
