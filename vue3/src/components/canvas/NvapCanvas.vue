@@ -90,10 +90,8 @@
       // 监听鼠标事件
       const isMouseDown = ref<boolean>(false);
       const mouseDown = (event: MouseEvent) => {
-        console.log(111111,event);
         if (board.value) {
-          let { clientX: x, clientY: y } = event;
-          x = x +200
+          const { clientX: x, clientY: y } = event;
           const position = {
             x,
             y,
