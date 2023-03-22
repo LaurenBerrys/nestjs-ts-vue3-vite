@@ -21,13 +21,13 @@
   import { CURSOR_TYPE } from './utils/cursor';
   import { TextEdit } from './utils/element/text';
 
-  const textEdit = new TextEdit();
   export default defineComponent({
     name: 'NvapCanvas',
     components: {
       ToolPanel,
     },
     setup() {
+      const textEdit = new TextEdit();
       // 初始化画板
       const canvasRef: any = ref(null);
       const board = ref<PaintBoard>();
@@ -41,6 +41,7 @@
       const toolType = ref<string>(CANVAS_ELE_TYPE.FREE_DRAW);
       const handleToolType = (type: string) => {
         if (board.value) {
+          console.log(type,'type');
           if (type !== CANVAS_ELE_TYPE.SELECT) {
             board.value.select.cancelSelectElement();
           }
@@ -97,7 +98,7 @@
             y,
           };
           // 如果有文本编辑框，取消编辑
-          if (textEdit) {
+          if (textEdit.value) {
             board.value.addTextElement(textEdit.value, textEdit.rect);
             textEdit.destroy();
           }
