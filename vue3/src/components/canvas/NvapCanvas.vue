@@ -98,7 +98,7 @@
             y,
           };
           // 如果有文本编辑框，取消编辑
-          if (textEdit.value) {
+          if (textEdit.inputEle) {
             board.value.addTextElement(textEdit.value, textEdit.rect);
             textEdit.destroy();
           }
