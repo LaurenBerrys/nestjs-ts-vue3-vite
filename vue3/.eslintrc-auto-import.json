@@ -3,6 +3,7 @@
     "Component": true,
     "ComponentPublicInstance": true,
     "ComputedRef": true,
+    "D3model": true,
     "EffectScope": true,
     "InjectionKey": true,
     "LANG_VALUE": true,

@@ -1,7 +1,7 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-22 20:06:24
- * @LastEditTime: 2023-04-01 20:04:43
+ * @LastEditTime: 2023-04-02 00:56:48
  * @Description: 
 -->
 <template>
@@ -14,7 +14,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { D3model_Enum } from '@/enums/d3model';
+import { D3model } from '@/enums/d3model';
 import {
     zoom,
     handlesimulation,
@@ -73,14 +73,14 @@ import {
   // 初始化画布
   const initGraph = () => {
     //清空画布
-    d3.select(NvapD3.value).selectAll('*').remove();
+    d3.select('.NvapD3').selectAll('*').remove();
     //根据画布类型创建画布
-    if (prop.model === D3model_Enum.svg) {
+    if (prop.model === D3model.svg) {
     Graph.value = d3.select(NvapD3.value).append('svg');
     //设置画布大小
     Graph.value.attr('width', prop.width).attr('height', prop.height);
     //设置力导向图
-    simulation.value = handlesimulation(prop);
+    simulation.value = handlesimulation(prop,d3);
     linkGroup.value = Graph.value.append('g').attr('class', 'link'); //设置连线组
     linkTextGroup.value = Graph.value.append('g').attr('class', 'linkText'); //设置连线文字组
     nodeGroup.value = Graph.value.append('g').attr('class', 'node'); //设置节点组
@@ -100,7 +100,6 @@ import {
     } else {
       Graph.value = d3.select(NvapD3.value).append('canvas');
     }
-   
   };
 
   //更新SVG画布
@@ -112,7 +111,6 @@ import {
       n.fx = n.x;
       n.fy = n.y;
     });
-    console.log(nodes,links);
     links.filter((m) => {
       const sourceNode = nodes.filter((n) => {
         return n.id === m.source;
@@ -124,11 +122,8 @@ import {
       if (typeof targetNode === 'undefined') return;
       link.push({ source: sourceNode.id, target: targetNode.id, lk: m });
     });
-
-    console.log(link, 'link');
-
     //为每一个节点定制按钮组
-    addNodeButton(prop, Graph.value);
+    addNodeButton(prop, Graph.value,d3);
     if (link.length > 0) {
       handleWinding(_, link);
     } //处理连线的弯曲
@@ -144,7 +139,8 @@ import {
       stateLink,
       LinkDragStarted,
       LinkDragged,
-      LinkDragEnded
+      LinkDragEnded,
+      d3
     );
     newLink = linkEnter.merge(newLink);
     //更新联系文字
@@ -172,7 +168,7 @@ import {
       clickedOnce.value,
       timers.value,
       ClickNode,
-      simulation.value
+      simulation.value,d3
     );
     node = nodeEnter.merge(node);
     // 更新节点文字
@@ -188,7 +184,8 @@ import {
       clickedOnce.value,
       timers.value,
       ClickNode,
-      simulation.value
+      simulation.value,
+      d3
     );
     nodeText = nodeTextEnter.merge(nodeText);
     nodeText.append('title').text(function (d) {
@@ -281,7 +278,7 @@ import {
     //   );
     // }
     // 添加滚轮缩放
-    Graph.value.call(zoom);
+    Graph.value.call(zoom(d3));
     Graph.value.on('dblclick.zoom', null); // 静止双击缩放
     Graph.value.selectAll('.buttongroup').on('click', function (d) {
       if (nodeButtonAction.value) {
@@ -310,23 +307,28 @@ import {
   const updateCanvasGraph=()=>{
 
   }
-  onMounted(() => {
+onMounted(() => {
     initGraph();
-    updateSvgGraph();
     inject('dThree', d3);
     inject('theKey', proxy);
-  });
+});
+onUnmounted(()=>{
+  console.log(3333);
+})
   //监听数据变化
   watch(
     () => prop.data,
-    (value) => {
+    (value,oldvalue) => {
       if (!value)return;
-       loading.value = true;
+      if(oldvalue)return;
+        loading.value = true;
         scale.value = null;
-        if(prop.model===D3model_Enum.canvas){
+        if(prop.model===D3model.canvas){
           updateCanvasGraph();
           } else{
+          nextTick(() => {
           updateSvgGraph();
+          });
           loading.value = false;
           }
       
@@ -335,15 +337,15 @@ import {
     }
   );
   //拖拽连线开始
-  const LinkDragStarted = (d) => {
-    if (!d3.event.active) simulation.value.alphaTarget(0.3).restart();
+  const LinkDragStarted = (event,d) => {
+    if (!event.active) simulation.value.alphaTarget(0.3).restart();
     const newNode = {
       id: d.lk.target + 100000,
       nodetype: '新节点',
-      x: d3.event.x + 8,
-      y: d3.event.y + 8,
-      fx: d3.event.x,
-      fy: d3.event.y,
+      x: event.x + 8,
+      y: event.y + 8,
+      fx: event.x,
+      fy: event.y,
     };
     // eslint-disable-next-line vue/no-mutating-props
     prop.data.nodes.splice(0, 0, newNode);
@@ -351,20 +353,20 @@ import {
     d3.select('.circle_' + d.lk.target + 100000).attr('r', 5);
   };
   //拖拽连线中
-  const LinkDragged = (d) => {
-    if (!d3.event.active) simulation.value.alphaTarget(0.3);
+  const LinkDragged = (event,d) => {
+    if (!event.active) simulation.value.alphaTarget(0.3);
     prop.data.nodes.filter((n) => {
       if (n.id === d.lk.target + 100000) {
-        n.x = d3.event.x + 8;
-        n.y = d3.event.y + 8;
-        n.fx = d3.event.x + 8;
-        n.fy = d3.event.y + 8;
+        n.x = event.x + 8;
+        n.y = event.y + 8;
+        n.fx = event.x + 8;
+        n.fy = event.y + 8;
       }
     });
   };
   //点击节点
   const ClickNode = (d: any) => {
-    selectNode.value = d;
+    selectNode.value = d.target.__data__;
     prop.data.nodes.filter((item) => {
       if (item.id === selectNode.value.id) {
         d3.selectAll('.circle_' + selectNode.value.id)
@@ -398,13 +400,8 @@ import {
   };
 </script>
 
-<style scoped>
-  .SVG {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+<style lang="scss">
+.NvapD3{
   text {
     cursor: pointer;
     max-width: 30px;
@@ -417,7 +414,6 @@ import {
   circle {
     cursor: pointer;
   }
-
   .circle_none {
     display: none;
   }
@@ -429,4 +425,7 @@ import {
   .sase {
     background: #ffffff;
   }
+}
+
+  
 </style>

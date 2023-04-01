@@ -1,7 +1,9 @@
+import { D3model } from "@/enums/d3model";
+
 /*
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-22 20:08:55
- * @LastEditTime: 2023-03-23 19:33:36
+ * @LastEditTime: 2023-04-01 22:53:32
  * @Description:
  */
 interface dataObj {
@@ -21,7 +23,7 @@ interface dataObj {
  * @param {height} height  画布高度
  */
 type props = {
-  model: string | 'svg';
+  model: D3model;
   width: number;
   height: number;
   data: dataObj;

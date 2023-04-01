@@ -1,7 +1,7 @@
 /*
  * @Author: 聂成勇 niechengyong@esconsoft.com
  * @Date: 2023-03-23 19:29:56
- * @LastEditTime: 2023-03-27 15:28:27
+ * @LastEditTime: 2023-04-02 01:13:53
  * @Description:
  */
 const data = {
@@ -64,17 +64,17 @@ const data = {
     },
   ],
   links: [
-    { source: 1, target: 2, label: '具有', id: 1 },
-    { source: 2, target: 3, label: '其它', id: 2 },
-    { source: 3, target: 4, label: '学习', id: 3 },
-    { source: 4, target: 5, label: '包含', id: 4 },
+    { source: 1, target: 2, label: '具有', id: 1,weight:10 },
+    { source: 2, target: 3, label: '其它', id: 2,weight:10 },
+    { source: 3, target: 4, label: '学习', id: 3 ,weight:10},
+    { source: 4, target: 5, label: '包含', id: 4,weight:10 },
   ],
 };
 const nodeMethods = [
   { name: 'SingleClick', state: true }, // 单击
   { name: 'DoubleClick', state: true }, // 双击
   { name: 'NodeDrag', state: true }, // 节点拖动
-  { name: 'LineDrag', state: true }, // 连线拖动
+  { name: 'LineDrag', state: false }, // 连线拖动
   { name: 'FollowDrag', state: false }, // 节点子随父拖动而动
 ];
 // 节点颜色
@@ -127,11 +127,12 @@ const menuMethods = [
       {
         name: 'add',
         default: (d, _this, d3) => {
-          console.log(_this, 3333);
+          console.log(_this.Graph, 3333);
           const out_buttongroup_id = '.out_buttongroup_' + d.id;
-          _this.svg.selectAll('.buttongroup').classed('circle_none', true);
-          _this.svg.selectAll(out_buttongroup_id).classed('circle_none', false);
-          _this.ringFunction.filter((res) => {
+          _this.d3.selectAll('.buttongroup').classed('circle_none', true);
+          d3.selectAll(out_buttongroup_id).classed('circle_none', false);
+          _this.menuMethods
+          .filter((res) => {
             if (res.name === 'addNodeButtonsTWO') {
               for (let i = res.label.length - 1; i >= 0; i--) {
                 d3.selectAll('.' + res.id + i).style('display', 'block');
@@ -140,7 +141,6 @@ const menuMethods = [
           });
         },
       },
-
       {
         name: 'delete',
         default: (d, _this, d3) => {
@@ -450,7 +450,7 @@ const menuMethods = [
     ],
     label: [
       {
-        name: 'http://192.168.3.7:8080/file/front/knowledgeServer/imgs/socode.png',
+        name: 'https://api.iconify.design/iconoir:copy.svg',
         state: 'url',
       },
       {
@@ -460,7 +460,7 @@ const menuMethods = [
         state: 'Dtext',
       },
       {
-        name: 'http://192.168.3.7:8080/file/front/knowledgeServer/imgs/pordvr.png',
+        name: 'https://api.iconify.design/iconoir:color-picker-empty.svg',
         state: 'url',
       },
     ],

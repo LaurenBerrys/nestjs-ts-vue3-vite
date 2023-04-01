@@ -1,9 +1,9 @@
-import * as d3 from 'd3';
 //配置缩放
-const zoom = d3
-  .zoom()
-  .scaleExtent([-10, 10])
-  .on('zoom', function () {
+const zoom = (d3)=>  {
+ return d3
+    .zoom()
+    .scaleExtent([-10, 10])
+    .on('zoom', function () {
     //@ts-expect-error
     d3.selectAll('.node').attr('transform', d3.zoomTransform(this));
     //@ts-expect-error
@@ -17,8 +17,9 @@ const zoom = d3
     //@ts-expect-error
     d3.selectAll('.nodeButton').attr('transform', d3.zoomTransform(this));
   });
+}
 //设置力导向图
-const handlesimulation = (prop) => {
+const handlesimulation = (prop,d3) => {
   return d3
     .forceSimulation()
     .force(
@@ -58,8 +59,7 @@ const addMaker = (prop, Graph) => {
   }
 };
 //添加节点按钮
-const addNodeButton = (prop, Graph) => {
-  console.log(Graph, 3333);
+const addNodeButton = (prop, Graph,d3) => {
   // 先删除所有为节点自定义的按钮组
   d3.selectAll('svg >defs').remove();
   const nodes = prop.data.nodes;
@@ -251,7 +251,8 @@ const DrawLink = (
   stateLink,
   LinkDragStarted,
   LinkDragged,
-  LinkDragEnded
+  LinkDragEnded,
+  d3
 ) => {
   const linkEnter = link
     .enter()
@@ -320,14 +321,13 @@ const DrawLink = (
     });
   linkEnter.on('click', function () {
     // 点击连线
-    //@ts-expect-error
-    const e: any = window.currentEvent;
+    const e: any = window.event;
     (stateLink.left = e.screenX + 180),
       (stateLink.top = e.screenY - 100),
       (stateLink.show = true),
       (stateLink.clike = true);
   });
-  linkEnter.on('mouseenter', (d) => {
+  linkEnter.on('mouseenter', (event,d) => {
     editLinkState = true;
     editLink = d;
     d3.select('.Links_' + d.lk.id)
@@ -336,7 +336,7 @@ const DrawLink = (
       .attr('marker-end', '');
   });
   // 连线鼠标离开
-  linkEnter.on('mouseleave', (d) => {
+  linkEnter.on('mouseleave', (event,d) => {
     editLinkState = false;
     d3.select('.Links_' + d.lk.id)
       .style('stroke-width', function (d) {
@@ -470,7 +470,7 @@ const drawNodeButton = (nodeButton) => {
  * @param {*} simulation 力导向图
  * @return {*} 返回节点
  */
-const drawNode = (node, prop, Graph, selectNode, clickedOnce, timers, ClickNode, simulation) => {
+const drawNode = (node, prop, Graph, selectNode, clickedOnce, timers, ClickNode, simulation,d3) => {
   const gradient = node.enter().append('g');
   const grainold = gradient
     .append('svg:defs')
@@ -621,7 +621,7 @@ const drawNode = (node, prop, Graph, selectNode, clickedOnce, timers, ClickNode,
       }
     });
   nodeEnter.on('click', function (d) {
-    selectNode = d;
+    selectNode = d.target.__data__;
     if (clickedOnce) {
       clickedOnce = false;
       clearTimeout(timers);
@@ -670,27 +670,23 @@ const drawNode = (node, prop, Graph, selectNode, clickedOnce, timers, ClickNode,
     }
   });
   // 节点拖动开始
-  const dragStarted = (d) => {
-    if (!d3.currentEvent.active) simulation.alphaTarget(0.3).restart();
-    d.x = d3.currentEvent.x;
-    d.y = d3.currentEvent.y;
-    d.fx = d3.currentEvent.x;
-    d.fy = d3.currentEvent.y;
+  function dragStarted (event){
+    if (!event.active) simulation.alphaTarget(0.3).restart();
   };
   // 拖拽中
-  const dragged = (d) => {
-    d.x = d3.currentEvent.x;
-    d.y = d3.currentEvent.y;
-    d.fx = d3.currentEvent.x;
-    d.fy = d3.currentEvent.y;
+  function dragged (event,d)  {
+    d.x = event.x;
+    d.y = event.y;
+    d.fx = event.x;
+    d.fy = event.y;
   };
   // 拖拽结束
-  const dragEnded = (d) => {
-    if (!d3.currentEvent.active) simulation.alphaTarget(0.3);
-    d.x = d3.currentEvent.x;
-    d.y = d3.currentEvent.y;
-    d.fx = d3.currentEvent.x;
-    d.fy = d3.currentEvent.y;
+  function dragEnded (event,d)  {
+    if (!event.active) simulation.alphaTarget(0.3);
+    d.x = event.x;
+    d.y = event.y;
+    d.fx = event.x;
+    d.fy = event.y;
     // 节点重叠菜单
     const MinX = parseFloat(d.x) - 40;
     const MaX = parseFloat(d.x) + 40;
@@ -740,7 +736,8 @@ const drawNodeText = (
   clickedOnce,
   timers,
   ClickNode,
-  simulation
+  simulation,
+  d3
 ) => {
   const nodeTextEnter = nodeText
     .enter()
@@ -773,13 +770,11 @@ const drawNodeText = (
       }
     });
   nodeTextEnter.on('click', function (d) {
-    selectNode.id = d.id;
-    selectNode.cname = d.cname;
-    selectNode.id = d.id;
+    selectNode = d.target.__data__;
     if (clickedOnce) {
       clickedOnce = false;
       clearTimeout(timers);
-      const out_buttongroup_id = '.out_buttongroup_' + d.id;
+      const out_buttongroup_id = '.out_buttongroup_' + selectNode.id;
       Graph.selectAll('.buttongroup').classed('circle_none', true);
       Graph.selectAll(out_buttongroup_id).classed('circle_none', false);
       prop.nodeMethods.filter((item) => {
@@ -800,7 +795,7 @@ const drawNodeText = (
     } else {
       timers = setTimeout(() => {
         clickedOnce = false;
-        const out_buttongroup_id = '.out_buttongroup_' + d.id;
+        const out_buttongroup_id = '.out_buttongroup_' + selectNode.id;
         Graph.selectAll('.buttongroup').classed('circle_none', true);
         Graph.selectAll(out_buttongroup_id).classed('circle_none', false);
         prop.nodeMethods.filter((item) => {
@@ -824,27 +819,23 @@ const drawNodeText = (
     }
   });
   // 节点拖动开始
-  const dragStarted = (d) => {
-    if (!d3.currentEvent.active) simulation.alphaTarget(0.3).restart();
-    d.x = d3.currentEvent.x;
-    d.y = d3.currentEvent.y;
-    d.fx = d3.currentEvent.x;
-    d.fy = d3.currentEvent.y;
+  function dragStarted  (event) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
   };
   // 拖拽中
-  const dragged = (d) => {
-    d.x = d3.currentEvent.x;
-    d.y = d3.currentEvent.y;
-    d.fx = d3.currentEvent.x;
-    d.fy = d3.currentEvent.y;
+  function dragged (event,d) {
+    d.x = event.x;
+    d.y = event.y;
+    d.fx = event.x;
+    d.fy = event.y;
   };
   // 拖拽结束
-  const dragEnded = (d) => {
-    if (!d3.currentEvent.active) simulation.alphaTarget(0.3);
-    d.x = d3.currentEvent.x;
-    d.y = d3.currentEvent.y;
-    d.fx = d3.currentEvent.x;
-    d.fy = d3.currentEvent.y;
+   function dragEnded (event,d)  {
+    if (!event.active) simulation.alphaTarget(0.3);
+    d.x = event.x;
+    d.y = event.y;
+    d.fx = event.x;
+    d.fy = event.y;
     // 节点重叠菜单
     const MinX = parseFloat(d.x) - 40;
     const MaX = parseFloat(d.x) + 40;

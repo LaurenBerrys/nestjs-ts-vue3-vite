@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-22 12:23:38
+ * @LastEditTime: 2023-04-01 23:17:00
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description:
  *
@@ -17,7 +17,7 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 //setup 支持name属性
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'; //setup 支持name属性
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import VueMacros from 'unplugin-vue-macros/vite'; //宏指令 https://vue-macros.sxzz.moe/guide/configurations.html
+import VueMacros from 'unplugin-vue-macros/dist/vite';//npm i -D unplugin-vue-macros //宏指令 https://vue-macros.sxzz.moe/guide/configurations.html
 import { transformShortVmodel } from '@vue-macros/short-vmodel'; //配置简写v-model
 //打包分析插件
 import { visualizer } from 'rollup-plugin-visualizer';

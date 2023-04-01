@@ -1,7 +1,7 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-21 15:25:41
- * @LastEditTime: 2023-03-23 10:40:53
+ * @LastEditTime: 2023-04-01 23:18:00
  * @Description: 
 -->
 <template>
@@ -11,7 +11,7 @@
     </template>
     <Nvapmal :title="state.title" :visible="state.visible" :width="state.width" />
     <n-input ::value="strInput" />
-    <input :="strInput" />
+    <input ::="strInput" />
   </ComponentPage>
 </template>
 

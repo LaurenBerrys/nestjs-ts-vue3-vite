@@ -8,7 +8,7 @@
  * 
 -->
 <template>
-  <AppPage :show-footer="showFooter">
+  <AppPage :show-footer="showFooter" >
     <header v-if="showHeader" px-15 mb-15 min-h-45 flex justify-between items-center>
       <slot v-if="$slots.header" name="header"></slot>
       <template v-else>
@@ -18,7 +18,7 @@
         <slot name="action"></slot>
       </template>
     </header>
-    <n-card rounded-10 flex-1>
+    <n-card rounded-10 flex-1 overflow-x-hidden>
       <slot></slot>
     </n-card>
   </AppPage>
