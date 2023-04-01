@@ -13,6 +13,5 @@
 <script setup lang="ts" name="Nvapmal">
   import { propsType } from './props';
   const props = defineProps<propsType>();
-  
 </script>
 <style scoped></style>

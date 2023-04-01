@@ -1,7 +1,7 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-22 20:06:24
- * @LastEditTime: 2023-03-27 15:24:58
+ * @LastEditTime: 2023-04-01 20:04:43
  * @Description: 
 -->
 <template>
@@ -13,9 +13,9 @@
     <Links ref="Links" :top="top" :left="left" :show="show" :click="click" />
   </div>
 </template>
-
 <script setup lang="ts">
-  import {
+import { D3model_Enum } from '@/enums/d3model';
+import {
     zoom,
     handlesimulation,
     addMaker,
@@ -75,11 +75,8 @@
     //清空画布
     d3.select(NvapD3.value).selectAll('*').remove();
     //根据画布类型创建画布
-    if (prop.model === 'svg') {
-      Graph.value = d3.select(NvapD3.value).append('svg');
-    } else {
-      Graph.value = d3.select(NvapD3.value).append('canvas');
-    }
+    if (prop.model === D3model_Enum.svg) {
+    Graph.value = d3.select(NvapD3.value).append('svg');
     //设置画布大小
     Graph.value.attr('width', prop.width).attr('height', prop.height);
     //设置力导向图
@@ -100,10 +97,14 @@
     );
     //设置力导向图
     simulation.value.alphaTarget(0.1).restart();
+    } else {
+      Graph.value = d3.select(NvapD3.value).append('canvas');
+    }
+   
   };
-  
-  //更新画布
-  const updateGraph = () => {
+
+  //更新SVG画布
+  const updateSvgGraph = () => {
     const { links, nodes } = prop.data;
     const link: any = [];
     //传过来的节点坐标，需要转换
@@ -111,7 +112,7 @@
       n.fx = n.x;
       n.fy = n.y;
     });
-    console.log(nodes);
+    console.log(nodes,links);
     links.filter((m) => {
       const sourceNode = nodes.filter((n) => {
         return n.id === m.source;
@@ -124,8 +125,8 @@
       link.push({ source: sourceNode.id, target: targetNode.id, lk: m });
     });
 
-    console.log(link,'link');
-    
+    console.log(link, 'link');
+
     //为每一个节点定制按钮组
     addNodeButton(prop, Graph.value);
     if (link.length > 0) {
@@ -305,9 +306,13 @@
       });
     });
   };
+  //更新canvas画布
+  const updateCanvasGraph=()=>{
+
+  }
   onMounted(() => {
     initGraph();
-    updateGraph();
+    updateSvgGraph();
     inject('dThree', d3);
     inject('theKey', proxy);
   });
@@ -315,13 +320,19 @@
   watch(
     () => prop.data,
     (value) => {
-      if(value){
-      loading.value = true;
-      scale.value = null;
-      updateGraph();
-      loading.value = false;
-      }
-    },
+      if (!value)return;
+       loading.value = true;
+        scale.value = null;
+        if(prop.model===D3model_Enum.canvas){
+          updateCanvasGraph();
+          } else{
+          updateSvgGraph();
+          loading.value = false;
+          }
+      
+    },{
+      immediate: true,
+    }
   );
   //拖拽连线开始
   const LinkDragStarted = (d) => {
@@ -336,7 +347,7 @@
     };
     // eslint-disable-next-line vue/no-mutating-props
     prop.data.nodes.splice(0, 0, newNode);
-    updateGraph();
+    updateSvgGraph();
     d3.select('.circle_' + d.lk.target + 100000).attr('r', 5);
   };
   //拖拽连线中
@@ -383,18 +394,18 @@
     });
     // eslint-disable-next-line vue/no-mutating-props
     prop.data.nodes.splice(0, 1);
-    updateGraph();
+    updateSvgGraph();
   };
 </script>
 
 <style scoped>
-.SVG {
+  .SVG {
     width: 100%;
-    height:100%;
+    height: 100%;
     margin: 0;
     padding: 0;
   }
-text {
+  text {
     cursor: pointer;
     max-width: 30px;
     display: inline-block;
@@ -415,7 +426,7 @@ text {
     font-family: SimSun;
     fill: #000000;
   }
-  .sase{
+  .sase {
     background: #ffffff;
   }
 </style>

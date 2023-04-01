@@ -8,7 +8,8 @@
       :on-mousemove="mouseMove"
       :on-mouseup="mouseUp"
       :on-dblclick="dbClick"
-      w-full h-full
+      w-full
+      h-full
     >
     </canvas>
   </div>
@@ -41,7 +42,7 @@
       const toolType = ref<string>(CANVAS_ELE_TYPE.FREE_DRAW);
       const handleToolType = (type: string) => {
         if (board.value) {
-          console.log(type,'type');
+          console.log(type, 'type');
           if (type !== CANVAS_ELE_TYPE.SELECT) {
             board.value.select.cancelSelectElement();
           }
@@ -63,14 +64,14 @@
           }
         }
       );
-      const canvas:any=ref(null);
-      const pushCanvas=()=>{
-        canvas.value=document.getElementById('canvas');
-        canvas.value.addEventListener('mousedown',mouseDown);
-        canvas.value.addEventListener('mousemove',mouseMove);
-        canvas.value.addEventListener('mouseup',mouseUp);
-        canvas.value.addEventListener('dblclick',dbClick);
-      }
+      const canvas: any = ref(null);
+      const pushCanvas = () => {
+        canvas.value = document.getElementById('canvas');
+        canvas.value.addEventListener('mousedown', mouseDown);
+        canvas.value.addEventListener('mousemove', mouseMove);
+        canvas.value.addEventListener('mouseup', mouseUp);
+        canvas.value.addEventListener('dblclick', dbClick);
+      };
       useResizeEvent(() => {
         if (board.value) {
           board.value.initCanvasSize();

@@ -2,11 +2,11 @@
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-22 20:08:55
  * @LastEditTime: 2023-03-23 19:33:36
- * @Description: 
+ * @Description:
  */
 interface dataObj {
-    nodes: Array<any>;
-    links: Array<any>;
+  nodes: Array<any>;
+  links: Array<any>;
 }
 /**
  * @description: props传参类型
@@ -20,14 +20,14 @@ interface dataObj {
  * @param {width} width  画布宽度
  * @param {height} height  画布高度
  */
-type props={
-    model:string | 'svg',
-    width:number,
-    height:number,
-    data:dataObj,
-    nodeMethods:Array<any>,
-    nodeColor:Array<any>,
-    linkColor:Array<any>,
-    menuMethods:Array<any>,
-}
-export {props}
+type props = {
+  model: string | 'svg';
+  width: number;
+  height: number;
+  data: dataObj;
+  nodeMethods: Array<any>;
+  nodeColor: Array<any>;
+  linkColor: Array<any>;
+  menuMethods: Array<any>;
+};
+export { props };

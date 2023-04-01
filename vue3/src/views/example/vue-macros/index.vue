@@ -11,7 +11,7 @@
     </template>
     <Nvapmal :title="state.title" :visible="state.visible" :width="state.width" />
     <n-input ::value="strInput" />
-    <input ::="strInput" />
+    <input :="strInput" />
   </ComponentPage>
 </template>
 

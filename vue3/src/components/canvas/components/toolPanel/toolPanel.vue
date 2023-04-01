@@ -74,11 +74,7 @@
         <div form-control mt-3>
           <div font-bold> 颜色</div>
           <div mt-1 w-full>
-            <div
-              flex
-              items-center
-              v-if="board?.currentFreeDrawStyle === FreeDrawStyle.MultiColor"
-            >
+            <div flex items-center v-if="board?.currentFreeDrawStyle === FreeDrawStyle.MultiColor">
               <div v-for="(item, index) in board?.currentLineColor" :key="index">
                 <div flex items-center relative>
                   <input
@@ -87,16 +83,16 @@
                     @change="(e)=>changeLineColor((e.target as HTMLInputElement).value, index, 'double')"
                   />
                   <div v-show="board.currentLineColor.length > 1" absolute top--10 right-0>
-                    <n-icon size="10" @click="() => deleteLineColor(index)" >
+                    <n-icon size="10" @click="() => deleteLineColor(index)">
                       <icon-material-symbols:cancel-outline />
                     </n-icon>
                   </div>
                 </div>
               </div>
               <div
-              flex 
-              justify-center
-              items-center
+                flex
+                justify-center
+                items-center
                 v-show="board?.currentLineColor.length < 6"
                 @click="
                   () =>
@@ -112,24 +108,24 @@
                 </n-icon>
               </div>
             </div>
-        <div v-else  flex items-center w-full>
-          <input
-          w-100
-          mr-20
-          type="color"
-          @change="(e)=>changeLineColor((e.target as HTMLInputElement).value, 1, CHANGE_COLOR_TYPE.UNI)"
-          :class="styles.lineColor"
-          />
-          <span>#</span>
-          <input
-            @click="copyColor"
-            v-model="colorInput"
-            id="colorInput"
-            w-80
-            focus:outline-none
-            cursor-pointer
-            readOnly
-          />
+            <div v-else flex items-center w-full>
+              <input
+                w-100
+                mr-20
+                type="color"
+                @change="(e)=>changeLineColor((e.target as HTMLInputElement).value, 1, CHANGE_COLOR_TYPE.UNI)"
+                :class="styles.lineColor"
+              />
+              <span>#</span>
+              <input
+                @click="copyColor"
+                v-model="colorInput"
+                id="colorInput"
+                w-80
+                focus:outline-none
+                cursor-pointer
+                readOnly
+              />
             </div>
           </div>
         </div>
@@ -224,7 +220,7 @@
   import { FreeDrawStyle } from '../../utils/element/freeDraw';
   import Layer from '../layer/index.vue';
   import { CHANGE_COLOR_TYPE, styleSwitch, typeSwitch } from './constant';
-  import { useClipboard } from '@vueuse/core'
+  import { useClipboard } from '@vueuse/core';
   import styles from './index.module.css';
   interface IProps {
     board: Ref<PaintBoard | undefined>; // 画板
@@ -260,7 +256,7 @@
       // 改变画笔颜色
       const changeLineColor = (color: string, index: number, type: string) => {
         if (board?.value) {
-          console.log(colorInput.value)
+          console.log(colorInput.value);
           const colors = [...board.value.currentLineColor];
           colors[index] = color;
           const newColor = type === CHANGE_COLOR_TYPE.UNI ? [color] : colors;
@@ -281,9 +277,9 @@
 
       // 复制颜色
       const copyColor = () => {
-         const {copy}=   useClipboard();
-         copy(colorInput.value)
-         window.$message.success('复制成功')
+        const { copy } = useClipboard();
+        copy(colorInput.value);
+        window.$message.success('复制成功');
       };
 
       // 点击后退

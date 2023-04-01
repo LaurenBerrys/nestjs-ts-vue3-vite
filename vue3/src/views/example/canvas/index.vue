@@ -5,14 +5,10 @@
  * @Description: 
 -->
 <template>
-    <ComponentPage>
-        <NvapCanvas />
-    </ComponentPage>
+  <ComponentPage>
+    <NvapCanvas />
+  </ComponentPage>
 </template>
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

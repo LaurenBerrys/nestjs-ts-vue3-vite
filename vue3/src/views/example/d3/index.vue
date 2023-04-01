@@ -20,8 +20,7 @@
 </template>
 
 <script setup lang="ts">
-  import {data,nodeMethods,nodeColor,linkColor,menuMethods} from './index';
- 
+  import { data, nodeMethods, nodeColor, linkColor, menuMethods } from './index';
 </script>
 
 <style scoped></style>
