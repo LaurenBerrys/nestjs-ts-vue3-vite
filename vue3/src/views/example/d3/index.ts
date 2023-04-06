@@ -1,7 +1,7 @@
 /*
  * @Author: 聂成勇 niechengyong@esconsoft.com
  * @Date: 2023-03-23 19:29:56
- * @LastEditTime: 2023-04-02 01:13:53
+ * @LastEditTime: 2023-04-03 16:48:22
  * @Description:
  */
 const data = {
@@ -81,32 +81,32 @@ const nodeMethods = [
 const nodeColor = [
   {
     name: '知识集',
-    color1: '#FFA16E',
-    color2: '#F48244',
+    start: '#FFA16E',
+    end: '#F48244',
     state: 'color',
   },
   {
     name: '知识块',
-    color1: '#FB6E6F',
-    color2: '#D13F3F',
+    start: '#FB6E6F',
+    end: '#D13F3F',
     state: 'color',
   },
   {
     name: '知识点',
-    color1: '#32E3C1',
-    color2: '#21B598',
+    start: '#32E3C1',
+    end: '#21B598',
     state: 'color',
   },
   {
     name: '属性点',
-    color1: '#7E7E7E',
-    color2: '#666666',
+    start: '#7E7E7E',
+    end: '#666666',
     state: 'color',
   },
   {
     name: '资源节点',
-    color1: '#F48244',
-    color2: '#F48244',
+    start: '#F48244',
+    end: '#F48244',
     state: 'color',
   },
 ];

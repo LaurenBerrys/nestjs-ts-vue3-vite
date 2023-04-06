@@ -1,7 +1,7 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-22 20:06:24
- * @LastEditTime: 2023-04-02 00:56:48
+ * @LastEditTime: 2023-04-04 16:20:20
  * @Description: 
 -->
 <template>
@@ -28,7 +28,11 @@ import {
     drawNodeText,
     drawNodeSymbol,
     linkArc,
-  } from './hooks/node';
+  } from './hooks/svgModel'
+  import {
+    canvasDrawNode,
+    canvasDrawLink
+  } from './hooks/canvasModel';
   import { props } from './props';
   import * as d3 from 'd3';
   import _ from 'lodash';
@@ -98,7 +102,23 @@ import {
     //设置力导向图
     simulation.value.alphaTarget(0.1).restart();
     } else {
-      Graph.value = d3.select(NvapD3.value).append('canvas');
+      const scale = window.devicePixelRatio;
+      console.log(scale);
+      Graph.value = d3.select(NvapD3.value)
+      .append('canvas')
+      .attr('id','canvas')
+      .attr('width',prop.width)
+      .attr('height',prop.height)
+      const context = Graph.value.node().getContext('2d');
+      // //根据props.data绘制圆和连线
+      const { links, nodes } = prop.data;
+      const {nodeColor,linkColor,nodeMethods,menuMethods} = prop;
+      context.width=context.width*scale;
+      context.height=context.height*scale;
+      context.imageSmoothingEnabled = true;
+      context.scale(scale,scale)
+      canvasDrawLink(context, links, nodes,linkColor);
+      canvasDrawNode(context, nodes,nodeColor);
     }
   };
 
@@ -325,6 +345,7 @@ onUnmounted(()=>{
         scale.value = null;
         if(prop.model===D3model.canvas){
           updateCanvasGraph();
+          loading.value=false
           } else{
           nextTick(() => {
           updateSvgGraph();
