@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 14:11:45
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-06 17:36:44
+ * @LastEditTime: 2023-04-07 14:36:45
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/three/dome/index.vue
  * @Description: 
 
@@ -14,7 +14,7 @@
   </ComponentPage>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup name="dome">
   import * as THREE from 'three';
   import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer';
   import { initRenderer, initControls } from '@/utils/three/baseElement';
@@ -78,11 +78,9 @@
     status,
     groupIndex
     ;
-
   const move_rate=0.0005;
   const loading=ref(false);
   const container = ref();
-  const { proxy } = getCurrentInstance()!;
   const PointLight = new THREE.PointLight(0xffffff, 0.6); //灯光
   /**
    * @description: 初始化背景

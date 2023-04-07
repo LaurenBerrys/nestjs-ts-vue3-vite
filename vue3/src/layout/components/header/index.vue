@@ -1,8 +1,8 @@
 <!--
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 11:39:50
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 16:47:33
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-04-07 16:14:00
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/layout/components/header/index.vue
  * @Description: 
  * 
@@ -13,6 +13,7 @@
     <BreadCrumb ml-15 hidden sm:block />
   </div>
   <div ml-auto flex items-center>
+    <GlobalSearch />
     <Lang />
     <LockScreen />
     <ThemeMode />
@@ -23,6 +24,7 @@
 </template>
 
 <script setup>
+  import GlobalSearch from './common/GlobalSearch/index.vue';
   import LockScreen from './components/LockScreen.vue';
   import Lang from './components/Lang.vue';
   import BreadCrumb from './components/BreadCrumb.vue';
