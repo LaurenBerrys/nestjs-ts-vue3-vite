@@ -1,12 +1,12 @@
 <!--
  * @Author: 聂成勇 niechengyong@esconsoft.com
  * @Date: 2023-04-07 15:49:05
- * @LastEditTime: 2023-04-07 16:40:19
+ * @LastEditTime: 2023-04-07 23:21:11
  * @Description: 
 -->
 <template>
-    <n-scrollbar>
-      <div pb-12>
+    <n-scrollbar h-500 trigger="none">
+      <div  >
         <template v-for="item in options" :key="item.path">
           <div
            dark:bg-dark
@@ -17,8 +17,8 @@
            cursor-pointer
            flex
            justify-between
-            items-center
-            :style="{
+           items-center
+           :style="{
                 background: item.path === active ? '#2cb67d' : '',
               color: item.path === active ? '#fff' : ''
             }"
@@ -75,6 +75,5 @@
   </script>
   
   <style lang="scss" scoped>
-
-</style>
+  </style>
   

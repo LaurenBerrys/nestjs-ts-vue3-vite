@@ -286,7 +286,7 @@ export const clickPick = (
         selectedObjects.push(intersects[0].object);
         outlinePass.selectedObjects = selectedObjects;
       }
-      effectController.A = object_name;
+      effectController = object_name;
       click = true;
     }
   }
@@ -308,23 +308,14 @@ export const clickPick = (
     mouse.y = -((y - rect.top) / this.container.clientHeight) * 2 + 1;
     // 通过摄像机和鼠标位置更新射线 camera表示射线来源的摄像机
     rayCaster.setFromCamera(mouse, camera);
-
     const intersects = rayCaster.intersectObjects([scene], true);
-    if (intersects[0]) {
-      const soName = intersects[0].object.name;
-      if (soName.substring(0, 3) === 'dep') {
-        // $router.push({
-        //   path: '/buildingdetail',
-        //   query: {
-        //     name: soName,
-        //   },
-        // });
-      } else {
+    console.log(intersects,'intersects');
+    // 第二个参数表示是否检查他的后代
+    if (intersects[0].object.name) {
         vector.set(intersects[0].point.x, intersects[0].point.y, intersects[0].point.z);
         const targetCameraPosition = vector.clone().add(new THREE.Vector3(500, 500, 500));
         animateCamera(camera.position, controls.target, targetCameraPosition, vector.clone());
         // return;
-      }
     }
   }
 };

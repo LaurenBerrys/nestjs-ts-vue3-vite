@@ -93,23 +93,25 @@ export const initSchool = (scene) => {
     });
 };
 export const  initCJ=(scene)=>{
+  return new Promise((resolve,reject)=>{
   return new GLTFLoader()
   .setPath("/static/obj/")
   .load("untitled1.gltf",(gltf)=>{
     const CJ = gltf.scene;
     CJ.scale.set(100, 100, 100);
-    CJ.position.set(0, 650, 0);
+    CJ.position.set(-400, 10, 1900);
     scene.add(CJ);
     CJ.rotateY(Math.PI );
     CJ.traverse(function (child:any) {
-      console.log(child);
       if(child.type==="SkinnedMesh"){
       child.name = "人物";
       child.material.emissive = child.material.color;
       child.material.emissiveMap = child.material.map;
       }
     })
+    resolve(CJ)
   })
+})
 }
 // 加载建筑物
 export const initModernBuilding = (scene) => {

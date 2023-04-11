@@ -6,7 +6,7 @@ import * as formidable from 'formidable'; //读取流数据
 import * as concat from 'concat-files'; //合并
 import { ResponseData } from '../../interface/code';
 import * as mimeTypes from 'mime-types';//获取文件扩展名
-import * as rimraf from 'rimraf'; //删除真个目录
+import * as rimraf from 'rimraf'; //删除整个目录
 const uploadDir = './public/uploads/'
 @Injectable()
 export class FileService {

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 14:11:45
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-07 14:36:45
+ * @LastEditTime: 2023-04-10 16:14:16
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/three/dome/index.vue
  * @Description: 
 
@@ -10,7 +10,7 @@
 -->
 <template>
   <ComponentPage class="page">
-    <div ref="container" id="container" class="container_box" w-full h-full> </div>
+    <div ref="container" id="container" class="container_box" w-full h-full></div>
   </ComponentPage>
 </template>
 
@@ -26,20 +26,22 @@
   import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass';
   import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader';
   import { Sky } from '@/utils/three/Sky';
-  import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader"; //加载mtl文件
-  import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader"; //加载obj文件
-  import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";//加载GUI
-  import { TWEEN } from "three/examples/jsm/libs/tween.module.min"; //加载动画
+  import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'; //加载mtl文件
+  import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'; //加载obj文件
+  import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'; //加载GUI
+  import { TWEEN } from 'three/examples/jsm/libs/tween.module.min'; //加载动画
+  import { Capsule } from 'three/examples/jsm/math/Capsule'// new Capsule(下球心（vector3），上球心（vector3），半径)
   import {
-  initPark,
-  initAmbulance,
-  initUfo,
-  initBank,
-  initSchool,
-  initModernBuilding,
-  initCinema,
-  initCJ
-} from "@/utils/three/modelList";
+    initPark,
+    initAmbulance,
+    initUfo,
+    initBank,
+    initSchool,
+    initModernBuilding,
+    initCinema,
+    initCJ,
+  } from '@/utils/three/modelList';
+  import {drawButton,handleKeyDown,handleControls} from '@/utils/three/tastiera'
   //由于这里我们并不需要双向绑定，所以我们可以直接声明变量
   let scene: THREE.Scene,
     camera,
@@ -62,24 +64,31 @@
     click: boolean,
     dataInfo: any,
     effectController: { A: '' },
-    modelList:any,
+    modelList: any,
     curve,
     curve2,
     truck,
     car,
-    progress:any,
-    followTruck:boolean,
+    progress: any,
+    followTruck: boolean,
     gui,
     axes,
     helper,
     animationID,
-    clock=new THREE.Clock(),
+    clock = new THREE.Clock(),
     // lockcontrols,
     status,
-    groupIndex
-    ;
-  const move_rate=0.0005;
-  const loading=ref(false);
+    groupIndex,
+    cartier,
+    centroids,
+    player:any = {
+        geometry: new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1, 0), 0.35),
+        velocity: new THREE.Vector3(),
+        direction: new THREE.Vector3()
+      };
+  const acceleration = new THREE.Vector3(0, -0.98, 0); // y 轴方向上的重力加速度
+  const move_rate = 0.0005;
+  const loading = ref(false);
   const container = ref();
   const PointLight = new THREE.PointLight(0xffffff, 0.6); //灯光
   /**
@@ -238,280 +247,292 @@
     effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
     effectFXAA.renderToScreen = true;
     effectComposer.addPass(effectFXAA);
-    clickPick(scene,controls,camera,container.value,outlinePass,click,dataInfo,effectController);
+    clickPick(
+      scene,
+      controls,
+      camera,
+      container.value,
+      outlinePass,
+      click,
+      dataInfo,
+      effectController
+    );
   };
   //获取城市模型
-  const initModelMed=(url)=>{
-    return new Promise(( resolve,reject)=>{
-      new MTLLoader()
-  .setPath("/static/obj/")
-  .load(`${url}.mtl`,(materials)=>{
-    materials.preload();
-      new OBJLoader()
-       .setMaterials(materials)
-              .setPath("/static/obj/")
-              .load(`${url}.obj`, (obj) => {
-                if (obj) {
-                  modelList = obj;
-                  loading.value = false;
-                  obj.children.forEach((child:any) => {
-                    if (child.name === "ground") {
-                      child.material.forEach((res) => {
-                        if (res.name === "Grass") {
-                          (res.color.r = 0.52),
-                            (res.color.g = 0.62),
-                            (res.color.b = 0.52);
-                        }
-                      });
+  const initModelMed = (url) => {
+    return new Promise((resolve, reject) => {
+      new MTLLoader().setPath('/static/obj/').load(`${url}.mtl`, (materials) => {
+        materials.preload();
+        new OBJLoader()
+          .setMaterials(materials)
+          .setPath('/static/obj/')
+          .load(`${url}.obj`, (obj) => {
+            if (obj) {
+              modelList = obj;
+              loading.value = false;
+              obj.children.forEach((child: any) => {
+                if (child.name === 'ground') {
+                  child.material.forEach((res) => {
+                    if (res.name === 'Grass') {
+                      (res.color.r = 0.52), (res.color.g = 0.62), (res.color.b = 0.52);
                     }
                   });
-                  obj.children.forEach((child:any) => {
-                    child.geometry.computeBoundingBox();
-                    const centroid = new THREE.Vector3();
-                    centroid.addVectors(
-                      child.geometry.boundingBox.min,
-                      child.geometry.boundingBox.max
-                    );
-                    centroid.multiplyScalar(0.5);
-                    centroid.applyMatrix4(child.matrixWorld);
-                    child.geometry.center(centroid.x, centroid.y, centroid.z);
-                    child.position.set(centroid.x, centroid.y, centroid.z);
-                  });
-                  scene.add(obj);
-                  resolve(obj);
-                } else {
-                  reject("error");
                 }
               });
-      })
-    })
-  }
-  // 多个重复建筑克隆
-  const cloneBuilding=(object)=>{
-    object.children.forEach((res) => {
-        if (res.name === "http") {
-          res.name = "parking";
-          res.scale.set(0.8, 0.8, 0.8);
-          res.position.set(200, 100, 1400);
-          res.rotateY(-Math.PI / 2);
-          scene.add(res);
-        }
-        if (res.name === "dep8") {
-          res.name = "developmentDep";
-          res.position.set(1150, 250, 0);
-          res.rotateY(Math.PI);
-          scene.add(
-            res,
-            res.clone().translateZ(550),
-            res.clone().translateZ(1100),
-            res.clone().translateX(-500).rotateY(Math.PI),
-            res.clone().translateX(-500).translateZ(550).rotateY(Math.PI),
-            res.clone().translateX(-500).translateZ(1100).rotateY(Math.PI)
-          );
-        }
-        if (res.name == "ground") {
-          res.position.set(-400, 55, -3500);
-          res.scale.set(0.4, 0.4, 1);
-          res.rotateY(-Math.PI / 2);
-          scene.add(res);
-        }
-      });
-  }
-  // 初始化汽车路线轨迹
-  const initCurve=(obj)=>{
-    curve = new THREE.CatmullRomCurve3(
-        [
-          new THREE.Vector3(500, 20, -1200),
-          new THREE.Vector3(500, 20, -800),
-          new THREE.Vector3(500, 20, -600),
-          new THREE.Vector3(500, 20, 400),
-          new THREE.Vector3(-400, 20, 400),
-          new THREE.Vector3(-400, 20, -600),
-          new THREE.Vector3(-400, 20, -1300),
-        ],
-        true
-      );
-      const vertices =curve.getPoints(100);
-      const geometry = new THREE.BufferGeometry().setFromPoints(vertices);
-      const lineMaterial = new THREE.LineBasicMaterial({
-        transparent: this,
-        opacity: 0,
-      });
-      const curveMesh = new THREE.Line(geometry, lineMaterial);
-     scene.add(curveMesh);
-     truck = obj.getObjectByName("truck4");
-  }
-  // 初始化卡车路线轨迹
-  const initTruckCurve=(obj)=>{
-    curve2 = new THREE.CatmullRomCurve3(
-        [
-          new THREE.Vector3(-400, 20, 450),
-          new THREE.Vector3(-400, 20, -600),
-          new THREE.Vector3(-400, 20, -1300),
-          new THREE.Vector3(-1000, 20, -1200),
-          new THREE.Vector3(-1100, 20, -600),
-          new THREE.Vector3(-1100, 20, -800),
-          new THREE.Vector3(-1100, 20, 500),
-        ],
-        true
-      );
-      const vertices = curve2.getPoints(100);
-      const geometry = new THREE.BufferGeometry().setFromPoints(vertices);
-      const lineMaterial = new THREE.LineBasicMaterial({
-        transparent: this,
-        opacity: 0,
-      });
-      const curveMesh2 = new THREE.Line(geometry, lineMaterial);
-      scene.add(curveMesh2);
-      car = obj.getObjectByName("car4");
-  }
-  //汽车运动
-  const truckMove=(curve, truck)=> {
-      // progress += move_rate;
-      // if (curve) {
-        
-      //   const point = curve.getPoint(progress);
-      //   // 下一个要走的点的位置
-      //   const point_next = curve.getPoint(progress + move_rate);
-      //   if (point && point.x) {
-      //     truck.position.set(point.x, point.y, point.z);
-      //     // 向下一个要走的点方向看齐
-      //     truck.lookAt(point_next.x, point_next.y, point_next.z);
-      //     if (followTruck) {
-      //       camera.position.set(point.x, point.y + 45, point.z);
-      //       camera.lookAt(point_next.x, point_next.y + 45, point_next.z);
-      //       controls.position0.set(point.x, point.y + 45, point.z);
-      //       // 将控制器看齐下一个点的位置(摆正车头的位置)
-      //       controls.target.set(
-      //         point_next.x,
-      //         point_next.y + 45,
-      //         point_next.z
-      //       );
-      //     }
-      //   }
-      // }
-      // 将canvas车速标签跟随汽车移动显示
-      // if (dynamicSprite) {
-      //   dynamicSprite.position.set(
-      //     truck.position.x,
-      //     truck.position.y,
-      //     truck.position.z
-      //   );
-      //   dynamicSprite.translateY(100);
-      // }
-    }
-  const initGui=(status)=>{
-    if (Number(status) === 1) {
-        gui = new GUI();
-        gui.domElement.classList.add();
-        gui.domElement.style.cssText =
-          "position:absolute;top:0;right:0px;";
-        const options = {
-          Helper: false,
-          Fog: false,
-          Verctor: false,
-        };
-        gui.add(effectController, "A").name("Selected:").listen();
-        gui.add(options, "Helper").onChange((val) => {
-          if (val) {
-            axes = new THREE.AxesHelper(5000);
-            scene.add(axes);
-            helper = new THREE.GridHelper(10000, 2, 0xffffff, 0xffffff);
-            scene.add(helper);
-          } else {
-            scene.remove(axes);
-            scene.remove(helper);
-          }
-        });
-        const dropdown = { Background: "Sky" };
-        const states = ["Sky", "Star", "Park"];
-        gui
-          .add(dropdown, "Background")
-          .options(states)
-          .onChange((val) => {
-            scene.remove(sky);
-            if (val == "Sky") {
-              scene.add(sky);
+              obj.children.forEach((child: any) => {
+                child.geometry.computeBoundingBox();
+                const centroid = new THREE.Vector3();
+                centroid.addVectors(child.geometry.boundingBox.min, child.geometry.boundingBox.max);
+                centroid.multiplyScalar(0.5);
+                centroid.applyMatrix4(child.matrixWorld);
+                centroids = centroid;
+                child.geometry.center(centroid.x, centroid.y, centroid.z);
+                child.position.set(centroid.x, centroid.y, centroid.z);
+              });
+              scene.add(obj);
+              resolve(obj);
             } else {
-              // changeSKyBox(val);
+              reject('error');
             }
           });
-        gui.add(options, "Fog").onChange((val) => {
-          if (val) {
-            scene.fog = new THREE.Fog("#FFF0F5", 100, 10000);
+      });
+    });
+  };
+  // 多个重复建筑克隆
+  const cloneBuilding = (object) => {
+    object.children.forEach((res) => {
+      if (res.name === 'http') {
+        res.name = 'parking';
+        res.scale.set(0.8, 0.8, 0.8);
+        res.position.set(200, 100, 1400);
+        res.rotateY(-Math.PI / 2);
+        scene.add(res);
+      }
+      if (res.name === 'dep8') {
+        res.name = 'developmentDep';
+        res.position.set(1150, 250, 0);
+        res.rotateY(Math.PI);
+        scene.add(
+          res,
+          res.clone().translateZ(550),
+          res.clone().translateZ(1100),
+          res.clone().translateX(-500).rotateY(Math.PI),
+          res.clone().translateX(-500).translateZ(550).rotateY(Math.PI),
+          res.clone().translateX(-500).translateZ(1100).rotateY(Math.PI)
+        );
+      }
+      if (res.name == 'ground') {
+        res.position.set(-400, 55, -3500);
+        res.scale.set(0.4, 0.4, 1);
+        res.rotateY(-Math.PI / 2);
+        scene.add(res);
+      }
+    });
+  };
+  // 初始化汽车路线轨迹
+  const initCurve = (obj) => {
+    curve = new THREE.CatmullRomCurve3(
+      [
+        new THREE.Vector3(500, 20, -1200),
+        new THREE.Vector3(500, 20, -800),
+        new THREE.Vector3(500, 20, -600),
+        new THREE.Vector3(500, 20, 400),
+        new THREE.Vector3(-400, 20, 400),
+        new THREE.Vector3(-400, 20, -600),
+        new THREE.Vector3(-400, 20, -1300),
+      ],
+      true
+    );
+    const vertices = curve.getPoints(100);
+    const geometry = new THREE.BufferGeometry().setFromPoints(vertices);
+    const lineMaterial = new THREE.LineBasicMaterial({
+      transparent: this,
+      opacity: 0,
+    });
+    const curveMesh = new THREE.Line(geometry, lineMaterial);
+    scene.add(curveMesh);
+    truck = obj.getObjectByName('truck4');
+  };
+  // 初始化卡车路线轨迹
+  const initTruckCurve = (obj) => {
+    curve2 = new THREE.CatmullRomCurve3(
+      [
+        new THREE.Vector3(-400, 20, 450),
+        new THREE.Vector3(-400, 20, -600),
+        new THREE.Vector3(-400, 20, -1300),
+        new THREE.Vector3(-1000, 20, -1200),
+        new THREE.Vector3(-1100, 20, -600),
+        new THREE.Vector3(-1100, 20, -800),
+        new THREE.Vector3(-1100, 20, 500),
+      ],
+      true
+    );
+    const vertices = curve2.getPoints(100);
+    const geometry = new THREE.BufferGeometry().setFromPoints(vertices);
+    const lineMaterial = new THREE.LineBasicMaterial({
+      transparent: this,
+      opacity: 0,
+    });
+    const curveMesh2 = new THREE.Line(geometry, lineMaterial);
+    scene.add(curveMesh2);
+    car = obj.getObjectByName('car4');
+  };
+  //汽车运动
+  const truckMove = (curve, truck) => {
+    // progress += move_rate;
+    // if (curve) {
+    //   const point = curve.getPoint(progress);
+    //   // 下一个要走的点的位置
+    //   const point_next = curve.getPoint(progress + move_rate);
+    //   if (point && point.x) {
+    //     truck.position.set(point.x, point.y, point.z);
+    //     // 向下一个要走的点方向看齐
+    //     truck.lookAt(point_next.x, point_next.y, point_next.z);
+    //     if (followTruck) {
+    //       camera.position.set(point.x, point.y + 45, point.z);
+    //       camera.lookAt(point_next.x, point_next.y + 45, point_next.z);
+    //       controls.position0.set(point.x, point.y + 45, point.z);
+    //       // 将控制器看齐下一个点的位置(摆正车头的位置)
+    //       controls.target.set(
+    //         point_next.x,
+    //         point_next.y + 45,
+    //         point_next.z
+    //       );
+    //     }
+    //   }
+    // }
+    // 将canvas车速标签跟随汽车移动显示
+    // if (dynamicSprite) {
+    //   dynamicSprite.position.set(
+    //     truck.position.x,
+    //     truck.position.y,
+    //     truck.position.z
+    //   );
+    //   dynamicSprite.translateY(100);
+    // }
+  };
+  const initGui = (status) => {
+    if (Number(status) === 1) {
+      gui = new GUI();
+      gui.domElement.classList.add();
+      gui.domElement.style.cssText = 'position:absolute;top:0;right:0px;';
+      const options = {
+        Helper: false,
+        Fog: false,
+        Verctor: false,
+      };
+      gui.add(effectController, 'A').name('Selected:').listen();
+      gui.add(options, 'Helper').onChange((val) => {
+        if (val) {
+          axes = new THREE.AxesHelper(5000);
+          scene.add(axes);
+          helper = new THREE.GridHelper(10000, 2, 0xffffff, 0xffffff);
+          scene.add(helper);
+        } else {
+          scene.remove(axes);
+          scene.remove(helper);
+        }
+      });
+      const dropdown = { Background: 'Sky' };
+      const states = ['Sky', 'Star', 'Park'];
+      gui
+        .add(dropdown, 'Background')
+        .options(states)
+        .onChange((val) => {
+          scene.remove(sky);
+          if (val == 'Sky') {
+            scene.add(sky);
           } else {
-            scene.fog = null;
+            // changeSKyBox(val);
           }
         });
-        gui.add(options, "Verctor").onChange(() => {
-          // addSpriteCanvas();
-        });
-      }
-}
- // 加载其他模型
- const initOtherModel=()=> {
-      // 加载银行
-      initBank(scene);
-      // 加载公园
-      initPark(scene);
-      // 初始化救护车
-      initAmbulance(scene);
-      // 初始化学校
-      initSchool(scene);
-      // 加载建筑
-      initModernBuilding(scene);
-      initCJ(scene);
-      // 加载电影院
-      initCinema(scene);
-      // 加载ufo
-      initUfo(scene);
-     }
-   //初始化场景
-  const render=()=>{
-    animationID = requestAnimationFrame(render);
-      renderer.render(scene, camera);
-      // if (lockcontrols.isLocked) {
-      //   // firstPersonMove();
-      // }
-      // 刷新动画
-      TWEEN.update();
-      const delta = clock.getDelta();
-      // effectComposer里面是对renderer渲染器进行后期处理,则可以在他身上进行render()
-      if (click) {
-        effectComposer.render(delta);
-      }
-      css2dRender.render(scene, camera);
-      // 汽车移动方法
-      truckMove(curve, truck);
-      truckMove(curve2, car);
-} 
-//异步加载模型
-const AsyncInitModel=async()=>{
- let obj:any = await initModelMed("city");
-      cloneBuilding(obj.clone());
-      // 初始化行驶路线
-      initCurve(obj);
-      initTruckCurve(obj);
-      initGui(status);
-      initOtherModel();
-      render();
-      groupIndex = scene.children.findIndex(
-        (_) => _.type === "Group"
-      );
-}
-// 屏幕自适应
-const  onWindowResize=()=>{
-     camera.aspect = window.innerWidth / window.innerHeight;
-     camera.updateProjectionMatrix();
-     renderer.setSize(
-       container.value.clientWidth,
-       container.value.clientHeight
-      );
-     css2dRender.setSize(
-       container.value.clientWidth,
-       container.value.clientHeight
-      );
+      gui.add(options, 'Fog').onChange((val) => {
+        if (val) {
+          scene.fog = new THREE.Fog('#FFF0F5', 100, 10000);
+        } else {
+          scene.fog = null;
+        }
+      });
+      gui.add(options, 'Verctor').onChange(() => {
+        // addSpriteCanvas();
+      });
     }
+  };
+  // 加载其他模型
+  const initOtherModel = async () => {
+    // 加载银行
+    initBank(scene);
+    // 加载公园
+    initPark(scene);
+    // 初始化救护车
+    initAmbulance(scene);
+    // 初始化学校
+    initSchool(scene);
+    // 加载建筑
+    initModernBuilding(scene);
+    cartier = await initCJ(scene);
+    console.log(cartier.animations,'cartier');
+    // 加载电影院
+    initCinema(scene);
+    // 加载ufo
+    initUfo(scene);
+    //加载按钮
+    drawButton(THREE,scene,cartier,controls,camera)
+  };
+
+
+  //初始化场景
+  const render = () => {
+    animationID = requestAnimationFrame(render);
+    // if (lockcontrols.isLocked) {
+    //   // firstPersonMove();
+    // }
+    renderer.render(scene, camera);
+    // 刷新动画
+    TWEEN.update();
+    const delta = Math.min(0.05, clock.getDelta())
+    // effectComposer里面是对renderer渲染器进行后期处理,则可以在他身上进行render()
+    if (click) {
+      effectComposer.render(delta);
+    }
+    css2dRender.render(scene, camera);
+    //给人物cartier添加重力
+    if(cartier){
+      cartier.position.add(acceleration);
+     //添加碰撞检测
+     if (cartier.position.y <=5) {
+      cartier.position.y = 5;
+    }
+    }
+    handleControls(delta,cartier,controls,camera,player,THREE)
+    // updatePlayer(delta)
+    // 汽车移动方法
+    // truckMove(curve, truck);
+    // truckMove(curve2, car);
+  };
+
+
+
+  
+  //异步加载模型
+  const AsyncInitModel = async () => {
+    let obj: any = await initModelMed('city');
+    cloneBuilding(obj.clone());
+    // 初始化行驶路线
+    // initCurve(obj);
+    initTruckCurve(obj);
+    initGui(status);
+    initOtherModel();
+    render();
+    groupIndex = scene.children.findIndex((_) => _.type === 'Group');
+  };
+  // 屏幕自适应
+  const onWindowResize = () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.value.clientWidth, container.value.clientHeight);
+    css2dRender.setSize(container.value.clientWidth, container.value.clientHeight);
+  };
   const init = () => {
     //初始化场景
     initSceneMed();
@@ -530,10 +551,17 @@ const  onWindowResize=()=>{
     // 初始化模型
     AsyncInitModel();
     //@ts-ignore
-    window.addEventListener("resize",onWindowResize(), false);
+    window.addEventListener('resize', onWindowResize(), false);
   };
   onMounted(() => {
     init();
   });
+  onUnmounted(()=>{
+    
+  })
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container_box{
+  position: relative;
+}
+</style>

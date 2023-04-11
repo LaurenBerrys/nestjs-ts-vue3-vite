@@ -1,23 +1,23 @@
 <!--
  * @Author: 聂成勇 niechengyong@esconsoft.com
  * @Date: 2023-04-07 15:41:48
- * @LastEditTime: 2023-04-07 18:12:08
+ * @LastEditTime: 2023-04-07 18:19:26
  * @Description: 
 -->
 <template>
     <n-tooltip trigger="hover">
       <template #trigger>
           <n-icon mr-20 size="18" style="cursor: pointer" @click="handleLinkClick">
-          <icon-flat-color-icons:search/>
+          <icon-flat-color-icons:settings/>
           </n-icon>
       </template>
-      <span>搜索</span>
+      <span>主题设置</span>
   </n-tooltip>
-  <search-modal ::value="show" />
+  <Tema ::="show"/>
   </template>
   
   <script setup lang="ts">
-  import { SearchModal } from './components';
+  import Tema  from './components/Tema.vue';
   const show=ref(false)
   function handleLinkClick(){
     show.value=true

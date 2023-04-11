@@ -1,8 +1,8 @@
 <!--
  * @Author: Nie Chengyong
  * @Date: 2023-03-07 16:46:32
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 16:57:04
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-04-07 18:13:08
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/layout/components/header/components/LockScreen.vue
  * @Description: 
  * 
@@ -11,7 +11,7 @@
   <n-tooltip trigger="hover">
     <template #trigger>
       <n-icon mr-20 size="18" style="cursor: pointer" @click="Store.setLock(true)">
-        <icon-system-uicons:lock />
+        <icon-flat-color-icons:lock />
       </n-icon>
     </template>
     <span>锁屏</span>

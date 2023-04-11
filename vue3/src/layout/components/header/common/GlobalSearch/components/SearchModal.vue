@@ -1,7 +1,7 @@
 <!--
  * @Author: 聂成勇 niechengyong@esconsoft.com
  * @Date: 2023-04-07 15:48:46
- * @LastEditTime: 2023-04-07 18:06:38
+ * @LastEditTime: 2023-04-07 23:02:03
  * @Description: 
 -->
 <template>
@@ -19,13 +19,12 @@
       @after-leave="handleClose"
     >
       <n-input-group>
-        <n-input ref="inputRef" v-model:value="keyword" clearable placeholder="请输入关键词搜索" @input="handleSearch">
+        <n-input ref="inputRef" v-model:value="keyword" clearable placeholder="请输入页面关键词搜索" @input="handleSearch">
           <template #prefix>
             <icon-uil-search class="text-15 text-[#c2c2c2]" />
           </template>
         </n-input>
       </n-input-group>
-  
       <div  mt-20>
         <n-empty v-if="resultOptions.length === 0" description="暂无搜索结果" />
         <search-result v-else v-model:value="activePath" :options="resultOptions" @enter="handleEnter" />
