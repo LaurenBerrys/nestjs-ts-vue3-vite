@@ -11,9 +11,13 @@ export const nvapProps = {
     type: Boolean,
     default: false,
   },
-  width: {
+  height:{
     type: Number,
     default: 446,
+  },
+  width: {
+    type: Number,
+    default: 600,
   },
   title: {
     type: String,
@@ -23,8 +27,15 @@ export const nvapProps = {
     type: Boolean,
     default: false,
   },
+  //模态框预设用那种
   preset: {
     type: String,
     default: 'dialog',
   },
+    // 是否展示按钮
+    showBtn: {
+      type: Boolean,
+      default: true,
+    }
+ 
 };

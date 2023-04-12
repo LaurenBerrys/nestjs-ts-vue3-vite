@@ -1,7 +1,7 @@
 <!--
  * @Author: 聂成勇 niechengyong@esconsoft.com
  * @Date: 2023-04-07 15:41:48
- * @LastEditTime: 2023-04-07 18:19:26
+ * @LastEditTime: 2023-04-11 16:08:06
  * @Description: 
 -->
 <template>
@@ -13,7 +13,7 @@
       </template>
       <span>主题设置</span>
   </n-tooltip>
-  <Tema ::="show"/>
+  <Tema ::="show" placement="right"/>
   </template>
   
   <script setup lang="ts">

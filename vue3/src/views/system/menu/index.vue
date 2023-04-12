@@ -6,7 +6,7 @@
           <template #header>
             <n-space>
               <n-dropdown trigger="hover" @select="selectAddMenu" :options="addMenuOptions">
-                <n-button type="info" ghost icon-placement="right">
+                <n-button type="primary" ghost icon-placement="right">
                   添加菜单
                   <template #icon>
                     <div class="flex items-center">
@@ -15,7 +15,7 @@
                   </template>
                 </n-button>
               </n-dropdown>
-              <n-button type="info" ghost icon-placement="left" @click="packHandle">
+              <n-button type="primary" ghost icon-placement="left" @click="packHandle">
                 全部{{ expandedKeys.length ? '收起' : '展开' }}
                 <template #icon>
                   <div class="flex items-center">
@@ -67,14 +67,14 @@
             </n-space>
           </template>
           <template #header-extra>
-            <n-button @click="handleDelete" type="info" ghost icon-placement="right">
+            <n-button @click="handleDelete" type="primary" ghost icon-placement="right">
               删除菜单
               <template #icon>
                 <icon-system-uicons:mail-delete />
               </template>
             </n-button>
           </template>
-          <n-alert type="info" closable> 从菜单列表选择一项后，进行编辑</n-alert>
+          <n-alert type="success" closable> 从菜单列表选择一项后，进行编辑</n-alert>
           <n-form
             :model="formParams"
             :rules="rules"

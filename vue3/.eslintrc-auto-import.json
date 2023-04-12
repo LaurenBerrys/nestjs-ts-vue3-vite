@@ -108,6 +108,7 @@
     "isWhitespace": true,
     "isWindow": true,
     "langTitle": true,
+    "lighten": true,
     "loginOutReq": true,
     "loginReq": true,
     "markRaw": true,

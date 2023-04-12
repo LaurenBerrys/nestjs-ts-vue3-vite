@@ -105,6 +105,7 @@ declare global {
   const isWhitespace: typeof import('../src/utils/is')['isWhitespace']
   const isWindow: typeof import('../src/utils/is')['isWindow']
   const langTitle: typeof import('../src/hooks/use-common')['langTitle']
+  const lighten: typeof import('../src/utils/common')['lighten']
   const loginOutReq: typeof import('../src/api/user')['loginOutReq']
   const loginReq: typeof import('../src/api/user')['loginReq']
   const markRaw: typeof import('vue')['markRaw']

@@ -1,8 +1,8 @@
 <!--
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 11:43:17
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-27 15:23:34
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-04-11 15:51:30
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/layout/components/header/components/BreadCrumb.vue
  * @Description: 面包屑组件
  * 
@@ -24,7 +24,6 @@
   import { renderCustomIcon, renderIcon } from '@/utils/icon';
   const router = useRouter();
   const route = useRoute();
-
   function handleBreadClick(path) {
     if (path === route.path) return;
     router.push(path);

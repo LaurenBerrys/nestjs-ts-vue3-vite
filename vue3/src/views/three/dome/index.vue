@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 14:11:45
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-10 16:14:16
+ * @LastEditTime: 2023-04-11 15:48:23
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/three/dome/index.vue
  * @Description: 
 
@@ -64,13 +64,13 @@
     click: boolean,
     dataInfo: any,
     effectController: { A: '' },
-    modelList: any,
+    modelList: any, //模型列表
     curve,
     curve2,
-    truck,
-    car,
-    progress: any,
-    followTruck: boolean,
+    // truck,
+    // car,
+    // progress: any,
+    // followTruck: boolean,
     gui,
     axes,
     helper,
@@ -78,16 +78,15 @@
     clock = new THREE.Clock(),
     // lockcontrols,
     status,
-    groupIndex,
+    // groupIndex,
     cartier,
-    centroids,
     player:any = {
         geometry: new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1, 0), 0.35),
         velocity: new THREE.Vector3(),
         direction: new THREE.Vector3()
       };
   const acceleration = new THREE.Vector3(0, -0.98, 0); // y 轴方向上的重力加速度
-  const move_rate = 0.0005;
+  // const move_rate = 0.0005;
   const loading = ref(false);
   const container = ref();
   const PointLight = new THREE.PointLight(0xffffff, 0.6); //灯光
@@ -285,7 +284,6 @@
                 centroid.addVectors(child.geometry.boundingBox.min, child.geometry.boundingBox.max);
                 centroid.multiplyScalar(0.5);
                 centroid.applyMatrix4(child.matrixWorld);
-                centroids = centroid;
                 child.geometry.center(centroid.x, centroid.y, centroid.z);
                 child.position.set(centroid.x, centroid.y, centroid.z);
               });
@@ -524,7 +522,7 @@
     initGui(status);
     initOtherModel();
     render();
-    groupIndex = scene.children.findIndex((_) => _.type === 'Group');
+    // groupIndex = scene.children.findIndex((_) => _.type === 'Group');
   };
   // 屏幕自适应
   const onWindowResize = () => {

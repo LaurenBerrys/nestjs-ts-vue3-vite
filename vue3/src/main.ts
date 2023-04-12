@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-31 10:41:13
+ * @LastEditTime: 2023-04-11 18:01:08
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/main.ts
  * @Description:
  *
@@ -22,6 +22,7 @@ const store = createPinia();
 store.use(piniaPluginPersistedstate);
 import './permission';
 import { myDirective } from './utils/directive';
+import './styles/index.scss';
 const app = createApp(App);
 app.config.warnHandler = () => {
   // console.log(msg, vm);

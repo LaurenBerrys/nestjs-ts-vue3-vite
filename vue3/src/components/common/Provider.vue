@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 10:10:55
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-16 16:42:45
+ * @LastEditTime: 2023-04-12 15:07:28
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/common/Provider.vue
  * @Description: 
  * 
@@ -23,6 +23,7 @@
   import { setupMessage, setupDialog } from '@/utils/naivetools';
   import { useCssVar } from '@vueuse/core';
   import { kebabCase } from 'lodash-es';
+  import {lighten} from '@/utils/common'
   const { language, isDark } = storeToRefs(useConfigStore());
   const { setTheme, setLanguage } = useConfigStore();
   const locale = ref<NLocale | null>(null);
@@ -31,11 +32,33 @@
   const route = useRoute();
 
   const setupCssVar = () => {
-    const common = naiveThemeOverrides.common;
+    const common = getThemeOverrides.value.common;
     for (const key in common) {
       useCssVar(`--${kebabCase(key)}`, document.documentElement).value = common[key] || '';
     }
   };
+  const config =useConfigStore()
+  const getThemeOverrides=computed(()=>{
+    if (!config.themeColor) return naiveThemeOverrides;
+    const appTheme = config.themeColor;
+    const lightenStr = lighten(appTheme, 6);
+    return {
+      common: {
+        primaryColor: appTheme,
+        primaryColorHover: lightenStr,
+        primaryColorPressed: lightenStr,
+        primaryColorSuppl: appTheme,
+        infoColor: appTheme,
+        infoColorHover: lightenStr,
+        infoColorPressed: lightenStr,
+        infoColorSuppl: appTheme,
+      },
+      LoadingBar: {
+        colorLoading: appTheme,
+      },
+    };
+  })
+
   // 挂载naive组件的方法至window, 以便在全局使用
   const setupNaiveTools = () => {
     //window对象上添加naive组件的方法
@@ -54,6 +77,9 @@
       dateLocale.value = null;
     }
   };
+  onUpdated(()=>{
+    setupCssVar();
+  })
   const NaiveProviderContent = defineComponent({
     setup() {
       setupCssVar();
@@ -73,7 +99,7 @@
     :locale="zhCN"
     :date-locale="dateLocale"
     :theme="isDark ? darkTheme : null"
-    :theme-overrides="naiveThemeOverrides"
+    :theme-overrides="getThemeOverrides"
   >
     <n-loading-bar-provider>
       <n-dialog-provider>

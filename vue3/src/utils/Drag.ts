@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-03-01 11:08:25
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-01 11:08:32
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-04-11 17:21:54
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/Drag.ts
  * @Description:
  *
@@ -25,7 +25,7 @@ const params: any = {
 const startDrag = function (bar, target, callback?) {
   const screenWidth = document.body.clientWidth; // body当前宽度
   const screenHeight = document.documentElement.clientHeight; // 可见区域高度
-
+  
   const dragDomW = target.offsetWidth; // 对话框宽度
   const dragDomH = target.offsetHeight; // 对话框高度
 

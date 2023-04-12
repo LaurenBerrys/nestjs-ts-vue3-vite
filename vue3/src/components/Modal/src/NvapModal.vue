@@ -1,5 +1,8 @@
 <template>
-  <n-modal id="basic-modal" v-bind="getBindValue" v-model:show="isModal" @close="onCloseModal">
+  <n-modal id="basic-modal" v-bind="getBindValue" 
+  v-model:show="isModal"
+  :z-index="10001"
+   @close="onCloseModal">
     <template #header>
       <div class="w-full cursor-move" id="basic-modal-bar">
         {{ getBindValue.title }}
@@ -8,12 +11,10 @@
     <template #default>
       <slot name="default"></slot>
     </template>
-    <template #action v-if="!$slots.action">
-      <n-space>
+    <template #action v-if="!$slots.action ">
+      <n-space v-if="getBindValue.showBtn">
         <n-button @click="closeModal">取消</n-button>
-        <n-button type="primary" :loading="subLoading" @click="handleSubmit">{{
-          subBtuText
-        }}</n-button>
+        <n-button type="primary" :loading="subLoading" @click="handleSubmit">{{subBtuText}}</n-button>
       </n-space>
     </template>
     <template v-else #action>
@@ -101,10 +102,7 @@
   }
 </script>
 
-<style lang="less">
-  //  #basic-modal{
-  //   width:v-bind(widths)!important;
-  // }
+<style lang="scss" scoped>
   .cursor-move {
     cursor: move;
   }
