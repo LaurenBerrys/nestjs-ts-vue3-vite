@@ -1,7 +1,7 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-22 20:06:24
- * @LastEditTime: 2023-04-04 16:20:20
+ * @LastEditTime: 2023-04-12 15:53:42
  * @Description: 
 -->
 <template>
@@ -112,7 +112,7 @@ import {
       const context = Graph.value.node().getContext('2d');
       // //根据props.data绘制圆和连线
       const { links, nodes } = prop.data;
-      const {nodeColor,linkColor,nodeMethods,menuMethods} = prop;
+      const {nodeColor,linkColor} = prop;
       context.width=context.width*scale;
       context.height=context.height*scale;
       context.imageSmoothingEnabled = true;
@@ -332,9 +332,6 @@ onMounted(() => {
     inject('dThree', d3);
     inject('theKey', proxy);
 });
-onUnmounted(()=>{
-  console.log(3333);
-})
   //监听数据变化
   watch(
     () => prop.data,

@@ -1,7 +1,7 @@
 /*
  * @Author: 聂成勇 niechengyong@esconsoft.com
  * @Date: 2023-03-23 19:29:56
- * @LastEditTime: 2023-04-03 16:48:22
+ * @LastEditTime: 2023-04-12 16:00:15
  * @Description:
  */
 const data = {
@@ -68,6 +68,8 @@ const data = {
     { source: 2, target: 3, label: '其它', id: 2,weight:10 },
     { source: 3, target: 4, label: '学习', id: 3 ,weight:10},
     { source: 4, target: 5, label: '包含', id: 4,weight:10 },
+    { source: 1, target: 2, label: '其它', id: 5,weight:10 },
+    { source: 1, target: 2, label: '包含', id: 6,weight:10 },
   ],
 };
 const nodeMethods = [

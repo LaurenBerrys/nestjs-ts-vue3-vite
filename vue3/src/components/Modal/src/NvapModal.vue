@@ -1,6 +1,7 @@
 <template>
   <n-modal id="basic-modal" v-bind="getBindValue" 
   v-model:show="isModal"
+  :style="{width:getBindValue.width+'px', height:getBindValue.height+'px'}"
   :z-index="10001"
    @close="onCloseModal">
     <template #header>

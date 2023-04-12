@@ -1,13 +1,13 @@
 <!--
  * @Author: 聂成勇 niechengyong@esconsoft.com
  * @Date: 2023-04-11 16:48:37
- * @LastEditTime: 2023-04-12 14:56:25
+ * @LastEditTime: 2023-04-12 15:37:52
  * @Description: 
 -->
 <template>
   <NvapModal @register="modalRegister" class="NvapModal" w-640>
     <template #default>
-    <div >
+    <div>
      <div items-center>
       <n-gradient-text type="primary" :size="24">中国传统颜色</n-gradient-text>
     </div>
@@ -43,7 +43,9 @@ import ColorCheckbox from './ColorCheckbox.vue';
     { openModal: openModal },
   ] = useModal({
     title: '更多颜色',
-    width:640,
+    width:650,
+    height: 550,
+    showBtn:false
   });
   const open=()=>{
     openModal()

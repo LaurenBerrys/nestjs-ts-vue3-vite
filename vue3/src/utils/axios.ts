@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:37:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-21 17:24:26
+ * @LastEditTime: 2023-04-12 16:06:09
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/axios.ts
  * @Description:
  *
@@ -75,7 +75,7 @@ service.interceptors.response.use(
 export default function axiosReq(config: any): Promise<ApiResponse> {
   return service({
     baseURL: import.meta.env.VITE_BASE_URL,
-    timeout: 8000,
+    timeout: 80000,
     ...config,
   });
 }

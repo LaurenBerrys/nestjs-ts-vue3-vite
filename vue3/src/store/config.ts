@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2022-12-09 11:58:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-12 14:54:16
+ * @LastEditTime: 2023-04-12 15:11:04
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/store/config.ts
  * @Description:
  *
@@ -26,7 +26,7 @@ export const useConfigStore = defineStore('config', {
       dateLocale: 'dateZhCN',
       language: settings.defaultLanguage as any,
       theme: settings.defaultTheme as any, //主题模式
-      themeColor: '#409EFF',//主题颜色
+      themeColor: '#2cb67d',//主题颜色
       collapsed: settings.collapsed,
       isDark,
       settings: settings,

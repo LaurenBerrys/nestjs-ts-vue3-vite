@@ -1,7 +1,7 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-22 20:05:31
- * @LastEditTime: 2023-04-03 22:01:06
+ * @LastEditTime: 2023-04-12 15:58:28
  * @Description: 
 -->
 <template>
@@ -18,8 +18,7 @@
     />
   </ComponentPage>
 </template>
-
-<script setup lang="ts">
+<script setup lang="ts" name="D3">
   import { data, nodeMethods, nodeColor, linkColor, menuMethods } from './index';
   import { D3model } from "@/enums/d3model";
 </script>
