@@ -1,7 +1,7 @@
 /*
  * @Author: 聂成勇 niechengyong@esconsoft.com
  * @Date: 2023-04-08 18:06:23
- * @LastEditTime: 2023-04-10 16:30:09
+ * @LastEditTime: 2023-04-12 16:16:55
  * @Description:
  */
 //绑定键盘事件
@@ -43,13 +43,13 @@ const handleKeyDown = (THREE,cartier,camera) => {
       const axis = new THREE.Vector3().crossVectors(direction, new THREE.Vector3(0, 1, 0))
       const pitchQuaternion = new THREE.Quaternion().setFromAxisAngle(axis, pitch)
       direction.applyQuaternion(pitchQuaternion)
-      cartier.position.set(direction.x,cartier.position.y,direction.z)
+      // cartier.position.set(direction.x,cartier.position.y,direction.z)
     }
   })
 };
 const handleControls=(deltaTime,cartier,controls,camera,player,THREE)=>{
   handleKeyDown(THREE,cartier,camera);
-    const speedDelta = deltaTime*50
+    const speedDelta = deltaTime*100
     if (keyStates['KeyW']) {
         //前进，人物随着镜头前进，镜头根据鼠标移动而移动
         // const direction = camera.getWorldDirection(new THREE.Vector3())
@@ -62,11 +62,11 @@ const handleControls=(deltaTime,cartier,controls,camera,player,THREE)=>{
         // cartier.position.y,forwardDirection.multiplyScalar(speedDelta).z)
         cartier.translateZ(speedDelta);
         //前进，人物和镜头都要前进
-        camera.position.set(cartier.position.x, cartier.position.y+230, cartier.position.z+20);
+        camera.position.set(cartier.position.x, cartier.position.y+100, cartier.position.z+20);
         //将人物的位置赋值给控制器
-        controls.target.set(cartier.position.x, cartier.position.y+230, cartier.position.z+20);
+        controls.target.set(cartier.position.x, cartier.position.y+100, cartier.position.z+20);
         //将相机的位置赋值给控制器
-        controls.object.position.set(cartier.position.x, cartier.position.y+230, cartier.position.z+180);
+        controls.object.position.set(cartier.position.x, cartier.position.y+100, cartier.position.z+180);
         //将控制器的位置赋值给相机
         camera.lookAt(controls.target);
         controls.update();
@@ -76,11 +76,11 @@ const handleControls=(deltaTime,cartier,controls,camera,player,THREE)=>{
         // player.velocity.add(getForwardVector().multiplyScalar(-speedDelta));
         // updatePlayer()
         //后退，人物和镜头都要后退
-        camera.position.set(cartier.position.x, cartier.position.y+230, cartier.position.z+20);
+        camera.position.set(cartier.position.x, cartier.position.y+100, cartier.position.z+20);
         //将人物的位置赋值给控制器
-        controls.target.set(cartier.position.x, cartier.position.y+230, cartier.position.z+20);
+        controls.target.set(cartier.position.x, cartier.position.y+100, cartier.position.z+20);
         //将相机的位置赋值给控制器
-        controls.object.position.set(cartier.position.x, cartier.position.y+230, cartier.position.z+180);
+        controls.object.position.set(cartier.position.x, cartier.position.y+100, cartier.position.z+180);
         //将控制器的位置赋值给相机
         camera.lookAt(controls.target);
         controls.update();
@@ -90,11 +90,11 @@ const handleControls=(deltaTime,cartier,controls,camera,player,THREE)=>{
          cartier.translateX(speedDelta);
         //  player.velocity.add(getSideVector().multiplyScalar(speedDelta));
         //  updatePlayer()
-        camera.position.set(cartier.position.x, cartier.position.y+230, cartier.position.z+20);
+        camera.position.set(cartier.position.x, cartier.position.y+100, cartier.position.z+20);
         //将人物的位置赋值给控制器
-        controls.target.set(cartier.position.x, cartier.position.y+230, cartier.position.z+20);
+        controls.target.set(cartier.position.x, cartier.position.y+100, cartier.position.z+20);
         //将相机的位置赋值给控制器
-        controls.object.position.set(cartier.position.x, cartier.position.y+230, cartier.position.z+180);
+        controls.object.position.set(cartier.position.x, cartier.position.y+100, cartier.position.z+180);
         //将控制器的位置赋值给相机
         camera.lookAt(controls.target);
         controls.update();
@@ -104,11 +104,11 @@ const handleControls=(deltaTime,cartier,controls,camera,player,THREE)=>{
         cartier.translateX(-speedDelta);
         // player.velocity.add(getSideVector().multiplyScalar(-speedDelta));
         //  updatePlayer()
-        camera.position.set(cartier.position.x, cartier.position.y+230, cartier.position.z+20);
+        camera.position.set(cartier.position.x, cartier.position.y+100, cartier.position.z+20);
         //将人物的位置赋值给控制器
-        controls.target.set(cartier.position.x, cartier.position.y+230, cartier.position.z+20);
+        controls.target.set(cartier.position.x, cartier.position.y+100, cartier.position.z+20);
         //将相机的位置赋值给控制器
-        controls.object.position.set(cartier.position.x, cartier.position.y+230, cartier.position.z+180);
+        controls.object.position.set(cartier.position.x, cartier.position.y+100, cartier.position.z+180);
         //将控制器的位置赋值给相机
         camera.lookAt(controls.target);
         controls.update();
@@ -183,11 +183,11 @@ const drawButton = (THREE,scene,cartier,controls,camera) => {
         console.log(cartier);
         controls.enabled = false;
         //将人物的位置赋值给相机
-        camera.position.set(cartier.position.x, cartier.position.y+230, cartier.position.z+20);
+        camera.position.set(cartier.position.x, cartier.position.y+100, cartier.position.z+20);
         //将人物的位置赋值给控制器
-        controls.target.set(cartier.position.x, cartier.position.y+230, cartier.position.z+20);
+        controls.target.set(cartier.position.x, cartier.position.y+100, cartier.position.z+20);
         //将相机的位置赋值给控制器
-        controls.object.position.set(cartier.position.x, cartier.position.y+230, cartier.position.z+180);
+        controls.object.position.set(cartier.position.x, cartier.position.y+100, cartier.position.z+180);
         //将控制器的位置赋值给相机
         camera.lookAt(controls.target);
         controls.update();

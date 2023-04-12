@@ -98,7 +98,7 @@ export const  initCJ=(scene)=>{
   .setPath("/static/obj/")
   .load("untitled1.gltf",(gltf)=>{
     const CJ = gltf.scene;
-    CJ.scale.set(100, 100, 100);
+    CJ.scale.set(50, 50, 50);
     CJ.position.set(-400, 10, 1900);
     scene.add(CJ);
     CJ.rotateY(Math.PI );

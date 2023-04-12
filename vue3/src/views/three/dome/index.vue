@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-28 14:11:45
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-11 15:48:23
+ * @LastEditTime: 2023-04-12 16:13:30
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/three/dome/index.vue
  * @Description: 
 
@@ -518,7 +518,7 @@
     cloneBuilding(obj.clone());
     // 初始化行驶路线
     // initCurve(obj);
-    initTruckCurve(obj);
+    // initTruckCurve(obj);
     initGui(status);
     initOtherModel();
     render();
