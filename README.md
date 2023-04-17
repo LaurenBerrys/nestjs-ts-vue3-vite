@@ -8,7 +8,7 @@
  * 
 -->
 
-## 本项目是NestJs+TS+vue3+vite2+Pinia技术机构组成
+## 本项目是NestJs+TS+vue3+vite4+Pinia技术机构组成
 [项目连接](https://github.com/supercode-peter/nestjs-ts-vue3-vite.git)
  --出现Unable to connect to the database报错--
    需要自己换一个数据库连接问题哈
