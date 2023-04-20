@@ -93,7 +93,7 @@ export const initSchool = (scene) => {
     });
 };
 export const  initCJ=(scene)=>{
-  return new Promise((resolve,reject)=>{
+  return new Promise((resolve)=>{
   return new GLTFLoader()
   .setPath("/static/obj/")
   .load("untitled1.gltf",(gltf)=>{

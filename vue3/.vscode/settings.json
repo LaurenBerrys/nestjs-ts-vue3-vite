@@ -1,6 +1,6 @@
 {
   "cSpell.words": ["tableselect"],
-  "unocss.root": ["packages/client"],
+  "unocss.root": "packages/client",
   "editor.codeActionsOnSave": {
     "source.fixAll": false,
     "source.fixAll.eslint": false

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-01 23:17:00
+ * @LastEditTime: 2023-04-15 10:37:58
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description:
  *
@@ -112,7 +112,9 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     //setup 支持name属性
     vueSetupExtend(),
 
-    unocss(),
+    unocss({
+      configFile: './unocss.config.ts',
+    }),
     //自动导入
     AutoImport({
       imports: [

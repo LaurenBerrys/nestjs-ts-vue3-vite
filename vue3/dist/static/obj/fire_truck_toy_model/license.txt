@@ -1,0 +1,11 @@
+Model Information:
+* title:	Fire truck toy model
+* source:	https://sketchfab.com/3d-models/fire-truck-toy-model-dcc1b54a9df8473a9857ec8997e378cd
+* author:	nicovandijk (https://sketchfab.com/nicovandijk)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Fire truck toy model" (https://sketchfab.com/3d-models/fire-truck-toy-model-dcc1b54a9df8473a9857ec8997e378cd) by nicovandijk (https://sketchfab.com/nicovandijk) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

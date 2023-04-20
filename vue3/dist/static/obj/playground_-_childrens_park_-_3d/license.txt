@@ -1,0 +1,11 @@
+Model Information:
+* title:	Playground - Children's park - 3D
+* source:	https://sketchfab.com/3d-models/playground-childrens-park-3d-4b41db7cde994ab1a17ad16794ccc7d1
+* author:	Shin Xiba 3D (https://sketchfab.com/Xiba3D)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Playground - Children's park - 3D" (https://sketchfab.com/3d-models/playground-childrens-park-3d-4b41db7cde994ab1a17ad16794ccc7d1) by Shin Xiba 3D (https://sketchfab.com/Xiba3D) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,7 +1,7 @@
 <!--
- * @Author: 聂成勇 niechengyong@esconsoft.com
+ * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-04-11 16:48:37
- * @LastEditTime: 2023-04-12 15:37:52
+ * @LastEditTime: 2023-04-20 16:20:14
  * @Description: 
 -->
 <template>
@@ -16,7 +16,7 @@
         <n-grid :cols="8" :x-gap="16" :y-gap="8">
           <n-grid-item v-for="i in item.data" :key="i.label"    >
             <color-checkbox
-            flex
+              flex
               w-full h-36 rounded-md items-center
               :color="i.color"
               :checked="i.color === config.themeColor"

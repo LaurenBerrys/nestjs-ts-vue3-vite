@@ -1,7 +1,7 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-21 15:25:41
- * @LastEditTime: 2023-04-12 15:55:18
+ * @LastEditTime: 2023-04-15 10:33:55
  * @Description: 
 -->
 <template>
@@ -11,7 +11,7 @@
     </template>
     <Nvapmal :title="state.title" :visible="state.visible" :width="state.width" />
     <n-input ::value="strInput" />
-    <input ::="strInput" />
+    <input w-200 border-5  dark:-filter-drop-shadow  ::="strInput" />
   </ComponentPage>
 </template>
 
@@ -27,4 +27,6 @@
   const strInput = ref('');
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

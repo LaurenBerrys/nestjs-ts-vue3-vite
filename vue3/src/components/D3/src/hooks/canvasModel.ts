@@ -1,5 +1,5 @@
 /*
- * @Author: 聂成勇 niechengyong@esconsoft.com
+ * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-04-03 16:24:08
  * @LastEditTime: 2023-04-03 21:15:31
  * @Description: canvas方式绘制

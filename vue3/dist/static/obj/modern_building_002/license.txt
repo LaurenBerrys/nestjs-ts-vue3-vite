@@ -1,0 +1,11 @@
+Model Information:
+* title:	MODERN BUILDING 002
+* source:	https://sketchfab.com/3d-models/modern-building-002-7cd50fe9c4544c8d8dba573f597f95a6
+* author:	Metaroy (https://sketchfab.com/Metaroy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "MODERN BUILDING 002" (https://sketchfab.com/3d-models/modern-building-002-7cd50fe9c4544c8d8dba573f597f95a6) by Metaroy (https://sketchfab.com/Metaroy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

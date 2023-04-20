@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-16 11:13:56
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-12 14:32:28
+ * @LastEditTime: 2023-04-19 17:10:10
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/common.ts
  * @Description:
  *
@@ -37,7 +37,7 @@ export const deBounce = (value: any, delay = 200) => {
  * @param {number} wait
  * @param {boolean} immediate
  * @return {*}
- */
+ */ 
 export function debounce<T>(
   method: (...args: any[]) => void,
   wait: number,
