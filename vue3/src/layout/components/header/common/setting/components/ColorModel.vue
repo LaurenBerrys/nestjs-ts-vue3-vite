@@ -1,7 +1,7 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-04-11 16:48:37
- * @LastEditTime: 2023-04-20 16:20:14
+ * @LastEditTime: 2023-04-20 17:57:49
  * @Description: 
 -->
 <template>
@@ -43,8 +43,10 @@ import ColorCheckbox from './ColorCheckbox.vue';
     { openModal: openModal },
   ] = useModal({
     title: '更多颜色',
-    width:650,
-    height: 550,
+    style:{
+      width:'650px',
+      height:'550px'
+    },
     showBtn:false
   });
   const open=()=>{

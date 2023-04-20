@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-03-04 18:58:09
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-14 16:42:02
+ * @LastEditTime: 2023-04-20 17:48:29
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/addRolesModel/index.vue
  * @Description: 
  * 
@@ -28,6 +28,8 @@
     { openModal: openModal, closeModal: closeModal, setSubLoading: setSubLoading },
   ] = useModal({
     title: '添加角色',
+    width:700,
+    height: 550,
   });
   const [register, { validate, getFieldsValue, setSchemas }] = useForm({
     gridProps: { cols: 1 },
