@@ -1,10 +1,10 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-02-09 19:07:23
- * @LastEditTime: 2023-04-20 16:13:37
+ * @LastEditTime: 2023-04-20 16:58:27
  * @Description: 
 -->
-## 本项目是NestJs+TS+vue3+vite2+Pinia技术机构组成
+## 本项目是NestJs+TS+vue3+vite4+Pinia技术机构组成
 [项目连接](https://github.com/supercode-peter/nestjs-ts-vue3-vite.git)
  后端启动--出现Unable to connect to the database报错--
    需要自己换一个数据库连接问题哈
