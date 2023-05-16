@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-27 20:48:13
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-16 17:34:32
+ * @LastEditTime: 2023-05-16 15:34:28
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/example/from/index.vue
  * @Description: 
  * 
@@ -40,6 +40,7 @@
     showAdvancedButton: true,
     offset: true,
     schemas,
+    submitButtonText: '提交',
   });
   const handleSubmit = (val: Recordable, loading: Ref) => {
     console.log(val);

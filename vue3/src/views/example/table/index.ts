@@ -1,5 +1,6 @@
 import { FormSchema } from '@/components/Form';
 import { NTag } from 'naive-ui';
+import { TableAction } from '@/components/Table';
 export const columns = [
   {
     title: 'id',
@@ -13,9 +14,13 @@ export const columns = [
         NTag,
         {
           type: 'success',
+          onClick: () => {
+            window.$message.info('点击了' + row.name);
+          }
         },
         {
           default: () => row.name,
+          
         }
       );
     },
@@ -139,4 +144,37 @@ export const data = {
       permissions: ['delete '],
     },
   ],
+};
+
+export const action = (handeone, hand) => {
+  const actionColumn = reactive({
+    width: 250,
+    title: '操作',
+    key: 'action',
+    fixed: 'right',
+    render(record) {
+      return h(TableAction, {
+        style: 'button',
+        actions: [
+          {
+            label: '操作',
+            onClick: handeone.bind(null, record),
+            ifShow: () => {
+              return true;
+            },
+            // auth: ["basic_list"],
+          },
+          {
+            label: '删除',
+            onClick: hand.bind(null, record),
+            ifShow: () => {
+              return true;
+            },
+            // auth: ["basic_list"],
+          },
+        ],
+      });
+    },
+  });
+  return actionColumn;
 };

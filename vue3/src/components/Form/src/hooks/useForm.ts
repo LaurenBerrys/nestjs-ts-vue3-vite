@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 09:16:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-21 10:56:12
+ * @LastEditTime: 2023-05-16 15:42:44
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Form/src/hooks/useForm.ts
  * @Description:
  *
@@ -47,11 +47,21 @@ export function useForm(props?: Props): UseFormReturnType {
   }
 
   const methods: FormActionType = {
+    
+    /**
+     * @description: 设置表单
+     * @param {*} name 表单中的field字段名
+     * @param {*} value 根据fied字段名找到对象，存入值
+     */
     setSchemas: async (name, value) => {
       console.log(name, value);
       const form = await getForm();
       await form.setSchemas(name, value);
     },
+    /**
+     * @description: 
+     * @param {Partial} formProps
+     */
     setProps: async (formProps: Partial<FormProps>) => {
       const form = await getForm();
       await form.setProps(formProps);

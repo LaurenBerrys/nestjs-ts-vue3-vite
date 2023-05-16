@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 09:16:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-21 10:51:17
+ * @LastEditTime: 2023-05-16 15:31:46
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/Form/src/types/form.ts
  * @Description:
  *
@@ -50,6 +50,7 @@ export interface FormProps {
   model?: Recordable;
   labelWidth?: number | string;
   schemas?: FormSchema[];
+  gridProps?: GridProps;
   inline?: boolean;
   layout?: Layout_Enum;
   size?: string;
@@ -64,7 +65,6 @@ export interface FormProps {
   submitButtonOptions?: Partial<ButtonProps>;
   submitButtonText?: string;
   resetButtonText?: string;
-  gridProps?: GridProps;
   giProps?: GridItemProps;
   resetFunc?: () => Promise<void>;
   submitFunc?: () => Promise<void>;

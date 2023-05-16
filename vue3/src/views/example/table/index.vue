@@ -1,7 +1,7 @@
 <!--
  * @Editors: Nie Chengyong
  * @Date: 2023-02-27 20:39:35
- * @LastEditTime: 2023-05-16 15:07:27
+ * @LastEditTime: 2023-05-16 15:17:28
  * @Description: 
 -->
 <template>
@@ -14,6 +14,7 @@
       :columns="columns"
       :request="loadDataTable"
       @update:checked-row-keys="onCheckedRow"
+      :actionColumn="action(handleMenuAuth, handleDelete)"
     >
       <template #tableSelect>
         <NvapForm @register="register" @submit="handleSubmit" @reset="handleReset" />
@@ -28,7 +29,7 @@
 </template>
 <script lang="ts" setup>
   import { useForm } from '@/components/Form';
-  import { columns, data, schemas } from './index';
+  import { columns, data, schemas,action } from './index';
   const handleAdd = () => {};
   const NvapTables = ref();
   const [register] = useForm({
@@ -57,6 +58,12 @@
   const handleReset = (val: Recordable) => {
     console.log(val);
   };
+  const handleMenuAuth=async(e)=>{
+    console.log(e);
+  }
+  const handleDelete=async(e)=>{
+    console.log(e);
+  }
 </script>
 
 <style></style>

@@ -12,7 +12,7 @@
 import { i18n } from '@/lang';
 // the keys using  zh file
 import langEn from '@/lang/zh';
-import settings from '@/settings';
+import settings from '@/components/settings/SystemSettings';
 
 export const sleepTimeout = (time: number) => {
   return new Promise((resolve) => {

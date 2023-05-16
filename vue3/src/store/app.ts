@@ -9,7 +9,7 @@
  */
 import { nextTick } from 'vue';
 import { defineStore } from 'pinia';
-import defaultSettings from '@/settings';
+import defaultSettings from '@/components/settings/SystemSettings';
 import router, { constantRoutes } from '@/router';
 export const useAppStore = defineStore('app', {
   state: () => {

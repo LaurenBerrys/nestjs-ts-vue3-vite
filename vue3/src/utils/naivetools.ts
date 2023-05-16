@@ -1,11 +1,8 @@
 /*
- * @Author: Nie Chengyong
+ * @Author: LaurenBerrys && 949154547@qq.com
  * @Date: 2023-02-16 10:13:40
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-04 01:48:23
- * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/naivetools.ts
- * @Description:
- *
+ * @LastEditTime: 2023-05-16 15:58:16
+ * @Description: 消息提示
  */
 import { isNullOrUnDef } from '@/utils/is';
 export function setupMessage(NMessage) {

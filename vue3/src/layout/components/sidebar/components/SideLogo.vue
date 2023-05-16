@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-  import settings from '@/settings';
+  import settings from '@/components/settings/SystemSettings';
   const title = settings.title;
   const appStore = useConfigStore();
   const config =useConfigStore()

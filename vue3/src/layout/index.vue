@@ -42,6 +42,6 @@
   import SideBar from './components/sidebar/index.vue';
   import AppMain from './components/AppMain.vue';
   import AppTags from './components/tags/index.vue';
-  import settings from '@/settings';
+  import settings from '@/components/settings/SystemSettings';
   const Config = useConfigStore();
 </script>

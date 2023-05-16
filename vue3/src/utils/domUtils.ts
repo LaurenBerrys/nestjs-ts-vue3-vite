@@ -118,6 +118,12 @@ export function getViewportOffset(element: Element): ViewportOffsetResult {
   };
 }
 
+/**
+ * @description:  获取元素的样式
+ * @param {string} attr 样式属性
+ * @param {string} value 样式值
+ * @return {*} {CSSStyleDeclaration}
+ */
 export function hackCss(attr: string, value: string) {
   const prefix: string[] = ['webkit', 'Moz', 'ms', 'OT'];
 
@@ -131,7 +137,12 @@ export function hackCss(attr: string, value: string) {
   };
 }
 
-/* istanbul ignore next */
+/**
+ * @description: 事件绑定
+ * @param {Element} element dom元素
+ * @param {string} event 事件名称
+ * @param {EventListenerOrEventListenerObject} handler 事件处理函数
+ */
 export function on(
   element: Element | HTMLElement | Document | Window,
   event: string,
@@ -142,7 +153,12 @@ export function on(
   }
 }
 
-/* istanbul ignore next */
+/**
+ * @description:  移除事件
+ * @param {Element} element dom元素
+ * @param {string} event 事件名称
+ * @param {Fn} handler 事件处理函数
+ */
 export function off(
   element: Element | HTMLElement | Document | Window,
   event: string,
@@ -153,7 +169,12 @@ export function off(
   }
 }
 
-/* istanbul ignore next */
+/**
+ * @description: 只触发一次的事件
+ * @param {HTMLElement} el dom元素
+ * @param {string} event 事件名称
+ * @param {EventListener} fn  事件处理函数
+ */
 export function once(el: HTMLElement, event: string, fn: EventListener): void {
   const listener = function (this: any, ...args: unknown[]) {
     if (fn) {

@@ -11,7 +11,7 @@ import { createI18n } from 'vue-i18n';
 import { LANG_VALUE } from '../enums/enum';
 import en from './en';
 import zh from './zh';
-import settings from '@/settings';
+import settings from '@/components/settings/SystemSettings';
 const messages = {
   [LANG_VALUE.En]: en,
   [LANG_VALUE.Zh]: zh,

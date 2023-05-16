@@ -65,7 +65,7 @@
   import { useStorage } from '@vueuse/core';
   import bgImg from '@/assets/images/login_bg.jpg';
   import { loginReq } from '@/api/user';
-  import settings from '@/settings';
+  import settings from '@/components/settings/SystemSettings';
   //   import { addDynamicRoutes } from '@/router'
   const title = settings.title;
   const router = useRouter();

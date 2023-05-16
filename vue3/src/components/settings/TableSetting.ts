@@ -16,17 +16,17 @@ export default {
     //可切换每页数量集合
     pageSizes: [20, 50,100],
   },
-  upload: {
-    //考虑接口规范不同
-    apiSetting: {
-      // 集合字段名
-      infoField: 'data',
-      // 图片地址字段名
-      imgField: 'photo',
-    },
-    //最大上传图片大小
-    maxSize: 2,
-    //图片上传类型
-    fileType: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/svg+xml'],
-  },
+  // upload: {
+  //   //考虑接口规范不同
+  //   apiSetting: {
+  //     // 集合字段名
+  //     infoField: 'data',
+  //     // 图片地址字段名
+  //     imgField: 'photo',
+  //   },
+  //   //最大上传图片大小
+  //   maxSize: 2,
+  //   //图片上传类型
+  //   fileType: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/svg+xml'],
+  // },
 };

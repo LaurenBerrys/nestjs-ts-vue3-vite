@@ -9,7 +9,7 @@
  */
 import { defineStore } from 'pinia';
 import { langTitle } from '@/hooks/use-common';
-import settings from '@/settings';
+import settings from '@/components/settings/SystemSettings';
 import { i18n } from '@/lang';
 import { useDark } from '@vueuse/core';
 const isDark = useDark();

@@ -1,14 +1,14 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 15:14:17
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-28 20:17:14
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-05-16 15:12:43
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/settings.ts
  * @Description:
  *
  */
-import packageJson from '../package.json';
-import { LANG_VALUE } from './enums/enum';
+import packageJson from '../../../package.json';
+import { LANG_VALUE } from '../../enums/enum';
 import type { SettingsConfig } from '~/basic';
 console.log(packageJson.name);
 
