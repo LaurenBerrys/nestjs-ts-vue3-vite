@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-15 10:37:58
+ * @LastEditTime: 2023-05-08 11:16:11
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description:
  *
@@ -61,9 +61,10 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     proxy: {
       '/nest-api': {
         changeOrigin: true,
-        target: 'http://192.168.31.151:3000/',
+        target: 'http://localhost:3000/',
       },
     },
+    cors: true,
   };
   const css = {
     //scss变量问题
@@ -81,8 +82,8 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         vue: vue({
           template: {
             compilerOptions: {
-              // isCustomElement: tag => (console.log('tag', tag)),
               nodeTransforms: [
+                //将v-model简化成::
                 transformShortVmodel({
                   prefix: '::',
                 }),
@@ -101,7 +102,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     }),
     terser({
       format: {
-        comments: false, // <-- 将去除所有的注释
+        comments: IS_PROD, // <-- 将去除所有的注释
       },
       compress: {
         ecma: 2015, // 使用 ECMAScript 2015 压缩
@@ -111,7 +112,6 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     }),
     //setup 支持name属性
     vueSetupExtend(),
-
     unocss({
       configFile: './unocss.config.ts',
     }),

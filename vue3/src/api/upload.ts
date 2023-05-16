@@ -7,17 +7,17 @@
  * @Description:
  *
  */
-import axiosReq from '@/utils/axios';
+import axiosRequest from '@/utils/axios';
 //验证服务器上是否有上传
 export const uploadverfileIsExist = (data) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/chunk/checkChunk',
     method: 'post',
     data,
   });
 };
 export const PostUpload = (data) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/chunk/upload',
     method: 'post',
     data,
@@ -25,7 +25,7 @@ export const PostUpload = (data) => {
 };
 
 export const mergeRequest = (data) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/chunk/merge',
     method: 'post',
     data,

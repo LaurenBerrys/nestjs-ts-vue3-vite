@@ -8,7 +8,7 @@
  *
  */
 //获取用户信息
-import axiosReq from '@/utils/axios';
+import axiosRequest from '@/utils/axios';
 export const userInfoReq = (): Promise<any> => {
   return new Promise((resolve) => {
     const reqConfig = {
@@ -16,7 +16,7 @@ export const userInfoReq = (): Promise<any> => {
       method: 'get',
     };
     //这里是将拿到的菜单数据转换成树形结构，方便后面使用
-    axiosReq(reqConfig).then(({ data }) => {
+    axiosRequest(reqConfig).then(({ data }) => {
       function toTree(arr) {
         if (data.menuList.length >= 2) {
           let res: any = [];
@@ -49,7 +49,7 @@ export const userInfoReq = (): Promise<any> => {
 };
 //登录
 export const loginReq = (subForm) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/user/login',
     data: subForm,
     method: 'post',
@@ -57,33 +57,33 @@ export const loginReq = (subForm) => {
 };
 //退出登录
 export const loginOutReq = () => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/user/loginValid',
     method: 'post',
   });
 };
 export const getUser = (params) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/user',
     method: 'get',
     params,
   });
 };
 export const updateUser = (url, data) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/user/' + url,
     method: 'patch',
     data,
   });
 };
 export const deleteUser = (url) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/user/' + url,
     method: 'delete',
   });
 };
 export const createUser = (data) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/user',
     method: 'post',
     data,

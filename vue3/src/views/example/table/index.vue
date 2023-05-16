@@ -1,7 +1,7 @@
 <!--
  * @Editors: Nie Chengyong
  * @Date: 2023-02-27 20:39:35
- * @LastEditTime: 2023-03-21 11:02:59
+ * @LastEditTime: 2023-05-16 15:07:27
  * @Description: 
 -->
 <template>
@@ -9,7 +9,12 @@
     <template #header>
       <h2 text-22 font-normal text-hex-333 dark:text-hex-ccc>表格</h2>
     </template>
-    <NvapTable :columns="columns" :request="loadDataTable">
+    <NvapTable
+      ref="NvapTables"
+      :columns="columns"
+      :request="loadDataTable"
+      @update:checked-row-keys="onCheckedRow"
+    >
       <template #tableSelect>
         <NvapForm @register="register" @submit="handleSubmit" @reset="handleReset" />
       </template>
@@ -25,6 +30,7 @@
   import { useForm } from '@/components/Form';
   import { columns, data, schemas } from './index';
   const handleAdd = () => {};
+  const NvapTables = ref();
   const [register] = useForm({
     gridProps: { cols: 9 },
     collapsedRows: 10,
@@ -35,8 +41,13 @@
     offset: true,
     schemas,
   });
+  const onCheckedRow = (e) => {
+    console.log(e, 1111);
+  };
   const handleSubmit = (val: Recordable, loading: Ref) => {
     setTimeout(() => {
+      console.log(val);
+      NvapTables.value.tableAction.setTableData([]);
       loading.value = false;
     }, 1000);
   };

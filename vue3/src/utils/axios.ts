@@ -2,13 +2,13 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:37:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-12 16:06:09
+ * @LastEditTime: 2023-04-20 18:03:34
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/axios.ts
  * @Description:
  *
  */
 import { hasOwn } from '@vueuse/core';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 //使用axios.create()创建一个axios请求实例
 const service = axios.create();
@@ -72,7 +72,7 @@ service.interceptors.response.use(
     return Promise.reject(err);
   }
 );
-export default function axiosReq(config: any): Promise<ApiResponse> {
+export default function axiosRequest(config: AxiosRequestConfig): Promise<ApiResponse> {
   return service({
     baseURL: import.meta.env.VITE_BASE_URL,
     timeout: 80000,

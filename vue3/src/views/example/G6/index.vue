@@ -40,7 +40,7 @@ const legend = new G6.Legend({
 
 
 const init=()=>{
-    const width = container.value?.scrollWidth;
+const width = container.value?.scrollWidth;
 const height = container.value?.scrollHeight || 500;
 const graph = new G6.Graph({
   container: 'container',

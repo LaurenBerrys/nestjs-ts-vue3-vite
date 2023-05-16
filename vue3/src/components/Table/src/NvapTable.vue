@@ -73,7 +73,7 @@
   </div>
   <div class="s-table">
     <n-data-table
-      ref="tableElRef"
+      ref="NvapTabel"
       v-bind="getBindValues"
       :striped="isStriped"
       :pagination="pagination"
@@ -146,11 +146,11 @@
       'edit-end',
       'edit-cancel',
       'edit-row-end',
-      'edit-change',
+      'edit-change'
     ],
     setup(props, { emit }) {
       const deviceHeight = ref(150);
-      const tableElRef = ref<ComponentRef>(null);
+      const NvapTabel = ref<ComponentRef>(null);
       const wrapRef = ref<Nullable<HTMLDivElement>>(null);
       let paginationEl: HTMLElement | null;
       const isStriped = ref(false);
@@ -165,7 +165,7 @@
 
       const { getPaginationInfo, setPagination } = usePagination(getProps);
 
-      const { getDataSourceRef, getDataSource, getRowKey, reload } = useDataSource(
+      const { getDataSourceRef, getDataSource, getRowKey, reload ,setTableData} = useDataSource(
         getProps,
         {
           getPaginationInfo,
@@ -244,16 +244,16 @@
         getPageColumns,
         getCacheColumns,
         setCacheColumnsField,
+        setTableData,
         emit,
       };
-
       const getCanResize = computed(() => {
         const { canResize } = unref(getProps);
         return canResize;
       });
 
       async function computeTableHeight() {
-        const table = unref(tableElRef);
+        const table = unref(NvapTabel);
         if (!table) return;
         if (!unref(getCanResize)) return;
         const tableEl: any = table?.$el;
@@ -285,12 +285,10 @@
           computeTableHeight();
         });
       });
-
       createTableContext({ ...tableAction, wrapRef, getBindValues });
-
       return {
         ...toRefs(state),
-        tableElRef,
+        NvapTabel,
         getBindValues,
         getDataSource,
         densityOptions,

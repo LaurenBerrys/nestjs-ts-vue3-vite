@@ -1,7 +1,7 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-04-12 16:22:47
- * @LastEditTime: 2023-04-12 16:33:40
+ * @LastEditTime: 2023-04-27 19:14:30
  * @Description: 
 -->
 <template>
@@ -12,6 +12,9 @@
     <n-card title="打印" >
       <n-button type="primary" class="mr-10px" @click="printTable">打印表格</n-button>
       </n-card>
+      <object data="/estate-ui/index.html" type="text/html"></object>
+      <!-- <iframe w-full h-500 src="/estate-ui/index.html">
+      </iframe> -->
    </ComponentPage>
 </template>
 
@@ -28,7 +31,6 @@ const printTable=()=>{
   });
 }
 </script>
-
 <style scoped>
 
 </style>

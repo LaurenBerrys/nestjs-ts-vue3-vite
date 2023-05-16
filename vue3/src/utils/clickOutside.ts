@@ -1,11 +1,8 @@
 /*
- * @Author: Nie Chengyong
+ * @Author: 聂成勇 && 949154547@qq.com
  * @Date: 2023-02-28 20:05:39
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-28 20:05:45
- * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/clickOutside.ts
- * @Description:
- *
+ * @LastEditTime: 2023-04-20 18:04:30
+ * @Description: 
  */
 import { on } from '@/utils/domUtils';
 import { isServer } from '@/utils/is';

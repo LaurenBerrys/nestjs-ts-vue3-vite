@@ -1,12 +1,3 @@
-/*
- * @Author: Nie Chengyong
- * @Date: 2023-02-28 20:15:58
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-07 16:38:44
- * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/settings/componentSetting.ts
- * @Description:
- *
- */
 //表格组件配置
 export default {
   table: {
@@ -21,9 +12,9 @@ export default {
       totalField: 'pageCount',
     },
     //默认分页数量
-    defaultPageSize: 10,
+    defaultPageSize: 20,
     //可切换每页数量集合
-    pageSizes: [10, 20, 30, 40, 50],
+    pageSizes: [20, 50,100],
   },
   upload: {
     //考虑接口规范不同

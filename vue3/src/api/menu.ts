@@ -7,11 +7,11 @@
  * @Description:
  *
  */
-import axiosReq from '@/utils/axios';
+import axiosRequest from '@/utils/axios';
 
 //创建菜单
 export const createMenu = (data) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/menu-list',
     method: 'post',
     data,
@@ -19,7 +19,7 @@ export const createMenu = (data) => {
 };
 //更新菜单
 export const updateMenu = (url, data) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/menu-list/' + url,
     method: 'patch',
     data,
@@ -28,14 +28,14 @@ export const updateMenu = (url, data) => {
 
 //删除菜单
 export const deleteMenu = (url) => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/menu-list/' + url,
     method: 'delete',
   });
 };
 //获取菜单列表
 export const getMenu = () => {
-  return axiosReq({
+  return axiosRequest({
     url: '/nest-api/menu-list',
     method: 'get',
   });

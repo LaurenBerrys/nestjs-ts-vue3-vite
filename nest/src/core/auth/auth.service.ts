@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 15:48:15
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-02 16:09:31
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-05-08 11:17:46
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/core/auth/auth.service.ts
  * @Description: 
  * 
@@ -69,6 +69,8 @@ export class AuthService {
     const Date = new ResponseData();
     try {
       const token = this.jwtService.sign(payload);
+      console.log(token, 'token');
+      
       // 实例化 redis
       const redis = await RedisInstance.initRedis('auth.certificate', 0);
       // 将用户信息和 token 存入 redis，并设置失效时间24h，语法：[key, seconds, value]

@@ -17,7 +17,7 @@
 <script lang="ts">
   import { PaintBoard } from './utils/paintBoard';
   import { CANVAS_ELE_TYPE } from './utils/constants';
-  import ToolPanel from './components/toolPanel/ToolPanel.vue';
+  import ToolPanel from './components/toolPanel/toolPanel.vue';
   import { useBackspace, useResizeEvent, useSpaceEvent } from './hooks/event';
   import { CURSOR_TYPE } from './utils/cursor';
   import { TextEdit } from './utils/element/text';
@@ -28,6 +28,7 @@
       ToolPanel,
     },
     setup() {
+      const Store= useConfigStore();
       const textEdit = new TextEdit();
       // 初始化画板
       const canvasRef: any = ref(null);
@@ -93,11 +94,12 @@
       const isMouseDown = ref<boolean>(false);
       const mouseDown = (event: MouseEvent) => {
         if (board.value) {
-          const { clientX: x, clientY: y } = event;
-          const position = {
-            x,
-            y,
-          };
+          console.log('mouseDown',event);
+          const px= Store.collapsed?0:95;
+          const x = event.clientX+px;
+          const y= event.clientY+50;
+          // const { clientX: x, clientY: y } = event;
+          const position = {x,y};
           // 如果有文本编辑框，取消编辑
           if (textEdit.inputEle) {
             board.value.addTextElement(textEdit.value, textEdit.rect);
@@ -121,7 +123,10 @@
       };
       const dbClick = (event: MouseEvent) => {
         if (board.value) {
-          const { clientX: x, clientY: y } = event;
+          // const { clientX: x, clientY: y } = event;
+          const px= Store.collapsed?0:95;
+          const x = event.clientX+px;
+          const y= event.clientY+50;
           const position = {
             x,
             y,
@@ -132,7 +137,10 @@
       };
       const mouseMove = (event: MouseEvent) => {
         if (board.value) {
-          const { clientX: x, clientY: y } = event;
+          const px= Store.collapsed?0:95;
+          const x = event.clientX+px;
+          const y= event.clientY+50;
+          // const { clientX: x, clientY: y } = event;
           if (isPressSpace.value && isMouseDown.value) {
             board.value.dragCanvas({
               x,

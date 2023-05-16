@@ -1,4 +1,10 @@
-import componentSetting from '@/components/settings/componentSetting';
+/*
+ * @Author: LaurenBerrys && 949154547@qq.com
+ * @Date: 2023-02-09 09:16:58
+ * @LastEditTime: 2023-05-16 11:49:55
+ * @Description: 
+ */
+import componentSetting from '@/components/settings/TableSetting';
 
 const { table } = componentSetting;
 

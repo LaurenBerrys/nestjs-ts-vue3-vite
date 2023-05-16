@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-18 16:14:44
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-18 16:24:36
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-05-08 11:18:55
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/core/redis/index.ts
  * @Description: 
  * 
@@ -26,9 +26,9 @@ export class RedisInstance {
     if (!isExist) {
     //   Logger.debug(`[Redis ${db}]来自 ${method} 方法调用, Redis 实例化了 ${++n} 次 `);
     console.log(`[Redis ${db}]来自 ${method} 方法调用, Redis 实例化了 ${++n} 次 `);
-    //实例化redis
-    redisList[db] = new Redis({ ...config.redis, db });
-      redisIndex.push(db);
+      //实例化redis
+        redisList[db] = new Redis({ ...config.redis, db });
+        redisIndex.push(db);
     } else {
       console.log(`[Redis ${db}]来自 ${method} 方法调用`);
     //   Logger.debug(`[Redis ${db}]来自 ${method} 方法调用`);
