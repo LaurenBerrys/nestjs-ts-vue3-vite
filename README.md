@@ -4,7 +4,7 @@
  * @LastEditTime: 2023-04-20 16:58:27
  * @Description: 
 -->
-## 本项目是NestJs+TS+vue3+vite4+Pinia技术机构组成
+## 本项目是NestJs+TS+vue3+vite4+Pinia技术组成
 [项目连接](https://github.com/supercode-peter/nestjs-ts-vue3-vite.git)
  后端启动--出现Unable to connect to the database报错--
    需要自己换一个数据库连接问题哈
@@ -29,3 +29,5 @@
 
 [nestJS接口测试](https://www.apifox.cn/apidoc/shared-8378cce8-494a-4d31-8cb5-00a8a22832c8)
  配置redis，JWT，mongdb，typeorm ，路由守卫，加密盐，管道，过滤器，拦截器 ，日志
+ 1.启动后端之前要开启本地的redis，不然会报错
+
