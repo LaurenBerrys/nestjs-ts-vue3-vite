@@ -1,7 +1,7 @@
 <!--
  * @Editors: Nie Chengyong
  * @Date: 2023-02-27 20:39:35
- * @LastEditTime: 2023-05-16 15:17:28
+ * @LastEditTime: 2023-05-17 10:12:30
  * @Description: 
 -->
 <template>
@@ -20,7 +20,7 @@
         <NvapForm @register="register" @submit="handleSubmit" @reset="handleReset" />
       </template>
       <template #tableButton>
-        <n-button m-10 type="primary" @click="handleAdd">新增</n-button>
+        <n-button m-10 type="primary"  v-permission="'table-add'" @click="handleAdd">新增</n-button>
         <n-button m-10 type="primary" @click="handleAdd">删除</n-button>
         <n-button m-10 type="primary" @click="handleAdd">搜索</n-button>
       </template>

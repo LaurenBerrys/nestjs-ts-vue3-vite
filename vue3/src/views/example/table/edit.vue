@@ -1,7 +1,7 @@
 <!--
  * @Author: LaurenBerrys 949154547@qq.com
  * @Date: 2023-03-14 19:28:17
- * @LastEditTime: 2023-03-15 10:42:18
+ * @LastEditTime: 2023-05-16 16:28:43
  * @Description: 编辑表格
 -->
 <template>
@@ -61,10 +61,10 @@
     console.log(val);
   };
   const editEnd = ({ record, index, key, value }) => {
-    console.log(record, value, key, index);
+    console.log(record, value, key, index, 'editEnd');
   };
   const onEditChange = ({ column, value, record }) => {
-    console.log(value, record, column);
+    console.log(value, record, column, 'onEditChange');
   };
   const onCheckedRow = (val) => {
     console.log(val);

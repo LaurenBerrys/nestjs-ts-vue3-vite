@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-03-04 17:06:54
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-20 17:56:45
+ * @LastEditTime: 2023-05-17 09:53:08
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/assignpermissions/index.vue
  * @Description: 
  * 
@@ -14,7 +14,6 @@
         <n-tree
           style="max-height: 950px; width: 400px; overflow: hidden"
           block-line
-          cascade
           checkable
           key-field="code"
           label-field="title"
@@ -100,6 +99,8 @@
     keys = keys.map((item) => item.trim());
     //然后再去重
     keys = [...new Set(keys)];
+    console.log(keys,'keys');
+    
     checkedKeys.value = keys;
   };
   //展开的菜单

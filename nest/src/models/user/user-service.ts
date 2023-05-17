@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-11 06:21:47
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-05-17 10:10:05
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user-service.ts
  * @Description: 
  * 
@@ -68,9 +68,8 @@ export class UserService {
         for (let i = 0; i < event.roles.length; i++) {
             const role = await this.role.findOne(event.roles[i]);
             roleCode.push(...role.code);
-            permissions.push(...role.permissions)
+            permissions.push(...role.code,...role.permissions)
         }
-        event.permissions=permissions
         event.menuList=[]
         roleCode = [...new Set(roleCode)];
         //根据角色code找到对应的菜单
@@ -84,8 +83,12 @@ export class UserService {
                     code:roleCode[index]
                 }
                 });
+                if(menu.permissions){
+                    permissions.push(...menu.permissions)
+                 }
              event.menuList.push(menu);
          }
+         event.permissions=[...new Set(permissions)]
         }else{
             event.menuList=await this.menulist.find();
             event.permissions= await this.role.find();

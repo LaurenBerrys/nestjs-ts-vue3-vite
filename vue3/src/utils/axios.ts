@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 14:37:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-20 18:03:34
+ * @LastEditTime: 2023-05-16 17:37:06
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/axios.ts
  * @Description:
  *
@@ -55,7 +55,7 @@ service.interceptors.response.use(
   },
   //响应报错
   (err) => {
-    const noAuthCode = '401,403';
+    const noAuthCode = '401';
     const { response } = err;
     if (response) {
       if (hasOwn(response, 'data')) {

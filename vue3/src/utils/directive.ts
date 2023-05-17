@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-03-03 21:23:01
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-15 17:15:28
+ * @LastEditTime: 2023-05-17 10:13:54
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/utils/directive.ts
  * @Description:
  *
@@ -14,8 +14,7 @@ export const myDirective = {
   created(el, binding) {
     // 下面会介绍各个参数的细节
     const { value } = binding;
-
-    if (!usePermission().hasPermission([...value])) {
+    if (!usePermission().hasPermission([value])) {
       //隐藏元素el
       el.style.display = 'none';
     }

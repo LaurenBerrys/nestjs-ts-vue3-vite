@@ -1,7 +1,13 @@
+/*
+ * @Author: LaurenBerrys && 949154547@qq.com
+ * @Date: 2023-03-14 15:29:48
+ * @LastEditTime: 2023-05-17 10:11:46
+ * @Description: 表格配置
+ */
 import { FormSchema } from '@/components/Form';
-import { NTag } from 'naive-ui';
-import { TableAction } from '@/components/Table';
-export const columns = [
+import { NTag,NCheckbox } from 'naive-ui';
+import { BasicColumn, TableAction } from '@/components/Table';
+export const columns:BasicColumn[]= [
   {
     title: 'id',
     key: 'id',
@@ -10,23 +16,35 @@ export const columns = [
     title: '角色名称',
     key: 'name',
     render: (row) => {
-      return h(
+      return h('div',[
+        !row.checked ? h(NCheckbox as any,
+          {
+          checked:row.checked,
+          onUpdateChecked:(value)=>{
+            row.checked=value;
+            window.$message.info('勾选' + row.name);
+          },
+          style:'margin-right:10px',
+         }
+        ):null,
+       h(
         NTag,
         {
           type: 'success',
           onClick: () => {
+            row.checked=false;
             window.$message.info('点击了' + row.name);
-          }
+          },
         },
         {
           default: () => row.name,
-          
-        }
-      );
-    },
+        })
+       
+      ])
+    }
   },
 ];
-export const columns2 = [
+export const columns2:BasicColumn[] = [
   {
     title: 'id',
     key: 'id',
@@ -36,6 +54,7 @@ export const columns2 = [
     key: 'name',
     edit: true,
     editComponent: 'NInput',
+    align: 'center',
   },
   {
     title: '角色类型',
@@ -63,19 +82,8 @@ export const columns2 = [
     editComponent: 'NSwitch',
     editValueMap: (value) => {
       return value ? '启用' : '禁用';
-    },
-    // render: (row) => {
-    //   return h(
-    //     NTag,
-    //     {
-    //       type: "success",
-    //     },
-    //     {
-    //       default: () => row.switch?'启用':'禁用',
-    //     }
-    //   );
-    // }
-  },
+    }
+  }
 ];
 export const schemas: FormSchema[] = [
   {
@@ -147,11 +155,12 @@ export const data = {
 };
 
 export const action = (handeone, hand) => {
-  const actionColumn = reactive({
+  const actionColumn:BasicColumn = reactive({
     width: 250,
     title: '操作',
     key: 'action',
     fixed: 'right',
+    align: 'center',
     render(record) {
       return h(TableAction, {
         style: 'button',
@@ -159,17 +168,17 @@ export const action = (handeone, hand) => {
           {
             label: '操作',
             onClick: handeone.bind(null, record),
-            ifShow: () => {
-              return true;
-            },
-            // auth: ["basic_list"],
+            // ifShow: () => {
+            //   return false;
+            // },
+            auth: ["table-add"],
           },
           {
             label: '删除',
             onClick: hand.bind(null, record),
-            ifShow: () => {
-              return true;
-            },
+            // ifShow: () => {
+            //   return true;
+            // },
             // auth: ["basic_list"],
           },
         ],

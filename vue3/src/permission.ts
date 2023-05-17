@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-15 15:23:03
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-03-14 16:37:05
+ * @LastEditTime: 2023-05-16 17:51:06
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/permission.ts
  * @Description:
  *
@@ -26,6 +26,8 @@ router.beforeEach(async (to) => {
       if (!appStore.userInfo) {
         try {
           const userData = await userInfoReq();
+          console.log(userData,1111);
+          
           // userData.menuList
           //3.动态路由权限筛选
           filterAsyncRouter(userData);

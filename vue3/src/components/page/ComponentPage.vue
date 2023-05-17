@@ -1,11 +1,8 @@
 <!--
- * @Author: Nie Chengyong
- * @Date: 2023-02-21 21:12:45
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-22 15:46:03
- * @FilePath: /nestjs-ts-vue3-vite/vue3/src/components/page/ComponentPage.vue
+ * @Author: LaurenBerrys && 949154547@qq.com
+ * @Date: 2023-02-22 15:39:41
+ * @LastEditTime: 2023-05-16 16:02:41
  * @Description: 
- * 
 -->
 <template>
   <AppPage :show-footer="showFooter" >

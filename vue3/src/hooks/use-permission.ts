@@ -20,7 +20,7 @@ interface menuRow {
   children: RouterTypes;
 }
 export const filterAsyncRoutesByMenuList = (menuList) => {
-  const filterRouter: RouterTypes = [];
+    const filterRouter: RouterTypes = [];
   menuList.forEach((route: menuRow) => {
     //button permission
     if (route.category === 3) {
@@ -143,6 +143,8 @@ export function filterAsyncRouter({ menuList = [], roles, codes }) {
     accessRoutes = filterAsyncRouterByCodes(roleCodeRoutes, codes); //by codes
   }
   accessRoutes.forEach((route) => {
+    console.log(route,1111);
+    
     router.addRoute(route);
   });
   asyncRoutes.forEach((item) => router.addRoute(item));
