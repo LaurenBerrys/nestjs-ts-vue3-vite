@@ -1,0 +1,55 @@
+{
+  "header": {
+    "height": 60
+  },
+  "tags": {
+    "visible": true,
+    "height": 50
+  },
+  "naiveThemeOverrides": {
+    "Button": {},
+    "common": {
+      "primaryColor": "#2cb67d",
+      "primaryColorHover": "#2cb67d",
+      "primaryColorPressed": "#2cb67d",
+      "primaryColorSuppl": "#2cb67d",
+      "infoColor": "#2cb67d",
+      "infoColorHover": "#8fcdd4",
+      "infoColorPressed": "#2cb67d",
+      "infoColorSuppl": "#2cb67d",
+      "successColor": "#18A058FF",
+      "successColorHover": "#36AD6AFF",
+      "successColorPressed": "#0C7A43FF",
+      "successColorSuppl": "#36AD6AFF",
+      "warningColor": "#F0A020FF",
+      "warningColorHover": "#FCB040FF",
+      "warningColorPressed": "#C97C10FF",
+      "warningColorSuppl": "#FCB040FF",
+      "errorColor": "#D03050FF",
+      "errorColorHover": "#DE576DFF",
+      "errorColorPressed": "#AB1F3FFF",
+      "errorColorSuppl": "#DE576DFF",
+      "fontFamily": "v-sans, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "fontFamilyMono": "v-mono, SFMono-Regular, Menlo, Consolas, Courier, monospace",
+      "fontWeight": "400",
+      "fontWeightStrong": "500",
+      "borderRadius": "3px",
+      "borderRadiusSmall": "2px",
+      "fontSize": "14px",
+      "fontSizeMini": "12px",
+      "fontSizeTiny": "12px",
+      "fontSizeSmall": "14px",
+      "fontSizeMedium": "14px",
+      "fontSizeLarge": "15px",
+      "fontSizeHuge": "16px",
+      "scrollbarColor": "rgba(255, 255, 255, 0.2)",
+      "scrollbarColorHover": "rgba(255, 255, 255, 0.3)",
+      "scrollbarWidth": "5px",
+      "scrollbarHeight": "5px",
+      "scrollbarBorderRadius": "5px",
+      "boxShadow1": "0 1px 2px -2px rgba(0, 0, 0, .24), 0 3px 6px 0 rgba(0, 0, 0, .18), 0 5px 12px 4px rgba(0, 0, 0, .12)",
+      "boxShadow2": "0 3px 6px -4px rgba(0, 0, 0, .24), 0 6px 12px 0 rgba(0, 0, 0, .16), 0 9px 18px 8px rgba(0, 0, 0, .10)",
+      "boxShadow3": "0 6px 16px -9px rgba(0, 0, 0, .08), 0 9px 28px 0 rgba(0, 0, 0, .05), 0 12px 48px 16px rgba(0, 0, 0, .03)"
+    }
+  }
+}

@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-10 11:12:52
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-27 20:21:01
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-05-26 10:03:28
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/entities/user.entity.ts
  * @Description:
  *
@@ -19,6 +19,8 @@ export class User {
   realName: string;
   @Column({ length: 100, comment: '账户名' })
   name: string;
+  @Column({ comment: '头像' })
+  avatar: string;
   @Column({ comment: '密码' })
   password: string;
   @Column({ comment: '时间' })
@@ -27,4 +29,7 @@ export class User {
   roles:Array<string>;
   @Column({ comment: '盐' })
   salt: string;
+  @Column({ comment: '状态' })
+  state: number;
+
 }

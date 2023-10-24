@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:07:23
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-03-08 16:46:50
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-10-16 11:09:49
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/main.ts
  * @Description: 
  * 
@@ -16,6 +16,7 @@ import { TransformInterceptor } from './interceptor/transform/transform.intercep
 import { HttpExceptionFilter } from './filter/http-exception/http-exception.filter';
 import { AllExceptionsFilter } from './filter/any-exception/any-exception.filter';
 import { join } from 'path';
+import {WsAdapter} from '@nestjs/platform-ws'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: ['error', 'warn', 'debug', 'log'],
@@ -44,7 +45,8 @@ async function bootstrap() {
   //配置跨域
   app.enableCors();
   //配置全局前缀
-  app.setGlobalPrefix('nest-api')
-  await app.listen(3000);
+  app.setGlobalPrefix('nest-api');
+  app.useWebSocketAdapter(new WsAdapter(app));
+  await app.listen(3000,'0.0.0.0');
 }
 bootstrap();

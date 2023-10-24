@@ -1,1 +1,0 @@
-import{_ as r}from"./index.vue_vue_type_script_setup_true_name_AssignPermissions_lang.0d2aaa25.js";import"./NvapModal.01430e95.js";import"./NvapForm.32ab4956.js";import"./vue.71710d55.js";import"./axios.9678a311.js";import"./vue-router.37441a91.js";import"./useModal.11f91f90.js";import"./roles.c85b50b3.js";export{r as default};

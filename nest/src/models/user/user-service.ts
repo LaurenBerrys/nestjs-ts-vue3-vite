@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-05-17 10:10:05
+ * @LastEditTime: 2023-05-26 10:07:51
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user-service.ts
  * @Description: 
  * 
@@ -157,5 +157,10 @@ export class UserService {
         const date = await this.user.findOne(id);
         await this.user.remove(date);
         return Data
+    }
+    //检查用户是否存在
+    async checkUserExistence<T>(checkOption: T): Promise<boolean> {
+        const count = await this.user.count(checkOption);
+        return count==0 ? false : true;
     }
 }

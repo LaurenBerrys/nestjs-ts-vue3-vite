@@ -1,0 +1,57 @@
+
+[class*=' webgis-'],
+[class^='webgis-'] {
+  box-sizing: border-box;
+}
+
+// svg-icon 适用字体大小
+.fa-icon {
+  width: auto;
+  height: 1em;
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+}
+
+// fade - 渐隐效果
+.webgis-transition-fade {
+  &-enter-active,
+  &-leave-active {
+    transition:  all 0.3s;
+  }
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+
+// slide - 滑动渐隐效果
+.webgis-transition-slide {
+  &-enter-active,
+  &-leave-active {
+    transition:  all 0.3s;
+  }
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+    width: 0 !important;
+  }
+}
+
+.webgis-absolute-layer {
+  position: absolute;
+  z-index: 1;
+}
+
+.webgis-box-shadow-default {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+// .webgis-box-shadow-base {
+//   box-shadow: $box-shadow-base;
+// }
+
+.webgis-list-unstyled {
+  list-style-type: none;
+  padding-left: 0;
+}

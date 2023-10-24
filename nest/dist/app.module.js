@@ -19,6 +19,8 @@ const menu_list_module_1 = require("./models/menu-list/menu-list.module");
 const auth_module_1 = require("./core/auth/auth.module");
 const user_controller_1 = require("./models/user/user.controller");
 const file_module_1 = require("./models/file/file.module");
+const formily_module_1 = require("./models/formily/formily.module");
+const websockt_1 = require("./websockt/websockt");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -37,9 +39,10 @@ AppModule = __decorate([
             role_module_1.RoleModule,
             menu_list_module_1.MenuListModule,
             file_module_1.FileModule,
+            formily_module_1.FormilyModule,
         ],
         controllers: [app_controller_1.AppController, user_controller_1.UserController],
-        providers: [app_service_1.AppService],
+        providers: [app_service_1.AppService, websockt_1.default],
     })
 ], AppModule);
 exports.AppModule = AppModule;

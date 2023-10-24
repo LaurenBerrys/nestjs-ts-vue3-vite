@@ -1,1 +1,0 @@
-import{d as t,U as e,V as s,a1 as n}from"./vue.71710d55.js";const o=t({name:"Nvapmal"}),u=t({...o,props:{title:null,visible:{type:Boolean},width:null},setup(l){const a=l;return(i,p)=>(e(),s("div",null,n(a.title),1))}});export{u as _};

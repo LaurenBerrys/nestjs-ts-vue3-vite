@@ -1,1 +1,0 @@
-import{b4 as t}from"./NvapForm.32ab4956.js";const r=a=>t({url:"/nest-api/role",method:"post",data:a}),s=a=>t({url:"/nest-api/role",method:"get",params:a}),p=(a,e)=>t({url:"/nest-api/role/"+a,method:"patch",data:e});export{r as c,s as g,p as u};

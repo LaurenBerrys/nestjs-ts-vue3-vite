@@ -9,6 +9,7 @@ const transform_interceptor_1 = require("./interceptor/transform/transform.inter
 const http_exception_filter_1 = require("./filter/http-exception/http-exception.filter");
 const any_exception_filter_1 = require("./filter/any-exception/any-exception.filter");
 const path_1 = require("path");
+const platform_ws_1 = require("@nestjs/platform-ws");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, {
         logger: ['error', 'warn', 'debug', 'log'],
@@ -31,7 +32,8 @@ async function bootstrap() {
     app.use(logger_middleware_1.logger);
     app.enableCors();
     app.setGlobalPrefix('nest-api');
-    await app.listen(3000);
+    app.useWebSocketAdapter(new platform_ws_1.WsAdapter(app));
+    await app.listen(3000, '0.0.0.0');
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
