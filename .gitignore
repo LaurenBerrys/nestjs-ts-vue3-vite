@@ -3,6 +3,6 @@ node_modules
 /nest/log
 /nest/node_modules
 /nest/node_modules
-/element-plus/node_modules
+/element-plus
 /Naiveui/node_modules
 .DS_Store
