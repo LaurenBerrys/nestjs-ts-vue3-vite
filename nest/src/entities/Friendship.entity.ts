@@ -4,7 +4,7 @@
  * @LastEditTime: 2024-03-12 14:49:59
  * @Description: 
  */
-import { Entity, Column, ObjectIdColumn,PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 @Entity("Friendship")
 export class Friendship{
     // @ObjectIdColumn()

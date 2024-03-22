@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2024-03-18 17:07:19
+ * @LastEditTime: 2024-03-22 10:43:09
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/user/user-service.ts
  * @Description:
  *
@@ -35,10 +35,10 @@ export class UserService {
   async findAll(page, pageSize): Promise<ResponseData> {
     pageSize = parseInt(pageSize);
     page = parseInt(page);
-    const Data = new ResponseData();
-    Data.code = 200;
-    Data.msg = "success";
-    Data.data = await this.user.find();
+    const Response = new ResponseData();
+    Response.code = 200;
+    Response.msg = "success";
+    Response.data = await this.user.find();
     let pageCount = await this.user.count();
     pageCount = Math.ceil(pageCount / pageSize);
 
@@ -46,20 +46,20 @@ export class UserService {
       skip: (page - 1) * pageSize,
       take: pageSize,
     });
-    Data.data = {
+    Response.data = {
       pageSize,
       pageCount,
       list,
     };
-    return Data;
+    return Response;
   }
   async findOne(name: string): Promise<ResponseData> {
     const event: any = await this.user.findOneBy({ name });
-    const Data = new ResponseData();
+    const Response = new ResponseData();
     if (!event) {
-      Data.code = 404;
-      Data.msg = "not found";
-      return Data;
+      Response.code = 404;
+      Response.msg = "not found";
+      return Response;
     }
     if (event.name !== "admin") {
       //event.roles是一个数组，数组中存放的是角色id，现在要根据角色id找到队友的code
@@ -103,25 +103,25 @@ export class UserService {
       roleCode = [...new Set(roleCode)];
       event.permissions = roleCode;
     }
-    Data.code = 200;
-    Data.msg = "success";
-    Data.data = event;
-    return Data;
+    Response.code = 200;
+    Response.msg = "success";
+    Response.data = event;
+    return Response;
   }
   async create(input: CreateUserDto): Promise<ResponseData> {
     const { repassed, password, name } = input;
     console.log(input);
-    const Data = new ResponseData();
+    const Response = new ResponseData();
     if (repassed !== password) {
-      Data.code = 400;
-      Data.msg = "两次密码不一致";
-      return Data;
+      Response.code = 400;
+      Response.msg = "两次密码不一致";
+      return Response;
     }
     const user = await this.findOne(name);
     if (user.data) {
-      Data.code = 400;
-      Data.msg = "用户名已存在";
-      return Data;
+      Response.code = 400;
+      Response.msg = "用户名已存在";
+      return Response;
     }
     const salt = makeSalt(); // 制作密码盐
     const hashPassword = encryptPassword(password, salt); // 加密密码
@@ -134,10 +134,10 @@ export class UserService {
       ...input,
       when: new Date(),
     });
-    Data.code = 200;
-    Data.msg = "success";
-    Data.data = event;
-    return Data;
+    Response.code = 200;
+    Response.msg = "success";
+    Response.data = event;
+    return Response;
   }
   async update(id, input): Promise<ResponseData> {
     try {
@@ -145,21 +145,21 @@ export class UserService {
       const a = { ...data, ...input };
       console.log(a, 2222);
       await this.user.save(a);
-      const Data = new ResponseData();
-      Data.code = 200;
-      Data.msg = "success";
-      return Data;
+      const Response = new ResponseData();
+      Response.code = 200;
+      Response.msg = "success";
+      return Response;
     } catch (error) {
       console.log(error)
     }
   }
   async delete(id): Promise<ResponseData> {
-    const Data = new ResponseData();
-    Data.code = 200;
-    Data.msg = "success";
+    const Response = new ResponseData();
+    Response.code = 200;
+    Response.msg = "success";
     const date = await this.user.findOne(id);
     await this.user.remove(date);
-    return Data;
+    return Response;
   }
   //检查用户是否存在
   async checkUserExistence<T>(checkOption: T): Promise<boolean> {

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-10 11:12:52
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2024-03-12 14:49:49
+ * @LastEditTime: 2024-03-22 11:23:17
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/entities/user.entity.ts
  * @Description:
  *
@@ -11,6 +11,7 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
+  CreateDateColumn,
 } from "typeorm";
 //每个实体对应的就是数据库中的表
 @Entity("User", { comment: "用户" })
@@ -27,7 +28,12 @@ export class User {
   avatar?: string;
   @Column({ comment: "密码" })
   password: string;
-  @Column({ comment: "时间",nullable: true })
+  @CreateDateColumn({ 
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+    nullable: true,
+    comment: '创建时间'
+  })
   when?: Date;
   @Column({ comment: "角色",nullable: true })
   roles?: string;

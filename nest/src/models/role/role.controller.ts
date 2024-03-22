@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:26:24
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-12-27 16:56:14
+ * @LastEditTime: 2024-03-22 10:43:22
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/role/role.controller.ts
  * @Description:
  *
@@ -40,10 +40,10 @@ export class RoleController {
     @Query("pageSize") pageSize,
     @Query("page") page
   ): Promise<ResponseData> {
-    const Data = new ResponseData();
-    Data.code = 200;
-    Data.msg = "success";
-    Data.data = await this.role.find();
+    const Response = new ResponseData();
+    Response.code = 200;
+    Response.msg = "success";
+    Response.data = await this.role.find();
     //总数量
     let pageCount = await this.role.count();
     pageCount = Math.ceil(pageCount / pageSize);
@@ -55,26 +55,26 @@ export class RoleController {
       skip: (page - 1) * pageSize,
       take: pageSize,
     });
-    Data.data = {
+    Response.data = {
       pageSize,
       pageCount,
       list,
     };
-    return Data;
+    return Response;
   }
   @Get(":id")
   async findOne(@Param("id") id): Promise<ResponseData> {
     const event = await this.role.findOne(id);
-    const Data = new ResponseData();
+    const Response = new ResponseData();
     if (!event) {
-      Data.code = 404;
-      Data.msg = "not found";
-      return Data;
+      Response.code = 404;
+      Response.msg = "not found";
+      return Response;
     }
-    Data.code = 200;
-    Data.msg = "success";
-    Data.data = event;
-    return Data;
+    Response.code = 200;
+    Response.msg = "success";
+    Response.data = event;
+    return Response;
   }
   //create方法用于创建数据
   @Post()
@@ -82,11 +82,11 @@ export class RoleController {
     const event = await this.role.save({
       ...input,
     });
-    const Data = new ResponseData();
-    Data.code = 200;
-    Data.msg = "success";
-    Data.data = event;
-    return Data;
+    const Response = new ResponseData();
+    Response.code = 200;
+    Response.msg = "success";
+    Response.data = event;
+    return Response;
   }
   @Patch(":id")
   async update(
@@ -104,21 +104,21 @@ export class RoleController {
           data[0][key] = input[key];
       }
       await this.role.save(data);
-      const Data = new ResponseData();
-      Data.code = 200;
-      Data.msg = "success";
-      return Data;
+      const Response = new ResponseData();
+      Response.code = 200;
+      Response.msg = "success";
+      return Response;
     } catch (error) {
       console.log(error);
     }
   }
   @Delete(":id")
   async delete(@Param("id") id): Promise<ResponseData> {
-    const Data = new ResponseData();
-    Data.code = 200;
-    Data.msg = "success";
+    const Response = new ResponseData();
+    Response.code = 200;
+    Response.msg = "success";
     const date = await this.role.findOne(id);
     await this.role.remove(date);
-    return Data;
+    return Response;
   }
 }

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-17 14:15:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2024-03-18 17:10:58
+ * @LastEditTime: 2024-03-22 10:44:38
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/menu-list/menu-list-service.ts
  * @Description: 
  * 
@@ -23,19 +23,19 @@ export class MenuListService {
         private readonly menulist: Repository<MenuList>,
     ) { }
     async findAll(): Promise<ResponseData> {
-        const Data = new ResponseData();
-        Data.code = 200;
-        Data.msg = 'success';
-        Data.data = await this.menulist.find();;
-        this.logger.debug('查询所有数据', Data.data.length);
-        return Data;
+        const Response = new ResponseData();
+        Response.code = 200;
+        Response.msg = 'success';
+        Response.data = await this.menulist.find();;
+        this.logger.debug('查询所有数据', Response.data.length);
+        return Response;
     }
     async create(input:CreateMenuListDto): Promise<ResponseData> {
-        const Data = new ResponseData();
+        const Response = new ResponseData();
         await  this.menulist.save(input);
-        Data.code = 200;
-        Data.msg = 'success';
-        return Data;
+        Response.code = 200;
+        Response.msg = 'success';
+        return Response;
     }
     async update(name, input): Promise<ResponseData> {
         const data = await this.menulist.findOneBy({name});
@@ -45,20 +45,20 @@ export class MenuListService {
         }
         //更新数据
         await this.menulist.save(menu);
-        const Data = new ResponseData();
-        Data.code = 200;
-        Data.msg = 'success';
-        Data.data = menu;
-        return Data;
+        const Response = new ResponseData();
+        Response.code = 200;
+        Response.msg = 'success';
+        Response.data = menu;
+        return Response;
     }
     async delete(name): Promise<ResponseData> {
-        const Data = new ResponseData();
-        Data.code = 200;
-        Data.msg = 'success';
+        const Response = new ResponseData();
+        Response.code = 200;
+        Response.msg = 'success';
         const date = await this.menulist.findOneBy({
             name
         });
         await this.menulist.remove(date);
-        return Data
+        return Response
     }
 }

@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 15:34:33
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2024-03-20 16:23:24
+ * @LastEditTime: 2024-03-22 11:03:05
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/config/orm.config.prod.ts
  * @Description:
  *
