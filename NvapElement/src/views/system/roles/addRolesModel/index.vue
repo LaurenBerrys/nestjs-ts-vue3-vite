@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-03-04 18:58:09
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-20 17:48:29
+ * @LastEditTime: 2023-10-26 11:03:24
  * @FilePath: /nestjs-ts-vue3-vite/vue3/src/views/system/roles/addRolesModel/index.vue
  * @Description: 
  * 
@@ -54,19 +54,19 @@
     }
   };
   const open = async (data) => {
-    await setSchemas('code', {
-      componentProps: {
-        placeholder: '请选择菜单',
-        options: unref(data),
-        multiple: true,
-        keyField: 'code',
-        labelField: 'title',
-        childrenField: 'children',
-        onUpdateValue: (e: any) => {
-          console.log(e);
-        },
-      },
-    });
+    // await setSchemas('code', {
+    //   componentProps: {
+    //     placeholder: '请选择菜单',
+    //     options: unref(data),
+    //     multiple: true,
+    //     keyField: 'code',
+    //     labelField: 'title',
+    //     childrenField: 'children',
+    //     onUpdateValue: (e: any) => {
+    //       console.log(e);
+    //     },
+    //   },
+    // });
     openModal();
   };
   defineExpose({ open });

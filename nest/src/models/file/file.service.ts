@@ -14,7 +14,6 @@ export class FileService {
   //directory是用来判断是目录上传还是文件上传false是文件上传
   //查询文件是否上传
   async checkChunk(req: any): Promise<ResponseData> {
-    console.log(req);
     const { fileHash, suffix, directory, name } = req;
     const Data = new ResponseData();
     let fileExtension;
@@ -104,9 +103,7 @@ export class FileService {
       const form = new formidable.IncomingForm();
       form.parse(req, async (err, fields, files) => {
         if (err) return;
-
         console.log(uploadDir, files.file.originalFilename, 2222);
-
         const filePath = path.resolve(uploadDir, files.file);
         if (!fs.existsSync(filePath)) {
           await fs.mkdirs(filePath);
@@ -143,7 +140,9 @@ async function mergeFileChunk(filePath, fileHash) {
         resolve();
       });
     }).then(() => {
-      rimraf(chunksDir);
+      // rimraf(chunksDir);
+      //删除整个目录
+      fs.rmdirSync(chunksDir);
     });
   } catch (error) {
     console.log(error, 222);

@@ -1,8 +1,8 @@
 /*
  * @Author: Nie Chengyong
  * @Date: 2023-02-18 16:13:27
- * @LastEditors: Nie Chengyong
- * @LastEditTime: 2023-02-18 16:13:35
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-10-31 11:24:16
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/config/config.ts
  * @Description: 
  * 
@@ -14,7 +14,7 @@ export   const  config = {
       database: 'nest',
       entities:  [ __dirname + '/../**/*.entity{.ts,.js}'],
       useUnifiedTopology: true,
-      synchronize: true,
+      synchronize: false,
     },
     redis:{
       host: '127.0.0.1',

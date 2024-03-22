@@ -1,14 +1,15 @@
 /*
  * @Author: LaurenBerrys && 949154547@qq.com
  * @Date: 2023-05-25 17:08:52
- * @LastEditTime: 2023-05-25 17:49:24
+ * @LastEditTime: 2024-03-12 14:49:59
  * @Description: 
  */
-import { Entity, Column, ObjectIdColumn, OneToMany } from "typeorm";
+import { Entity, Column, ObjectIdColumn,PrimaryGeneratedColumn, OneToMany } from "typeorm";
 @Entity("Friendship")
 export class Friendship{
-    @ObjectIdColumn()
-    id: string;
+    // @ObjectIdColumn()
+    @PrimaryGeneratedColumn()
+    id: number;
     @Column({ comment: "接收者id" })
     toId: string;
     @Column({ comment: "添加好友时间" })

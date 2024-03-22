@@ -1,11 +1,8 @@
 /*
- * @Author: Nie Chengyong
+ * @Author: LaurenBerrys && 949154547@qq.com
  * @Date: 2023-02-09 19:07:23
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-09-01 17:25:00
- * @FilePath: /nestjs-ts-vue3-vite/nest/src/app.module.ts
+ * @LastEditTime: 2024-03-12 15:50:18
  * @Description:
- *
  */
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
@@ -22,6 +19,8 @@ import { UserController } from "./models/user/user.controller";
 import { MenuListController } from "./models/menu-list/menu-list-controller";
 import { FileModule } from "./models/file/file.module";
 import { FormilyModule } from "./models/formily/formily.module";
+import { ProjectModule } from "./models/project/project.module";
+import { EntityModule } from "./models/entity/entity.module";
 import WebSocketClient from "./websockt/websockt";
 @Module({
   imports: [
@@ -29,13 +28,12 @@ import WebSocketClient from "./websockt/websockt";
     ConfigModule.forRoot({
       isGlobal: true,
       //加载配置文件
-      load: [ormConfig],
-
+      load: [ormConfigProd],
       expandVariables: true, //支持子变量
     }),
     //连接mongdb云数据库
     TypeOrmModule.forRootAsync({
-      useFactory: ormConfig,
+      useFactory: ormConfigProd,
       // process.env.NODE_ENV !== 'production' ? ormConfig : ormConfigProd,
       //根据环境来加载配置文件
     }),
@@ -45,6 +43,8 @@ import WebSocketClient from "./websockt/websockt";
     MenuListModule,
     FileModule,
     FormilyModule,
+    ProjectModule,
+    EntityModule,
   ],
   controllers: [AppController, UserController],
   providers: [AppService, WebSocketClient],

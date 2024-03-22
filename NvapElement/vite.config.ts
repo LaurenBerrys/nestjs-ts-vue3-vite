@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-10-16 16:53:51
+ * @LastEditTime: 2023-11-21 10:59:13
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description:
  *
@@ -18,7 +18,7 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'; //setup 支持name属性
 import vueJsx from '@vitejs/plugin-vue-jsx';
 
-import VueMacros from 'unplugin-vue-macros/dist/vite';//npm i -D unplugin-vue-macros //宏指令 https://vue-macros.sxzz.moe/guide/configurations.html
+import VueMacros from 'unplugin-vue-macros/dist/vite'; //npm i -D unplugin-vue-macros //宏指令 https://vue-macros.sxzz.moe/guide/configurations.html
 import { transformShortVmodel } from '@vue-macros/short-vmodel'; //配置简写v-model
 //打包分析插件
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -27,6 +27,8 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { terser } from 'rollup-plugin-terser';
 //开启gizp压缩
 import compressionPlugin from 'vite-plugin-compression';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import vitePluginImp from 'vite-plugin-imp';
 
 /**
  * * unplugin-icons插件，自动引入iconify图标
@@ -36,7 +38,7 @@ import compressionPlugin from 'vite-plugin-compression';
 import unocss from 'unocss/vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { FileSystemIconLoader } from 'unplugin-icons/loaders';
-import IconsResolver from 'unplugin-icons/resolver';//图标路径解析,提供了在 Vite 项目中自动导入和使用图标的功能
+import IconsResolver from 'unplugin-icons/resolver'; //图标路径解析,提供了在 Vite 项目中自动导入和使用图标的功能
 import Icons from 'unplugin-icons/vite';
 
 const customIconPath = fileURLToPath(new URL('./src/assets/svg', import.meta.url));
@@ -47,7 +49,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     ...process.env,
     ...loadEnv(mode, process.cwd()),
   };
-  
+
   const base = './';
   const resolve = {
     alias: {
@@ -63,16 +65,18 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     proxy: {
       '/nest-api': {
         changeOrigin: true,
-        target: 'http://120.77.83.106:3000/',
+        // target: 'http://120.77.83.106:3000/',
+        target: 'http:/localhost:3000/',
       },
     },
-    cors: true,
+    // cors: true,
   };
   const css = {
     //scss变量问题
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "./src/assets/variables.scss";`,
+        // baseData:`@import "element-plus/theme-chalk/src/base.scss";`,
+        // additionalData: `@import "./src/assets/variables.scss";`,
       },
     },
   };
@@ -102,6 +106,17 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       deleteOriginFile: false, //是否删除源文件
       threshold: 10240, //文件大小大于10kb时启用压缩
     }),
+    vitePluginImp({
+      libList: [
+        {
+          libName: '@formily/element-plus',
+          libDirectory: 'esm',
+          style(name) {
+            return `@formily/element-plus/esm/${name}/style.js`;
+          },
+        },
+      ],
+    }),
     terser({
       format: {
         comments: IS_PROD, // <-- 将去除所有的注释
@@ -119,6 +134,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     }),
     //自动导入
     AutoImport({
+      resolvers: [ElementPlusResolver({ importStyle: 'sass' })],
       imports: [
         'vue',
         'vue-router',
@@ -144,6 +160,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     }),
     Components({
       resolvers: [
+        ElementPlusResolver({ importStyle: 'sass' }),
         NaiveUiResolver(),
         IconsResolver({
           customCollections: ['custom'],
@@ -157,7 +174,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       customCollections: {
         custom: FileSystemIconLoader(customIconPath),
       },
-      autoInstall:true,
+      autoInstall: true,
       scale: 1,
       defaultClass: 'inline-block',
     }),

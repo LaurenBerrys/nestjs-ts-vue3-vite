@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 19:56:31
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-10-16 17:05:13
+ * @LastEditTime: 2023-11-24 16:49:00
  * @FilePath: /nestjs-ts-vue3-vite/vue3/vite.config.ts
  * @Description:
  *
@@ -27,8 +27,6 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { terser } from 'rollup-plugin-terser';
 //开启gizp压缩
 import compressionPlugin from 'vite-plugin-compression';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
-import vitePluginImp from 'vite-plugin-imp';
 
 /**
  * * unplugin-icons插件，自动引入iconify图标
@@ -65,17 +63,17 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     proxy: {
       '/nest-api': {
         changeOrigin: true,
-        target: 'http://localhost:3000/',
+        target: 'http://120.77.83.106:3000/',
+        // target: 'http://localhost:3000',
       },
     },
-    // cors: true,
+    cors: true,
   };
   const css = {
     //scss变量问题
     preprocessorOptions: {
       scss: {
-        // baseData:`@import "element-plus/theme-chalk/src/base.scss";`,
-        // additionalData: `@import "./src/assets/variables.scss";`,
+        additionalData: `@import "./src/assets/variables.scss";`,
       },
     },
   };
@@ -105,17 +103,6 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       deleteOriginFile: false, //是否删除源文件
       threshold: 10240, //文件大小大于10kb时启用压缩
     }),
-    vitePluginImp({
-      libList: [
-        {
-          libName: '@formily/element-plus',
-          libDirectory: 'esm',
-          style(name) {
-            return `@formily/element-plus/esm/${name}/style.js`;
-          },
-        },
-      ],
-    }),
     terser({
       format: {
         comments: IS_PROD, // <-- 将去除所有的注释
@@ -133,7 +120,6 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     }),
     //自动导入
     AutoImport({
-      resolvers: [ElementPlusResolver({ importStyle: 'sass' })],
       imports: [
         'vue',
         'vue-router',
@@ -159,7 +145,6 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     }),
     Components({
       resolvers: [
-        ElementPlusResolver({ importStyle: 'sass' }),
         NaiveUiResolver(),
         IconsResolver({
           customCollections: ['custom'],

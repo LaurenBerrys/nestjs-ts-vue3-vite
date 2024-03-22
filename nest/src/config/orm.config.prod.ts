@@ -2,23 +2,25 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-13 15:34:33
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-10-16 14:51:59
+ * @LastEditTime: 2024-03-20 16:23:24
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/config/orm.config.prod.ts
- * @Description: 
- * 
+ * @Description:
+ *
  */
-import { registerAs } from '@nestjs/config';
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-console.log(process.env.DB_URL,'process.env.DB_URL');
+import { registerAs } from "@nestjs/config";
+import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 
 export default registerAs(
-  'orm.config',
+  "orm.config",
   (): TypeOrmModuleOptions => ({
-    type: 'mongodb',
-    url: 'mongodb://root:1235@0.0.0.0/nest?authSource=admin',
-    database: 'nest',
-    entities: [ __dirname + '/../**/*.entity{.ts,.js}'],
-    useUnifiedTopology: true,
-    synchronize: true, //关闭自动同步，生产环境下不建议开启
-  }),
+    type: "mysql",
+    // host: "localhost",
+    host: "120.77.83.106",
+    username: "admin",
+    password: "Admin@123456",
+    database: "nest",
+    entities: [__dirname + "/../**/*.entity{.ts,.js}"],
+    autoLoadEntities: true, // 自动链接被 forFeature 注册的实体
+    synchronize: false, // 实体与表同步 调试模式下开始。不然会有强替换导致数据丢是
+  })
 );

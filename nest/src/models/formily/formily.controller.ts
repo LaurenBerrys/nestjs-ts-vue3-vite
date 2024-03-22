@@ -2,7 +2,7 @@
  * @Author: Nie Chengyong
  * @Date: 2023-02-09 19:26:24
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-09-01 17:50:18
+ * @LastEditTime: 2024-03-12 16:50:10
  * @FilePath: /nestjs-ts-vue3-vite/nest/src/models/menu-list/menu-list-controller.ts
  * @Description:
  *
@@ -15,6 +15,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from "@nestjs/common";
 import { ResponseData } from "../../interface/code";
@@ -25,21 +26,20 @@ import { ApiTags } from "@nestjs/swagger";
 @Controller("/formily")
 export class FormilyController {
   constructor(private readonly FormilyService: FormilyService) {}
-  @UseGuards(AuthGuard("jwt"))
-  @Get(":ids")
-  async findOne(@Param("ids") id:string): Promise<ResponseData> {
-    return await this.FormilyService.findOne(id);
+  @Get("find")
+  async find(@Query("name") name?: string ,@Query("code") code?: string ,@Query("id") id?: string ,@Query("page") page?, @Query("pageSize") pageSize?): Promise<ResponseData> {
+    return await this.FormilyService.find(name,code,id,page,pageSize);
   }
   //create方法用于创建数据
   @ApiTags("创建表单数据")
-  // @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   async create(@Body() input: any): Promise<ResponseData> {
     return await this.FormilyService.create(input);
   }
-  @UseGuards(AuthGuard("jwt"))
+  // @UseGuards(AuthGuard("jwt"))
   @ApiTags("更新表单数据")
-  @Patch(":id")
+  @Patch("update")
   async update(@Param("id") id, @Body() input: any): Promise<ResponseData> {
     return await this.FormilyService.update(id, input);
   }

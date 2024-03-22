@@ -12,7 +12,7 @@ const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const orm_config_1 = require("./config/orm.config");
+const orm_config_prod_1 = require("./config/orm.config.prod");
 const user_module_1 = require("./models/user/user.module");
 const role_module_1 = require("./models/role/role.module");
 const menu_list_module_1 = require("./models/menu-list/menu-list.module");
@@ -20,6 +20,8 @@ const auth_module_1 = require("./core/auth/auth.module");
 const user_controller_1 = require("./models/user/user.controller");
 const file_module_1 = require("./models/file/file.module");
 const formily_module_1 = require("./models/formily/formily.module");
+const project_module_1 = require("./models/project/project.module");
+const entity_module_1 = require("./models/entity/entity.module");
 const websockt_1 = require("./websockt/websockt");
 let AppModule = class AppModule {
 };
@@ -28,11 +30,11 @@ AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
-                load: [orm_config_1.default],
+                load: [orm_config_prod_1.default],
                 expandVariables: true,
             }),
             typeorm_1.TypeOrmModule.forRootAsync({
-                useFactory: orm_config_1.default,
+                useFactory: orm_config_prod_1.default,
             }),
             user_module_1.UserModule,
             auth_module_1.AuthModule,
@@ -40,6 +42,8 @@ AppModule = __decorate([
             menu_list_module_1.MenuListModule,
             file_module_1.FileModule,
             formily_module_1.FormilyModule,
+            project_module_1.ProjectModule,
+            entity_module_1.EntityModule,
         ],
         controllers: [app_controller_1.AppController, user_controller_1.UserController],
         providers: [app_service_1.AppService, websockt_1.default],
